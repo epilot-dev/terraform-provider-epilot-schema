@@ -29,6 +29,7 @@ const (
 	AttributeTypeTagsAttribute                  AttributeType = "TagsAttribute"
 	AttributeTypeMessageEmailAddressAttribute   AttributeType = "MessageEmailAddressAttribute"
 	AttributeTypeNumberAttribute                AttributeType = "NumberAttribute"
+	AttributeTypeTableAttribute                 AttributeType = "TableAttribute"
 	AttributeTypeConsentAttribute               AttributeType = "ConsentAttribute"
 	AttributeTypeInternalAttribute              AttributeType = "InternalAttribute"
 	AttributeTypeOrderedListAttribute           AttributeType = "OrderedListAttribute"
@@ -48,40 +49,41 @@ const (
 )
 
 type Attribute struct {
-	TextAttribute                  *TextAttribute                  `queryParam:"inline" name:"Attribute"`
-	LinkAttribute                  *LinkAttribute                  `queryParam:"inline" name:"Attribute"`
-	DateAttribute                  *DateAttribute                  `queryParam:"inline" name:"Attribute"`
-	CountryAttribute               *CountryAttribute               `queryParam:"inline" name:"Attribute"`
-	BooleanAttribute               *BooleanAttribute               `queryParam:"inline" name:"Attribute"`
-	SelectAttribute                *SelectAttribute                `queryParam:"inline" name:"Attribute"`
-	MultiSelectAttribute           *MultiSelectAttribute           `queryParam:"inline" name:"Attribute"`
-	StatusAttribute                *StatusAttribute                `queryParam:"inline" name:"Attribute"`
-	SequenceAttribute              *SequenceAttribute              `queryParam:"inline" name:"Attribute"`
-	RelationAttribute              *RelationAttribute              `queryParam:"inline" name:"Attribute"`
-	UserRelationAttribute          *UserRelationAttribute          `queryParam:"inline" name:"Attribute"`
-	AddressAttribute               *AddressAttribute               `queryParam:"inline" name:"Attribute"`
-	AddressRelationAttribute       *AddressRelationAttribute       `queryParam:"inline" name:"Attribute"`
-	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `queryParam:"inline" name:"Attribute"`
-	CurrencyAttribute              *CurrencyAttribute              `queryParam:"inline" name:"Attribute"`
-	TagsAttribute                  *TagsAttribute                  `queryParam:"inline" name:"Attribute"`
-	MessageEmailAddressAttribute   *MessageEmailAddressAttribute   `queryParam:"inline" name:"Attribute"`
-	NumberAttribute                *NumberAttribute                `queryParam:"inline" name:"Attribute"`
-	ConsentAttribute               *ConsentAttribute               `queryParam:"inline" name:"Attribute"`
-	InternalAttribute              *InternalAttribute              `queryParam:"inline" name:"Attribute"`
-	OrderedListAttribute           *OrderedListAttribute           `queryParam:"inline" name:"Attribute"`
-	FileAttribute                  *FileAttribute                  `queryParam:"inline" name:"Attribute"`
-	ComputedAttribute              *ComputedAttribute              `queryParam:"inline" name:"Attribute"`
-	PartnerStatusAttribute         *PartnerStatusAttribute         `queryParam:"inline" name:"Attribute"`
-	InvitationEmailAttribute       *InvitationEmailAttribute       `queryParam:"inline" name:"Attribute"`
-	AutomationAttribute            *AutomationAttribute            `queryParam:"inline" name:"Attribute"`
-	InternalUserAttribute          *InternalUserAttribute          `queryParam:"inline" name:"Attribute"`
-	PurposeAttribute               *PurposeAttribute               `queryParam:"inline" name:"Attribute"`
-	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `queryParam:"inline" name:"Attribute"`
-	PortalAccessAttribute          *PortalAccessAttribute          `queryParam:"inline" name:"Attribute"`
-	PhoneAttribute                 *PhoneAttribute                 `queryParam:"inline" name:"Attribute"`
-	EmailAttribute                 *EmailAttribute                 `queryParam:"inline" name:"Attribute"`
-	PaymentAttribute               *PaymentAttribute               `queryParam:"inline" name:"Attribute"`
-	PriceComponentAttribute        *PriceComponentAttribute        `queryParam:"inline" name:"Attribute"`
+	TextAttribute                  *TextAttribute                  `queryParam:"inline" union:"member"`
+	LinkAttribute                  *LinkAttribute                  `queryParam:"inline" union:"member"`
+	DateAttribute                  *DateAttribute                  `queryParam:"inline" union:"member"`
+	CountryAttribute               *CountryAttribute               `queryParam:"inline" union:"member"`
+	BooleanAttribute               *BooleanAttribute               `queryParam:"inline" union:"member"`
+	SelectAttribute                *SelectAttribute                `queryParam:"inline" union:"member"`
+	MultiSelectAttribute           *MultiSelectAttribute           `queryParam:"inline" union:"member"`
+	StatusAttribute                *StatusAttribute                `queryParam:"inline" union:"member"`
+	SequenceAttribute              *SequenceAttribute              `queryParam:"inline" union:"member"`
+	RelationAttribute              *RelationAttribute              `queryParam:"inline" union:"member"`
+	UserRelationAttribute          *UserRelationAttribute          `queryParam:"inline" union:"member"`
+	AddressAttribute               *AddressAttribute               `queryParam:"inline" union:"member"`
+	AddressRelationAttribute       *AddressRelationAttribute       `queryParam:"inline" union:"member"`
+	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `queryParam:"inline" union:"member"`
+	CurrencyAttribute              *CurrencyAttribute              `queryParam:"inline" union:"member"`
+	TagsAttribute                  *TagsAttribute                  `queryParam:"inline" union:"member"`
+	MessageEmailAddressAttribute   *MessageEmailAddressAttribute   `queryParam:"inline" union:"member"`
+	NumberAttribute                *NumberAttribute                `queryParam:"inline" union:"member"`
+	TableAttribute                 *TableAttribute                 `queryParam:"inline" union:"member"`
+	ConsentAttribute               *ConsentAttribute               `queryParam:"inline" union:"member"`
+	InternalAttribute              *InternalAttribute              `queryParam:"inline" union:"member"`
+	OrderedListAttribute           *OrderedListAttribute           `queryParam:"inline" union:"member"`
+	FileAttribute                  *FileAttribute                  `queryParam:"inline" union:"member"`
+	ComputedAttribute              *ComputedAttribute              `queryParam:"inline" union:"member"`
+	PartnerStatusAttribute         *PartnerStatusAttribute         `queryParam:"inline" union:"member"`
+	InvitationEmailAttribute       *InvitationEmailAttribute       `queryParam:"inline" union:"member"`
+	AutomationAttribute            *AutomationAttribute            `queryParam:"inline" union:"member"`
+	InternalUserAttribute          *InternalUserAttribute          `queryParam:"inline" union:"member"`
+	PurposeAttribute               *PurposeAttribute               `queryParam:"inline" union:"member"`
+	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `queryParam:"inline" union:"member"`
+	PortalAccessAttribute          *PortalAccessAttribute          `queryParam:"inline" union:"member"`
+	PhoneAttribute                 *PhoneAttribute                 `queryParam:"inline" union:"member"`
+	EmailAttribute                 *EmailAttribute                 `queryParam:"inline" union:"member"`
+	PaymentAttribute               *PaymentAttribute               `queryParam:"inline" union:"member"`
+	PriceComponentAttribute        *PriceComponentAttribute        `queryParam:"inline" union:"member"`
 
 	Type AttributeType
 }
@@ -248,6 +250,15 @@ func CreateAttributeNumberAttribute(numberAttribute NumberAttribute) Attribute {
 	}
 }
 
+func CreateAttributeTableAttribute(tableAttribute TableAttribute) Attribute {
+	typ := AttributeTypeTableAttribute
+
+	return Attribute{
+		TableAttribute: &tableAttribute,
+		Type:           typ,
+	}
+}
+
 func CreateAttributeConsentAttribute(consentAttribute ConsentAttribute) Attribute {
 	typ := AttributeTypeConsentAttribute
 
@@ -394,241 +405,406 @@ func CreateAttributePriceComponentAttribute(priceComponentAttribute PriceCompone
 
 func (u *Attribute) UnmarshalJSON(data []byte) error {
 
-	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, nil); err == nil {
-		u.CurrencyAttribute = &currencyAttribute
-		u.Type = AttributeTypeCurrencyAttribute
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
-	var consentAttribute ConsentAttribute = ConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, nil); err == nil {
-		u.ConsentAttribute = &consentAttribute
-		u.Type = AttributeTypeConsentAttribute
-		return nil
-	}
-
-	var computedAttribute ComputedAttribute = ComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, nil); err == nil {
-		u.ComputedAttribute = &computedAttribute
-		u.Type = AttributeTypeComputedAttribute
-		return nil
-	}
-
+	// Collect all valid candidates
 	var textAttribute TextAttribute = TextAttribute{}
 	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, nil); err == nil {
-		u.TextAttribute = &textAttribute
-		u.Type = AttributeTypeTextAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeTextAttribute,
+			Value: &textAttribute,
+		})
 	}
 
 	var linkAttribute LinkAttribute = LinkAttribute{}
 	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, nil); err == nil {
-		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeLinkAttribute,
+			Value: &linkAttribute,
+		})
 	}
 
 	var dateAttribute DateAttribute = DateAttribute{}
 	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, nil); err == nil {
-		u.DateAttribute = &dateAttribute
-		u.Type = AttributeTypeDateAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeDateAttribute,
+			Value: &dateAttribute,
+		})
 	}
 
 	var countryAttribute CountryAttribute = CountryAttribute{}
 	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, nil); err == nil {
-		u.CountryAttribute = &countryAttribute
-		u.Type = AttributeTypeCountryAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeCountryAttribute,
+			Value: &countryAttribute,
+		})
 	}
 
 	var booleanAttribute BooleanAttribute = BooleanAttribute{}
 	if err := utils.UnmarshalJSON(data, &booleanAttribute, "", true, nil); err == nil {
-		u.BooleanAttribute = &booleanAttribute
-		u.Type = AttributeTypeBooleanAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeBooleanAttribute,
+			Value: &booleanAttribute,
+		})
 	}
 
 	var selectAttribute SelectAttribute = SelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, nil); err == nil {
-		u.SelectAttribute = &selectAttribute
-		u.Type = AttributeTypeSelectAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeSelectAttribute,
+			Value: &selectAttribute,
+		})
 	}
 
 	var multiSelectAttribute MultiSelectAttribute = MultiSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &multiSelectAttribute, "", true, nil); err == nil {
-		u.MultiSelectAttribute = &multiSelectAttribute
-		u.Type = AttributeTypeMultiSelectAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeMultiSelectAttribute,
+			Value: &multiSelectAttribute,
+		})
 	}
 
 	var statusAttribute StatusAttribute = StatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, nil); err == nil {
-		u.StatusAttribute = &statusAttribute
-		u.Type = AttributeTypeStatusAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeStatusAttribute,
+			Value: &statusAttribute,
+		})
 	}
 
 	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
 	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, nil); err == nil {
-		u.SequenceAttribute = &sequenceAttribute
-		u.Type = AttributeTypeSequenceAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeSequenceAttribute,
+			Value: &sequenceAttribute,
+		})
 	}
 
 	var relationAttribute RelationAttribute = RelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, nil); err == nil {
-		u.RelationAttribute = &relationAttribute
-		u.Type = AttributeTypeRelationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeRelationAttribute,
+			Value: &relationAttribute,
+		})
 	}
 
 	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, nil); err == nil {
-		u.UserRelationAttribute = &userRelationAttribute
-		u.Type = AttributeTypeUserRelationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeUserRelationAttribute,
+			Value: &userRelationAttribute,
+		})
 	}
 
 	var addressAttribute AddressAttribute = AddressAttribute{}
 	if err := utils.UnmarshalJSON(data, &addressAttribute, "", true, nil); err == nil {
-		u.AddressAttribute = &addressAttribute
-		u.Type = AttributeTypeAddressAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeAddressAttribute,
+			Value: &addressAttribute,
+		})
 	}
 
 	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, nil); err == nil {
-		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeAddressRelationAttribute,
+			Value: &addressRelationAttribute,
+		})
 	}
 
 	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, nil); err == nil {
-		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
-		u.Type = AttributeTypePaymentMethodRelationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePaymentMethodRelationAttribute,
+			Value: &paymentMethodRelationAttribute,
+		})
+	}
+
+	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
+	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeCurrencyAttribute,
+			Value: &currencyAttribute,
+		})
 	}
 
 	var tagsAttribute TagsAttribute = TagsAttribute{}
 	if err := utils.UnmarshalJSON(data, &tagsAttribute, "", true, nil); err == nil {
-		u.TagsAttribute = &tagsAttribute
-		u.Type = AttributeTypeTagsAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeTagsAttribute,
+			Value: &tagsAttribute,
+		})
 	}
 
 	var messageEmailAddressAttribute MessageEmailAddressAttribute = MessageEmailAddressAttribute{}
 	if err := utils.UnmarshalJSON(data, &messageEmailAddressAttribute, "", true, nil); err == nil {
-		u.MessageEmailAddressAttribute = &messageEmailAddressAttribute
-		u.Type = AttributeTypeMessageEmailAddressAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeMessageEmailAddressAttribute,
+			Value: &messageEmailAddressAttribute,
+		})
 	}
 
 	var numberAttribute NumberAttribute = NumberAttribute{}
 	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, nil); err == nil {
-		u.NumberAttribute = &numberAttribute
-		u.Type = AttributeTypeNumberAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeNumberAttribute,
+			Value: &numberAttribute,
+		})
+	}
+
+	var tableAttribute TableAttribute = TableAttribute{}
+	if err := utils.UnmarshalJSON(data, &tableAttribute, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeTableAttribute,
+			Value: &tableAttribute,
+		})
+	}
+
+	var consentAttribute ConsentAttribute = ConsentAttribute{}
+	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeConsentAttribute,
+			Value: &consentAttribute,
+		})
 	}
 
 	var internalAttribute InternalAttribute = InternalAttribute{}
 	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, nil); err == nil {
-		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeInternalAttribute,
+			Value: &internalAttribute,
+		})
 	}
 
 	var orderedListAttribute OrderedListAttribute = OrderedListAttribute{}
 	if err := utils.UnmarshalJSON(data, &orderedListAttribute, "", true, nil); err == nil {
-		u.OrderedListAttribute = &orderedListAttribute
-		u.Type = AttributeTypeOrderedListAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeOrderedListAttribute,
+			Value: &orderedListAttribute,
+		})
 	}
 
 	var fileAttribute FileAttribute = FileAttribute{}
 	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, nil); err == nil {
-		u.FileAttribute = &fileAttribute
-		u.Type = AttributeTypeFileAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeFileAttribute,
+			Value: &fileAttribute,
+		})
+	}
+
+	var computedAttribute ComputedAttribute = ComputedAttribute{}
+	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeComputedAttribute,
+			Value: &computedAttribute,
+		})
 	}
 
 	var partnerStatusAttribute PartnerStatusAttribute = PartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, nil); err == nil {
-		u.PartnerStatusAttribute = &partnerStatusAttribute
-		u.Type = AttributeTypePartnerStatusAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePartnerStatusAttribute,
+			Value: &partnerStatusAttribute,
+		})
 	}
 
 	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
 	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, nil); err == nil {
-		u.InvitationEmailAttribute = &invitationEmailAttribute
-		u.Type = AttributeTypeInvitationEmailAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeInvitationEmailAttribute,
+			Value: &invitationEmailAttribute,
+		})
 	}
 
 	var automationAttribute AutomationAttribute = AutomationAttribute{}
 	if err := utils.UnmarshalJSON(data, &automationAttribute, "", true, nil); err == nil {
-		u.AutomationAttribute = &automationAttribute
-		u.Type = AttributeTypeAutomationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeAutomationAttribute,
+			Value: &automationAttribute,
+		})
 	}
 
 	var internalUserAttribute InternalUserAttribute = InternalUserAttribute{}
 	if err := utils.UnmarshalJSON(data, &internalUserAttribute, "", true, nil); err == nil {
-		u.InternalUserAttribute = &internalUserAttribute
-		u.Type = AttributeTypeInternalUserAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeInternalUserAttribute,
+			Value: &internalUserAttribute,
+		})
 	}
 
 	var purposeAttribute PurposeAttribute = PurposeAttribute{}
 	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, nil); err == nil {
-		u.PurposeAttribute = &purposeAttribute
-		u.Type = AttributeTypePurposeAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePurposeAttribute,
+			Value: &purposeAttribute,
+		})
 	}
 
 	var partnerOrganisationAttribute PartnerOrganisationAttribute = PartnerOrganisationAttribute{}
 	if err := utils.UnmarshalJSON(data, &partnerOrganisationAttribute, "", true, nil); err == nil {
-		u.PartnerOrganisationAttribute = &partnerOrganisationAttribute
-		u.Type = AttributeTypePartnerOrganisationAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePartnerOrganisationAttribute,
+			Value: &partnerOrganisationAttribute,
+		})
 	}
 
 	var portalAccessAttribute PortalAccessAttribute = PortalAccessAttribute{}
 	if err := utils.UnmarshalJSON(data, &portalAccessAttribute, "", true, nil); err == nil {
-		u.PortalAccessAttribute = &portalAccessAttribute
-		u.Type = AttributeTypePortalAccessAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePortalAccessAttribute,
+			Value: &portalAccessAttribute,
+		})
 	}
 
 	var phoneAttribute PhoneAttribute = PhoneAttribute{}
 	if err := utils.UnmarshalJSON(data, &phoneAttribute, "", true, nil); err == nil {
-		u.PhoneAttribute = &phoneAttribute
-		u.Type = AttributeTypePhoneAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePhoneAttribute,
+			Value: &phoneAttribute,
+		})
 	}
 
 	var emailAttribute EmailAttribute = EmailAttribute{}
 	if err := utils.UnmarshalJSON(data, &emailAttribute, "", true, nil); err == nil {
-		u.EmailAttribute = &emailAttribute
-		u.Type = AttributeTypeEmailAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypeEmailAttribute,
+			Value: &emailAttribute,
+		})
 	}
 
 	var paymentAttribute PaymentAttribute = PaymentAttribute{}
 	if err := utils.UnmarshalJSON(data, &paymentAttribute, "", true, nil); err == nil {
-		u.PaymentAttribute = &paymentAttribute
-		u.Type = AttributeTypePaymentAttribute
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePaymentAttribute,
+			Value: &paymentAttribute,
+		})
 	}
 
 	var priceComponentAttribute PriceComponentAttribute = PriceComponentAttribute{}
 	if err := utils.UnmarshalJSON(data, &priceComponentAttribute, "", true, nil); err == nil {
-		u.PriceComponentAttribute = &priceComponentAttribute
-		u.Type = AttributeTypePriceComponentAttribute
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  AttributeTypePriceComponentAttribute,
+			Value: &priceComponentAttribute,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Attribute", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Attribute", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(AttributeType)
+	switch best.Type {
+	case AttributeTypeTextAttribute:
+		u.TextAttribute = best.Value.(*TextAttribute)
+		return nil
+	case AttributeTypeLinkAttribute:
+		u.LinkAttribute = best.Value.(*LinkAttribute)
+		return nil
+	case AttributeTypeDateAttribute:
+		u.DateAttribute = best.Value.(*DateAttribute)
+		return nil
+	case AttributeTypeCountryAttribute:
+		u.CountryAttribute = best.Value.(*CountryAttribute)
+		return nil
+	case AttributeTypeBooleanAttribute:
+		u.BooleanAttribute = best.Value.(*BooleanAttribute)
+		return nil
+	case AttributeTypeSelectAttribute:
+		u.SelectAttribute = best.Value.(*SelectAttribute)
+		return nil
+	case AttributeTypeMultiSelectAttribute:
+		u.MultiSelectAttribute = best.Value.(*MultiSelectAttribute)
+		return nil
+	case AttributeTypeStatusAttribute:
+		u.StatusAttribute = best.Value.(*StatusAttribute)
+		return nil
+	case AttributeTypeSequenceAttribute:
+		u.SequenceAttribute = best.Value.(*SequenceAttribute)
+		return nil
+	case AttributeTypeRelationAttribute:
+		u.RelationAttribute = best.Value.(*RelationAttribute)
+		return nil
+	case AttributeTypeUserRelationAttribute:
+		u.UserRelationAttribute = best.Value.(*UserRelationAttribute)
+		return nil
+	case AttributeTypeAddressAttribute:
+		u.AddressAttribute = best.Value.(*AddressAttribute)
+		return nil
+	case AttributeTypeAddressRelationAttribute:
+		u.AddressRelationAttribute = best.Value.(*AddressRelationAttribute)
+		return nil
+	case AttributeTypePaymentMethodRelationAttribute:
+		u.PaymentMethodRelationAttribute = best.Value.(*PaymentMethodRelationAttribute)
+		return nil
+	case AttributeTypeCurrencyAttribute:
+		u.CurrencyAttribute = best.Value.(*CurrencyAttribute)
+		return nil
+	case AttributeTypeTagsAttribute:
+		u.TagsAttribute = best.Value.(*TagsAttribute)
+		return nil
+	case AttributeTypeMessageEmailAddressAttribute:
+		u.MessageEmailAddressAttribute = best.Value.(*MessageEmailAddressAttribute)
+		return nil
+	case AttributeTypeNumberAttribute:
+		u.NumberAttribute = best.Value.(*NumberAttribute)
+		return nil
+	case AttributeTypeTableAttribute:
+		u.TableAttribute = best.Value.(*TableAttribute)
+		return nil
+	case AttributeTypeConsentAttribute:
+		u.ConsentAttribute = best.Value.(*ConsentAttribute)
+		return nil
+	case AttributeTypeInternalAttribute:
+		u.InternalAttribute = best.Value.(*InternalAttribute)
+		return nil
+	case AttributeTypeOrderedListAttribute:
+		u.OrderedListAttribute = best.Value.(*OrderedListAttribute)
+		return nil
+	case AttributeTypeFileAttribute:
+		u.FileAttribute = best.Value.(*FileAttribute)
+		return nil
+	case AttributeTypeComputedAttribute:
+		u.ComputedAttribute = best.Value.(*ComputedAttribute)
+		return nil
+	case AttributeTypePartnerStatusAttribute:
+		u.PartnerStatusAttribute = best.Value.(*PartnerStatusAttribute)
+		return nil
+	case AttributeTypeInvitationEmailAttribute:
+		u.InvitationEmailAttribute = best.Value.(*InvitationEmailAttribute)
+		return nil
+	case AttributeTypeAutomationAttribute:
+		u.AutomationAttribute = best.Value.(*AutomationAttribute)
+		return nil
+	case AttributeTypeInternalUserAttribute:
+		u.InternalUserAttribute = best.Value.(*InternalUserAttribute)
+		return nil
+	case AttributeTypePurposeAttribute:
+		u.PurposeAttribute = best.Value.(*PurposeAttribute)
+		return nil
+	case AttributeTypePartnerOrganisationAttribute:
+		u.PartnerOrganisationAttribute = best.Value.(*PartnerOrganisationAttribute)
+		return nil
+	case AttributeTypePortalAccessAttribute:
+		u.PortalAccessAttribute = best.Value.(*PortalAccessAttribute)
+		return nil
+	case AttributeTypePhoneAttribute:
+		u.PhoneAttribute = best.Value.(*PhoneAttribute)
+		return nil
+	case AttributeTypeEmailAttribute:
+		u.EmailAttribute = best.Value.(*EmailAttribute)
+		return nil
+	case AttributeTypePaymentAttribute:
+		u.PaymentAttribute = best.Value.(*PaymentAttribute)
+		return nil
+	case AttributeTypePriceComponentAttribute:
+		u.PriceComponentAttribute = best.Value.(*PriceComponentAttribute)
 		return nil
 	}
 
@@ -706,6 +882,10 @@ func (u Attribute) MarshalJSON() ([]byte, error) {
 
 	if u.NumberAttribute != nil {
 		return utils.MarshalJSON(u.NumberAttribute, "", true)
+	}
+
+	if u.TableAttribute != nil {
+		return utils.MarshalJSON(u.TableAttribute, "", true)
 	}
 
 	if u.ConsentAttribute != nil {

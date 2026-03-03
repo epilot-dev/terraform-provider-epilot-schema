@@ -7,16 +7,16 @@ type GetRelationsRespWithPagination struct {
 	Relations []GetRelationsResp `json:"relations,omitempty"`
 }
 
-func (o *GetRelationsRespWithPagination) GetHits() *float64 {
-	if o == nil {
+func (g *GetRelationsRespWithPagination) GetHits() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Hits
+	return g.Hits
 }
 
-func (o *GetRelationsRespWithPagination) GetRelations() []GetRelationsResp {
-	if o == nil {
+func (g *GetRelationsRespWithPagination) GetRelations() []GetRelationsResp {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }

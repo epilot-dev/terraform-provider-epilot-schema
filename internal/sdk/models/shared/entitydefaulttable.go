@@ -40,8 +40,8 @@ const (
 )
 
 type RowActions struct {
-	Str          *string       `queryParam:"inline" name:"row_actions"`
-	EntityAction *EntityAction `queryParam:"inline" name:"row_actions"`
+	Str          *string       `queryParam:"inline" union:"member"`
+	EntityAction *EntityAction `queryParam:"inline" union:"member"`
 
 	Type RowActionsType
 }
@@ -66,17 +66,43 @@ func CreateRowActionsEntityAction(entityAction EntityAction) RowActions {
 
 func (u *RowActions) UnmarshalJSON(data []byte) error {
 
-	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
-		u.EntityAction = &entityAction
-		u.Type = RowActionsTypeEntityAction
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = RowActionsTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  RowActionsTypeStr,
+			Value: &str,
+		})
+	}
+
+	var entityAction EntityAction = EntityAction{}
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  RowActionsTypeEntityAction,
+			Value: &entityAction,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for RowActions", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for RowActions", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(RowActionsType)
+	switch best.Type {
+	case RowActionsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case RowActionsTypeEntityAction:
+		u.EntityAction = best.Value.(*EntityAction)
 		return nil
 	}
 
@@ -103,8 +129,8 @@ const (
 )
 
 type BulkActions struct {
-	Str          *string       `queryParam:"inline" name:"bulk_actions"`
-	EntityAction *EntityAction `queryParam:"inline" name:"bulk_actions"`
+	Str          *string       `queryParam:"inline" union:"member"`
+	EntityAction *EntityAction `queryParam:"inline" union:"member"`
 
 	Type BulkActionsType
 }
@@ -129,17 +155,43 @@ func CreateBulkActionsEntityAction(entityAction EntityAction) BulkActions {
 
 func (u *BulkActions) UnmarshalJSON(data []byte) error {
 
-	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
-		u.EntityAction = &entityAction
-		u.Type = BulkActionsTypeEntityAction
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = BulkActionsTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  BulkActionsTypeStr,
+			Value: &str,
+		})
+	}
+
+	var entityAction EntityAction = EntityAction{}
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  BulkActionsTypeEntityAction,
+			Value: &entityAction,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for BulkActions", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for BulkActions", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(BulkActionsType)
+	switch best.Type {
+	case BulkActionsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case BulkActionsTypeEntityAction:
+		u.EntityAction = best.Value.(*EntityAction)
 		return nil
 	}
 
@@ -182,24 +234,24 @@ func (e EntityDefaultTableOptions) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityDefaultTableOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"label"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityDefaultTableOptions) GetLabel() string {
-	if o == nil {
+func (e *EntityDefaultTableOptions) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EntityDefaultTableOptions) GetParams() *EntityDefaultTableParams {
-	if o == nil {
+func (e *EntityDefaultTableOptions) GetParams() *EntityDefaultTableParams {
+	if e == nil {
 		return nil
 	}
-	return o.Params
+	return e.Params
 }
 
 type NavbarActions struct {
@@ -212,24 +264,24 @@ func (n NavbarActions) MarshalJSON() ([]byte, error) {
 }
 
 func (n *NavbarActions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *NavbarActions) GetType() string {
-	if o == nil {
+func (n *NavbarActions) GetType() string {
+	if n == nil {
 		return ""
 	}
-	return o.Type
+	return n.Type
 }
 
-func (o *NavbarActions) GetOptions() []EntityDefaultTableOptions {
-	if o == nil {
+func (n *NavbarActions) GetOptions() []EntityDefaultTableOptions {
+	if n == nil {
 		return nil
 	}
-	return o.Options
+	return n.Options
 }
 
 type EntityDefaultTable struct {
@@ -252,37 +304,37 @@ func (e *EntityDefaultTable) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityDefaultTable) GetViewType() *ViewType {
-	if o == nil {
+func (e *EntityDefaultTable) GetViewType() *ViewType {
+	if e == nil {
 		return nil
 	}
-	return o.ViewType
+	return e.ViewType
 }
 
-func (o *EntityDefaultTable) GetRowActions() []RowActions {
-	if o == nil {
+func (e *EntityDefaultTable) GetRowActions() []RowActions {
+	if e == nil {
 		return nil
 	}
-	return o.RowActions
+	return e.RowActions
 }
 
-func (o *EntityDefaultTable) GetBulkActions() []BulkActions {
-	if o == nil {
+func (e *EntityDefaultTable) GetBulkActions() []BulkActions {
+	if e == nil {
 		return nil
 	}
-	return o.BulkActions
+	return e.BulkActions
 }
 
-func (o *EntityDefaultTable) GetNavbarActions() []NavbarActions {
-	if o == nil {
+func (e *EntityDefaultTable) GetNavbarActions() []NavbarActions {
+	if e == nil {
 		return nil
 	}
-	return o.NavbarActions
+	return e.NavbarActions
 }
 
-func (o *EntityDefaultTable) GetEnableThumbnails() *bool {
-	if o == nil {
+func (e *EntityDefaultTable) GetEnableThumbnails() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.EnableThumbnails
+	return e.EnableThumbnails
 }

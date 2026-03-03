@@ -89,6 +89,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - plot_of_land` + "\n" +
 										`  - suburb` + "\n" +
 										`  - country` + "\n" +
+										`  - postbox` + "\n" +
 										`  - additional_info` + "\n" +
 										`  - coordinates` + "\n" +
 										`  - start_date` + "\n" +
@@ -97,6 +98,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - title` + "\n" +
 										`  - first_name` + "\n" +
 										`  - last_name` + "\n" +
+										`  - name_suffix` + "\n" +
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
@@ -110,6 +112,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -269,6 +283,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - plot_of_land` + "\n" +
 										`  - suburb` + "\n" +
 										`  - country` + "\n" +
+										`  - postbox` + "\n" +
 										`  - additional_info` + "\n" +
 										`  - coordinates` + "\n" +
 										`  - start_date` + "\n" +
@@ -277,6 +292,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - title` + "\n" +
 										`  - first_name` + "\n" +
 										`  - last_name` + "\n" +
+										`  - name_suffix` + "\n" +
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
@@ -290,6 +306,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -446,6 +474,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -605,6 +645,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -773,6 +825,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -930,6 +994,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1093,6 +1169,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1279,6 +1367,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -1435,6 +1535,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -1590,6 +1702,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1764,6 +1888,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -1923,6 +2059,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -2078,6 +2226,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2235,6 +2395,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -2390,6 +2562,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2552,6 +2736,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2724,6 +2920,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -2889,6 +3097,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
+								"data_type": schema.StringAttribute{
+									Computed:    true,
+									Description: `Optional data type override. When set to 'number', the value is stored as a number instead of a string. Defaults to 'string'.`,
+								},
 								"default_value": schema.StringAttribute{
 									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
@@ -2900,6 +3112,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3064,6 +3288,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -3219,6 +3455,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3376,6 +3624,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -3531,6 +3791,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3688,6 +3960,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -3843,6 +4127,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4000,6 +4296,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -4156,6 +4464,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -4311,6 +4631,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4544,6 +4876,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -4751,6 +5095,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -4911,6 +5267,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -5075,6 +5443,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
@@ -5234,6 +5614,210 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 							},
 							Description: `Status select`,
 						},
+						"table_attribute": schema.SingleNestedAttribute{
+							Computed: true,
+							Attributes: map[string]schema.Attribute{
+								"columns": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"label": schema.StringAttribute{
+												Computed:    true,
+												Description: `Display label for the column header`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Description: `The column identifier (used as object key in row data)`,
+											},
+											"required": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Whether this column is required for each row`,
+											},
+											"type": schema.StringAttribute{
+												Computed:    true,
+												Description: `The data type for cells in this column`,
+											},
+											"width": schema.StringAttribute{
+												Computed:    true,
+												Description: `Optional column width (e.g., "100px", "20%")`,
+											},
+										},
+									},
+									Description: `Column definitions for the table`,
+								},
+								"constraints": schema.SingleNestedAttribute{
+									Computed: true,
+									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+										`These constraints should and will be enforced by the attribute renderer.`,
+								},
+								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
+									Computed:    true,
+									Description: `Parsed as JSON.`,
+								},
+								"deprecated": schema.BoolAttribute{
+									Computed: true,
+								},
+								"entity_builder_disable_edit": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"group": schema.StringAttribute{
+									Computed:    true,
+									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"has_primary": schema.BoolAttribute{
+									Computed: true,
+								},
+								"hidden": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Do not render attribute in entity views`,
+								},
+								"hide_label": schema.BoolAttribute{
+									Computed:    true,
+									Description: `When set to true, will hide the label of the field.`,
+								},
+								"icon": schema.StringAttribute{
+									Computed: true,
+									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+										`The value must be a valid @epilot/base-elements Icon name`,
+								},
+								"id": schema.StringAttribute{
+									Computed:    true,
+									Description: `ID for the entity attribute`,
+								},
+								"info_helpers": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"hint_custom_component": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text_key": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+												`The key should be a valid i18n key.`,
+										},
+										"hint_tooltip_placement": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+										},
+									},
+									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+								},
+								"label": schema.StringAttribute{
+									Computed: true,
+								},
+								"layout": schema.StringAttribute{
+									Computed: true,
+								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"max_rows": schema.Int64Attribute{
+									Computed:    true,
+									Description: `Maximum number of rows allowed`,
+								},
+								"min_rows": schema.Int64Attribute{
+									Computed:    true,
+									Description: `Minimum number of rows required`,
+								},
+								"name": schema.StringAttribute{
+									Computed: true,
+								},
+								"order": schema.Int64Attribute{
+									Computed:    true,
+									Description: `Attribute sort order (ascending) in group`,
+								},
+								"placeholder": schema.StringAttribute{
+									Computed: true,
+								},
+								"preview_value_formatter": schema.StringAttribute{
+									Computed: true,
+								},
+								"protected": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
+								"readonly": schema.BoolAttribute{
+									Computed: true,
+								},
+								"render_condition": schema.StringAttribute{
+									Computed: true,
+									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+										`Note: Empty or invalid expression have no effect on the field visibility.`,
+								},
+								"repeatable": schema.BoolAttribute{
+									Computed:    true,
+									Description: `The attribute is a repeatable`,
+								},
+								"required": schema.BoolAttribute{
+									Computed: true,
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
+								},
+								"show_in_table": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"sortable": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+								},
+								"type": schema.StringAttribute{
+									Computed: true,
+								},
+								"value_formatter": schema.StringAttribute{
+									Computed: true,
+								},
+							},
+							Description: `Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row.`,
+						},
 						"tags_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
@@ -5253,6 +5837,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -5417,6 +6013,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -5584,6 +6192,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"exclude_from_search": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+										`Use this for fields that should not be matched during entity search operations,` + "\n" +
+										`such as internal hashes or identifiers that might accidentally match search terms.`,
+								},
+								"explicit_searchable": schema.BoolAttribute{
+									Computed: true,
+									MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+										`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+										`that must always be included in search operations.`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,

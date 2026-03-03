@@ -10,11 +10,11 @@ type WipeAllEntitiesRequestBody struct {
 	Schemas []string `json:"schemas,omitempty"`
 }
 
-func (o *WipeAllEntitiesRequestBody) GetSchemas() []string {
-	if o == nil {
+func (w *WipeAllEntitiesRequestBody) GetSchemas() []string {
+	if w == nil {
 		return nil
 	}
-	return o.Schemas
+	return w.Schemas
 }
 
 type WipeAllEntitiesResponse struct {
@@ -26,23 +26,23 @@ type WipeAllEntitiesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *WipeAllEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (w *WipeAllEntitiesResponse) GetContentType() string {
+	if w == nil {
 		return ""
 	}
-	return o.ContentType
+	return w.ContentType
 }
 
-func (o *WipeAllEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (w *WipeAllEntitiesResponse) GetStatusCode() int {
+	if w == nil {
 		return 0
 	}
-	return o.StatusCode
+	return w.StatusCode
 }
 
-func (o *WipeAllEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (w *WipeAllEntitiesResponse) GetRawResponse() *http.Response {
+	if w == nil {
 		return nil
 	}
-	return o.RawResponse
+	return w.RawResponse
 }

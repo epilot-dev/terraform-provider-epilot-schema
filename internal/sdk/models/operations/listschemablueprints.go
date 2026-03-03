@@ -12,11 +12,11 @@ type ListSchemaBlueprintsResponseBody struct {
 	Results []shared.EntitySchemaItem `json:"results,omitempty"`
 }
 
-func (o *ListSchemaBlueprintsResponseBody) GetResults() []shared.EntitySchemaItem {
-	if o == nil {
+func (l *ListSchemaBlueprintsResponseBody) GetResults() []shared.EntitySchemaItem {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListSchemaBlueprintsResponse struct {
@@ -30,30 +30,30 @@ type ListSchemaBlueprintsResponse struct {
 	Object *ListSchemaBlueprintsResponseBody
 }
 
-func (o *ListSchemaBlueprintsResponse) GetContentType() string {
-	if o == nil {
+func (l *ListSchemaBlueprintsResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListSchemaBlueprintsResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListSchemaBlueprintsResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListSchemaBlueprintsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListSchemaBlueprintsResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListSchemaBlueprintsResponse) GetObject() *ListSchemaBlueprintsResponseBody {
-	if o == nil {
+func (l *ListSchemaBlueprintsResponse) GetObject() *ListSchemaBlueprintsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

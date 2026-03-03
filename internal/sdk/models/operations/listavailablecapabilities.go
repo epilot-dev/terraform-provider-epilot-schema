@@ -12,11 +12,11 @@ type ListAvailableCapabilitiesRequest struct {
 	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *ListAvailableCapabilitiesRequest) GetSlug() string {
-	if o == nil {
+func (l *ListAvailableCapabilitiesRequest) GetSlug() string {
+	if l == nil {
 		return ""
 	}
-	return o.Slug
+	return l.Slug
 }
 
 // ListAvailableCapabilitiesResponseBody - Success
@@ -24,11 +24,11 @@ type ListAvailableCapabilitiesResponseBody struct {
 	Results []shared.EntityCapability `json:"results,omitempty"`
 }
 
-func (o *ListAvailableCapabilitiesResponseBody) GetResults() []shared.EntityCapability {
-	if o == nil {
+func (l *ListAvailableCapabilitiesResponseBody) GetResults() []shared.EntityCapability {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListAvailableCapabilitiesResponse struct {
@@ -42,30 +42,30 @@ type ListAvailableCapabilitiesResponse struct {
 	Object *ListAvailableCapabilitiesResponseBody
 }
 
-func (o *ListAvailableCapabilitiesResponse) GetContentType() string {
-	if o == nil {
+func (l *ListAvailableCapabilitiesResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListAvailableCapabilitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListAvailableCapabilitiesResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListAvailableCapabilitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListAvailableCapabilitiesResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListAvailableCapabilitiesResponse) GetObject() *ListAvailableCapabilitiesResponseBody {
-	if o == nil {
+func (l *ListAvailableCapabilitiesResponse) GetObject() *ListAvailableCapabilitiesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

@@ -28,52 +28,52 @@ func (d DeleteRelationRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteRelationRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"slug", "id", "attribute", "entity_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *DeleteRelationRequest) GetSlug() string {
-	if o == nil {
+func (d *DeleteRelationRequest) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
-func (o *DeleteRelationRequest) GetID() string {
-	if o == nil {
+func (d *DeleteRelationRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DeleteRelationRequest) GetAttribute() string {
-	if o == nil {
+func (d *DeleteRelationRequest) GetAttribute() string {
+	if d == nil {
 		return ""
 	}
-	return o.Attribute
+	return d.Attribute
 }
 
-func (o *DeleteRelationRequest) GetEntityID() string {
-	if o == nil {
+func (d *DeleteRelationRequest) GetEntityID() string {
+	if d == nil {
 		return ""
 	}
-	return o.EntityID
+	return d.EntityID
 }
 
-func (o *DeleteRelationRequest) GetAsync() *bool {
-	if o == nil {
+func (d *DeleteRelationRequest) GetAsync() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Async
+	return d.Async
 }
 
-func (o *DeleteRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (d *DeleteRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if d == nil {
 		return nil
 	}
-	return o.ActivityID
+	return d.ActivityID
 }
 
 type DeleteRelationResponse struct {
@@ -90,44 +90,44 @@ type DeleteRelationResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *DeleteRelationResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteRelationResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteRelationResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteRelationResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteRelationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteRelationResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteRelationResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (d *DeleteRelationResponse) GetNotFoundError() *shared.NotFoundError {
+	if d == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return d.NotFoundError
 }
 
-func (o *DeleteRelationResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (d *DeleteRelationResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return d.TooManyRequestsError
 }
 
-func (o *DeleteRelationResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (d *DeleteRelationResponse) GetHeaders() map[string][]string {
+	if d == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return d.Headers
 }

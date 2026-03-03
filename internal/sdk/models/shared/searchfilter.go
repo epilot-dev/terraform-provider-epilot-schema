@@ -14,11 +14,11 @@ type Ids struct {
 	Values []string `json:"values,omitempty"`
 }
 
-func (o *Ids) GetValues() []string {
-	if o == nil {
+func (i *Ids) GetValues() []string {
+	if i == nil {
 		return nil
 	}
-	return o.Values
+	return i.Values
 }
 
 // Relation - Indicates how the range query matches values for range fields.
@@ -68,53 +68,53 @@ type Range struct {
 	TimeZone *string `json:"time_zone,omitempty"`
 }
 
-func (o *Range) GetGt() *SearchFilterValue {
-	if o == nil {
+func (r *Range) GetGt() *SearchFilterValue {
+	if r == nil {
 		return nil
 	}
-	return o.Gt
+	return r.Gt
 }
 
-func (o *Range) GetGte() *SearchFilterValue {
-	if o == nil {
+func (r *Range) GetGte() *SearchFilterValue {
+	if r == nil {
 		return nil
 	}
-	return o.Gte
+	return r.Gte
 }
 
-func (o *Range) GetLt() *SearchFilterValue {
-	if o == nil {
+func (r *Range) GetLt() *SearchFilterValue {
+	if r == nil {
 		return nil
 	}
-	return o.Lt
+	return r.Lt
 }
 
-func (o *Range) GetLte() *SearchFilterValue {
-	if o == nil {
+func (r *Range) GetLte() *SearchFilterValue {
+	if r == nil {
 		return nil
 	}
-	return o.Lte
+	return r.Lte
 }
 
-func (o *Range) GetFormat() *string {
-	if o == nil {
+func (r *Range) GetFormat() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Format
+	return r.Format
 }
 
-func (o *Range) GetRelation() *Relation {
-	if o == nil {
+func (r *Range) GetRelation() *Relation {
+	if r == nil {
 		return nil
 	}
-	return o.Relation
+	return r.Relation
 }
 
-func (o *Range) GetTimeZone() *string {
-	if o == nil {
+func (r *Range) GetTimeZone() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TimeZone
+	return r.TimeZone
 }
 
 // Exists - Returns documents that have a value in the specified field.
@@ -124,11 +124,11 @@ type Exists struct {
 	Field string `json:"field"`
 }
 
-func (o *Exists) GetField() string {
-	if o == nil {
+func (e *Exists) GetField() string {
+	if e == nil {
 		return ""
 	}
-	return o.Field
+	return e.Field
 }
 
 type SearchFilter struct {
@@ -155,58 +155,58 @@ type SearchFilter struct {
 	DollarNot []SearchFilter `json:"$not,omitempty"`
 }
 
-func (o *SearchFilter) GetTerm() map[string]*SearchFilterValue {
-	if o == nil {
+func (s *SearchFilter) GetTerm() map[string]*SearchFilterValue {
+	if s == nil {
 		return nil
 	}
-	return o.Term
+	return s.Term
 }
 
-func (o *SearchFilter) GetTerms() map[string][]*SearchFilterValue {
-	if o == nil {
+func (s *SearchFilter) GetTerms() map[string][]*SearchFilterValue {
+	if s == nil {
 		return nil
 	}
-	return o.Terms
+	return s.Terms
 }
 
-func (o *SearchFilter) GetIds() *Ids {
-	if o == nil {
+func (s *SearchFilter) GetIds() *Ids {
+	if s == nil {
 		return nil
 	}
-	return o.Ids
+	return s.Ids
 }
 
-func (o *SearchFilter) GetRange() map[string]Range {
-	if o == nil {
+func (s *SearchFilter) GetRange() map[string]Range {
+	if s == nil {
 		return nil
 	}
-	return o.Range
+	return s.Range
 }
 
-func (o *SearchFilter) GetExists() *Exists {
-	if o == nil {
+func (s *SearchFilter) GetExists() *Exists {
+	if s == nil {
 		return nil
 	}
-	return o.Exists
+	return s.Exists
 }
 
-func (o *SearchFilter) GetDollarAnd() []SearchFilter {
-	if o == nil {
+func (s *SearchFilter) GetDollarAnd() []SearchFilter {
+	if s == nil {
 		return nil
 	}
-	return o.DollarAnd
+	return s.DollarAnd
 }
 
-func (o *SearchFilter) GetDollarOr() []SearchFilter {
-	if o == nil {
+func (s *SearchFilter) GetDollarOr() []SearchFilter {
+	if s == nil {
 		return nil
 	}
-	return o.DollarOr
+	return s.DollarOr
 }
 
-func (o *SearchFilter) GetDollarNot() []SearchFilter {
-	if o == nil {
+func (s *SearchFilter) GetDollarNot() []SearchFilter {
+	if s == nil {
 		return nil
 	}
-	return o.DollarNot
+	return s.DollarNot
 }

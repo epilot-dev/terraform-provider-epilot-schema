@@ -21,44 +21,44 @@ type CreateSchemaGroupResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CreateSchemaGroupResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateSchemaGroupResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateSchemaGroupResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
+	if c == nil {
 		return nil
 	}
-	return o.EntitySchemaGroupWithCompositeID
+	return c.EntitySchemaGroupWithCompositeID
 }
 
-func (o *CreateSchemaGroupResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CreateSchemaGroupResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CreateSchemaGroupResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

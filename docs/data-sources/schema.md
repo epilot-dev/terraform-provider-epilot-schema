@@ -24,7 +24,11 @@ data "epilot-schema_schema" "my_schema" {
 
 ### Required
 
-- `slug` (String) Entity Type
+- `slug` (String) URL-friendly identifier for the entity schema
+
+### Optional
+
+- `id` (String) Generated uuid for schema
 
 ### Read-Only
 
@@ -38,12 +42,11 @@ data "epilot-schema_schema" "my_schema" {
 - `docs_url` (String)
 - `draft` (Boolean)
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
-- `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))
+- `explicit_search_mappings` (String) Parsed as JSON.
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled
 - `group_headlines` (String) Parsed as JSON.
 - `group_settings` (String) Parsed as JSON.
 - `icon` (String)
-- `id` (String) The ID of this resource.
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 - Managed Properties: are interpreted and transformed into layout styles
 - Un-managed Properties: are appended as styles into the attribute mounting node (see [below for nested schema](#nestedatt--layout_settings))
@@ -55,16 +58,6 @@ data "epilot-schema_schema" "my_schema" {
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
 - `updated_at` (String)
 - `version` (Number)
-
-<a id="nestedatt--explicit_search_mappings"></a>
-### Nested Schema for `explicit_search_mappings`
-
-Read-Only:
-
-- `fields` (Map of String)
-- `index` (Boolean)
-- `type` (String)
-
 
 <a id="nestedatt--layout_settings"></a>
 ### Nested Schema for `layout_settings`

@@ -57,32 +57,32 @@ func (r *RelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RelationAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (r *RelationAttributeInfoHelpers) GetHintText() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintText
+	return r.HintText
 }
 
-func (o *RelationAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (r *RelationAttributeInfoHelpers) GetHintTextKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return r.HintTextKey
 }
 
-func (o *RelationAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (r *RelationAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return r.HintCustomComponent
 }
 
-func (o *RelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (r *RelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return r.HintTooltipPlacement
 }
 
 type RelationAttributeType string
@@ -194,17 +194,17 @@ func (r RelationPickerFilter) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationPickerFilter) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"q"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RelationPickerFilter) GetQ() *string {
-	if o == nil {
+func (r *RelationPickerFilter) GetQ() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Q
+	return r.Q
 }
 
 // ActionType - The action type. Currently supported actions:
@@ -275,46 +275,46 @@ func (a *Actions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Actions) GetActionType() *ActionType {
-	if o == nil {
+func (a *Actions) GetActionType() *ActionType {
+	if a == nil {
 		return nil
 	}
-	return o.ActionType
+	return a.ActionType
 }
 
-func (o *Actions) GetLabel() *string {
-	if o == nil {
+func (a *Actions) GetLabel() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *Actions) GetDefault() *bool {
-	if o == nil {
+func (a *Actions) GetDefault() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Default
+	return a.Default
 }
 
-func (o *Actions) GetFeatureFlag() *string {
-	if o == nil {
+func (a *Actions) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *Actions) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *Actions) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *Actions) GetNewEntityItem() any {
-	if o == nil {
+func (a *Actions) GetNewEntityItem() any {
+	if a == nil {
 		return nil
 	}
-	return o.NewEntityItem
+	return a.NewEntityItem
 }
 
 type DrawerSize string
@@ -354,8 +354,8 @@ const (
 )
 
 type SummaryFields struct {
-	Str          *string       `queryParam:"inline" name:"summary_fields"`
-	SummaryField *SummaryField `queryParam:"inline" name:"summary_fields"`
+	Str          *string       `queryParam:"inline" union:"member"`
+	SummaryField *SummaryField `queryParam:"inline" union:"member"`
 
 	Type SummaryFieldsType
 }
@@ -380,17 +380,43 @@ func CreateSummaryFieldsSummaryField(summaryField SummaryField) SummaryFields {
 
 func (u *SummaryFields) UnmarshalJSON(data []byte) error {
 
-	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, nil); err == nil {
-		u.SummaryField = &summaryField
-		u.Type = SummaryFieldsTypeSummaryField
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = SummaryFieldsTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SummaryFieldsTypeStr,
+			Value: &str,
+		})
+	}
+
+	var summaryField SummaryField = SummaryField{}
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SummaryFieldsTypeSummaryField,
+			Value: &summaryField,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SummaryFields", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SummaryFields", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(SummaryFieldsType)
+	switch best.Type {
+	case SummaryFieldsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case SummaryFieldsTypeSummaryField:
+		u.SummaryField = best.Value.(*SummaryField)
 		return nil
 	}
 
@@ -458,6 +484,16 @@ type RelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// Relations are always repeatables
 	Repeatable   *bool                 `default:"true" json:"repeatable"`
 	HasPrimary   *bool                 `json:"has_primary,omitempty"`
@@ -491,316 +527,330 @@ func (r RelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RelationAttribute) GetID() *string {
-	if o == nil {
+func (r *RelationAttribute) GetID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RelationAttribute) GetName() string {
-	if o == nil {
+func (r *RelationAttribute) GetName() string {
+	if r == nil {
 		return ""
 	}
-	return o.Name
+	return r.Name
 }
 
-func (o *RelationAttribute) GetLabel() string {
-	if o == nil {
+func (r *RelationAttribute) GetLabel() string {
+	if r == nil {
 		return ""
 	}
-	return o.Label
+	return r.Label
 }
 
-func (o *RelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (r *RelationAttribute) GetPlaceholder() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Placeholder
+	return r.Placeholder
 }
 
-func (o *RelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetHidden() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Hidden
+	return r.Hidden
 }
 
-func (o *RelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetShowInTable() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return r.ShowInTable
 }
 
-func (o *RelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetSortable() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Sortable
+	return r.Sortable
 }
 
-func (o *RelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetRequired() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Required
+	return r.Required
 }
 
-func (o *RelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetReadonly() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Readonly
+	return r.Readonly
 }
 
-func (o *RelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetDeprecated() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Deprecated
+	return r.Deprecated
 }
 
-func (o *RelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (r *RelationAttribute) GetDefaultValue() any {
+	if r == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return r.DefaultValue
 }
 
-func (o *RelationAttribute) GetGroup() *string {
-	if o == nil {
+func (r *RelationAttribute) GetGroup() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Group
+	return r.Group
 }
 
-func (o *RelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (r *RelationAttribute) GetOrder() *int64 {
+	if r == nil {
 		return nil
 	}
-	return o.Order
+	return r.Order
 }
 
-func (o *RelationAttribute) GetLayout() *string {
-	if o == nil {
+func (r *RelationAttribute) GetLayout() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Layout
+	return r.Layout
 }
 
-func (o *RelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetHideLabel() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.HideLabel
+	return r.HideLabel
 }
 
-func (o *RelationAttribute) GetIcon() *string {
-	if o == nil {
+func (r *RelationAttribute) GetIcon() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Icon
+	return r.Icon
 }
 
-func (o *RelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (r *RelationAttribute) GetRenderCondition() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return r.RenderCondition
 }
 
-func (o *RelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (r *RelationAttribute) GetPurpose() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Purpose
+	return r.Purpose
 }
 
-func (o *RelationAttribute) GetManifest() []string {
-	if o == nil {
+func (r *RelationAttribute) GetManifest() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Manifest
+	return r.Manifest
 }
 
-func (o *RelationAttribute) GetConstraints() *RelationAttributeConstraints {
-	if o == nil {
+func (r *RelationAttribute) GetConstraints() *RelationAttributeConstraints {
+	if r == nil {
 		return nil
 	}
-	return o.Constraints
+	return r.Constraints
 }
 
-func (o *RelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (r *RelationAttribute) GetFeatureFlag() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return r.FeatureFlag
 }
 
-func (o *RelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (r *RelationAttribute) GetSettingsFlag() []SettingFlag {
+	if r == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return r.SettingsFlag
 }
 
-func (o *RelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (r *RelationAttribute) GetValueFormatter() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return r.ValueFormatter
 }
 
-func (o *RelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (r *RelationAttribute) GetPreviewValueFormatter() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return r.PreviewValueFormatter
 }
 
-func (o *RelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return r.EntityBuilderDisableEdit
 }
 
-func (o *RelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetProtected() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Protected
+	return r.Protected
 }
 
-func (o *RelationAttribute) GetInfoHelpers() *RelationAttributeInfoHelpers {
-	if o == nil {
+func (r *RelationAttribute) GetInfoHelpers() *RelationAttributeInfoHelpers {
+	if r == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return r.InfoHelpers
 }
 
-func (o *RelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetExplicitSearchable() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Repeatable
+	return r.ExplicitSearchable
 }
 
-func (o *RelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetExcludeFromSearch() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return r.ExcludeFromSearch
 }
 
-func (o *RelationAttribute) GetType() RelationAttributeType {
-	if o == nil {
+func (r *RelationAttribute) GetRepeatable() *bool {
+	if r == nil {
+		return nil
+	}
+	return r.Repeatable
+}
+
+func (r *RelationAttribute) GetHasPrimary() *bool {
+	if r == nil {
+		return nil
+	}
+	return r.HasPrimary
+}
+
+func (r *RelationAttribute) GetType() RelationAttributeType {
+	if r == nil {
 		return RelationAttributeType("")
 	}
-	return o.Type
+	return r.Type
 }
 
-func (o *RelationAttribute) GetRelationType() *RelationType {
-	if o == nil {
+func (r *RelationAttribute) GetRelationType() *RelationType {
+	if r == nil {
 		return nil
 	}
-	return o.RelationType
+	return r.RelationType
 }
 
-func (o *RelationAttribute) GetReverseAttributes() map[string]string {
-	if o == nil {
+func (r *RelationAttribute) GetReverseAttributes() map[string]string {
+	if r == nil {
 		return nil
 	}
-	return o.ReverseAttributes
+	return r.ReverseAttributes
 }
 
-func (o *RelationAttribute) GetRelationAffinityMode() *RelationAffinityMode {
-	if o == nil {
+func (r *RelationAttribute) GetRelationAffinityMode() *RelationAffinityMode {
+	if r == nil {
 		return nil
 	}
-	return o.RelationAffinityMode
+	return r.RelationAffinityMode
 }
 
-func (o *RelationAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetEnableRelationPicker() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.EnableRelationPicker
+	return r.EnableRelationPicker
 }
 
-func (o *RelationAttribute) GetEditMode() *EditMode {
-	if o == nil {
+func (r *RelationAttribute) GetEditMode() *EditMode {
+	if r == nil {
 		return nil
 	}
-	return o.EditMode
+	return r.EditMode
 }
 
-func (o *RelationAttribute) GetDetailsViewModeEnabled() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetDetailsViewModeEnabled() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.DetailsViewModeEnabled
+	return r.DetailsViewModeEnabled
 }
 
-func (o *RelationAttribute) GetRelationPickerFilter() *RelationPickerFilter {
-	if o == nil {
+func (r *RelationAttribute) GetRelationPickerFilter() *RelationPickerFilter {
+	if r == nil {
 		return nil
 	}
-	return o.RelationPickerFilter
+	return r.RelationPickerFilter
 }
 
-func (o *RelationAttribute) GetActions() []Actions {
-	if o == nil {
+func (r *RelationAttribute) GetActions() []Actions {
+	if r == nil {
 		return nil
 	}
-	return o.Actions
+	return r.Actions
 }
 
-func (o *RelationAttribute) GetDrawerSize() *DrawerSize {
-	if o == nil {
+func (r *RelationAttribute) GetDrawerSize() *DrawerSize {
+	if r == nil {
 		return nil
 	}
-	return o.DrawerSize
+	return r.DrawerSize
 }
 
-func (o *RelationAttribute) GetSummaryFields() []SummaryFields {
-	if o == nil {
+func (r *RelationAttribute) GetSummaryFields() []SummaryFields {
+	if r == nil {
 		return nil
 	}
-	return o.SummaryFields
+	return r.SummaryFields
 }
 
-func (o *RelationAttribute) GetAllowedSchemas() []string {
-	if o == nil {
+func (r *RelationAttribute) GetAllowedSchemas() []string {
+	if r == nil {
 		return nil
 	}
-	return o.AllowedSchemas
+	return r.AllowedSchemas
 }
 
-func (o *RelationAttribute) GetEnableRelationTags() *bool {
-	if o == nil {
+func (r *RelationAttribute) GetEnableRelationTags() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.EnableRelationTags
+	return r.EnableRelationTags
 }
 
-func (o *RelationAttribute) GetAddButtonLabel() *string {
-	if o == nil {
+func (r *RelationAttribute) GetAddButtonLabel() *string {
+	if r == nil {
 		return nil
 	}
-	return o.AddButtonLabel
+	return r.AddButtonLabel
 }
 
-func (o *RelationAttribute) GetSearchPlaceholder() *string {
-	if o == nil {
+func (r *RelationAttribute) GetSearchPlaceholder() *string {
+	if r == nil {
 		return nil
 	}
-	return o.SearchPlaceholder
+	return r.SearchPlaceholder
 }

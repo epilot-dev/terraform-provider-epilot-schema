@@ -133,14 +133,14 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		renderCondition = nil
 	}
 	purpose := make([]string, 0, len(r.Purpose))
-	for _, purposeItem := range r.Purpose {
-		purpose = append(purpose, purposeItem.ValueString())
+	for purposeIndex := range r.Purpose {
+		purpose = append(purpose, r.Purpose[purposeIndex].ValueString())
 	}
 	var manifest []string
 	if r.Manifest != nil {
 		manifest = make([]string, 0, len(r.Manifest))
-		for _, manifestItem := range r.Manifest {
-			manifest = append(manifest, manifestItem.ValueString())
+		for manifestIndex := range r.Manifest {
+			manifest = append(manifest, r.Manifest[manifestIndex].ValueString())
 		}
 	}
 	featureFlag := new(string)
@@ -150,16 +150,16 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		featureFlag = nil
 	}
 	settingsFlag := make([]shared.SettingFlag, 0, len(r.SettingsFlag))
-	for _, settingsFlagItem := range r.SettingsFlag {
+	for settingsFlagIndex := range r.SettingsFlag {
 		name := new(string)
-		if !settingsFlagItem.Name.IsUnknown() && !settingsFlagItem.Name.IsNull() {
-			*name = settingsFlagItem.Name.ValueString()
+		if !r.SettingsFlag[settingsFlagIndex].Name.IsUnknown() && !r.SettingsFlag[settingsFlagIndex].Name.IsNull() {
+			*name = r.SettingsFlag[settingsFlagIndex].Name.ValueString()
 		} else {
 			name = nil
 		}
 		enabled := new(bool)
-		if !settingsFlagItem.Enabled.IsUnknown() && !settingsFlagItem.Enabled.IsNull() {
-			*enabled = settingsFlagItem.Enabled.ValueBool()
+		if !r.SettingsFlag[settingsFlagIndex].Enabled.IsUnknown() && !r.SettingsFlag[settingsFlagIndex].Enabled.IsNull() {
+			*enabled = r.SettingsFlag[settingsFlagIndex].Enabled.ValueBool()
 		} else {
 			enabled = nil
 		}

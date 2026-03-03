@@ -20,31 +20,31 @@ func (p PutSchemaRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PutSchemaRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PutSchemaRequest) GetSlug() string {
-	if o == nil {
+func (p *PutSchemaRequest) GetSlug() string {
+	if p == nil {
 		return ""
 	}
-	return o.Slug
+	return p.Slug
 }
 
-func (o *PutSchemaRequest) GetDraft() *bool {
-	if o == nil {
+func (p *PutSchemaRequest) GetDraft() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Draft
+	return p.Draft
 }
 
-func (o *PutSchemaRequest) GetEntitySchemaItem() *shared.EntitySchemaItem {
-	if o == nil {
+func (p *PutSchemaRequest) GetEntitySchemaItem() *shared.EntitySchemaItem {
+	if p == nil {
 		return nil
 	}
-	return o.EntitySchemaItem
+	return p.EntitySchemaItem
 }
 
 type PutSchemaResponse struct {
@@ -61,44 +61,44 @@ type PutSchemaResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *PutSchemaResponse) GetContentType() string {
-	if o == nil {
+func (p *PutSchemaResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutSchemaResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutSchemaResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PutSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
-	if o == nil {
+func (p *PutSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
+	if p == nil {
 		return nil
 	}
-	return o.EntitySchemaItem
+	return p.EntitySchemaItem
 }
 
-func (o *PutSchemaResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (p *PutSchemaResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if p == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return p.TooManyRequestsError
 }
 
-func (o *PutSchemaResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (p *PutSchemaResponse) GetHeaders() map[string][]string {
+	if p == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return p.Headers
 }

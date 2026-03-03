@@ -24,38 +24,38 @@ func (g GetEntityV2Request) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEntityV2Request) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetEntityV2Request) GetID() string {
-	if o == nil {
+func (g *GetEntityV2Request) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetEntityV2Request) GetSlug() string {
-	if o == nil {
+func (g *GetEntityV2Request) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetEntityV2Request) GetHydrate() *bool {
-	if o == nil {
+func (g *GetEntityV2Request) GetHydrate() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Hydrate
+	return g.Hydrate
 }
 
-func (o *GetEntityV2Request) GetFields() []string {
-	if o == nil {
+func (g *GetEntityV2Request) GetFields() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Fields
+	return g.Fields
 }
 
 type GetEntityV2Response struct {
@@ -71,37 +71,37 @@ type GetEntityV2Response struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetEntityV2Response) GetContentType() string {
-	if o == nil {
+func (g *GetEntityV2Response) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetEntityV2Response) GetStatusCode() int {
-	if o == nil {
+func (g *GetEntityV2Response) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetEntityV2Response) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetEntityV2Response) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetEntityV2Response) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (g *GetEntityV2Response) GetEntityItem() *shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.EntityItem
+	return g.EntityItem
 }
 
-func (o *GetEntityV2Response) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetEntityV2Response) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

@@ -7,6 +7,6 @@ import (
 )
 
 type SummaryAttributes struct {
-	Str              types.String      `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
-	SummaryAttribute *SummaryAttribute `queryParam:"inline" tfsdk:"summary_attribute" tfPlanOnly:"true"`
+	Str              types.String      `queryParam:"inline" tfsdk:"str"`
+	SummaryAttribute *SummaryAttribute `queryParam:"inline" tfsdk:"summary_attribute"`
 }

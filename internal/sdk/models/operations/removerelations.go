@@ -25,45 +25,45 @@ func (r RemoveRelationsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RemoveRelationsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"slug", "id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RemoveRelationsRequest) GetSlug() string {
-	if o == nil {
+func (r *RemoveRelationsRequest) GetSlug() string {
+	if r == nil {
 		return ""
 	}
-	return o.Slug
+	return r.Slug
 }
 
-func (o *RemoveRelationsRequest) GetID() string {
-	if o == nil {
+func (r *RemoveRelationsRequest) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RemoveRelationsRequest) GetAsync() *bool {
-	if o == nil {
+func (r *RemoveRelationsRequest) GetAsync() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Async
+	return r.Async
 }
 
-func (o *RemoveRelationsRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (r *RemoveRelationsRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if r == nil {
 		return nil
 	}
-	return o.ActivityID
+	return r.ActivityID
 }
 
-func (o *RemoveRelationsRequest) GetRequestBody() []shared.RelationItem {
-	if o == nil {
+func (r *RemoveRelationsRequest) GetRequestBody() []shared.RelationItem {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type RemoveRelationsResponse struct {
@@ -80,44 +80,44 @@ type RemoveRelationsResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *RemoveRelationsResponse) GetContentType() string {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *RemoveRelationsResponse) GetStatusCode() int {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *RemoveRelationsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *RemoveRelationsResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetNotFoundError() *shared.NotFoundError {
+	if r == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return r.NotFoundError
 }
 
-func (o *RemoveRelationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if r == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return r.TooManyRequestsError
 }
 
-func (o *RemoveRelationsResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (r *RemoveRelationsResponse) GetHeaders() map[string][]string {
+	if r == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return r.Headers
 }

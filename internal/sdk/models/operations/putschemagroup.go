@@ -13,18 +13,18 @@ type PutSchemaGroupRequest struct {
 	EntitySchemaGroupWithCompositeID *shared.EntitySchemaGroupWithCompositeIDInput `request:"mediaType=application/json"`
 }
 
-func (o *PutSchemaGroupRequest) GetCompositeID() string {
-	if o == nil {
+func (p *PutSchemaGroupRequest) GetCompositeID() string {
+	if p == nil {
 		return ""
 	}
-	return o.CompositeID
+	return p.CompositeID
 }
 
-func (o *PutSchemaGroupRequest) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeIDInput {
-	if o == nil {
+func (p *PutSchemaGroupRequest) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeIDInput {
+	if p == nil {
 		return nil
 	}
-	return o.EntitySchemaGroupWithCompositeID
+	return p.EntitySchemaGroupWithCompositeID
 }
 
 type PutSchemaGroupResponse struct {
@@ -38,30 +38,30 @@ type PutSchemaGroupResponse struct {
 	EntitySchemaGroupWithCompositeID *shared.EntitySchemaGroupWithCompositeID
 }
 
-func (o *PutSchemaGroupResponse) GetContentType() string {
-	if o == nil {
+func (p *PutSchemaGroupResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutSchemaGroupResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutSchemaGroupResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutSchemaGroupResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutSchemaGroupResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PutSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
-	if o == nil {
+func (p *PutSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
+	if p == nil {
 		return nil
 	}
-	return o.EntitySchemaGroupWithCompositeID
+	return p.EntitySchemaGroupWithCompositeID
 }

@@ -7,6 +7,6 @@ import (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          types.String  `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
-	SummaryField *SummaryField `queryParam:"inline" tfsdk:"summary_field" tfPlanOnly:"true"`
+	Str          types.String  `queryParam:"inline" tfsdk:"str"`
+	SummaryField *SummaryField `queryParam:"inline" tfsdk:"summary_field"`
 }

@@ -24,16 +24,16 @@ func (s *SettingFlag) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SettingFlag) GetName() *string {
-	if o == nil {
+func (s *SettingFlag) GetName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *SettingFlag) GetEnabled() *bool {
-	if o == nil {
+func (s *SettingFlag) GetEnabled() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Enabled
+	return s.Enabled
 }

@@ -3,9 +3,100 @@
 package shared
 
 import (
+	"errors"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"time"
 )
+
+type TaxonomyClassificationEnabledLocationsType string
+
+const (
+	TaxonomyClassificationEnabledLocationsTypeTaxonomyLocationID TaxonomyClassificationEnabledLocationsType = "TaxonomyLocationId"
+	TaxonomyClassificationEnabledLocationsTypeStr                TaxonomyClassificationEnabledLocationsType = "str"
+)
+
+type TaxonomyClassificationEnabledLocations struct {
+	TaxonomyLocationID *TaxonomyLocationID `queryParam:"inline" union:"member"`
+	Str                *string             `queryParam:"inline" union:"member"`
+
+	Type TaxonomyClassificationEnabledLocationsType
+}
+
+func CreateTaxonomyClassificationEnabledLocationsTaxonomyLocationID(taxonomyLocationID TaxonomyLocationID) TaxonomyClassificationEnabledLocations {
+	typ := TaxonomyClassificationEnabledLocationsTypeTaxonomyLocationID
+
+	return TaxonomyClassificationEnabledLocations{
+		TaxonomyLocationID: &taxonomyLocationID,
+		Type:               typ,
+	}
+}
+
+func CreateTaxonomyClassificationEnabledLocationsStr(str string) TaxonomyClassificationEnabledLocations {
+	typ := TaxonomyClassificationEnabledLocationsTypeStr
+
+	return TaxonomyClassificationEnabledLocations{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *TaxonomyClassificationEnabledLocations) UnmarshalJSON(data []byte) error {
+
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var taxonomyLocationID TaxonomyLocationID = TaxonomyLocationID("")
+	if err := utils.UnmarshalJSON(data, &taxonomyLocationID, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  TaxonomyClassificationEnabledLocationsTypeTaxonomyLocationID,
+			Value: &taxonomyLocationID,
+		})
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  TaxonomyClassificationEnabledLocationsTypeStr,
+			Value: &str,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for TaxonomyClassificationEnabledLocations", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for TaxonomyClassificationEnabledLocations", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(TaxonomyClassificationEnabledLocationsType)
+	switch best.Type {
+	case TaxonomyClassificationEnabledLocationsTypeTaxonomyLocationID:
+		u.TaxonomyLocationID = best.Value.(*TaxonomyLocationID)
+		return nil
+	case TaxonomyClassificationEnabledLocationsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TaxonomyClassificationEnabledLocations", string(data))
+}
+
+func (u TaxonomyClassificationEnabledLocations) MarshalJSON() ([]byte, error) {
+	if u.TaxonomyLocationID != nil {
+		return utils.MarshalJSON(u.TaxonomyLocationID, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type TaxonomyClassificationEnabledLocations: all fields are null")
+}
 
 type TaxonomyClassification struct {
 	ID *string `json:"id,omitempty"`
@@ -21,6 +112,10 @@ type TaxonomyClassification struct {
 	Archived *bool `default:"false" json:"archived"`
 	// Starred taxonomy classifications can represent "favorites" or commonly used classifications
 	Starred *bool `default:"false" json:"starred"`
+	// List of locations where the classification is enabled to be used. If empty, it's enabled for all locations.
+	EnabledLocations []TaxonomyClassificationEnabledLocations `json:"enabled_locations,omitempty"`
+	// List of purpose slugs where the classification is enabled to be used. If empty, it's enabled for all purposes.
+	EnabledPurposes []string `json:"enabled_purposes,omitempty"`
 	// Manifest ID used to create/update the taxonomy classification
 	Manifest []string `json:"_manifest,omitempty"`
 }
@@ -30,78 +125,201 @@ func (t TaxonomyClassification) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomyClassification) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"slug", "name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TaxonomyClassification) GetID() *string {
-	if o == nil {
+func (t *TaxonomyClassification) GetID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TaxonomyClassification) GetSlug() string {
-	if o == nil {
+func (t *TaxonomyClassification) GetSlug() string {
+	if t == nil {
 		return ""
 	}
-	return o.Slug
+	return t.Slug
 }
 
-func (o *TaxonomyClassification) GetName() string {
-	if o == nil {
+func (t *TaxonomyClassification) GetName() string {
+	if t == nil {
 		return ""
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *TaxonomyClassification) GetParents() []string {
-	if o == nil {
+func (t *TaxonomyClassification) GetParents() []string {
+	if t == nil {
 		return nil
 	}
-	return o.Parents
+	return t.Parents
 }
 
-func (o *TaxonomyClassification) GetColor() *string {
-	if o == nil {
+func (t *TaxonomyClassification) GetColor() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Color
+	return t.Color
 }
 
-func (o *TaxonomyClassification) GetCreatedAt() *time.Time {
-	if o == nil {
+func (t *TaxonomyClassification) GetCreatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return t.CreatedAt
 }
 
-func (o *TaxonomyClassification) GetUpdatedAt() *time.Time {
-	if o == nil {
+func (t *TaxonomyClassification) GetUpdatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return t.UpdatedAt
 }
 
-func (o *TaxonomyClassification) GetArchived() *bool {
-	if o == nil {
+func (t *TaxonomyClassification) GetArchived() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Archived
+	return t.Archived
 }
 
-func (o *TaxonomyClassification) GetStarred() *bool {
-	if o == nil {
+func (t *TaxonomyClassification) GetStarred() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Starred
+	return t.Starred
 }
 
-func (o *TaxonomyClassification) GetManifest() []string {
-	if o == nil {
+func (t *TaxonomyClassification) GetEnabledLocations() []TaxonomyClassificationEnabledLocations {
+	if t == nil {
 		return nil
 	}
-	return o.Manifest
+	return t.EnabledLocations
+}
+
+func (t *TaxonomyClassification) GetEnabledPurposes() []string {
+	if t == nil {
+		return nil
+	}
+	return t.EnabledPurposes
+}
+
+func (t *TaxonomyClassification) GetManifest() []string {
+	if t == nil {
+		return nil
+	}
+	return t.Manifest
+}
+
+type TaxonomyClassificationInput struct {
+	// URL-friendly identifier for the classification
+	Slug    string   `json:"slug"`
+	Name    string   `json:"name"`
+	Parents []string `json:"parents,omitempty"`
+	// Color of the classification
+	Color     *string    `json:"color,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Archived classification are not visible in the UI
+	Archived *bool `default:"false" json:"archived"`
+	// Starred taxonomy classifications can represent "favorites" or commonly used classifications
+	Starred *bool `default:"false" json:"starred"`
+	// List of locations where the classification is enabled to be used. If empty, it's enabled for all locations.
+	EnabledLocations []TaxonomyClassificationEnabledLocations `json:"enabled_locations,omitempty"`
+	// List of purpose slugs where the classification is enabled to be used. If empty, it's enabled for all purposes.
+	EnabledPurposes []string `json:"enabled_purposes,omitempty"`
+	// Manifest ID used to create/update the taxonomy classification
+	Manifest []string `json:"_manifest,omitempty"`
+}
+
+func (t TaxonomyClassificationInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxonomyClassificationInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (t *TaxonomyClassificationInput) GetSlug() string {
+	if t == nil {
+		return ""
+	}
+	return t.Slug
+}
+
+func (t *TaxonomyClassificationInput) GetName() string {
+	if t == nil {
+		return ""
+	}
+	return t.Name
+}
+
+func (t *TaxonomyClassificationInput) GetParents() []string {
+	if t == nil {
+		return nil
+	}
+	return t.Parents
+}
+
+func (t *TaxonomyClassificationInput) GetColor() *string {
+	if t == nil {
+		return nil
+	}
+	return t.Color
+}
+
+func (t *TaxonomyClassificationInput) GetCreatedAt() *time.Time {
+	if t == nil {
+		return nil
+	}
+	return t.CreatedAt
+}
+
+func (t *TaxonomyClassificationInput) GetUpdatedAt() *time.Time {
+	if t == nil {
+		return nil
+	}
+	return t.UpdatedAt
+}
+
+func (t *TaxonomyClassificationInput) GetArchived() *bool {
+	if t == nil {
+		return nil
+	}
+	return t.Archived
+}
+
+func (t *TaxonomyClassificationInput) GetStarred() *bool {
+	if t == nil {
+		return nil
+	}
+	return t.Starred
+}
+
+func (t *TaxonomyClassificationInput) GetEnabledLocations() []TaxonomyClassificationEnabledLocations {
+	if t == nil {
+		return nil
+	}
+	return t.EnabledLocations
+}
+
+func (t *TaxonomyClassificationInput) GetEnabledPurposes() []string {
+	if t == nil {
+		return nil
+	}
+	return t.EnabledPurposes
+}
+
+func (t *TaxonomyClassificationInput) GetManifest() []string {
+	if t == nil {
+		return nil
+	}
+	return t.Manifest
 }

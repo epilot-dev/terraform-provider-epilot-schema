@@ -56,32 +56,32 @@ func (u *UserRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UserRelationAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (u *UserRelationAttributeInfoHelpers) GetHintText() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintText
+	return u.HintText
 }
 
-func (o *UserRelationAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (u *UserRelationAttributeInfoHelpers) GetHintTextKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return u.HintTextKey
 }
 
-func (o *UserRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (u *UserRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return u.HintCustomComponent
 }
 
-func (o *UserRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (u *UserRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return u.HintTooltipPlacement
 }
 
 type UserRelationAttributeType string
@@ -159,6 +159,16 @@ type UserRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                     `json:"repeatable,omitempty"`
 	HasPrimary *bool                     `json:"has_primary,omitempty"`
@@ -171,225 +181,239 @@ func (u UserRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UserRelationAttribute) GetID() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UserRelationAttribute) GetName() string {
-	if o == nil {
+func (u *UserRelationAttribute) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UserRelationAttribute) GetLabel() string {
-	if o == nil {
+func (u *UserRelationAttribute) GetLabel() string {
+	if u == nil {
 		return ""
 	}
-	return o.Label
+	return u.Label
 }
 
-func (o *UserRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetPlaceholder() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Placeholder
+	return u.Placeholder
 }
 
-func (o *UserRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetHidden() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Hidden
+	return u.Hidden
 }
 
-func (o *UserRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetShowInTable() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return u.ShowInTable
 }
 
-func (o *UserRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetSortable() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Sortable
+	return u.Sortable
 }
 
-func (o *UserRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetRequired() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Required
+	return u.Required
 }
 
-func (o *UserRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetReadonly() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Readonly
+	return u.Readonly
 }
 
-func (o *UserRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetDeprecated() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Deprecated
+	return u.Deprecated
 }
 
-func (o *UserRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (u *UserRelationAttribute) GetDefaultValue() any {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return u.DefaultValue
 }
 
-func (o *UserRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetGroup() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Group
+	return u.Group
 }
 
-func (o *UserRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (u *UserRelationAttribute) GetOrder() *int64 {
+	if u == nil {
 		return nil
 	}
-	return o.Order
+	return u.Order
 }
 
-func (o *UserRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetLayout() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Layout
+	return u.Layout
 }
 
-func (o *UserRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetHideLabel() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.HideLabel
+	return u.HideLabel
 }
 
-func (o *UserRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetIcon() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Icon
+	return u.Icon
 }
 
-func (o *UserRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetRenderCondition() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return u.RenderCondition
 }
 
-func (o *UserRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (u *UserRelationAttribute) GetPurpose() []string {
+	if u == nil {
 		return nil
 	}
-	return o.Purpose
+	return u.Purpose
 }
 
-func (o *UserRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (u *UserRelationAttribute) GetManifest() []string {
+	if u == nil {
 		return nil
 	}
-	return o.Manifest
+	return u.Manifest
 }
 
-func (o *UserRelationAttribute) GetConstraints() *UserRelationAttributeConstraints {
-	if o == nil {
+func (u *UserRelationAttribute) GetConstraints() *UserRelationAttributeConstraints {
+	if u == nil {
 		return nil
 	}
-	return o.Constraints
+	return u.Constraints
 }
 
-func (o *UserRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetFeatureFlag() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return u.FeatureFlag
 }
 
-func (o *UserRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (u *UserRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if u == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return u.SettingsFlag
 }
 
-func (o *UserRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetValueFormatter() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return u.ValueFormatter
 }
 
-func (o *UserRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (u *UserRelationAttribute) GetPreviewValueFormatter() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return u.PreviewValueFormatter
 }
 
-func (o *UserRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return u.EntityBuilderDisableEdit
 }
 
-func (o *UserRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetProtected() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Protected
+	return u.Protected
 }
 
-func (o *UserRelationAttribute) GetInfoHelpers() *UserRelationAttributeInfoHelpers {
-	if o == nil {
+func (u *UserRelationAttribute) GetInfoHelpers() *UserRelationAttributeInfoHelpers {
+	if u == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return u.InfoHelpers
 }
 
-func (o *UserRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetExplicitSearchable() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Repeatable
+	return u.ExplicitSearchable
 }
 
-func (o *UserRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetExcludeFromSearch() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return u.ExcludeFromSearch
 }
 
-func (o *UserRelationAttribute) GetType() UserRelationAttributeType {
-	if o == nil {
+func (u *UserRelationAttribute) GetRepeatable() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.Repeatable
+}
+
+func (u *UserRelationAttribute) GetHasPrimary() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.HasPrimary
+}
+
+func (u *UserRelationAttribute) GetType() UserRelationAttributeType {
+	if u == nil {
 		return UserRelationAttributeType("")
 	}
-	return o.Type
+	return u.Type
 }
 
-func (o *UserRelationAttribute) GetMultiple() *bool {
-	if o == nil {
+func (u *UserRelationAttribute) GetMultiple() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Multiple
+	return u.Multiple
 }

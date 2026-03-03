@@ -42,26 +42,11 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		for _, v := range resp.EnableSetting {
 			r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
 		}
-		if len(resp.ExplicitSearchMappings) > 0 {
-			r.ExplicitSearchMappings = make(map[string]tfTypes.SearchMappings, len(resp.ExplicitSearchMappings))
-			for searchMappingsKey, searchMappingsValue := range resp.ExplicitSearchMappings {
-				var searchMappingsResult tfTypes.SearchMappings
-				if len(searchMappingsValue.Fields) > 0 {
-					searchMappingsResult.Fields = make(map[string]jsontypes.Normalized, len(searchMappingsValue.Fields))
-					for key1, value1 := range searchMappingsValue.Fields {
-						result1, _ := json.Marshal(value1)
-						searchMappingsResult.Fields[key1] = jsontypes.NewNormalizedValue(string(result1))
-					}
-				}
-				searchMappingsResult.Index = types.BoolPointerValue(searchMappingsValue.Index)
-				if searchMappingsValue.Type != nil {
-					searchMappingsResult.Type = types.StringValue(string(*searchMappingsValue.Type))
-				} else {
-					searchMappingsResult.Type = types.StringNull()
-				}
-
-				r.ExplicitSearchMappings[searchMappingsKey] = searchMappingsResult
-			}
+		if resp.ExplicitSearchMappings == nil {
+			r.ExplicitSearchMappings = jsontypes.NewNormalizedNull()
+		} else {
+			explicitSearchMappingsResult, _ := json.Marshal(resp.ExplicitSearchMappings)
+			r.ExplicitSearchMappings = jsontypes.NewNormalizedValue(string(explicitSearchMappingsResult))
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
 		if resp.GroupHeadlines == nil {
@@ -106,8 +91,8 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
 						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String, len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams))
-						for key2, value2 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key2] = types.StringValue(value2)
+						for key1, value1 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
+							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key1] = types.StringValue(value1)
 						}
 					}
 					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
@@ -140,8 +125,8 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
 						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams))
-						for key3, value3 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key3] = types.StringValue(value3)
+						for key2, value2 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key2] = types.StringValue(value2)
 						}
 					}
 					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes))
@@ -254,8 +239,8 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
 						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams))
-						for key4, value4 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key4] = types.StringValue(value4)
+						for key3, value3 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key3] = types.StringValue(value3)
 						}
 					}
 					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))

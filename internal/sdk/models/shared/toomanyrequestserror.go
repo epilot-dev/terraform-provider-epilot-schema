@@ -10,16 +10,16 @@ type TooManyRequestsError struct {
 	Error *string `json:"error,omitempty"`
 }
 
-func (o *TooManyRequestsError) GetStatus() *int64 {
-	if o == nil {
+func (t *TooManyRequestsError) GetStatus() *int64 {
+	if t == nil {
 		return nil
 	}
-	return o.Status
+	return t.Status
 }
 
-func (o *TooManyRequestsError) GetError() *string {
-	if o == nil {
+func (t *TooManyRequestsError) GetError() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Error
+	return t.Error
 }

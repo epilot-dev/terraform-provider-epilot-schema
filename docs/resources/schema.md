@@ -28,20 +28,12 @@ resource "epilot-schema_schema" "my_schema" {
   enable_setting = [
     "360_features"
   ]
-  explicit_search_mappings = {
-    key = {
-      fields = {
-        key = jsonencode("value")
-      }
-      index = false
-      type  = "flattened"
-    }
-  }
-  feature_flag    = "FF_MY_FEATURE_FLAG"
-  group_headlines = "{ \"see\": \"documentation\" }"
-  group_settings  = "{ \"see\": \"documentation\" }"
-  icon            = "person"
-  id              = "89868668-91fd-45da-ba4d-b78cf9b60131"
+  explicit_search_mappings = "{ \"see\": \"documentation\" }"
+  feature_flag             = "FF_MY_FEATURE_FLAG"
+  group_headlines          = "{ \"see\": \"documentation\" }"
+  group_settings           = "{ \"see\": \"documentation\" }"
+  icon                     = "person"
+  id                       = "89868668-91fd-45da-ba4d-b78cf9b60131"
   layout_settings = {
     additional_properties = "{ \"see\": \"documentation\" }"
     grid_gap              = "...my_grid_gap..."
@@ -128,7 +120,7 @@ resource "epilot-schema_schema" "my_schema" {
 - `docs_url` (String)
 - `draft` (Boolean) Default: false
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
-- `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))
+- `explicit_search_mappings` (String) Parsed as JSON.
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled
 - `group_headlines` (String) Parsed as JSON.
 - `group_settings` (String) Parsed as JSON.
@@ -143,16 +135,6 @@ resource "epilot-schema_schema" "my_schema" {
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
 - `updated_at` (String)
 - `version` (Number)
-
-<a id="nestedatt--explicit_search_mappings"></a>
-### Nested Schema for `explicit_search_mappings`
-
-Optional:
-
-- `fields` (Map of String)
-- `index` (Boolean) Default: true
-- `type` (String) must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]
-
 
 <a id="nestedatt--layout_settings"></a>
 ### Nested Schema for `layout_settings`

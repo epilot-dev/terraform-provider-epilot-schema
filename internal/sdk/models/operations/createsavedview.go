@@ -15,25 +15,25 @@ type CreateSavedViewResponseBody struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *CreateSavedViewResponseBody) GetID() *string {
-	if o == nil {
+func (c *CreateSavedViewResponseBody) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateSavedViewResponseBody) GetCreatedAt() *string {
-	if o == nil {
+func (c *CreateSavedViewResponseBody) GetCreatedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CreateSavedViewResponseBody) GetUpdatedAt() *string {
-	if o == nil {
+func (c *CreateSavedViewResponseBody) GetUpdatedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return c.UpdatedAt
 }
 
 type CreateSavedViewResponse struct {
@@ -50,44 +50,44 @@ type CreateSavedViewResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CreateSavedViewResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateSavedViewResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateSavedViewResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateSavedViewResponse) GetObject() *CreateSavedViewResponseBody {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetObject() *CreateSavedViewResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }
 
-func (o *CreateSavedViewResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CreateSavedViewResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CreateSavedViewResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

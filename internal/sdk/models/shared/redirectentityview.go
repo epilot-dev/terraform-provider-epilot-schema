@@ -32,8 +32,8 @@ func (e *RedirectEntityViewViewType) UnmarshalJSON(data []byte) error {
 }
 
 type RedirectEntityView struct {
-	ViewType *RedirectEntityViewViewType `json:"view_type,omitempty"`
 	Route    *string                     `json:"route,omitempty"`
+	ViewType *RedirectEntityViewViewType `json:"view_type,omitempty"`
 }
 
 func (r RedirectEntityView) MarshalJSON() ([]byte, error) {
@@ -47,16 +47,16 @@ func (r *RedirectEntityView) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RedirectEntityView) GetViewType() *RedirectEntityViewViewType {
-	if o == nil {
+func (r *RedirectEntityView) GetRoute() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ViewType
+	return r.Route
 }
 
-func (o *RedirectEntityView) GetRoute() *string {
-	if o == nil {
+func (r *RedirectEntityView) GetViewType() *RedirectEntityViewViewType {
+	if r == nil {
 		return nil
 	}
-	return o.Route
+	return r.ViewType
 }

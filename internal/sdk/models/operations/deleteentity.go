@@ -24,38 +24,38 @@ func (d DeleteEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"slug", "id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *DeleteEntityRequest) GetSlug() string {
-	if o == nil {
+func (d *DeleteEntityRequest) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
-func (o *DeleteEntityRequest) GetID() string {
-	if o == nil {
+func (d *DeleteEntityRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DeleteEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (d *DeleteEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if d == nil {
 		return nil
 	}
-	return o.ActivityID
+	return d.ActivityID
 }
 
-func (o *DeleteEntityRequest) GetPurge() *bool {
-	if o == nil {
+func (d *DeleteEntityRequest) GetPurge() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Purge
+	return d.Purge
 }
 
 type DeleteEntityResponse struct {
@@ -70,37 +70,37 @@ type DeleteEntityResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *DeleteEntityResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteEntityResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteEntityResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteEntityResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (d *DeleteEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return d.TooManyRequestsError
 }
 
-func (o *DeleteEntityResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (d *DeleteEntityResponse) GetHeaders() map[string][]string {
+	if d == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return d.Headers
 }

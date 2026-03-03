@@ -6,9 +6,9 @@ type GetRelatedEntitiesCount struct {
 	Hits *int64 `json:"hits,omitempty"`
 }
 
-func (o *GetRelatedEntitiesCount) GetHits() *int64 {
-	if o == nil {
+func (g *GetRelatedEntitiesCount) GetHits() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Hits
+	return g.Hits
 }

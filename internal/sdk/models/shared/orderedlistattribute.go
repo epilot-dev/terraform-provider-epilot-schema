@@ -159,6 +159,16 @@ type OrderedListAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                    `json:"repeatable,omitempty"`
 	HasPrimary *bool                    `json:"has_primary,omitempty"`
@@ -170,7 +180,7 @@ func (o OrderedListAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -363,6 +373,20 @@ func (o *OrderedListAttribute) GetInfoHelpers() *OrderedListAttributeInfoHelpers
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *OrderedListAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
+}
+
+func (o *OrderedListAttribute) GetExcludeFromSearch() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExcludeFromSearch
 }
 
 func (o *OrderedListAttribute) GetRepeatable() *bool {

@@ -13,18 +13,18 @@ type PutSchemaCapabilityRequest struct {
 	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeIDInput `request:"mediaType=application/json"`
 }
 
-func (o *PutSchemaCapabilityRequest) GetCompositeID() string {
-	if o == nil {
+func (p *PutSchemaCapabilityRequest) GetCompositeID() string {
+	if p == nil {
 		return ""
 	}
-	return o.CompositeID
+	return p.CompositeID
 }
 
-func (o *PutSchemaCapabilityRequest) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeIDInput {
-	if o == nil {
+func (p *PutSchemaCapabilityRequest) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeIDInput {
+	if p == nil {
 		return nil
 	}
-	return o.EntityCapabilityWithCompositeID
+	return p.EntityCapabilityWithCompositeID
 }
 
 type PutSchemaCapabilityResponse struct {
@@ -38,30 +38,30 @@ type PutSchemaCapabilityResponse struct {
 	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
 }
 
-func (o *PutSchemaCapabilityResponse) GetContentType() string {
-	if o == nil {
+func (p *PutSchemaCapabilityResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutSchemaCapabilityResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutSchemaCapabilityResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutSchemaCapabilityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutSchemaCapabilityResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PutSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
-	if o == nil {
+func (p *PutSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
+	if p == nil {
 		return nil
 	}
-	return o.EntityCapabilityWithCompositeID
+	return p.EntityCapabilityWithCompositeID
 }

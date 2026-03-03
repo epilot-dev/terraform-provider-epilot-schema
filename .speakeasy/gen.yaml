@@ -13,18 +13,25 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 terraform:
-  version: 0.17.1
+  version: 0.18.2
   additionalDataSources: []
   additionalDependencies: {}
   additionalEphemeralResources: []
+  additionalListResources: []
   additionalProviderAttributes:
     httpHeaders: ""
     tlsSkipVerify: ""
@@ -32,7 +39,16 @@ terraform:
   allowUnknownFieldsInWeakUnions: true
   author: epilot
   baseErrorName: SDKBaseError
+  debugLogging: {}
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
+  enableOperationSecurity: false
+  enableOperationServers: false
   enableTypeDeduplication: true
   environmentVariables: []
+  excludeEmptyObjectSchemas: false
+  includeEmptyObjects: false
+  inferUnionDiscriminators: false
   packageName: epilot-schema
+  respectRequiredFields: false
+  unionStrategy: populated-fields

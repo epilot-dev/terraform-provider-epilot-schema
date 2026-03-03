@@ -29,52 +29,52 @@ func (c CreateEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreateEntityRequest) GetSlug() string {
-	if o == nil {
+func (c *CreateEntityRequest) GetSlug() string {
+	if c == nil {
 		return ""
 	}
-	return o.Slug
+	return c.Slug
 }
 
-func (o *CreateEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (c *CreateEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if c == nil {
 		return nil
 	}
-	return o.ActivityID
+	return c.ActivityID
 }
 
-func (o *CreateEntityRequest) GetFillActivity() *bool {
-	if o == nil {
+func (c *CreateEntityRequest) GetFillActivity() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.FillActivity
+	return c.FillActivity
 }
 
-func (o *CreateEntityRequest) GetAsync() *bool {
-	if o == nil {
+func (c *CreateEntityRequest) GetAsync() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Async
+	return c.Async
 }
 
-func (o *CreateEntityRequest) GetValidate() *bool {
-	if o == nil {
+func (c *CreateEntityRequest) GetValidate() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Validate
+	return c.Validate
 }
 
-func (o *CreateEntityRequest) GetEntity() *shared.EntityInput {
-	if o == nil {
+func (c *CreateEntityRequest) GetEntity() *shared.EntityInput {
+	if c == nil {
 		return nil
 	}
-	return o.Entity
+	return c.Entity
 }
 
 type CreateEntityResponse struct {
@@ -93,51 +93,51 @@ type CreateEntityResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CreateEntityResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateEntityResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateEntityResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateEntityResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateEntityResponse) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (c *CreateEntityResponse) GetEntityItem() *shared.EntityItem {
+	if c == nil {
 		return nil
 	}
-	return o.EntityItem
+	return c.EntityItem
 }
 
-func (o *CreateEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
-	if o == nil {
+func (c *CreateEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if c == nil {
 		return nil
 	}
-	return o.EntityValidationV2ResultError
+	return c.EntityValidationV2ResultError
 }
 
-func (o *CreateEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CreateEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CreateEntityResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CreateEntityResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

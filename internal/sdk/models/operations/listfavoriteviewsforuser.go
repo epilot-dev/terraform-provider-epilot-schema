@@ -14,25 +14,25 @@ type ListFavoriteViewsForUserResults struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *ListFavoriteViewsForUserResults) GetID() *string {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResults) GetID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListFavoriteViewsForUserResults) GetCreatedAt() *string {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResults) GetCreatedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *ListFavoriteViewsForUserResults) GetUpdatedAt() *string {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResults) GetUpdatedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return l.UpdatedAt
 }
 
 // ListFavoriteViewsForUserResponseBody - Success
@@ -40,11 +40,11 @@ type ListFavoriteViewsForUserResponseBody struct {
 	Results []ListFavoriteViewsForUserResults `json:"results,omitempty"`
 }
 
-func (o *ListFavoriteViewsForUserResponseBody) GetResults() []ListFavoriteViewsForUserResults {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResponseBody) GetResults() []ListFavoriteViewsForUserResults {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListFavoriteViewsForUserResponse struct {
@@ -58,30 +58,30 @@ type ListFavoriteViewsForUserResponse struct {
 	Object *ListFavoriteViewsForUserResponseBody
 }
 
-func (o *ListFavoriteViewsForUserResponse) GetContentType() string {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListFavoriteViewsForUserResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListFavoriteViewsForUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListFavoriteViewsForUserResponse) GetObject() *ListFavoriteViewsForUserResponseBody {
-	if o == nil {
+func (l *ListFavoriteViewsForUserResponse) GetObject() *ListFavoriteViewsForUserResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

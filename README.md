@@ -80,13 +80,13 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "epilot/epilot-schema"
-      version = "0.17.1"
+      version = "0.18.2"
     }
   }
 }
 
 provider "epilot-schema" {
-  # Configuration options
+  server_url = "..." # Optional
 }
 ```
 <!-- End Installation [installation] -->

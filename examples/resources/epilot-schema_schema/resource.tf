@@ -13,20 +13,12 @@ resource "epilot-schema_schema" "my_schema" {
   enable_setting = [
     "360_features"
   ]
-  explicit_search_mappings = {
-    key = {
-      fields = {
-        key = jsonencode("value")
-      }
-      index = false
-      type  = "flattened"
-    }
-  }
-  feature_flag    = "FF_MY_FEATURE_FLAG"
-  group_headlines = "{ \"see\": \"documentation\" }"
-  group_settings  = "{ \"see\": \"documentation\" }"
-  icon            = "person"
-  id              = "89868668-91fd-45da-ba4d-b78cf9b60131"
+  explicit_search_mappings = "{ \"see\": \"documentation\" }"
+  feature_flag             = "FF_MY_FEATURE_FLAG"
+  group_headlines          = "{ \"see\": \"documentation\" }"
+  group_settings           = "{ \"see\": \"documentation\" }"
+  icon                     = "person"
+  id                       = "89868668-91fd-45da-ba4d-b78cf9b60131"
   layout_settings = {
     additional_properties = "{ \"see\": \"documentation\" }"
     grid_gap              = "...my_grid_gap..."

@@ -13,49 +13,46 @@ type UpdateClassificationsForTaxonomyRequest struct {
 	ClassificationsUpdate *shared.ClassificationsUpdate `request:"mediaType=application/json"`
 }
 
-func (o *UpdateClassificationsForTaxonomyRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyRequest) GetTaxonomySlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return u.TaxonomySlug
 }
 
-func (o *UpdateClassificationsForTaxonomyRequest) GetClassificationsUpdate() *shared.ClassificationsUpdate {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyRequest) GetClassificationsUpdate() *shared.ClassificationsUpdate {
+	if u == nil {
 		return nil
 	}
-	return o.ClassificationsUpdate
-}
-
-type Deleted struct {
+	return u.ClassificationsUpdate
 }
 
 // UpdateClassificationsForTaxonomyResponseBody - Taxonomies classifications
 type UpdateClassificationsForTaxonomyResponseBody struct {
 	Created []shared.TaxonomyClassification `json:"created,omitempty"`
 	Updated []shared.TaxonomyClassification `json:"updated,omitempty"`
-	Deleted *Deleted                        `json:"deleted,omitempty"`
+	Deleted []string                        `json:"deleted,omitempty"`
 }
 
-func (o *UpdateClassificationsForTaxonomyResponseBody) GetCreated() []shared.TaxonomyClassification {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponseBody) GetCreated() []shared.TaxonomyClassification {
+	if u == nil {
 		return nil
 	}
-	return o.Created
+	return u.Created
 }
 
-func (o *UpdateClassificationsForTaxonomyResponseBody) GetUpdated() []shared.TaxonomyClassification {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponseBody) GetUpdated() []shared.TaxonomyClassification {
+	if u == nil {
 		return nil
 	}
-	return o.Updated
+	return u.Updated
 }
 
-func (o *UpdateClassificationsForTaxonomyResponseBody) GetDeleted() *Deleted {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponseBody) GetDeleted() []string {
+	if u == nil {
 		return nil
 	}
-	return o.Deleted
+	return u.Deleted
 }
 
 type UpdateClassificationsForTaxonomyResponse struct {
@@ -74,51 +71,51 @@ type UpdateClassificationsForTaxonomyResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetObject() *UpdateClassificationsForTaxonomyResponseBody {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetObject() *UpdateClassificationsForTaxonomyResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetNotFoundError() *shared.NotFoundError {
+	if u == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return u.NotFoundError
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if u == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return u.TooManyRequestsError
 }
 
-func (o *UpdateClassificationsForTaxonomyResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (u *UpdateClassificationsForTaxonomyResponse) GetHeaders() map[string][]string {
+	if u == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return u.Headers
 }

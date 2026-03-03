@@ -135,14 +135,14 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 		divider = nil
 	}
 	purpose := make([]string, 0, len(r.Purpose))
-	for _, purposeItem := range r.Purpose {
-		purpose = append(purpose, purposeItem.ValueString())
+	for purposeIndex := range r.Purpose {
+		purpose = append(purpose, r.Purpose[purposeIndex].ValueString())
 	}
 	var manifest []string
 	if r.Manifest != nil {
 		manifest = make([]string, 0, len(r.Manifest))
-		for _, manifestItem := range r.Manifest {
-			manifest = append(manifest, manifestItem.ValueString())
+		for manifestIndex := range r.Manifest {
+			manifest = append(manifest, r.Manifest[manifestIndex].ValueString())
 		}
 	}
 	schema := new(string)

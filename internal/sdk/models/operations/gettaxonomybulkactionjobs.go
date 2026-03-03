@@ -59,39 +59,39 @@ func (g *GetTaxonomyBulkActionJobsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() []string {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetStatus() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetCreatedAfter() *time.Time {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetCreatedAfter() *time.Time {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAfter
+	return g.CreatedAfter
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetSortPendingFirst() *bool {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetSortPendingFirst() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.SortPendingFirst
+	return g.SortPendingFirst
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetScope() *Scope {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetScope() *Scope {
+	if g == nil {
 		return nil
 	}
-	return o.Scope
+	return g.Scope
 }
 
 type GetTaxonomyBulkActionJobsResponse struct {
@@ -105,30 +105,30 @@ type GetTaxonomyBulkActionJobsResponse struct {
 	TaxonomyBulkJobs []shared.TaxonomyBulkJob
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetTaxonomyBulkJobs() []shared.TaxonomyBulkJob {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetTaxonomyBulkJobs() []shared.TaxonomyBulkJob {
+	if g == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJobs
+	return g.TaxonomyBulkJobs
 }

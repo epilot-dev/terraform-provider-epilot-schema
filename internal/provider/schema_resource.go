@@ -5,6 +5,8 @@ package provider
 import (
 	"context"
 	"fmt"
+	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
+	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
@@ -19,6 +21,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -41,32 +44,32 @@ type SchemaResource struct {
 
 // SchemaResourceModel describes the resource data model.
 type SchemaResourceModel struct {
-	Attributes             jsontypes.Normalized              `tfsdk:"attributes"`
-	Blueprint              types.String                      `tfsdk:"blueprint"`
-	Capabilities           jsontypes.Normalized              `tfsdk:"capabilities"`
-	Category               types.String                      `tfsdk:"category"`
-	CreatedAt              types.String                      `tfsdk:"created_at"`
-	Description            types.String                      `tfsdk:"description"`
-	DialogConfig           map[string]jsontypes.Normalized   `tfsdk:"dialog_config"`
-	DocsURL                types.String                      `tfsdk:"docs_url"`
-	Draft                  types.Bool                        `queryParam:"style=form,explode=true,name=draft" tfsdk:"draft"`
-	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
-	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
-	GroupHeadlines         jsontypes.Normalized              `tfsdk:"group_headlines"`
-	GroupSettings          jsontypes.Normalized              `tfsdk:"group_settings"`
-	Icon                   types.String                      `tfsdk:"icon"`
-	ID                     types.String                      `tfsdk:"id"`
-	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
-	Name                   types.String                      `tfsdk:"name"`
-	Plural                 types.String                      `tfsdk:"plural"`
-	Published              types.Bool                        `tfsdk:"published"`
-	Purpose                []types.String                    `tfsdk:"purpose"`
-	Slug                   types.String                      `tfsdk:"slug"`
-	TitleTemplate          types.String                      `tfsdk:"title_template"`
-	UIConfig               *tfTypes.UIConfig                 `tfsdk:"ui_config"`
-	UpdatedAt              types.String                      `tfsdk:"updated_at"`
-	Version                types.Int64                       `tfsdk:"version"`
+	Attributes             jsontypes.Normalized            `tfsdk:"attributes"`
+	Blueprint              types.String                    `tfsdk:"blueprint"`
+	Capabilities           jsontypes.Normalized            `tfsdk:"capabilities"`
+	Category               types.String                    `tfsdk:"category"`
+	CreatedAt              types.String                    `tfsdk:"created_at"`
+	Description            types.String                    `tfsdk:"description"`
+	DialogConfig           map[string]jsontypes.Normalized `tfsdk:"dialog_config"`
+	DocsURL                types.String                    `tfsdk:"docs_url"`
+	Draft                  types.Bool                      `queryParam:"style=form,explode=true,name=draft" tfsdk:"draft"`
+	EnableSetting          []types.String                  `tfsdk:"enable_setting"`
+	ExplicitSearchMappings jsontypes.Normalized            `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String                    `tfsdk:"feature_flag"`
+	GroupHeadlines         jsontypes.Normalized            `tfsdk:"group_headlines"`
+	GroupSettings          jsontypes.Normalized            `tfsdk:"group_settings"`
+	Icon                   types.String                    `tfsdk:"icon"`
+	ID                     types.String                    `tfsdk:"id"`
+	LayoutSettings         *tfTypes.LayoutSettings         `tfsdk:"layout_settings"`
+	Name                   types.String                    `tfsdk:"name"`
+	Plural                 types.String                    `tfsdk:"plural"`
+	Published              types.Bool                      `tfsdk:"published"`
+	Purpose                []types.String                  `tfsdk:"purpose"`
+	Slug                   types.String                    `tfsdk:"slug"`
+	TitleTemplate          types.String                    `tfsdk:"title_template"`
+	UIConfig               *tfTypes.UIConfig               `tfsdk:"ui_config"`
+	UpdatedAt              types.String                    `tfsdk:"updated_at"`
+	Version                types.Int64                     `tfsdk:"version"`
 }
 
 func (r *SchemaResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -128,49 +131,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				ElementType: types.StringType,
 				Description: `This schema should only be active when one of the organization settings is enabled`,
 			},
-			"explicit_search_mappings": schema.MapNestedAttribute{
-				Computed: true,
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
-					Attributes: map[string]schema.Attribute{
-						"fields": schema.MapAttribute{
-							Computed:    true,
-							Optional:    true,
-							ElementType: jsontypes.NormalizedType{},
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
-						},
-						"index": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Default:     booldefault.StaticBool(true),
-							Description: `Default: true`,
-						},
-						"type": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"keyword",
-									"text",
-									"boolean",
-									"integer",
-									"long",
-									"float",
-									"date",
-									"flattened",
-									"nested",
-								),
-							},
-						},
-					},
-				},
-				Description: `Advanced: explicit Elasticsearch index mapping definitions for entity data`,
+			"explicit_search_mappings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Optional:    true,
+				Description: `Parsed as JSON.`,
 			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
@@ -260,8 +225,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"entity_default_create": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"search_params": schema.MapAttribute{
 										Computed:    true,
@@ -285,8 +252,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
 										Computed:    true,
@@ -305,8 +274,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"route": schema.StringAttribute{
 										Computed: true,
@@ -335,8 +306,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"entity_default_edit": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"search_params": schema.MapAttribute{
 										Computed:    true,
@@ -366,8 +339,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
 										Computed:    true,
@@ -386,8 +361,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"route": schema.StringAttribute{
 										Computed: true,
@@ -461,8 +438,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									},
 									Attributes: map[string]schema.Attribute{
 										"str": schema.StringAttribute{
-											Computed: true,
 											Optional: true,
+											PlanModifiers: []planmodifier.String{
+												speakeasy_stringplanmodifier.UseConfigValue(),
+											},
 											Validators: []validator.String{
 												stringvalidator.ConflictsWith(path.Expressions{
 													path.MatchRelative().AtParent().AtName("summary_attribute"),
@@ -470,8 +449,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											},
 										},
 										"summary_attribute": schema.SingleNestedAttribute{
-											Computed: true,
 											Optional: true,
+											PlanModifiers: []planmodifier.Object{
+												speakeasy_objectplanmodifier.UseConfigValue(),
+											},
 											Attributes: map[string]schema.Attribute{
 												"content_line_cap": schema.Float64Attribute{
 													Computed: true,
@@ -632,8 +613,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"entity_default_edit": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"search_params": schema.MapAttribute{
 										Computed:    true,
@@ -663,8 +646,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
 										Computed:    true,
@@ -683,8 +668,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"route": schema.StringAttribute{
 										Computed: true,
@@ -713,8 +700,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"entity_default_table": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"bulk_actions": schema.ListNestedAttribute{
 										Computed: true,
@@ -725,8 +714,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											},
 											Attributes: map[string]schema.Attribute{
 												"entity_action": schema.SingleNestedAttribute{
-													Computed: true,
 													Optional: true,
+													PlanModifiers: []planmodifier.Object{
+														speakeasy_objectplanmodifier.UseConfigValue(),
+													},
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
 															Computed:    true,
@@ -763,8 +754,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													},
 												},
 												"str": schema.StringAttribute{
-													Computed: true,
 													Optional: true,
+													PlanModifiers: []planmodifier.String{
+														speakeasy_stringplanmodifier.UseConfigValue(),
+													},
 													Validators: []validator.String{
 														stringvalidator.ConflictsWith(path.Expressions{
 															path.MatchRelative().AtParent().AtName("entity_action"),
@@ -831,8 +824,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											},
 											Attributes: map[string]schema.Attribute{
 												"entity_action": schema.SingleNestedAttribute{
-													Computed: true,
 													Optional: true,
+													PlanModifiers: []planmodifier.Object{
+														speakeasy_objectplanmodifier.UseConfigValue(),
+													},
 													Attributes: map[string]schema.Attribute{
 														"action": schema.StringAttribute{
 															Computed:    true,
@@ -869,8 +864,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													},
 												},
 												"str": schema.StringAttribute{
-													Computed: true,
 													Optional: true,
+													PlanModifiers: []planmodifier.String{
+														speakeasy_stringplanmodifier.UseConfigValue(),
+													},
 													Validators: []validator.String{
 														stringvalidator.ConflictsWith(path.Expressions{
 															path.MatchRelative().AtParent().AtName("entity_action"),
@@ -897,8 +894,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
 										Computed:    true,
@@ -917,8 +916,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
 								Optional: true,
+								PlanModifiers: []planmodifier.Object{
+									speakeasy_objectplanmodifier.UseConfigValue(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"route": schema.StringAttribute{
 										Computed: true,
@@ -1189,7 +1190,10 @@ func (r *SchemaResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode != 200 {
+	switch res.StatusCode {
+	case 200, 404:
+		break
+	default:
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}

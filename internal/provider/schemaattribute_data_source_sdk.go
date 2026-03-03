@@ -52,6 +52,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.AddressAttribute.Deprecated
 			r.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AddressAttribute.EntityBuilderDisableEdit
+			r.AddressAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AddressAttribute.ExcludeFromSearch
+			r.AddressAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AddressAttribute.ExplicitSearchable
 			r.AddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.FeatureFlag)
 			r.FeatureFlag = r.AddressAttribute.FeatureFlag
 			r.AddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Group)
@@ -152,6 +156,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
 			r.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AddressRelationAttribute.EntityBuilderDisableEdit
+			r.AddressRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AddressRelationAttribute.ExcludeFromSearch
+			r.AddressRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AddressRelationAttribute.ExplicitSearchable
 			r.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.AddressRelationAttribute.FeatureFlag
 			r.AddressRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Group)
@@ -246,6 +254,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.AutomationAttribute.Deprecated
 			r.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AutomationAttribute.EntityBuilderDisableEdit
+			r.AutomationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AutomationAttribute.ExcludeFromSearch
+			r.AutomationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AutomationAttribute.ExplicitSearchable
 			r.AutomationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.FeatureFlag)
 			r.FeatureFlag = r.AutomationAttribute.FeatureFlag
 			r.AutomationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Group)
@@ -345,6 +357,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			r.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.BooleanAttribute.EntityBuilderDisableEdit
+			r.BooleanAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.BooleanAttribute.ExcludeFromSearch
+			r.BooleanAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.BooleanAttribute.ExplicitSearchable
 			r.BooleanAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.FeatureFlag)
 			r.FeatureFlag = r.BooleanAttribute.FeatureFlag
 			r.BooleanAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Group)
@@ -442,6 +458,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.ComputedAttribute.Deprecated
 			r.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ComputedAttribute.EntityBuilderDisableEdit
+			r.ComputedAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.ComputedAttribute.ExcludeFromSearch
+			r.ComputedAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.ComputedAttribute.ExplicitSearchable
 			r.ComputedAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.FeatureFlag)
 			r.FeatureFlag = r.ComputedAttribute.FeatureFlag
 			r.ComputedAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Group)
@@ -536,6 +556,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.ConsentAttribute.Deprecated
 			r.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ConsentAttribute.EntityBuilderDisableEdit
+			r.ConsentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.ConsentAttribute.ExcludeFromSearch
+			r.ConsentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.ConsentAttribute.ExplicitSearchable
 			r.ConsentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.FeatureFlag)
 			r.FeatureFlag = r.ConsentAttribute.FeatureFlag
 			r.ConsentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Group)
@@ -635,6 +659,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.CountryAttribute.Deprecated
 			r.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CountryAttribute.EntityBuilderDisableEdit
+			r.CountryAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.CountryAttribute.ExcludeFromSearch
+			r.CountryAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.CountryAttribute.ExplicitSearchable
 			r.CountryAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.FeatureFlag)
 			r.FeatureFlag = r.CountryAttribute.FeatureFlag
 			r.CountryAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Group)
@@ -745,6 +773,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.CurrencyAttribute.Deprecated
 			r.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CurrencyAttribute.EntityBuilderDisableEdit
+			r.CurrencyAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.CurrencyAttribute.ExcludeFromSearch
+			r.CurrencyAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.CurrencyAttribute.ExplicitSearchable
 			r.CurrencyAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.FeatureFlag)
 			r.FeatureFlag = r.CurrencyAttribute.FeatureFlag
 			r.CurrencyAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Group)
@@ -839,6 +871,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.DateAttribute.Deprecated
 			r.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.DateAttribute.EntityBuilderDisableEdit
+			r.DateAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.DateAttribute.ExcludeFromSearch
+			r.DateAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.DateAttribute.ExplicitSearchable
 			r.DateAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.FeatureFlag)
 			r.FeatureFlag = r.DateAttribute.FeatureFlag
 			r.DateAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Group)
@@ -933,6 +969,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.EmailAttribute.Deprecated
 			r.EmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.EmailAttribute.EntityBuilderDisableEdit
+			r.EmailAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.EmailAttribute.ExcludeFromSearch
+			r.EmailAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.EmailAttribute.ExplicitSearchable
 			r.EmailAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.FeatureFlag)
 			r.FeatureFlag = r.EmailAttribute.FeatureFlag
 			r.EmailAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Group)
@@ -1038,6 +1078,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.FileAttribute.EnableDescription = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EnableDescription)
 			r.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.FileAttribute.EntityBuilderDisableEdit
+			r.FileAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.FileAttribute.ExcludeFromSearch
+			r.FileAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.FileAttribute.ExplicitSearchable
 			r.FileAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.FeatureFlag)
 			r.FeatureFlag = r.FileAttribute.FeatureFlag
 			r.FileAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Group)
@@ -1133,6 +1177,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.InternalAttribute.Deprecated
 			r.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalAttribute.EntityBuilderDisableEdit
+			r.InternalAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InternalAttribute.ExcludeFromSearch
+			r.InternalAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InternalAttribute.ExplicitSearchable
 			r.InternalAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalAttribute.FeatureFlag
 			r.InternalAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Group)
@@ -1227,6 +1275,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.InternalUserAttribute.Deprecated
 			r.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalUserAttribute.EntityBuilderDisableEdit
+			r.InternalUserAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InternalUserAttribute.ExcludeFromSearch
+			r.InternalUserAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InternalUserAttribute.ExplicitSearchable
 			r.InternalUserAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalUserAttribute.FeatureFlag
 			r.InternalUserAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Group)
@@ -1321,6 +1373,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
 			r.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InvitationEmailAttribute.EntityBuilderDisableEdit
+			r.InvitationEmailAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InvitationEmailAttribute.ExcludeFromSearch
+			r.InvitationEmailAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InvitationEmailAttribute.ExplicitSearchable
 			r.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.FeatureFlag)
 			r.FeatureFlag = r.InvitationEmailAttribute.FeatureFlag
 			r.InvitationEmailAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Group)
@@ -1415,6 +1471,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.LinkAttribute.Deprecated
 			r.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.LinkAttribute.EntityBuilderDisableEdit
+			r.LinkAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.LinkAttribute.ExcludeFromSearch
+			r.LinkAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.LinkAttribute.ExplicitSearchable
 			r.LinkAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.FeatureFlag)
 			r.FeatureFlag = r.LinkAttribute.FeatureFlag
 			r.LinkAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Group)
@@ -1511,6 +1571,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
 			r.MessageEmailAddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.MessageEmailAddressAttribute.EntityBuilderDisableEdit
+			r.MessageEmailAddressAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.MessageEmailAddressAttribute.ExcludeFromSearch
+			r.MessageEmailAddressAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.MessageEmailAddressAttribute.ExplicitSearchable
 			r.MessageEmailAddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.FeatureFlag)
 			r.FeatureFlag = r.MessageEmailAddressAttribute.FeatureFlag
 			r.MessageEmailAddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Group)
@@ -1609,6 +1673,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.DisableCaseSensitive)
 			r.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.MultiSelectAttribute.EntityBuilderDisableEdit
+			r.MultiSelectAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.MultiSelectAttribute.ExcludeFromSearch
+			r.MultiSelectAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.MultiSelectAttribute.ExplicitSearchable
 			r.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.MultiSelectAttribute.FeatureFlag
 			r.MultiSelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Group)
@@ -1709,6 +1777,11 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			} else {
 				r.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
+			if resp.AttributeWithCompositeIDNumberAttribute.DataType != nil {
+				r.NumberAttribute.DataType = types.StringValue(string(*resp.AttributeWithCompositeIDNumberAttribute.DataType))
+			} else {
+				r.NumberAttribute.DataType = types.StringNull()
+			}
 			if resp.AttributeWithCompositeIDNumberAttribute.DefaultValue == nil {
 				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
@@ -1719,6 +1792,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.NumberAttribute.Deprecated
 			r.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.NumberAttribute.EntityBuilderDisableEdit
+			r.NumberAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.NumberAttribute.ExcludeFromSearch
+			r.NumberAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.NumberAttribute.ExplicitSearchable
 			r.NumberAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.FeatureFlag)
 			r.FeatureFlag = r.NumberAttribute.FeatureFlag
 			r.NumberAttribute.Format = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Format)
@@ -1815,6 +1892,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.OrderedListAttribute.Deprecated
 			r.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.OrderedListAttribute.EntityBuilderDisableEdit
+			r.OrderedListAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.OrderedListAttribute.ExcludeFromSearch
+			r.OrderedListAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.OrderedListAttribute.ExplicitSearchable
 			r.OrderedListAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.FeatureFlag)
 			r.FeatureFlag = r.OrderedListAttribute.FeatureFlag
 			r.OrderedListAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Group)
@@ -1909,6 +1990,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
 			r.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerOrganisationAttribute.EntityBuilderDisableEdit
+			r.PartnerOrganisationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PartnerOrganisationAttribute.ExcludeFromSearch
+			r.PartnerOrganisationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PartnerOrganisationAttribute.ExplicitSearchable
 			r.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerOrganisationAttribute.FeatureFlag
 			r.PartnerOrganisationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Group)
@@ -2003,6 +2088,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
 			r.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerStatusAttribute.EntityBuilderDisableEdit
+			r.PartnerStatusAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PartnerStatusAttribute.ExcludeFromSearch
+			r.PartnerStatusAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PartnerStatusAttribute.ExplicitSearchable
 			r.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerStatusAttribute.FeatureFlag
 			r.PartnerStatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Group)
@@ -2097,6 +2186,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PaymentAttribute.Deprecated
 			r.PaymentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PaymentAttribute.EntityBuilderDisableEdit
+			r.PaymentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PaymentAttribute.ExcludeFromSearch
+			r.PaymentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PaymentAttribute.ExplicitSearchable
 			r.PaymentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.FeatureFlag)
 			r.FeatureFlag = r.PaymentAttribute.FeatureFlag
 			r.PaymentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Group)
@@ -2191,6 +2284,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
 			r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit
+			r.PaymentMethodRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PaymentMethodRelationAttribute.ExcludeFromSearch
+			r.PaymentMethodRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PaymentMethodRelationAttribute.ExplicitSearchable
 			r.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.PaymentMethodRelationAttribute.FeatureFlag
 			r.PaymentMethodRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Group)
@@ -2285,6 +2382,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PhoneAttribute.Deprecated
 			r.PhoneAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PhoneAttribute.EntityBuilderDisableEdit
+			r.PhoneAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PhoneAttribute.ExcludeFromSearch
+			r.PhoneAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PhoneAttribute.ExplicitSearchable
 			r.PhoneAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.FeatureFlag)
 			r.FeatureFlag = r.PhoneAttribute.FeatureFlag
 			r.PhoneAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Group)
@@ -2379,6 +2480,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PortalAccessAttribute.Deprecated
 			r.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PortalAccessAttribute.EntityBuilderDisableEdit
+			r.PortalAccessAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PortalAccessAttribute.ExcludeFromSearch
+			r.PortalAccessAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PortalAccessAttribute.ExplicitSearchable
 			r.PortalAccessAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.FeatureFlag)
 			r.FeatureFlag = r.PortalAccessAttribute.FeatureFlag
 			r.PortalAccessAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Group)
@@ -2473,6 +2578,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
 			r.PriceComponentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PriceComponentAttribute.EntityBuilderDisableEdit
+			r.PriceComponentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PriceComponentAttribute.ExcludeFromSearch
+			r.PriceComponentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PriceComponentAttribute.ExplicitSearchable
 			r.PriceComponentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.FeatureFlag)
 			r.FeatureFlag = r.PriceComponentAttribute.FeatureFlag
 			r.PriceComponentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Group)
@@ -2567,6 +2676,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.PurposeAttribute.Deprecated
 			r.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PurposeAttribute.EntityBuilderDisableEdit
+			r.PurposeAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PurposeAttribute.ExcludeFromSearch
+			r.PurposeAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PurposeAttribute.ExplicitSearchable
 			r.PurposeAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.FeatureFlag)
 			r.FeatureFlag = r.PurposeAttribute.FeatureFlag
 			r.PurposeAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Group)
@@ -2711,6 +2824,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.RelationAttribute.EnableRelationTags = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EnableRelationTags)
 			r.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.RelationAttribute.EntityBuilderDisableEdit
+			r.RelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.RelationAttribute.ExcludeFromSearch
+			r.RelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.RelationAttribute.ExplicitSearchable
 			r.RelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.RelationAttribute.FeatureFlag
 			r.RelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Group)
@@ -2845,6 +2962,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.SelectAttribute.Deprecated
 			r.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SelectAttribute.EntityBuilderDisableEdit
+			r.SelectAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.SelectAttribute.ExcludeFromSearch
+			r.SelectAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.SelectAttribute.ExplicitSearchable
 			r.SelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.SelectAttribute.FeatureFlag
 			r.SelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Group)
@@ -2945,6 +3066,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.SequenceAttribute.Deprecated
 			r.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SequenceAttribute.EntityBuilderDisableEdit
+			r.SequenceAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.SequenceAttribute.ExcludeFromSearch
+			r.SequenceAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.SequenceAttribute.ExplicitSearchable
 			r.SequenceAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.FeatureFlag)
 			r.FeatureFlag = r.SequenceAttribute.FeatureFlag
 			r.SequenceAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Group)
@@ -3041,6 +3166,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Deprecated = r.StatusAttribute.Deprecated
 			r.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.StatusAttribute.EntityBuilderDisableEdit
+			r.StatusAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.StatusAttribute.ExcludeFromSearch
+			r.StatusAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.StatusAttribute.ExplicitSearchable
 			r.StatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.StatusAttribute.FeatureFlag
 			r.StatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Group)
@@ -3122,6 +3251,123 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.StatusAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ValueFormatter)
 			r.ValueFormatter = r.StatusAttribute.ValueFormatter
 		}
+		if resp.AttributeWithCompositeIDTableAttribute != nil {
+			r.TableAttribute = &tfTypes.AttributeWithCompositeIDTableAttribute{}
+			if resp.AttributeWithCompositeIDTableAttribute.Manifest != nil {
+				r.TableAttribute.Manifest = make([]types.String, 0, len(resp.AttributeWithCompositeIDTableAttribute.Manifest))
+				for _, v := range resp.AttributeWithCompositeIDTableAttribute.Manifest {
+					r.TableAttribute.Manifest = append(r.TableAttribute.Manifest, types.StringValue(v))
+				}
+			}
+			r.TableAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTableAttribute.Purpose))
+			for _, v := range resp.AttributeWithCompositeIDTableAttribute.Purpose {
+				r.TableAttribute.Purpose = append(r.TableAttribute.Purpose, types.StringValue(v))
+			}
+			r.TableAttribute.Columns = []tfTypes.TableAttributeColumns{}
+
+			for _, columnsItem := range resp.AttributeWithCompositeIDTableAttribute.Columns {
+				var columns tfTypes.TableAttributeColumns
+
+				columns.Label = types.StringValue(columnsItem.Label)
+				columns.Name = types.StringValue(columnsItem.Name)
+				columns.Required = types.BoolPointerValue(columnsItem.Required)
+				if columnsItem.Type != nil {
+					columns.Type = types.StringValue(string(*columnsItem.Type))
+				} else {
+					columns.Type = types.StringNull()
+				}
+				columns.Width = types.StringPointerValue(columnsItem.Width)
+
+				r.TableAttribute.Columns = append(r.TableAttribute.Columns, columns)
+			}
+			r.TableAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.CompositeID)
+			r.CompositeID = r.TableAttribute.CompositeID
+			if resp.AttributeWithCompositeIDTableAttribute.Constraints == nil {
+				r.TableAttribute.Constraints = nil
+			} else {
+				r.TableAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+			}
+			if resp.AttributeWithCompositeIDTableAttribute.DefaultValue == nil {
+				r.TableAttribute.DefaultValue = jsontypes.NewNormalizedNull()
+			} else {
+				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTableAttribute.DefaultValue)
+				r.TableAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult31))
+			}
+			r.TableAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Deprecated)
+			r.Deprecated = r.TableAttribute.Deprecated
+			r.TableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.EntityBuilderDisableEdit)
+			r.EntityBuilderDisableEdit = r.TableAttribute.EntityBuilderDisableEdit
+			r.TableAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.TableAttribute.ExcludeFromSearch
+			r.TableAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.TableAttribute.ExplicitSearchable
+			r.TableAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.FeatureFlag)
+			r.FeatureFlag = r.TableAttribute.FeatureFlag
+			r.TableAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.Group)
+			r.Group = r.TableAttribute.Group
+			r.TableAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.HasPrimary)
+			r.HasPrimary = r.TableAttribute.HasPrimary
+			r.TableAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Hidden)
+			r.Hidden = r.TableAttribute.Hidden
+			r.TableAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.HideLabel)
+			r.HideLabel = r.TableAttribute.HideLabel
+			r.TableAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.Icon)
+			r.Icon = r.TableAttribute.Icon
+			r.TableAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.ID)
+			r.ID = r.TableAttribute.ID
+			if resp.AttributeWithCompositeIDTableAttribute.InfoHelpers == nil {
+				r.TableAttribute.InfoHelpers = nil
+			} else {
+				r.TableAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.TableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.InfoHelpers.HintCustomComponent)
+				r.TableAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.InfoHelpers.HintText)
+				r.TableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.InfoHelpers.HintTextKey)
+				r.TableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.InfoHelpers.HintTooltipPlacement)
+			}
+			r.TableAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDTableAttribute.Label)
+			r.Label = r.TableAttribute.Label
+			r.TableAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.Layout)
+			r.Layout = r.TableAttribute.Layout
+			r.TableAttribute.MaxRows = types.Int64PointerValue(resp.AttributeWithCompositeIDTableAttribute.MaxRows)
+			r.TableAttribute.MinRows = types.Int64PointerValue(resp.AttributeWithCompositeIDTableAttribute.MinRows)
+			r.TableAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDTableAttribute.Name)
+			r.Name = r.TableAttribute.Name
+			r.TableAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDTableAttribute.Order)
+			r.Order = r.TableAttribute.Order
+			r.TableAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.Placeholder)
+			r.Placeholder = r.TableAttribute.Placeholder
+			r.TableAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.PreviewValueFormatter)
+			r.PreviewValueFormatter = r.TableAttribute.PreviewValueFormatter
+			r.TableAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Protected)
+			r.Protected = r.TableAttribute.Protected
+			r.TableAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Readonly)
+			r.Readonly = r.TableAttribute.Readonly
+			r.TableAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.RenderCondition)
+			r.RenderCondition = r.TableAttribute.RenderCondition
+			r.TableAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Repeatable)
+			r.Repeatable = r.TableAttribute.Repeatable
+			r.TableAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Required)
+			r.Required = r.TableAttribute.Required
+			r.TableAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.Schema)
+			r.Schema = r.TableAttribute.Schema
+			r.TableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
+
+			for _, settingsFlagItem32 := range resp.AttributeWithCompositeIDTableAttribute.SettingsFlag {
+				var settingsFlag32 tfTypes.SettingFlag
+
+				settingsFlag32.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
+				settingsFlag32.Name = types.StringPointerValue(settingsFlagItem32.Name)
+
+				r.TableAttribute.SettingsFlag = append(r.TableAttribute.SettingsFlag, settingsFlag32)
+			}
+			r.TableAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.ShowInTable)
+			r.ShowInTable = r.TableAttribute.ShowInTable
+			r.TableAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Sortable)
+			r.Sortable = r.TableAttribute.Sortable
+			r.TableAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTableAttribute.Type))
+			r.TableAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.ValueFormatter)
+			r.ValueFormatter = r.TableAttribute.ValueFormatter
+		}
 		if resp.AttributeWithCompositeIDTagsAttribute != nil {
 			r.TagsAttribute = &tfTypes.AttributeWithCompositeIDTagsAttribute{}
 			if resp.AttributeWithCompositeIDTagsAttribute.Manifest != nil {
@@ -3144,13 +3390,17 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTagsAttribute.DefaultValue == nil {
 				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
-				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult31))
+				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
+				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult32))
 			}
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
 			r.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TagsAttribute.EntityBuilderDisableEdit
+			r.TagsAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.TagsAttribute.ExcludeFromSearch
+			r.TagsAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.TagsAttribute.ExplicitSearchable
 			r.TagsAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.FeatureFlag)
 			r.FeatureFlag = r.TagsAttribute.FeatureFlag
 			r.TagsAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Group)
@@ -3204,13 +3454,13 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Schema = r.TagsAttribute.Schema
 			r.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 
-			for _, settingsFlagItem32 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
-				var settingsFlag32 tfTypes.SettingFlag
+			for _, settingsFlagItem33 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
+				var settingsFlag33 tfTypes.SettingFlag
 
-				settingsFlag32.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
-				settingsFlag32.Name = types.StringPointerValue(settingsFlagItem32.Name)
+				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
+				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem33.Name)
 
-				r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag32)
+				r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag33)
 			}
 			r.TagsAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ShowInTable)
 			r.ShowInTable = r.TagsAttribute.ShowInTable
@@ -3246,13 +3496,17 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTextAttribute.DefaultValue == nil {
 				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
-				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult32))
+				defaultValueResult33, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
+				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult33))
 			}
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
 			r.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TextAttribute.EntityBuilderDisableEdit
+			r.TextAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.TextAttribute.ExcludeFromSearch
+			r.TextAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.TextAttribute.ExplicitSearchable
 			r.TextAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.FeatureFlag)
 			r.FeatureFlag = r.TextAttribute.FeatureFlag
 			r.TextAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Group)
@@ -3310,13 +3564,13 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Schema = r.TextAttribute.Schema
 			r.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 
-			for _, settingsFlagItem33 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
-				var settingsFlag33 tfTypes.SettingFlag
+			for _, settingsFlagItem34 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
+				var settingsFlag34 tfTypes.SettingFlag
 
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem33.Name)
+				settingsFlag34.Enabled = types.BoolPointerValue(settingsFlagItem34.Enabled)
+				settingsFlag34.Name = types.StringPointerValue(settingsFlagItem34.Name)
 
-				r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag33)
+				r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag34)
 			}
 			r.TextAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ShowInTable)
 			r.ShowInTable = r.TextAttribute.ShowInTable
@@ -3348,13 +3602,17 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue == nil {
 				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult33, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
-				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult33))
+				defaultValueResult34, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
+				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult34))
 			}
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
 			r.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.UserRelationAttribute.EntityBuilderDisableEdit
+			r.UserRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.UserRelationAttribute.ExcludeFromSearch
+			r.UserRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.UserRelationAttribute.ExplicitSearchable
 			r.UserRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.UserRelationAttribute.FeatureFlag
 			r.UserRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Group)
@@ -3405,13 +3663,13 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Schema = r.UserRelationAttribute.Schema
 			r.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 
-			for _, settingsFlagItem34 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
-				var settingsFlag34 tfTypes.SettingFlag
+			for _, settingsFlagItem35 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
+				var settingsFlag35 tfTypes.SettingFlag
 
-				settingsFlag34.Enabled = types.BoolPointerValue(settingsFlagItem34.Enabled)
-				settingsFlag34.Name = types.StringPointerValue(settingsFlagItem34.Name)
+				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem35.Enabled)
+				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem35.Name)
 
-				r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag34)
+				r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag35)
 			}
 			r.UserRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ShowInTable)
 			r.ShowInTable = r.UserRelationAttribute.ShowInTable

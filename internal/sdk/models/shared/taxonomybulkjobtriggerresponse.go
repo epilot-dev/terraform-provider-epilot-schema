@@ -8,16 +8,16 @@ type TaxonomyBulkJobTriggerResponse struct {
 	Status *TaxonomyBulkJobStatus `json:"status,omitempty"`
 }
 
-func (o *TaxonomyBulkJobTriggerResponse) GetJobID() *string {
-	if o == nil {
+func (t *TaxonomyBulkJobTriggerResponse) GetJobID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.JobID
+	return t.JobID
 }
 
-func (o *TaxonomyBulkJobTriggerResponse) GetStatus() *TaxonomyBulkJobStatus {
-	if o == nil {
+func (t *TaxonomyBulkJobTriggerResponse) GetStatus() *TaxonomyBulkJobStatus {
+	if t == nil {
 		return nil
 	}
-	return o.Status
+	return t.Status
 }

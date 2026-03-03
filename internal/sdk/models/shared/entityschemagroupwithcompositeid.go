@@ -13,18 +13,18 @@ type InfoTooltipTitle struct {
 	Default *string `json:"default,omitempty"`
 }
 
-func (o *InfoTooltipTitle) GetKey() *string {
-	if o == nil {
+func (i *InfoTooltipTitle) GetKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Key
+	return i.Key
 }
 
-func (o *InfoTooltipTitle) GetDefault() *string {
-	if o == nil {
+func (i *InfoTooltipTitle) GetDefault() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Default
+	return i.Default
 }
 
 // EntitySchemaGroupWithCompositeID - a readonly computed ID for the group including schema slug and the group ID
@@ -56,94 +56,94 @@ func (e EntitySchemaGroupWithCompositeID) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntitySchemaGroupWithCompositeID) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"label"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetLabel() string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetID() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetOrder() *int64 {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetOrder() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Order
+	return e.Order
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetExpanded() *bool {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetExpanded() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Expanded
+	return e.Expanded
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetRenderCondition() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetRenderCondition() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return e.RenderCondition
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetPurpose() []string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetManifest() []string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.FeatureFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetSettingsFlag() []SettingFlag {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.SettingsFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetInfoTooltipTitle() *InfoTooltipTitle {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetInfoTooltipTitle() *InfoTooltipTitle {
+	if e == nil {
 		return nil
 	}
-	return o.InfoTooltipTitle
+	return e.InfoTooltipTitle
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetCompositeID() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetCompositeID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CompositeID
+	return e.CompositeID
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetSchema() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeID) GetSchema() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.Schema
 }
 
 // EntitySchemaGroupWithCompositeIDInput - a readonly computed ID for the group including schema slug and the group ID
@@ -174,85 +174,85 @@ func (e EntitySchemaGroupWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntitySchemaGroupWithCompositeIDInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"label"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetLabel() string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetID() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetOrder() *int64 {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetOrder() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Order
+	return e.Order
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetExpanded() *bool {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetExpanded() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Expanded
+	return e.Expanded
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetRenderCondition() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetRenderCondition() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return e.RenderCondition
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetPurpose() []string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetManifest() []string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.FeatureFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetSettingsFlag() []SettingFlag {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.SettingsFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetInfoTooltipTitle() *InfoTooltipTitle {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetInfoTooltipTitle() *InfoTooltipTitle {
+	if e == nil {
 		return nil
 	}
-	return o.InfoTooltipTitle
+	return e.InfoTooltipTitle
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetSchema() *string {
-	if o == nil {
+func (e *EntitySchemaGroupWithCompositeIDInput) GetSchema() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.Schema
 }

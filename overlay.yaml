@@ -189,3 +189,10 @@ actions:
   - target: $["components"]["schemas"]["TextAttribute"]["allOf"][1]["properties"]
     update:
       rows: {}
+
+# jsonencode explicit search mappings
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["explicit_search_mappings"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      explicit_search_mappings: {}

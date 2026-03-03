@@ -46,9 +46,9 @@ func (e *EntityViewDisabled) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityViewDisabled) GetViewType() *EntityViewDisabledViewType {
-	if o == nil {
+func (e *EntityViewDisabled) GetViewType() *EntityViewDisabledViewType {
+	if e == nil {
 		return nil
 	}
-	return o.ViewType
+	return e.ViewType
 }

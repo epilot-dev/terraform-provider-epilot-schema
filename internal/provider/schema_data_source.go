@@ -33,32 +33,32 @@ type SchemaDataSource struct {
 
 // SchemaDataSourceModel describes the data model.
 type SchemaDataSourceModel struct {
-	Attributes             jsontypes.Normalized              `tfsdk:"attributes"`
-	Blueprint              types.String                      `tfsdk:"blueprint"`
-	Capabilities           jsontypes.Normalized              `tfsdk:"capabilities"`
-	Category               types.String                      `tfsdk:"category"`
-	CreatedAt              types.String                      `tfsdk:"created_at"`
-	Description            types.String                      `tfsdk:"description"`
-	DialogConfig           map[string]jsontypes.Normalized   `tfsdk:"dialog_config"`
-	DocsURL                types.String                      `tfsdk:"docs_url"`
-	Draft                  types.Bool                        `tfsdk:"draft"`
-	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
-	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
-	GroupHeadlines         jsontypes.Normalized              `tfsdk:"group_headlines"`
-	GroupSettings          jsontypes.Normalized              `tfsdk:"group_settings"`
-	Icon                   types.String                      `tfsdk:"icon"`
-	ID                     types.String                      `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
-	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
-	Name                   types.String                      `tfsdk:"name"`
-	Plural                 types.String                      `tfsdk:"plural"`
-	Published              types.Bool                        `tfsdk:"published"`
-	Purpose                []types.String                    `tfsdk:"purpose"`
-	Slug                   types.String                      `tfsdk:"slug"`
-	TitleTemplate          types.String                      `tfsdk:"title_template"`
-	UIConfig               *tfTypes.UIConfig                 `tfsdk:"ui_config"`
-	UpdatedAt              types.String                      `tfsdk:"updated_at"`
-	Version                types.Int64                       `tfsdk:"version"`
+	Attributes             jsontypes.Normalized            `tfsdk:"attributes"`
+	Blueprint              types.String                    `tfsdk:"blueprint"`
+	Capabilities           jsontypes.Normalized            `tfsdk:"capabilities"`
+	Category               types.String                    `tfsdk:"category"`
+	CreatedAt              types.String                    `tfsdk:"created_at"`
+	Description            types.String                    `tfsdk:"description"`
+	DialogConfig           map[string]jsontypes.Normalized `tfsdk:"dialog_config"`
+	DocsURL                types.String                    `tfsdk:"docs_url"`
+	Draft                  types.Bool                      `tfsdk:"draft"`
+	EnableSetting          []types.String                  `tfsdk:"enable_setting"`
+	ExplicitSearchMappings jsontypes.Normalized            `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String                    `tfsdk:"feature_flag"`
+	GroupHeadlines         jsontypes.Normalized            `tfsdk:"group_headlines"`
+	GroupSettings          jsontypes.Normalized            `tfsdk:"group_settings"`
+	Icon                   types.String                    `tfsdk:"icon"`
+	ID                     types.String                    `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
+	LayoutSettings         *tfTypes.LayoutSettings         `tfsdk:"layout_settings"`
+	Name                   types.String                    `tfsdk:"name"`
+	Plural                 types.String                    `tfsdk:"plural"`
+	Published              types.Bool                      `tfsdk:"published"`
+	Purpose                []types.String                  `tfsdk:"purpose"`
+	Slug                   types.String                    `tfsdk:"slug"`
+	TitleTemplate          types.String                    `tfsdk:"title_template"`
+	UIConfig               *tfTypes.UIConfig               `tfsdk:"ui_config"`
+	UpdatedAt              types.String                    `tfsdk:"updated_at"`
+	Version                types.Int64                     `tfsdk:"version"`
 }
 
 // Metadata returns the data source type name.
@@ -110,23 +110,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				ElementType: types.StringType,
 				Description: `This schema should only be active when one of the organization settings is enabled`,
 			},
-			"explicit_search_mappings": schema.MapNestedAttribute{
-				Computed: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"fields": schema.MapAttribute{
-							Computed:    true,
-							ElementType: jsontypes.NormalizedType{},
-						},
-						"index": schema.BoolAttribute{
-							Computed: true,
-						},
-						"type": schema.StringAttribute{
-							Computed: true,
-						},
-					},
-				},
-				Description: `Advanced: explicit Elasticsearch index mapping definitions for entity data`,
+			"explicit_search_mappings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Parsed as JSON.`,
 			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
@@ -146,8 +133,9 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed: true,
 			},
 			"id": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
+				Computed:    true,
+				Optional:    true,
+				Description: `Generated uuid for schema`,
 			},
 			"layout_settings": schema.SingleNestedAttribute{
 				Computed: true,
@@ -186,7 +174,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			},
 			"slug": schema.StringAttribute{
 				Required:    true,
-				Description: `Entity Type`,
+				Description: `URL-friendly identifier for the entity schema`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), "must match pattern "+regexp.MustCompile(`^[a-zA-Z0-9_-]+$`).String()),
 				},

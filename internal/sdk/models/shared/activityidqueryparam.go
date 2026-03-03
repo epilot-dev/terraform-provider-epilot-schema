@@ -40,8 +40,8 @@ const (
 )
 
 type ActivityIDQueryParam struct {
-	Str                   *string                `queryParam:"inline" name:"ActivityIdQueryParam"`
-	ActivityIDQueryParam2 *ActivityIDQueryParam2 `queryParam:"inline" name:"ActivityIdQueryParam"`
+	Str                   *string                `queryParam:"inline" union:"member"`
+	ActivityIDQueryParam2 *ActivityIDQueryParam2 `queryParam:"inline" union:"member"`
 
 	Type ActivityIDQueryParamType
 }
@@ -66,17 +66,43 @@ func CreateActivityIDQueryParamActivityIDQueryParam2(activityIDQueryParam2 Activ
 
 func (u *ActivityIDQueryParam) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = ActivityIDQueryParamTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ActivityIDQueryParamTypeStr,
+			Value: &str,
+		})
 	}
 
 	var activityIDQueryParam2 ActivityIDQueryParam2 = ActivityIDQueryParam2("")
 	if err := utils.UnmarshalJSON(data, &activityIDQueryParam2, "", true, nil); err == nil {
-		u.ActivityIDQueryParam2 = &activityIDQueryParam2
-		u.Type = ActivityIDQueryParamTypeActivityIDQueryParam2
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ActivityIDQueryParamTypeActivityIDQueryParam2,
+			Value: &activityIDQueryParam2,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ActivityIDQueryParam", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ActivityIDQueryParam", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(ActivityIDQueryParamType)
+	switch best.Type {
+	case ActivityIDQueryParamTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case ActivityIDQueryParamTypeActivityIDQueryParam2:
+		u.ActivityIDQueryParam2 = best.Value.(*ActivityIDQueryParam2)
 		return nil
 	}
 

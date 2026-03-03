@@ -19,6 +19,8 @@ type AttributeWithCompositeIDFileAttribute struct {
 	DisplayImagesLandscaped  types.Bool                                           `tfsdk:"display_images_landscaped"`
 	EnableDescription        types.Bool                                           `tfsdk:"enable_description"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExcludeFromSearch        types.Bool                                           `tfsdk:"exclude_from_search"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

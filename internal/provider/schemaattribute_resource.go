@@ -5,23 +5,27 @@ package provider
 import (
 	"context"
 	"fmt"
+	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
+	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -40,64 +44,67 @@ type SchemaAttributeResource struct {
 
 // SchemaAttributeResourceModel describes the resource data model.
 type SchemaAttributeResourceModel struct {
-	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_attribute" tfPlanOnly:"true"`
-	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
-	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"automation_attribute" tfPlanOnly:"true"`
-	BooleanAttribute               *tfTypes.AttributeWithCompositeIDBooleanAttribute             `queryParam:"inline" tfsdk:"boolean_attribute" tfPlanOnly:"true"`
+	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_attribute"`
+	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_relation_attribute"`
+	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"automation_attribute"`
+	BooleanAttribute               *tfTypes.AttributeWithCompositeIDBooleanAttribute             `queryParam:"inline" tfsdk:"boolean_attribute"`
 	CompositeID                    types.String                                                  `tfsdk:"composite_id"`
-	ComputedAttribute              *tfTypes.AttributeWithCompositeIDComputedAttribute            `queryParam:"inline" tfsdk:"computed_attribute" tfPlanOnly:"true"`
-	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute             `queryParam:"inline" tfsdk:"consent_attribute" tfPlanOnly:"true"`
-	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute" tfPlanOnly:"true"`
-	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute" tfPlanOnly:"true"`
-	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute" tfPlanOnly:"true"`
+	ComputedAttribute              *tfTypes.AttributeWithCompositeIDComputedAttribute            `queryParam:"inline" tfsdk:"computed_attribute"`
+	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute             `queryParam:"inline" tfsdk:"consent_attribute"`
+	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute"`
+	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute"`
+	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute"`
 	Deprecated                     types.Bool                                                    `tfsdk:"deprecated"`
-	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute" tfPlanOnly:"true"`
+	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute"`
 	EntityBuilderDisableEdit       types.Bool                                                    `tfsdk:"entity_builder_disable_edit"`
+	ExcludeFromSearch              types.Bool                                                    `tfsdk:"exclude_from_search"`
+	ExplicitSearchable             types.Bool                                                    `tfsdk:"explicit_searchable"`
 	FeatureFlag                    types.String                                                  `tfsdk:"feature_flag"`
-	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                `queryParam:"inline" tfsdk:"file_attribute" tfPlanOnly:"true"`
+	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                `queryParam:"inline" tfsdk:"file_attribute"`
 	Group                          types.String                                                  `tfsdk:"group"`
 	HasPrimary                     types.Bool                                                    `tfsdk:"has_primary"`
 	Hidden                         types.Bool                                                    `tfsdk:"hidden"`
 	HideLabel                      types.Bool                                                    `tfsdk:"hide_label"`
 	Icon                           types.String                                                  `tfsdk:"icon"`
 	ID                             types.String                                                  `tfsdk:"id"`
-	InternalAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_attribute" tfPlanOnly:"true"`
-	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
-	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
+	InternalAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_attribute"`
+	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_user_attribute"`
+	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"invitation_email_attribute"`
 	Label                          types.String                                                  `tfsdk:"label"`
 	Layout                         types.String                                                  `tfsdk:"layout"`
-	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"link_attribute" tfPlanOnly:"true"`
-	MessageEmailAddressAttribute   *tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute `queryParam:"inline" tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
-	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute         `queryParam:"inline" tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
+	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"link_attribute"`
+	MessageEmailAddressAttribute   *tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute `queryParam:"inline" tfsdk:"message_email_address_attribute"`
+	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute         `queryParam:"inline" tfsdk:"multi_select_attribute"`
 	Name                           types.String                                                  `tfsdk:"name"`
-	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute              `queryParam:"inline" tfsdk:"number_attribute" tfPlanOnly:"true"`
+	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute              `queryParam:"inline" tfsdk:"number_attribute"`
 	Order                          types.Int64                                                   `tfsdk:"order"`
-	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
-	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
-	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
-	PaymentAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute" tfPlanOnly:"true"`
-	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
-	PhoneAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute" tfPlanOnly:"true"`
+	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"ordered_list_attribute"`
+	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_organisation_attribute"`
+	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_status_attribute"`
+	PaymentAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute"`
+	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute"`
+	PhoneAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute"`
 	Placeholder                    types.String                                                  `tfsdk:"placeholder"`
-	PortalAccessAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"portal_access_attribute" tfPlanOnly:"true"`
+	PortalAccessAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"portal_access_attribute"`
 	PreviewValueFormatter          types.String                                                  `tfsdk:"preview_value_formatter"`
-	PriceComponentAttribute        *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute" tfPlanOnly:"true"`
+	PriceComponentAttribute        *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute"`
 	Protected                      types.Bool                                                    `tfsdk:"protected"`
-	PurposeAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"purpose_attribute" tfPlanOnly:"true"`
+	PurposeAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"purpose_attribute"`
 	Readonly                       types.Bool                                                    `tfsdk:"readonly"`
-	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute" tfPlanOnly:"true"`
+	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute"`
 	RenderCondition                types.String                                                  `tfsdk:"render_condition"`
 	Repeatable                     types.Bool                                                    `tfsdk:"repeatable"`
 	Required                       types.Bool                                                    `tfsdk:"required"`
 	Schema                         types.String                                                  `tfsdk:"schema"`
-	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute              `queryParam:"inline" tfsdk:"select_attribute" tfPlanOnly:"true"`
-	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute" tfPlanOnly:"true"`
+	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute              `queryParam:"inline" tfsdk:"select_attribute"`
+	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute"`
 	ShowInTable                    types.Bool                                                    `tfsdk:"show_in_table"`
 	Sortable                       types.Bool                                                    `tfsdk:"sortable"`
-	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute              `queryParam:"inline" tfsdk:"status_attribute" tfPlanOnly:"true"`
-	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute" tfPlanOnly:"true"`
-	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `queryParam:"inline" tfsdk:"text_attribute" tfPlanOnly:"true"`
-	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute              `queryParam:"inline" tfsdk:"status_attribute"`
+	TableAttribute                 *tfTypes.AttributeWithCompositeIDTableAttribute               `queryParam:"inline" tfsdk:"table_attribute"`
+	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute"`
+	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `queryParam:"inline" tfsdk:"text_attribute"`
+	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute"`
 	ValueFormatter                 types.String                                                  `tfsdk:"value_formatter"`
 }
 
@@ -110,8 +117,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 		MarkdownDescription: "SchemaAttribute Resource",
 		Attributes: map[string]schema.Attribute{
 			"address_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -138,6 +147,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`  - plot_of_land` + "\n" +
 							`  - suburb` + "\n" +
 							`  - country` + "\n" +
+							`  - postbox` + "\n" +
 							`  - additional_info` + "\n" +
 							`  - coordinates` + "\n" +
 							`  - start_date` + "\n" +
@@ -146,6 +156,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`  - title` + "\n" +
 							`  - first_name` + "\n" +
 							`  - last_name` + "\n" +
+							`  - name_suffix` + "\n" +
 							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
@@ -165,6 +176,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -392,6 +421,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -399,8 +429,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"address_relation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -427,6 +459,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`  - plot_of_land` + "\n" +
 							`  - suburb` + "\n" +
 							`  - country` + "\n" +
+							`  - postbox` + "\n" +
 							`  - additional_info` + "\n" +
 							`  - coordinates` + "\n" +
 							`  - start_date` + "\n" +
@@ -435,6 +468,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`  - title` + "\n" +
 							`  - first_name` + "\n" +
 							`  - last_name` + "\n" +
+							`  - name_suffix` + "\n" +
 							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
@@ -454,6 +488,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -683,6 +735,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -690,8 +743,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"automation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -720,6 +775,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -949,6 +1022,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -956,8 +1030,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"boolean_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -998,6 +1074,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1225,6 +1319,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -1234,13 +1329,12 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 			"composite_id": schema.StringAttribute{
 				Computed:    true,
 				Description: `Schema Slug and the Attribute ID`,
-				Validators: []validator.String{
-					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
-				},
 			},
 			"computed_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"amount_field": schema.StringAttribute{
 						Computed:    true,
@@ -1285,6 +1379,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1517,6 +1629,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -1524,8 +1637,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"consent_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -1554,6 +1669,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1794,6 +1927,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -1801,8 +1935,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"country_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -1831,6 +1967,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2058,6 +2212,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -2065,8 +2220,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"currency_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -2087,8 +2244,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							},
 							Attributes: map[string]schema.Attribute{
 								"one": schema.SingleNestedAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.Object{
+										speakeasy_objectplanmodifier.UseConfigValue(),
+									},
 									Attributes: map[string]schema.Attribute{
 										"code": schema.StringAttribute{
 											Computed:    true,
@@ -2151,6 +2310,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2378,6 +2555,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -2385,8 +2563,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"date_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -2415,6 +2595,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2645,6 +2843,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -2657,8 +2856,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Default: false`,
 			},
 			"email_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -2687,6 +2888,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2914,6 +3133,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -2925,13 +3145,31 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Default:     booldefault.StaticBool(false),
 				Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
 			},
+			"exclude_from_search": schema.BoolAttribute{
+				Computed: true,
+				Default:  booldefault.StaticBool(false),
+				MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+					`Use this for fields that should not be matched during entity search operations,` + "\n" +
+					`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+					`Default: false`,
+			},
+			"explicit_searchable": schema.BoolAttribute{
+				Computed: true,
+				Default:  booldefault.StaticBool(false),
+				MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+					`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+					`that must always be included in search operations.` + "\n" +
+					`Default: false`,
+			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
 				Description: `This attribute should only be active when the feature flag is enabled`,
 			},
 			"file_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"allowed_extensions": schema.ListAttribute{
 						Computed:    true,
@@ -2988,6 +3226,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3222,6 +3478,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -3254,8 +3511,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `ID for the entity attribute`,
 			},
 			"internal_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -3284,6 +3543,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3511,6 +3788,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -3518,8 +3796,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"internal_user_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -3548,6 +3828,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3777,6 +4075,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -3784,8 +4083,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"invitation_email_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -3814,6 +4115,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4043,6 +4362,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -4056,8 +4376,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 			},
 			"link_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -4086,6 +4408,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4313,6 +4653,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -4320,8 +4661,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"message_email_address_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
 						Computed: true,
@@ -4358,6 +4701,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4591,6 +4952,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -4598,8 +4960,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"multi_select_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"allow_any": schema.BoolAttribute{
 						Computed:    true,
@@ -4643,6 +5007,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4747,8 +5129,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							},
 							Attributes: map[string]schema.Attribute{
 								"str": schema.StringAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.String{
+										speakeasy_stringplanmodifier.UseConfigValue(),
+									},
 									Validators: []validator.String{
 										stringvalidator.ConflictsWith(path.Expressions{
 											path.MatchRelative().AtParent().AtName("two"),
@@ -4756,8 +5140,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 									},
 								},
 								"two": schema.SingleNestedAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.Object{
+										speakeasy_objectplanmodifier.UseConfigValue(),
+									},
 									Attributes: map[string]schema.Attribute{
 										"title": schema.StringAttribute{
 											Computed: true,
@@ -4916,6 +5302,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -4926,8 +5313,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 			},
 			"number_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -4938,6 +5327,18 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional: true,
 						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"data_type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     stringdefault.StaticString(`string`),
+						Description: `Optional data type override. When set to 'number', the value is stored as a number instead of a string. Defaults to 'string'. Default: "string"; must be one of ["number", "string"]`,
+						Validators: []validator.String{
+							stringvalidator.OneOf(
+								"number",
+								"string",
+							),
+						},
 					},
 					"default_value": schema.StringAttribute{
 						CustomType:  jsontypes.NormalizedType{},
@@ -4956,6 +5357,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5193,6 +5612,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -5204,8 +5624,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Attribute sort order (ascending) in group`,
 			},
 			"ordered_list_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -5234,6 +5656,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5463,6 +5903,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -5470,8 +5911,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"partner_organisation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -5500,6 +5943,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5729,6 +6190,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -5736,8 +6198,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"partner_status_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -5766,6 +6230,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5995,6 +6477,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -6002,8 +6485,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"payment_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -6032,6 +6517,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -6259,6 +6762,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -6266,8 +6770,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"payment_method_relation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -6296,6 +6802,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -6525,6 +7049,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -6532,8 +7057,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"phone_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -6562,6 +7089,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -6789,6 +7334,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -6799,8 +7345,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 			},
 			"portal_access_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -6829,6 +7377,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -7058,6 +7624,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -7068,8 +7635,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 			},
 			"price_component_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -7098,6 +7667,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -7327,6 +7914,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -7338,8 +7926,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 			},
 			"purpose_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -7368,6 +7958,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -7595,6 +8203,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -7607,8 +8216,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Default: false`,
 			},
 			"relation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"actions": schema.ListNestedAttribute{
 						Computed: true,
@@ -7760,6 +8371,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -7992,8 +8621,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							},
 							Attributes: map[string]schema.Attribute{
 								"str": schema.StringAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.String{
+										speakeasy_stringplanmodifier.UseConfigValue(),
+									},
 									Validators: []validator.String{
 										stringvalidator.ConflictsWith(path.Expressions{
 											path.MatchRelative().AtParent().AtName("summary_field"),
@@ -8001,8 +8632,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 									},
 								},
 								"summary_field": schema.SingleNestedAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.Object{
+										speakeasy_objectplanmodifier.UseConfigValue(),
+									},
 									Attributes: map[string]schema.Attribute{
 										"display_as": schema.StringAttribute{
 											Computed:    true,
@@ -8072,6 +8705,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -8098,8 +8732,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Schema slug the attribute belongs to`,
 			},
 			"select_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"allow_any": schema.BoolAttribute{
 						Computed:    true,
@@ -8133,6 +8769,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -8369,6 +9023,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -8376,8 +9031,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"sequence_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -8406,6 +9063,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -8642,6 +9317,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -8658,8 +9334,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
 			},
 			"status_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -8688,6 +9366,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -8792,8 +9488,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							},
 							Attributes: map[string]schema.Attribute{
 								"str": schema.StringAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.String{
+										speakeasy_stringplanmodifier.UseConfigValue(),
+									},
 									Validators: []validator.String{
 										stringvalidator.ConflictsWith(path.Expressions{
 											path.MatchRelative().AtParent().AtName("two"),
@@ -8801,8 +9499,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 									},
 								},
 								"two": schema.SingleNestedAttribute{
-									Computed: true,
 									Optional: true,
+									PlanModifiers: []planmodifier.Object{
+										speakeasy_objectplanmodifier.UseConfigValue(),
+									},
 									Attributes: map[string]schema.Attribute{
 										"title": schema.StringAttribute{
 											Computed:    true,
@@ -8959,6 +9659,359 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
+			},
+			"table_attribute": schema.SingleNestedAttribute{
+				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
+				Attributes: map[string]schema.Attribute{
+					"columns": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"label": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Display label for the column header. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The column identifier (used as object key in row data). Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"required": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Whether this column is required for each row. Default: false`,
+								},
+								"type": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     stringdefault.StaticString(`string`),
+									Description: `The data type for cells in this column. Default: "string"; must be one of ["string", "number", "date", "boolean"]`,
+									Validators: []validator.String{
+										stringvalidator.OneOf(
+											"string",
+											"number",
+											"date",
+											"boolean",
+										),
+									},
+								},
+								"width": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Optional column width (e.g., "100px", "20%")`,
+								},
+							},
+						},
+						Description: `Column definitions for the table`,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						CustomType:  jsontypes.NormalizedType{},
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"max_rows": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Maximum number of rows allowed`,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(1),
+						},
+					},
+					"min_rows": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     int64default.StaticInt64(0),
+						Description: `Minimum number of rows required. Default: 0`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null; must be "table"`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+							stringvalidator.OneOf("table"),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row.`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("portal_access_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
@@ -8966,8 +10019,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				},
 			},
 			"tags_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -8996,6 +10051,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -9234,14 +10307,17 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
 					}...),
 				},
 			},
 			"text_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -9270,6 +10346,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -9512,14 +10606,17 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
 					}...),
 				},
 			},
 			"user_relation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.UseConfigValue(),
+				},
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
@@ -9548,6 +10645,24 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(false),
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"exclude_from_search": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will be excluded from search fields.` + "\n" +
+							`Use this for fields that should not be matched during entity search operations,` + "\n" +
+							`such as internal hashes or identifiers that might accidentally match search terms.` + "\n" +
+							`Default: false`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+						Default:  booldefault.StaticBool(false),
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.` + "\n" +
+							`Default: false`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -9784,6 +10899,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("table_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
 						path.MatchRelative().AtParent().AtName("text_attribute"),
 					}...),
@@ -10026,7 +11142,10 @@ func (r *SchemaAttributeResource) Delete(ctx context.Context, req resource.Delet
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode != 200 {
+	switch res.StatusCode {
+	case 200, 404:
+		break
+	default:
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}

@@ -12,11 +12,11 @@ type GetSavedViewRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetSavedViewRequest) GetID() string {
-	if o == nil {
+func (g *GetSavedViewRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetSavedViewResponseBody - A saved entity view
@@ -27,25 +27,25 @@ type GetSavedViewResponseBody struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *GetSavedViewResponseBody) GetID() *string {
-	if o == nil {
+func (g *GetSavedViewResponseBody) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetSavedViewResponseBody) GetCreatedAt() *string {
-	if o == nil {
+func (g *GetSavedViewResponseBody) GetCreatedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetSavedViewResponseBody) GetUpdatedAt() *string {
-	if o == nil {
+func (g *GetSavedViewResponseBody) GetUpdatedAt() *string {
+	if g == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
 type GetSavedViewResponse struct {
@@ -61,37 +61,37 @@ type GetSavedViewResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetSavedViewResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSavedViewResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSavedViewResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSavedViewResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSavedViewResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSavedViewResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSavedViewResponse) GetObject() *GetSavedViewResponseBody {
-	if o == nil {
+func (g *GetSavedViewResponse) GetObject() *GetSavedViewResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }
 
-func (o *GetSavedViewResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetSavedViewResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

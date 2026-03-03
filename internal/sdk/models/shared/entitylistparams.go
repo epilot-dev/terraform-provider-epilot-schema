@@ -53,38 +53,38 @@ func (q QueryString) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryString) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"query"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *QueryString) GetQuery() string {
-	if o == nil {
+func (q *QueryString) GetQuery() string {
+	if q == nil {
 		return ""
 	}
-	return o.Query
+	return q.Query
 }
 
-func (o *QueryString) GetFields() []string {
-	if o == nil {
+func (q *QueryString) GetFields() []string {
+	if q == nil {
 		return nil
 	}
-	return o.Fields
+	return q.Fields
 }
 
-func (o *QueryString) GetDefaultOperator() *DefaultOperator {
-	if o == nil {
+func (q *QueryString) GetDefaultOperator() *DefaultOperator {
+	if q == nil {
 		return nil
 	}
-	return o.DefaultOperator
+	return q.DefaultOperator
 }
 
-func (o *QueryString) GetLenient() *bool {
-	if o == nil {
+func (q *QueryString) GetLenient() *bool {
+	if q == nil {
 		return nil
 	}
-	return o.Lenient
+	return q.Lenient
 }
 
 // Query configuration object for searching entities
@@ -93,11 +93,11 @@ type Query struct {
 	QueryString QueryString `json:"query_string"`
 }
 
-func (o *Query) GetQueryString() QueryString {
-	if o == nil {
+func (q *Query) GetQueryString() QueryString {
+	if q == nil {
 		return QueryString{}
 	}
-	return o.QueryString
+	return q.QueryString
 }
 
 type EntityListParamsSortType string
@@ -109,8 +109,8 @@ const (
 
 // EntityListParamsSort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type EntityListParamsSort struct {
-	Str        *string  `queryParam:"inline" name:"sort"`
-	ArrayOfStr []string `queryParam:"inline" name:"sort"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type EntityListParamsSortType
 }
@@ -135,17 +135,43 @@ func CreateEntityListParamsSortArrayOfStr(arrayOfStr []string) EntityListParamsS
 
 func (u *EntityListParamsSort) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = EntityListParamsSortTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntityListParamsSortTypeStr,
+			Value: &str,
+		})
 	}
 
 	var arrayOfStr []string = []string{}
 	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
-		u.ArrayOfStr = arrayOfStr
-		u.Type = EntityListParamsSortTypeArrayOfStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntityListParamsSortTypeArrayOfStr,
+			Value: arrayOfStr,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSort", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSort", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(EntityListParamsSortType)
+	switch best.Type {
+	case EntityListParamsSortTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case EntityListParamsSortTypeArrayOfStr:
+		u.ArrayOfStr = best.Value.([]string)
 		return nil
 	}
 
@@ -176,8 +202,8 @@ const (
 )
 
 type EntityListParamsSearchAfter struct {
-	Str    *string  `queryParam:"inline" name:"search_after"`
-	Number *float64 `queryParam:"inline" name:"search_after"`
+	Str    *string  `queryParam:"inline" union:"member"`
+	Number *float64 `queryParam:"inline" union:"member"`
 
 	Type EntityListParamsSearchAfterType
 }
@@ -202,17 +228,43 @@ func CreateEntityListParamsSearchAfterNumber(number float64) EntityListParamsSea
 
 func (u *EntityListParamsSearchAfter) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = EntityListParamsSearchAfterTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntityListParamsSearchAfterTypeStr,
+			Value: &str,
+		})
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
-		u.Number = &number
-		u.Type = EntityListParamsSearchAfterTypeNumber
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntityListParamsSearchAfterTypeNumber,
+			Value: &number,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSearchAfter", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSearchAfter", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(EntityListParamsSearchAfterType)
+	switch best.Type {
+	case EntityListParamsSearchAfterTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case EntityListParamsSearchAfterTypeNumber:
+		u.Number = best.Value.(*float64)
 		return nil
 	}
 
@@ -293,113 +345,113 @@ func (e EntityListParams) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityListParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"filter"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityListParams) GetQuery() *Query {
-	if o == nil {
+func (e *EntityListParams) GetQuery() *Query {
+	if e == nil {
 		return nil
 	}
-	return o.Query
+	return e.Query
 }
 
-func (o *EntityListParams) GetFilter() []SearchFilter {
-	if o == nil {
+func (e *EntityListParams) GetFilter() []SearchFilter {
+	if e == nil {
 		return []SearchFilter{}
 	}
-	return o.Filter
+	return e.Filter
 }
 
-func (o *EntityListParams) GetAllowTargetingAllSchemas() *bool {
-	if o == nil {
+func (e *EntityListParams) GetAllowTargetingAllSchemas() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.AllowTargetingAllSchemas
+	return e.AllowTargetingAllSchemas
 }
 
-func (o *EntityListParams) GetSort() *EntityListParamsSort {
-	if o == nil {
+func (e *EntityListParams) GetSort() *EntityListParamsSort {
+	if e == nil {
 		return nil
 	}
-	return o.Sort
+	return e.Sort
 }
 
-func (o *EntityListParams) GetFrom() *int64 {
-	if o == nil {
+func (e *EntityListParams) GetFrom() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.From
+	return e.From
 }
 
-func (o *EntityListParams) GetSize() *int64 {
-	if o == nil {
+func (e *EntityListParams) GetSize() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Size
+	return e.Size
 }
 
-func (o *EntityListParams) GetHydrate() *bool {
-	if o == nil {
+func (e *EntityListParams) GetHydrate() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Hydrate
+	return e.Hydrate
 }
 
-func (o *EntityListParams) GetFields() []string {
-	if o == nil {
+func (e *EntityListParams) GetFields() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Fields
+	return e.Fields
 }
 
-func (o *EntityListParams) GetAggs() *EntityListParamsAggs {
-	if o == nil {
+func (e *EntityListParams) GetAggs() *EntityListParamsAggs {
+	if e == nil {
 		return nil
 	}
-	return o.Aggs
+	return e.Aggs
 }
 
-func (o *EntityListParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
-	if o == nil {
+func (e *EntityListParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
+	if e == nil {
 		return nil
 	}
-	return o.IncludeDeleted
+	return e.IncludeDeleted
 }
 
-func (o *EntityListParams) GetIncludeScores() *bool {
-	if o == nil {
+func (e *EntityListParams) GetIncludeScores() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.IncludeScores
+	return e.IncludeScores
 }
 
-func (o *EntityListParams) GetHighlight() any {
-	if o == nil {
+func (e *EntityListParams) GetHighlight() any {
+	if e == nil {
 		return nil
 	}
-	return o.Highlight
+	return e.Highlight
 }
 
-func (o *EntityListParams) GetStableFor() *int64 {
-	if o == nil {
+func (e *EntityListParams) GetStableFor() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.StableFor
+	return e.StableFor
 }
 
-func (o *EntityListParams) GetStableQueryID() *string {
-	if o == nil {
+func (e *EntityListParams) GetStableQueryID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.StableQueryID
+	return e.StableQueryID
 }
 
-func (o *EntityListParams) GetSearchAfter() []*EntityListParamsSearchAfter {
-	if o == nil {
+func (e *EntityListParams) GetSearchAfter() []*EntityListParamsSearchAfter {
+	if e == nil {
 		return nil
 	}
-	return o.SearchAfter
+	return e.SearchAfter
 }

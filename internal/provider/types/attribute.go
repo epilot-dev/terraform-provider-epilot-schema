@@ -3,38 +3,39 @@
 package types
 
 type Attribute struct {
-	AddressAttribute               *AddressAttribute             `queryParam:"inline" tfsdk:"address_attribute" tfPlanOnly:"true"`
-	AddressRelationAttribute       *AddressAttribute             `queryParam:"inline" tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
-	AutomationAttribute            *AutomationAttribute          `queryParam:"inline" tfsdk:"automation_attribute" tfPlanOnly:"true"`
-	BooleanAttribute               *BooleanAttribute             `queryParam:"inline" tfsdk:"boolean_attribute" tfPlanOnly:"true"`
-	ComputedAttribute              *ComputedAttribute            `queryParam:"inline" tfsdk:"computed_attribute" tfPlanOnly:"true"`
-	ConsentAttribute               *ConsentAttribute             `queryParam:"inline" tfsdk:"consent_attribute" tfPlanOnly:"true"`
-	CountryAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute" tfPlanOnly:"true"`
-	CurrencyAttribute              *CurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute" tfPlanOnly:"true"`
-	DateAttribute                  *AutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute" tfPlanOnly:"true"`
-	EmailAttribute                 *AutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute" tfPlanOnly:"true"`
-	FileAttribute                  *FileAttribute                `queryParam:"inline" tfsdk:"file_attribute" tfPlanOnly:"true"`
-	InternalAttribute              *AutomationAttribute          `queryParam:"inline" tfsdk:"internal_attribute" tfPlanOnly:"true"`
-	InternalUserAttribute          *AutomationAttribute          `queryParam:"inline" tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
-	InvitationEmailAttribute       *AutomationAttribute          `queryParam:"inline" tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
-	LinkAttribute                  *AutomationAttribute          `queryParam:"inline" tfsdk:"link_attribute" tfPlanOnly:"true"`
-	MessageEmailAddressAttribute   *MessageEmailAddressAttribute `queryParam:"inline" tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
-	MultiSelectAttribute           *MultiSelectAttribute         `queryParam:"inline" tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
-	NumberAttribute                *NumberAttribute              `queryParam:"inline" tfsdk:"number_attribute" tfPlanOnly:"true"`
-	OrderedListAttribute           *AutomationAttribute          `queryParam:"inline" tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
-	PartnerOrganisationAttribute   *AutomationAttribute          `queryParam:"inline" tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
-	PartnerStatusAttribute         *AutomationAttribute          `queryParam:"inline" tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
-	PaymentAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute" tfPlanOnly:"true"`
-	PaymentMethodRelationAttribute *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
-	PhoneAttribute                 *AutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute" tfPlanOnly:"true"`
-	PortalAccessAttribute          *AutomationAttribute          `queryParam:"inline" tfsdk:"portal_access_attribute" tfPlanOnly:"true"`
-	PriceComponentAttribute        *AutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute" tfPlanOnly:"true"`
-	PurposeAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"purpose_attribute" tfPlanOnly:"true"`
-	RelationAttribute              *RelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute" tfPlanOnly:"true"`
-	SelectAttribute                *SelectAttribute              `queryParam:"inline" tfsdk:"select_attribute" tfPlanOnly:"true"`
-	SequenceAttribute              *SequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute" tfPlanOnly:"true"`
-	StatusAttribute                *StatusAttribute              `queryParam:"inline" tfsdk:"status_attribute" tfPlanOnly:"true"`
-	TagsAttribute                  *TagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute" tfPlanOnly:"true"`
-	TextAttribute                  *TextAttribute                `queryParam:"inline" tfsdk:"text_attribute" tfPlanOnly:"true"`
-	UserRelationAttribute          *UserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	AddressAttribute               *AddressAttribute             `queryParam:"inline" tfsdk:"address_attribute"`
+	AddressRelationAttribute       *AddressAttribute             `queryParam:"inline" tfsdk:"address_relation_attribute"`
+	AutomationAttribute            *AutomationAttribute          `queryParam:"inline" tfsdk:"automation_attribute"`
+	BooleanAttribute               *BooleanAttribute             `queryParam:"inline" tfsdk:"boolean_attribute"`
+	ComputedAttribute              *ComputedAttribute            `queryParam:"inline" tfsdk:"computed_attribute"`
+	ConsentAttribute               *ConsentAttribute             `queryParam:"inline" tfsdk:"consent_attribute"`
+	CountryAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute"`
+	CurrencyAttribute              *CurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute"`
+	DateAttribute                  *AutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute"`
+	EmailAttribute                 *AutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute"`
+	FileAttribute                  *FileAttribute                `queryParam:"inline" tfsdk:"file_attribute"`
+	InternalAttribute              *AutomationAttribute          `queryParam:"inline" tfsdk:"internal_attribute"`
+	InternalUserAttribute          *AutomationAttribute          `queryParam:"inline" tfsdk:"internal_user_attribute"`
+	InvitationEmailAttribute       *AutomationAttribute          `queryParam:"inline" tfsdk:"invitation_email_attribute"`
+	LinkAttribute                  *AutomationAttribute          `queryParam:"inline" tfsdk:"link_attribute"`
+	MessageEmailAddressAttribute   *MessageEmailAddressAttribute `queryParam:"inline" tfsdk:"message_email_address_attribute"`
+	MultiSelectAttribute           *MultiSelectAttribute         `queryParam:"inline" tfsdk:"multi_select_attribute"`
+	NumberAttribute                *NumberAttribute              `queryParam:"inline" tfsdk:"number_attribute"`
+	OrderedListAttribute           *AutomationAttribute          `queryParam:"inline" tfsdk:"ordered_list_attribute"`
+	PartnerOrganisationAttribute   *AutomationAttribute          `queryParam:"inline" tfsdk:"partner_organisation_attribute"`
+	PartnerStatusAttribute         *AutomationAttribute          `queryParam:"inline" tfsdk:"partner_status_attribute"`
+	PaymentAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute"`
+	PaymentMethodRelationAttribute *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute"`
+	PhoneAttribute                 *AutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute"`
+	PortalAccessAttribute          *AutomationAttribute          `queryParam:"inline" tfsdk:"portal_access_attribute"`
+	PriceComponentAttribute        *AutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute"`
+	PurposeAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"purpose_attribute"`
+	RelationAttribute              *RelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute"`
+	SelectAttribute                *SelectAttribute              `queryParam:"inline" tfsdk:"select_attribute"`
+	SequenceAttribute              *SequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute"`
+	StatusAttribute                *StatusAttribute              `queryParam:"inline" tfsdk:"status_attribute"`
+	TableAttribute                 *TableAttribute               `queryParam:"inline" tfsdk:"table_attribute"`
+	TagsAttribute                  *TagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute"`
+	TextAttribute                  *TextAttribute                `queryParam:"inline" tfsdk:"text_attribute"`
+	UserRelationAttribute          *UserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute"`
 }

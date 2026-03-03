@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
@@ -10,22 +11,33 @@ import (
 type DeleteTaxonomyRequest struct {
 	// Taxonomy slug
 	TaxonomySlug string `pathParam:"style=simple,explode=false,name=taxonomySlug"`
-	// If true, the taxonomy will be permanently deleted
-	Permanent *bool `queryParam:"style=form,explode=true,name=permanent"`
+	// ⚠️ NOT IMPLEMENTED - If true, the taxonomy will be permanently deleted
+	Permanent *bool `default:"false" queryParam:"style=form,explode=true,name=permanent"`
 }
 
-func (o *DeleteTaxonomyRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (d DeleteTaxonomyRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteTaxonomyRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteTaxonomyRequest) GetTaxonomySlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return d.TaxonomySlug
 }
 
-func (o *DeleteTaxonomyRequest) GetPermanent() *bool {
-	if o == nil {
+func (d *DeleteTaxonomyRequest) GetPermanent() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Permanent
+	return d.Permanent
 }
 
 type DeleteTaxonomyResponse struct {
@@ -40,37 +52,37 @@ type DeleteTaxonomyResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *DeleteTaxonomyResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteTaxonomyResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteTaxonomyResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return d.TooManyRequestsError
 }
 
-func (o *DeleteTaxonomyResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetHeaders() map[string][]string {
+	if d == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return d.Headers
 }

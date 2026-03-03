@@ -36,16 +36,16 @@ type EntityValidationResultSuccess struct {
 	Errors []EntityValidationError             `json:"errors"`
 }
 
-func (o *EntityValidationResultSuccess) GetStatus() EntityValidationResultSuccessStatus {
-	if o == nil {
+func (e *EntityValidationResultSuccess) GetStatus() EntityValidationResultSuccessStatus {
+	if e == nil {
 		return EntityValidationResultSuccessStatus("")
 	}
-	return o.Status
+	return e.Status
 }
 
-func (o *EntityValidationResultSuccess) GetErrors() []EntityValidationError {
-	if o == nil {
+func (e *EntityValidationResultSuccess) GetErrors() []EntityValidationError {
+	if e == nil {
 		return []EntityValidationError{}
 	}
-	return o.Errors
+	return e.Errors
 }

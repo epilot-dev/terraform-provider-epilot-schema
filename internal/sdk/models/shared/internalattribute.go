@@ -56,32 +56,32 @@ func (i *InternalAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *InternalAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (i *InternalAttributeInfoHelpers) GetHintText() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintText
+	return i.HintText
 }
 
-func (o *InternalAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (i *InternalAttributeInfoHelpers) GetHintTextKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return i.HintTextKey
 }
 
-func (o *InternalAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (i *InternalAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return i.HintCustomComponent
 }
 
-func (o *InternalAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (i *InternalAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return i.HintTooltipPlacement
 }
 
 type InternalAttributeType string
@@ -159,6 +159,16 @@ type InternalAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
@@ -170,218 +180,232 @@ func (i InternalAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InternalAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *InternalAttribute) GetID() *string {
-	if o == nil {
+func (i *InternalAttribute) GetID() *string {
+	if i == nil {
 		return nil
 	}
-	return o.ID
+	return i.ID
 }
 
-func (o *InternalAttribute) GetName() string {
-	if o == nil {
+func (i *InternalAttribute) GetName() string {
+	if i == nil {
 		return ""
 	}
-	return o.Name
+	return i.Name
 }
 
-func (o *InternalAttribute) GetLabel() string {
-	if o == nil {
+func (i *InternalAttribute) GetLabel() string {
+	if i == nil {
 		return ""
 	}
-	return o.Label
+	return i.Label
 }
 
-func (o *InternalAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (i *InternalAttribute) GetPlaceholder() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Placeholder
+	return i.Placeholder
 }
 
-func (o *InternalAttribute) GetHidden() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetHidden() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Hidden
+	return i.Hidden
 }
 
-func (o *InternalAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetShowInTable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return i.ShowInTable
 }
 
-func (o *InternalAttribute) GetSortable() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetSortable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Sortable
+	return i.Sortable
 }
 
-func (o *InternalAttribute) GetRequired() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetRequired() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Required
+	return i.Required
 }
 
-func (o *InternalAttribute) GetReadonly() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetReadonly() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Readonly
+	return i.Readonly
 }
 
-func (o *InternalAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetDeprecated() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Deprecated
+	return i.Deprecated
 }
 
-func (o *InternalAttribute) GetDefaultValue() any {
-	if o == nil {
+func (i *InternalAttribute) GetDefaultValue() any {
+	if i == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return i.DefaultValue
 }
 
-func (o *InternalAttribute) GetGroup() *string {
-	if o == nil {
+func (i *InternalAttribute) GetGroup() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Group
+	return i.Group
 }
 
-func (o *InternalAttribute) GetOrder() *int64 {
-	if o == nil {
+func (i *InternalAttribute) GetOrder() *int64 {
+	if i == nil {
 		return nil
 	}
-	return o.Order
+	return i.Order
 }
 
-func (o *InternalAttribute) GetLayout() *string {
-	if o == nil {
+func (i *InternalAttribute) GetLayout() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Layout
+	return i.Layout
 }
 
-func (o *InternalAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetHideLabel() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.HideLabel
+	return i.HideLabel
 }
 
-func (o *InternalAttribute) GetIcon() *string {
-	if o == nil {
+func (i *InternalAttribute) GetIcon() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Icon
+	return i.Icon
 }
 
-func (o *InternalAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (i *InternalAttribute) GetRenderCondition() *string {
+	if i == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return i.RenderCondition
 }
 
-func (o *InternalAttribute) GetPurpose() []string {
-	if o == nil {
+func (i *InternalAttribute) GetPurpose() []string {
+	if i == nil {
 		return nil
 	}
-	return o.Purpose
+	return i.Purpose
 }
 
-func (o *InternalAttribute) GetManifest() []string {
-	if o == nil {
+func (i *InternalAttribute) GetManifest() []string {
+	if i == nil {
 		return nil
 	}
-	return o.Manifest
+	return i.Manifest
 }
 
-func (o *InternalAttribute) GetConstraints() *InternalAttributeConstraints {
-	if o == nil {
+func (i *InternalAttribute) GetConstraints() *InternalAttributeConstraints {
+	if i == nil {
 		return nil
 	}
-	return o.Constraints
+	return i.Constraints
 }
 
-func (o *InternalAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (i *InternalAttribute) GetFeatureFlag() *string {
+	if i == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return i.FeatureFlag
 }
 
-func (o *InternalAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (i *InternalAttribute) GetSettingsFlag() []SettingFlag {
+	if i == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return i.SettingsFlag
 }
 
-func (o *InternalAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (i *InternalAttribute) GetValueFormatter() *string {
+	if i == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return i.ValueFormatter
 }
 
-func (o *InternalAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (i *InternalAttribute) GetPreviewValueFormatter() *string {
+	if i == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return i.PreviewValueFormatter
 }
 
-func (o *InternalAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetEntityBuilderDisableEdit() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return i.EntityBuilderDisableEdit
 }
 
-func (o *InternalAttribute) GetProtected() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetProtected() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Protected
+	return i.Protected
 }
 
-func (o *InternalAttribute) GetInfoHelpers() *InternalAttributeInfoHelpers {
-	if o == nil {
+func (i *InternalAttribute) GetInfoHelpers() *InternalAttributeInfoHelpers {
+	if i == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return i.InfoHelpers
 }
 
-func (o *InternalAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetExplicitSearchable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Repeatable
+	return i.ExplicitSearchable
 }
 
-func (o *InternalAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (i *InternalAttribute) GetExcludeFromSearch() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return i.ExcludeFromSearch
 }
 
-func (o *InternalAttribute) GetType() InternalAttributeType {
-	if o == nil {
+func (i *InternalAttribute) GetRepeatable() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.Repeatable
+}
+
+func (i *InternalAttribute) GetHasPrimary() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.HasPrimary
+}
+
+func (i *InternalAttribute) GetType() InternalAttributeType {
+	if i == nil {
 		return InternalAttributeType("")
 	}
-	return o.Type
+	return i.Type
 }

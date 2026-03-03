@@ -18,17 +18,17 @@ func (c ClassificationIDOrPattern2) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ClassificationIDOrPattern2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"pattern"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ClassificationIDOrPattern2) GetPattern() string {
-	if o == nil {
+func (c *ClassificationIDOrPattern2) GetPattern() string {
+	if c == nil {
 		return ""
 	}
-	return o.Pattern
+	return c.Pattern
 }
 
 type ClassificationIDOrPatternType string
@@ -39,8 +39,8 @@ const (
 )
 
 type ClassificationIDOrPattern struct {
-	Str                        *string                     `queryParam:"inline" name:"ClassificationIdOrPattern"`
-	ClassificationIDOrPattern2 *ClassificationIDOrPattern2 `queryParam:"inline" name:"ClassificationIdOrPattern"`
+	Str                        *string                     `queryParam:"inline" union:"member"`
+	ClassificationIDOrPattern2 *ClassificationIDOrPattern2 `queryParam:"inline" union:"member"`
 
 	Type ClassificationIDOrPatternType
 }
@@ -65,17 +65,43 @@ func CreateClassificationIDOrPatternClassificationIDOrPattern2(classificationIDO
 
 func (u *ClassificationIDOrPattern) UnmarshalJSON(data []byte) error {
 
-	var classificationIDOrPattern2 ClassificationIDOrPattern2 = ClassificationIDOrPattern2{}
-	if err := utils.UnmarshalJSON(data, &classificationIDOrPattern2, "", true, nil); err == nil {
-		u.ClassificationIDOrPattern2 = &classificationIDOrPattern2
-		u.Type = ClassificationIDOrPatternTypeClassificationIDOrPattern2
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = ClassificationIDOrPatternTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ClassificationIDOrPatternTypeStr,
+			Value: &str,
+		})
+	}
+
+	var classificationIDOrPattern2 ClassificationIDOrPattern2 = ClassificationIDOrPattern2{}
+	if err := utils.UnmarshalJSON(data, &classificationIDOrPattern2, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ClassificationIDOrPatternTypeClassificationIDOrPattern2,
+			Value: &classificationIDOrPattern2,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ClassificationIDOrPattern", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ClassificationIDOrPattern", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(ClassificationIDOrPatternType)
+	switch best.Type {
+	case ClassificationIDOrPatternTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case ClassificationIDOrPatternTypeClassificationIDOrPattern2:
+		u.ClassificationIDOrPattern2 = best.Value.(*ClassificationIDOrPattern2)
 		return nil
 	}
 

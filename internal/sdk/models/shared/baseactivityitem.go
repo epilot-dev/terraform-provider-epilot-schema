@@ -11,7 +11,21 @@ type BaseActivityItem struct {
 	// See https://github.com/ulid/spec
 	ID        *string    `json:"_id,omitempty"`
 	Timestamp *time.Time `json:"timestamp,omitempty"`
-	Type      string     `json:"type"`
+	// A type for the activity. Used to categorize activities in the activity feed and for event subscriptions.
+	//
+	// Built-in entity activity types (custom activities can be defined as well):
+	// - EntityCreated
+	// - EntityUpdated
+	// - EntityDeleted
+	// - EntitySoftDeleted
+	// - EntityRestored
+	// - RelationsAdded
+	// - RelationsRemoved
+	// - RelationsSoftDeleted
+	// - RelationsRestored
+	// - RelationsDeleted
+	//
+	Type string `json:"type"`
 	// Title for activity. Supports handlebars syntax.
 	Title string `json:"title"`
 	// Message for activity. Supports handlebars syntax.
@@ -29,64 +43,64 @@ func (b BaseActivityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BaseActivityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"type", "title", "message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BaseActivityItem) GetID() *string {
-	if o == nil {
+func (b *BaseActivityItem) GetID() *string {
+	if b == nil {
 		return nil
 	}
-	return o.ID
+	return b.ID
 }
 
-func (o *BaseActivityItem) GetTimestamp() *time.Time {
-	if o == nil {
+func (b *BaseActivityItem) GetTimestamp() *time.Time {
+	if b == nil {
 		return nil
 	}
-	return o.Timestamp
+	return b.Timestamp
 }
 
-func (o *BaseActivityItem) GetType() string {
-	if o == nil {
+func (b *BaseActivityItem) GetType() string {
+	if b == nil {
 		return ""
 	}
-	return o.Type
+	return b.Type
 }
 
-func (o *BaseActivityItem) GetTitle() string {
-	if o == nil {
+func (b *BaseActivityItem) GetTitle() string {
+	if b == nil {
 		return ""
 	}
-	return o.Title
+	return b.Title
 }
 
-func (o *BaseActivityItem) GetMessage() string {
-	if o == nil {
+func (b *BaseActivityItem) GetMessage() string {
+	if b == nil {
 		return ""
 	}
-	return o.Message
+	return b.Message
 }
 
-func (o *BaseActivityItem) GetPayload() map[string]any {
-	if o == nil {
+func (b *BaseActivityItem) GetPayload() map[string]any {
+	if b == nil {
 		return nil
 	}
-	return o.Payload
+	return b.Payload
 }
 
-func (o *BaseActivityItem) GetPending() *bool {
-	if o == nil {
+func (b *BaseActivityItem) GetPending() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Pending
+	return b.Pending
 }
 
-func (o *BaseActivityItem) GetCaller() *ActivityCallerContext {
-	if o == nil {
+func (b *BaseActivityItem) GetCaller() *ActivityCallerContext {
+	if b == nil {
 		return nil
 	}
-	return o.Caller
+	return b.Caller
 }

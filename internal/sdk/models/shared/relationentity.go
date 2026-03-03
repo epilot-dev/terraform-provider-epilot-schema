@@ -26,32 +26,32 @@ func (r *RelationEntityACL) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RelationEntityACL) GetView() []string {
-	if o == nil {
+func (r *RelationEntityACL) GetView() []string {
+	if r == nil {
 		return nil
 	}
-	return o.View
+	return r.View
 }
 
-func (o *RelationEntityACL) GetEdit() []string {
-	if o == nil {
+func (r *RelationEntityACL) GetEdit() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Edit
+	return r.Edit
 }
 
-func (o *RelationEntityACL) GetDelete() []string {
-	if o == nil {
+func (r *RelationEntityACL) GetDelete() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Delete
+	return r.Delete
 }
 
-func (o *RelationEntityACL) GetAdditionalProperties() any {
-	if o == nil {
+func (r *RelationEntityACL) GetAdditionalProperties() any {
+	if r == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return r.AdditionalProperties
 }
 
 type RelationEntity struct {
@@ -69,6 +69,8 @@ type RelationEntity struct {
 	DeletedAt *time.Time         `json:"_deleted_at,omitempty"`
 	ACL       *RelationEntityACL `json:"_acl,omitempty"`
 	Purpose   []string           `json:"_purpose,omitempty"`
+	// Automatically computed purpose names from _purpose attribute
+	PurposeName []string `json:"_purpose_name,omitempty"`
 	// Manifest ID used to create/update the entity
 	Manifest             []string      `json:"_manifest,omitempty"`
 	DollarRelation       *RelationItem `json:"$relation,omitempty"`
@@ -80,106 +82,113 @@ func (r RelationEntity) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationEntity) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"_id", "_org", "_schema", "_title", "_created_at", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RelationEntity) GetID() string {
-	if o == nil {
+func (r *RelationEntity) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RelationEntity) GetOrg() string {
-	if o == nil {
+func (r *RelationEntity) GetOrg() string {
+	if r == nil {
 		return ""
 	}
-	return o.Org
+	return r.Org
 }
 
-func (o *RelationEntity) GetOwners() []EntityOwner {
-	if o == nil {
+func (r *RelationEntity) GetOwners() []EntityOwner {
+	if r == nil {
 		return nil
 	}
-	return o.Owners
+	return r.Owners
 }
 
-func (o *RelationEntity) GetSchema() string {
-	if o == nil {
+func (r *RelationEntity) GetSchema() string {
+	if r == nil {
 		return ""
 	}
-	return o.Schema
+	return r.Schema
 }
 
-func (o *RelationEntity) GetTitle() *string {
-	if o == nil {
+func (r *RelationEntity) GetTitle() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Title
+	return r.Title
 }
 
-func (o *RelationEntity) GetTags() []string {
-	if o == nil {
+func (r *RelationEntity) GetTags() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Tags
+	return r.Tags
 }
 
-func (o *RelationEntity) GetCreatedAt() *time.Time {
-	if o == nil {
+func (r *RelationEntity) GetCreatedAt() *time.Time {
+	if r == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return r.CreatedAt
 }
 
-func (o *RelationEntity) GetUpdatedAt() *time.Time {
-	if o == nil {
+func (r *RelationEntity) GetUpdatedAt() *time.Time {
+	if r == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return r.UpdatedAt
 }
 
-func (o *RelationEntity) GetDeletedAt() *time.Time {
-	if o == nil {
+func (r *RelationEntity) GetDeletedAt() *time.Time {
+	if r == nil {
 		return nil
 	}
-	return o.DeletedAt
+	return r.DeletedAt
 }
 
-func (o *RelationEntity) GetACL() *RelationEntityACL {
-	if o == nil {
+func (r *RelationEntity) GetACL() *RelationEntityACL {
+	if r == nil {
 		return nil
 	}
-	return o.ACL
+	return r.ACL
 }
 
-func (o *RelationEntity) GetPurpose() []string {
-	if o == nil {
+func (r *RelationEntity) GetPurpose() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Purpose
+	return r.Purpose
 }
 
-func (o *RelationEntity) GetManifest() []string {
-	if o == nil {
+func (r *RelationEntity) GetPurposeName() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Manifest
+	return r.PurposeName
 }
 
-func (o *RelationEntity) GetDollarRelation() *RelationItem {
-	if o == nil {
+func (r *RelationEntity) GetManifest() []string {
+	if r == nil {
 		return nil
 	}
-	return o.DollarRelation
+	return r.Manifest
 }
 
-func (o *RelationEntity) GetAdditionalProperties() any {
-	if o == nil {
+func (r *RelationEntity) GetDollarRelation() *RelationItem {
+	if r == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return r.DollarRelation
+}
+
+func (r *RelationEntity) GetAdditionalProperties() any {
+	if r == nil {
+		return nil
+	}
+	return r.AdditionalProperties
 }

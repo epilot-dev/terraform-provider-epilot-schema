@@ -19,8 +19,8 @@ const (
 )
 
 type SortEnd struct {
-	Str    *string  `queryParam:"inline" name:"sort_end"`
-	Number *float64 `queryParam:"inline" name:"sort_end"`
+	Str    *string  `queryParam:"inline" union:"member"`
+	Number *float64 `queryParam:"inline" union:"member"`
 
 	Type SortEndType
 }
@@ -45,17 +45,43 @@ func CreateSortEndNumber(number float64) SortEnd {
 
 func (u *SortEnd) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = SortEndTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SortEndTypeStr,
+			Value: &str,
+		})
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
-		u.Number = &number
-		u.Type = SortEndTypeNumber
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SortEndTypeNumber,
+			Value: &number,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SortEnd", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SortEnd", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(SortEndType)
+	switch best.Type {
+	case SortEndTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case SortEndTypeNumber:
+		u.Number = best.Value.(*float64)
 		return nil
 	}
 
@@ -88,37 +114,37 @@ type EntitySearchResults struct {
 	SortEnd []*SortEnd `json:"sort_end,omitempty"`
 }
 
-func (o *EntitySearchResults) GetHits() *float64 {
-	if o == nil {
+func (e *EntitySearchResults) GetHits() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.Hits
+	return e.Hits
 }
 
-func (o *EntitySearchResults) GetResults() []EntityItem {
-	if o == nil {
+func (e *EntitySearchResults) GetResults() []EntityItem {
+	if e == nil {
 		return nil
 	}
-	return o.Results
+	return e.Results
 }
 
-func (o *EntitySearchResults) GetAggregations() *Aggregations {
-	if o == nil {
+func (e *EntitySearchResults) GetAggregations() *Aggregations {
+	if e == nil {
 		return nil
 	}
-	return o.Aggregations
+	return e.Aggregations
 }
 
-func (o *EntitySearchResults) GetStableQueryID() *string {
-	if o == nil {
+func (e *EntitySearchResults) GetStableQueryID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.StableQueryID
+	return e.StableQueryID
 }
 
-func (o *EntitySearchResults) GetSortEnd() []*SortEnd {
-	if o == nil {
+func (e *EntitySearchResults) GetSortEnd() []*SortEnd {
+	if e == nil {
 		return nil
 	}
-	return o.SortEnd
+	return e.SortEnd
 }

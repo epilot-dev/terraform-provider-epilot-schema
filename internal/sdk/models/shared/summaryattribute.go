@@ -124,92 +124,92 @@ func (s SummaryAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SummaryAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"label", "value"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SummaryAttribute) GetLabel() string {
-	if o == nil {
+func (s *SummaryAttribute) GetLabel() string {
+	if s == nil {
 		return ""
 	}
-	return o.Label
+	return s.Label
 }
 
-func (o *SummaryAttribute) GetValue() string {
-	if o == nil {
+func (s *SummaryAttribute) GetValue() string {
+	if s == nil {
 		return ""
 	}
-	return o.Value
+	return s.Value
 }
 
-func (o *SummaryAttribute) GetShowAsTag() *bool {
-	if o == nil {
+func (s *SummaryAttribute) GetShowAsTag() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.ShowAsTag
+	return s.ShowAsTag
 }
 
-func (o *SummaryAttribute) GetTagColor() *string {
-	if o == nil {
+func (s *SummaryAttribute) GetTagColor() *string {
+	if s == nil {
 		return nil
 	}
-	return o.TagColor
+	return s.TagColor
 }
 
-func (o *SummaryAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (s *SummaryAttribute) GetRenderCondition() *string {
+	if s == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return s.RenderCondition
 }
 
-func (o *SummaryAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (s *SummaryAttribute) GetFeatureFlag() *string {
+	if s == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return s.FeatureFlag
 }
 
-func (o *SummaryAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (s *SummaryAttribute) GetSettingsFlag() []SettingFlag {
+	if s == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return s.SettingsFlag
 }
 
-func (o *SummaryAttribute) GetDisplayMode() *DisplayMode {
-	if o == nil {
+func (s *SummaryAttribute) GetDisplayMode() *DisplayMode {
+	if s == nil {
 		return nil
 	}
-	return o.DisplayMode
+	return s.DisplayMode
 }
 
-func (o *SummaryAttribute) GetContentLineCap() *float64 {
-	if o == nil {
+func (s *SummaryAttribute) GetContentLineCap() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.ContentLineCap
+	return s.ContentLineCap
 }
 
-func (o *SummaryAttribute) GetContentWrap() *ContentWrap {
-	if o == nil {
+func (s *SummaryAttribute) GetContentWrap() *ContentWrap {
+	if s == nil {
 		return nil
 	}
-	return o.ContentWrap
+	return s.ContentWrap
 }
 
-func (o *SummaryAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (s *SummaryAttribute) GetHideLabel() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HideLabel
+	return s.HideLabel
 }
 
-func (o *SummaryAttribute) GetHighlightContainer() *bool {
-	if o == nil {
+func (s *SummaryAttribute) GetHighlightContainer() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HighlightContainer
+	return s.HighlightContainer
 }

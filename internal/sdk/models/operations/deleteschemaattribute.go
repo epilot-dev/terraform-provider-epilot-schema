@@ -12,11 +12,11 @@ type DeleteSchemaAttributeRequest struct {
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
-func (o *DeleteSchemaAttributeRequest) GetCompositeID() string {
-	if o == nil {
+func (d *DeleteSchemaAttributeRequest) GetCompositeID() string {
+	if d == nil {
 		return ""
 	}
-	return o.CompositeID
+	return d.CompositeID
 }
 
 type DeleteSchemaAttributeResponse struct {
@@ -33,44 +33,44 @@ type DeleteSchemaAttributeResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *DeleteSchemaAttributeResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteSchemaAttributeResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteSchemaAttributeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
+	if d == nil {
 		return nil
 	}
-	return o.AttributeWithCompositeID
+	return d.AttributeWithCompositeID
 }
 
-func (o *DeleteSchemaAttributeResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return d.TooManyRequestsError
 }
 
-func (o *DeleteSchemaAttributeResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (d *DeleteSchemaAttributeResponse) GetHeaders() map[string][]string {
+	if d == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return d.Headers
 }

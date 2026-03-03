@@ -83,101 +83,101 @@ func (g GroupHeadlineWithCompositeID) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GroupHeadlineWithCompositeID) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"name", "label", "group", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GroupHeadlineWithCompositeID) GetID() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GroupHeadlineWithCompositeID) GetName() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetName() string {
+	if g == nil {
 		return ""
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GroupHeadlineWithCompositeID) GetLabel() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetLabel() string {
+	if g == nil {
 		return ""
 	}
-	return o.Label
+	return g.Label
 }
 
-func (o *GroupHeadlineWithCompositeID) GetLayout() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetLayout() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Layout
+	return g.Layout
 }
 
-func (o *GroupHeadlineWithCompositeID) GetGroup() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetGroup() string {
+	if g == nil {
 		return ""
 	}
-	return o.Group
+	return g.Group
 }
 
-func (o *GroupHeadlineWithCompositeID) GetOrder() *int64 {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetOrder() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Order
+	return g.Order
 }
 
-func (o *GroupHeadlineWithCompositeID) GetType() GroupHeadlineWithCompositeIDType {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetType() GroupHeadlineWithCompositeIDType {
+	if g == nil {
 		return GroupHeadlineWithCompositeIDType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GroupHeadlineWithCompositeID) GetEnableDivider() *bool {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetEnableDivider() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EnableDivider
+	return g.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeID) GetDivider() *Divider {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetDivider() *Divider {
+	if g == nil {
 		return nil
 	}
-	return o.Divider
+	return g.Divider
 }
 
-func (o *GroupHeadlineWithCompositeID) GetPurpose() []string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetPurpose() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Purpose
+	return g.Purpose
 }
 
-func (o *GroupHeadlineWithCompositeID) GetManifest() []string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetManifest() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Manifest
+	return g.Manifest
 }
 
-func (o *GroupHeadlineWithCompositeID) GetCompositeID() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetCompositeID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CompositeID
+	return g.CompositeID
 }
 
-func (o *GroupHeadlineWithCompositeID) GetSchema() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeID) GetSchema() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Schema
+	return g.Schema
 }
 
 // GroupHeadlineWithCompositeIDInput - a readonly computed ID for the entity group headline including schema slug and the headline ID
@@ -205,92 +205,92 @@ func (g GroupHeadlineWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GroupHeadlineWithCompositeIDInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"name", "label", "group", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetID() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetName() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetName() string {
+	if g == nil {
 		return ""
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetLabel() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetLabel() string {
+	if g == nil {
 		return ""
 	}
-	return o.Label
+	return g.Label
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetLayout() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetLayout() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Layout
+	return g.Layout
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetGroup() string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetGroup() string {
+	if g == nil {
 		return ""
 	}
-	return o.Group
+	return g.Group
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetOrder() *int64 {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetOrder() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Order
+	return g.Order
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetType() GroupHeadlineWithCompositeIDType {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetType() GroupHeadlineWithCompositeIDType {
+	if g == nil {
 		return GroupHeadlineWithCompositeIDType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.EnableDivider
+	return g.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
+	if g == nil {
 		return nil
 	}
-	return o.Divider
+	return g.Divider
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetPurpose() []string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetPurpose() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Purpose
+	return g.Purpose
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetManifest() []string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetManifest() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Manifest
+	return g.Manifest
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetSchema() *string {
-	if o == nil {
+func (g *GroupHeadlineWithCompositeIDInput) GetSchema() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Schema
+	return g.Schema
 }
