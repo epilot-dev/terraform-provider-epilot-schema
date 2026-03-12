@@ -29,6 +29,27 @@ actions:
     remove: true
   - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["source"]
     remove: true
+
+  # Remove fields that cause empty value serialization bugs (enable_setting: [], _purpose: [], dialog_config: {})
+  # The Speakeasy SDK's custom MarshalJSON only checks isNil() for omitempty, not isEmpty().
+  # This means empty slices [] and empty maps {} are sent instead of being omitted,
+  # which causes enable_setting: [] to make schemas disappear from the UI.
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["enable_setting"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["_purpose"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["dialog_config"]
+    remove: true
+
+  # Remove search_params from create/edit views - empty map {} causes drift
+  - target: $["components"]["schemas"]["EntityDefaultCreate"]["properties"]["search_params"]
+    remove: true
+  - target: $["components"]["schemas"]["EntityDefaultEdit"]["properties"]["search_params"]
+    remove: true
+
+  # Remove navbar_actions from table view - empty array [] causes drift
+  - target: $["components"]["schemas"]["EntityDefaultTable"]["properties"]["navbar_actions"]
+    remove: true
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]["$ref"]
     remove: true
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]
