@@ -2,5 +2,5 @@
 
 package types
 
-type EntityDefaultTableParams struct {
+type AddressAttributeAttributeWithCompositeIDConstraints struct {
 }

@@ -11,7 +11,7 @@ type MessageEmailAddressAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Address                  types.String                                         `tfsdk:"address"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EmailType                types.String                                         `tfsdk:"email_type"`

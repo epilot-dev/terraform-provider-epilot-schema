@@ -12,7 +12,7 @@ type AttributeWithCompositeIDTableAttribute struct {
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Columns                  []TableAttributeColumns                              `tfsdk:"columns"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`

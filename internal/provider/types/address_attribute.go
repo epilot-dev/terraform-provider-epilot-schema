@@ -10,7 +10,7 @@ import (
 type AddressAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultAddressFields     []types.String                                       `tfsdk:"default_address_fields"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`

@@ -11,7 +11,7 @@ type FileAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	AllowedExtensions        []types.String                                       `tfsdk:"allowed_extensions"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultAccessControl     types.String                                         `tfsdk:"default_access_control"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`

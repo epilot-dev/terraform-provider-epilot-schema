@@ -29,6 +29,17 @@ actions:
     remove: true
   - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["source"]
     remove: true
+
+  # jsonencode enable_setting to fix empty value serialization bug.
+  # The Speakeasy SDK's custom MarshalJSON only checks isNil() for omitempty, not isEmpty().
+  # Typed arrays always create non-nil empty containers via make(), serialized as [].
+  # enable_setting: [] causes schemas to disappear from the UI.
+  # Untyped (interface{}) stays nil when TF value is null, so omitempty correctly omits it.
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["enable_setting"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      enable_setting: {}
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]["$ref"]
     remove: true
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]
@@ -62,6 +73,28 @@ actions:
   - target: $["components"]["schemas"]["EntitySchema"]["properties"]
     update:
       group_headlines: {}
+
+  # jsonencode ui_config in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["ui_config"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      ui_config: {}
+
+  # jsonencode layout_settings in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["layout_settings"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      layout_settings: {}
+
+  # jsonencode dialog_config in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["dialog_config"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      dialog_config: {}
+
 
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]

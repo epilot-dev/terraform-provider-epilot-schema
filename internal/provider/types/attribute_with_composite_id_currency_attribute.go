@@ -11,7 +11,7 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	Currency                 []CurrencyAttributeCurrency                          `tfsdk:"currency"`
 	CurrencySelectorOnly     types.Bool                                           `tfsdk:"currency_selector_only"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`

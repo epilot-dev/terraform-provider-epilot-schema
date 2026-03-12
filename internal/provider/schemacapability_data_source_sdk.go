@@ -48,7 +48,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.AddressAttribute.Constraints == nil {
 					attributes.AddressAttribute.Constraints = nil
 				} else {
-					attributes.AddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.AddressAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.AddressAttribute.DefaultAddressFields != nil {
 					attributes.AddressAttribute.DefaultAddressFields = make([]types.String, 0, len(attributesItem.AddressAttribute.DefaultAddressFields))
@@ -123,7 +123,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.AddressRelationAttribute.Constraints == nil {
 					attributes.AddressRelationAttribute.Constraints = nil
 				} else {
-					attributes.AddressRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.AddressRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.AddressRelationAttribute.DefaultAddressFields != nil {
 					attributes.AddressRelationAttribute.DefaultAddressFields = make([]types.String, 0, len(attributesItem.AddressRelationAttribute.DefaultAddressFields))
@@ -198,7 +198,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.AutomationAttribute.Constraints == nil {
 					attributes.AutomationAttribute.Constraints = nil
 				} else {
-					attributes.AutomationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.AutomationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.AutomationAttribute.DefaultValue == nil {
 					attributes.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -267,7 +267,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.BooleanAttribute.Constraints == nil {
 					attributes.BooleanAttribute.Constraints = nil
 				} else {
-					attributes.BooleanAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.BooleanAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.BooleanAttribute.DefaultValue == nil {
 					attributes.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -343,7 +343,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.ComputedAttribute.Constraints == nil {
 					attributes.ComputedAttribute.Constraints = nil
 				} else {
-					attributes.ComputedAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.ComputedAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				attributes.ComputedAttribute.CurrencyField = types.StringPointerValue(attributesItem.ComputedAttribute.CurrencyField)
 				if attributesItem.ComputedAttribute.DefaultValue == nil {
@@ -413,7 +413,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.ConsentAttribute.Constraints == nil {
 					attributes.ConsentAttribute.Constraints = nil
 				} else {
-					attributes.ConsentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.ConsentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.ConsentAttribute.DefaultValue == nil {
 					attributes.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -487,7 +487,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.CountryAttribute.Constraints == nil {
 					attributes.CountryAttribute.Constraints = nil
 				} else {
-					attributes.CountryAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.CountryAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.CountryAttribute.DefaultValue == nil {
 					attributes.CountryAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -556,7 +556,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.CurrencyAttribute.Constraints == nil {
 					attributes.CurrencyAttribute.Constraints = nil
 				} else {
-					attributes.CurrencyAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.CurrencyAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				attributes.CurrencyAttribute.Currency = []tfTypes.CurrencyAttributeCurrency{}
 
@@ -641,7 +641,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.DateAttribute.Constraints == nil {
 					attributes.DateAttribute.Constraints = nil
 				} else {
-					attributes.DateAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.DateAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.DateAttribute.DefaultValue == nil {
 					attributes.DateAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -710,7 +710,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.EmailAttribute.Constraints == nil {
 					attributes.EmailAttribute.Constraints = nil
 				} else {
-					attributes.EmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.EmailAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.EmailAttribute.DefaultValue == nil {
 					attributes.EmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -783,7 +783,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.FileAttribute.Constraints == nil {
 					attributes.FileAttribute.Constraints = nil
 				} else {
-					attributes.FileAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.FileAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.FileAttribute.DefaultAccessControl != nil {
 					attributes.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem.FileAttribute.DefaultAccessControl))
@@ -860,7 +860,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.InternalAttribute.Constraints == nil {
 					attributes.InternalAttribute.Constraints = nil
 				} else {
-					attributes.InternalAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.InternalAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.InternalAttribute.DefaultValue == nil {
 					attributes.InternalAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -929,7 +929,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.InternalUserAttribute.Constraints == nil {
 					attributes.InternalUserAttribute.Constraints = nil
 				} else {
-					attributes.InternalUserAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.InternalUserAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.InternalUserAttribute.DefaultValue == nil {
 					attributes.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -998,7 +998,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.InvitationEmailAttribute.Constraints == nil {
 					attributes.InvitationEmailAttribute.Constraints = nil
 				} else {
-					attributes.InvitationEmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.InvitationEmailAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.InvitationEmailAttribute.DefaultValue == nil {
 					attributes.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1067,7 +1067,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.LinkAttribute.Constraints == nil {
 					attributes.LinkAttribute.Constraints = nil
 				} else {
-					attributes.LinkAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.LinkAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.LinkAttribute.DefaultValue == nil {
 					attributes.LinkAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1137,7 +1137,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.MessageEmailAddressAttribute.Constraints == nil {
 					attributes.MessageEmailAddressAttribute.Constraints = nil
 				} else {
-					attributes.MessageEmailAddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.MessageEmailAddressAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.MessageEmailAddressAttribute.DefaultValue == nil {
 					attributes.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1210,7 +1210,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.MultiSelectAttribute.Constraints == nil {
 					attributes.MultiSelectAttribute.Constraints = nil
 				} else {
-					attributes.MultiSelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.MultiSelectAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.MultiSelectAttribute.DefaultValue == nil {
 					attributes.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1296,7 +1296,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.NumberAttribute.Constraints == nil {
 					attributes.NumberAttribute.Constraints = nil
 				} else {
-					attributes.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.NumberAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.NumberAttribute.DataType != nil {
 					attributes.NumberAttribute.DataType = types.StringValue(string(*attributesItem.NumberAttribute.DataType))
@@ -1372,7 +1372,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.OrderedListAttribute.Constraints == nil {
 					attributes.OrderedListAttribute.Constraints = nil
 				} else {
-					attributes.OrderedListAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.OrderedListAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.OrderedListAttribute.DefaultValue == nil {
 					attributes.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1441,7 +1441,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PartnerOrganisationAttribute.Constraints == nil {
 					attributes.PartnerOrganisationAttribute.Constraints = nil
 				} else {
-					attributes.PartnerOrganisationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PartnerOrganisationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PartnerOrganisationAttribute.DefaultValue == nil {
 					attributes.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1510,7 +1510,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PartnerStatusAttribute.Constraints == nil {
 					attributes.PartnerStatusAttribute.Constraints = nil
 				} else {
-					attributes.PartnerStatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PartnerStatusAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PartnerStatusAttribute.DefaultValue == nil {
 					attributes.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1579,7 +1579,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PaymentAttribute.Constraints == nil {
 					attributes.PaymentAttribute.Constraints = nil
 				} else {
-					attributes.PaymentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PaymentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PaymentAttribute.DefaultValue == nil {
 					attributes.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1648,7 +1648,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PaymentMethodRelationAttribute.Constraints == nil {
 					attributes.PaymentMethodRelationAttribute.Constraints = nil
 				} else {
-					attributes.PaymentMethodRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PaymentMethodRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PaymentMethodRelationAttribute.DefaultValue == nil {
 					attributes.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1717,7 +1717,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PhoneAttribute.Constraints == nil {
 					attributes.PhoneAttribute.Constraints = nil
 				} else {
-					attributes.PhoneAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PhoneAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PhoneAttribute.DefaultValue == nil {
 					attributes.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1786,7 +1786,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PortalAccessAttribute.Constraints == nil {
 					attributes.PortalAccessAttribute.Constraints = nil
 				} else {
-					attributes.PortalAccessAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PortalAccessAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PortalAccessAttribute.DefaultValue == nil {
 					attributes.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1855,7 +1855,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PriceComponentAttribute.Constraints == nil {
 					attributes.PriceComponentAttribute.Constraints = nil
 				} else {
-					attributes.PriceComponentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PriceComponentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PriceComponentAttribute.DefaultValue == nil {
 					attributes.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1924,7 +1924,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.PurposeAttribute.Constraints == nil {
 					attributes.PurposeAttribute.Constraints = nil
 				} else {
-					attributes.PurposeAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.PurposeAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.PurposeAttribute.DefaultValue == nil {
 					attributes.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2030,7 +2030,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.RelationAttribute.Constraints == nil {
 					attributes.RelationAttribute.Constraints = nil
 				} else {
-					attributes.RelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.RelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.RelationAttribute.DefaultValue == nil {
 					attributes.RelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2152,7 +2152,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.SelectAttribute.Constraints == nil {
 					attributes.SelectAttribute.Constraints = nil
 				} else {
-					attributes.SelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.SelectAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.SelectAttribute.DefaultValue == nil {
 					attributes.SelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2227,7 +2227,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.SequenceAttribute.Constraints == nil {
 					attributes.SequenceAttribute.Constraints = nil
 				} else {
-					attributes.SequenceAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.SequenceAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.SequenceAttribute.DefaultValue == nil {
 					attributes.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2298,7 +2298,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.StatusAttribute.Constraints == nil {
 					attributes.StatusAttribute.Constraints = nil
 				} else {
-					attributes.StatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.StatusAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.StatusAttribute.DefaultValue == nil {
 					attributes.StatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2400,7 +2400,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.TableAttribute.Constraints == nil {
 					attributes.TableAttribute.Constraints = nil
 				} else {
-					attributes.TableAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.TableAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.TableAttribute.DefaultValue == nil {
 					attributes.TableAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2471,7 +2471,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.TagsAttribute.Constraints == nil {
 					attributes.TagsAttribute.Constraints = nil
 				} else {
-					attributes.TagsAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.TagsAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.TagsAttribute.DefaultValue == nil {
 					attributes.TagsAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2548,7 +2548,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.TextAttribute.Constraints == nil {
 					attributes.TextAttribute.Constraints = nil
 				} else {
-					attributes.TextAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.TextAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.TextAttribute.DefaultValue == nil {
 					attributes.TextAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2625,7 +2625,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				if attributesItem.UserRelationAttribute.Constraints == nil {
 					attributes.UserRelationAttribute.Constraints = nil
 				} else {
-					attributes.UserRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+					attributes.UserRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 				}
 				if attributesItem.UserRelationAttribute.DefaultValue == nil {
 					attributes.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()

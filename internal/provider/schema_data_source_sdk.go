@@ -5,7 +5,6 @@ package provider
 import (
 	"context"
 	"encoding/json"
-	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
@@ -29,18 +28,19 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		r.Category = types.StringPointerValue(resp.Category)
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		r.Description = types.StringPointerValue(resp.Description)
-		if len(resp.DialogConfig) > 0 {
-			r.DialogConfig = make(map[string]jsontypes.Normalized, len(resp.DialogConfig))
-			for key, value := range resp.DialogConfig {
-				result, _ := json.Marshal(value)
-				r.DialogConfig[key] = jsontypes.NewNormalizedValue(string(result))
-			}
+		if resp.DialogConfig == nil {
+			r.DialogConfig = jsontypes.NewNormalizedNull()
+		} else {
+			dialogConfigResult, _ := json.Marshal(resp.DialogConfig)
+			r.DialogConfig = jsontypes.NewNormalizedValue(string(dialogConfigResult))
 		}
 		r.DocsURL = types.StringPointerValue(resp.DocsURL)
 		r.Draft = types.BoolPointerValue(resp.Draft)
-		r.EnableSetting = make([]types.String, 0, len(resp.EnableSetting))
-		for _, v := range resp.EnableSetting {
-			r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
+		if resp.EnableSetting == nil {
+			r.EnableSetting = jsontypes.NewNormalizedNull()
+		} else {
+			enableSettingResult, _ := json.Marshal(resp.EnableSetting)
+			r.EnableSetting = jsontypes.NewNormalizedValue(string(enableSettingResult))
 		}
 		if resp.ExplicitSearchMappings == nil {
 			r.ExplicitSearchMappings = jsontypes.NewNormalizedNull()
@@ -64,17 +64,10 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		r.Icon = types.StringPointerValue(resp.Icon)
 		r.ID = types.StringPointerValue(resp.ID)
 		if resp.LayoutSettings == nil {
-			r.LayoutSettings = nil
+			r.LayoutSettings = jsontypes.NewNormalizedNull()
 		} else {
-			r.LayoutSettings = &tfTypes.LayoutSettings{}
-			if resp.LayoutSettings.AdditionalProperties == nil {
-				r.LayoutSettings.AdditionalProperties = jsontypes.NewNormalizedNull()
-			} else {
-				additionalPropertiesResult, _ := json.Marshal(resp.LayoutSettings.AdditionalProperties)
-				r.LayoutSettings.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
-			}
-			r.LayoutSettings.GridGap = types.StringPointerValue(resp.LayoutSettings.GridGap)
-			r.LayoutSettings.GridTemplateColumns = types.StringPointerValue(resp.LayoutSettings.GridTemplateColumns)
+			layoutSettingsResult, _ := json.Marshal(resp.LayoutSettings)
+			r.LayoutSettings = jsontypes.NewNormalizedValue(string(layoutSettingsResult))
 		}
 		r.Name = types.StringValue(resp.Name)
 		r.Plural = types.StringValue(resp.Plural)
@@ -82,283 +75,10 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		r.Slug = types.StringValue(resp.Slug)
 		r.TitleTemplate = types.StringPointerValue(resp.TitleTemplate)
 		if resp.UIConfig == nil {
-			r.UIConfig = nil
+			r.UIConfig = jsontypes.NewNormalizedNull()
 		} else {
-			r.UIConfig = &tfTypes.UIConfig{}
-			if resp.UIConfig.CreateView != nil {
-				r.UIConfig.CreateView = &tfTypes.CreateView{}
-				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
-					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
-					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
-						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String, len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams))
-						for key1, value1 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key1] = types.StringValue(value1)
-						}
-					}
-					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
-					} else {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.CreateView.EntityViewDisabled != nil {
-					r.UIConfig.CreateView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
-					if resp.UIConfig.CreateView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
-					} else {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.CreateView.RedirectEntityView != nil {
-					r.UIConfig.CreateView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.CreateView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
-					if resp.UIConfig.CreateView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
-					} else {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringNull()
-					}
-				}
-			}
-			if resp.UIConfig.EditView != nil {
-				r.UIConfig.EditView = &tfTypes.EditView{}
-				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
-					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
-					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams))
-						for key2, value2 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key2] = types.StringValue(value2)
-						}
-					}
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes))
-					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
-					}
-					if resp.UIConfig.EditView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
-					} else {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.EditView.EntityViewDisabled != nil {
-					r.UIConfig.EditView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
-					if resp.UIConfig.EditView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
-					} else {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.EditView.RedirectEntityView != nil {
-					r.UIConfig.EditView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.EditView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
-					if resp.UIConfig.EditView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
-					} else {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringNull()
-					}
-				}
-			}
-			if resp.UIConfig.ListItem == nil {
-				r.UIConfig.ListItem = nil
-			} else {
-				r.UIConfig.ListItem = &tfTypes.ListItem{}
-				r.UIConfig.ListItem.QuickActions = []tfTypes.EntityAction{}
-
-				for _, quickActionsItem := range resp.UIConfig.ListItem.QuickActions {
-					var quickActions tfTypes.EntityAction
-
-					quickActions.Action = types.StringValue(quickActionsItem.Action)
-					quickActions.Icon = types.StringPointerValue(quickActionsItem.Icon)
-					quickActions.Label = types.StringValue(quickActionsItem.Label)
-					quickActions.Permission = types.StringPointerValue(quickActionsItem.Permission)
-
-					r.UIConfig.ListItem.QuickActions = append(r.UIConfig.ListItem.QuickActions, quickActions)
-				}
-				r.UIConfig.ListItem.SummaryAttributes = []tfTypes.SummaryAttributes{}
-
-				for _, summaryAttributesItem := range resp.UIConfig.ListItem.SummaryAttributes {
-					var summaryAttributes tfTypes.SummaryAttributes
-
-					if summaryAttributesItem.Str != nil {
-						summaryAttributes.Str = types.StringPointerValue(summaryAttributesItem.Str)
-					}
-					if summaryAttributesItem.SummaryAttribute != nil {
-						summaryAttributes.SummaryAttribute = &tfTypes.SummaryAttribute{}
-						summaryAttributes.SummaryAttribute.ContentLineCap = types.Float64PointerValue(summaryAttributesItem.SummaryAttribute.ContentLineCap)
-						if summaryAttributesItem.SummaryAttribute.ContentWrap != nil {
-							summaryAttributes.SummaryAttribute.ContentWrap = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.ContentWrap))
-						} else {
-							summaryAttributes.SummaryAttribute.ContentWrap = types.StringNull()
-						}
-						if summaryAttributesItem.SummaryAttribute.DisplayMode != nil {
-							summaryAttributes.SummaryAttribute.DisplayMode = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.DisplayMode))
-						} else {
-							summaryAttributes.SummaryAttribute.DisplayMode = types.StringNull()
-						}
-						summaryAttributes.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
-						summaryAttributes.SummaryAttribute.HideLabel = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HideLabel)
-						summaryAttributes.SummaryAttribute.HighlightContainer = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HighlightContainer)
-						summaryAttributes.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
-						summaryAttributes.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
-						summaryAttributes.SummaryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-
-						for _, settingsFlagItem := range summaryAttributesItem.SummaryAttribute.SettingsFlag {
-							var settingsFlag tfTypes.SettingFlag
-
-							settingsFlag.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-							settingsFlag.Name = types.StringPointerValue(settingsFlagItem.Name)
-
-							summaryAttributes.SummaryAttribute.SettingsFlag = append(summaryAttributes.SummaryAttribute.SettingsFlag, settingsFlag)
-						}
-						summaryAttributes.SummaryAttribute.ShowAsTag = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.ShowAsTag)
-						summaryAttributes.SummaryAttribute.TagColor = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.TagColor)
-						summaryAttributes.SummaryAttribute.Value = types.StringValue(summaryAttributesItem.SummaryAttribute.Value)
-					}
-
-					r.UIConfig.ListItem.SummaryAttributes = append(r.UIConfig.ListItem.SummaryAttributes, summaryAttributes)
-				}
-				if resp.UIConfig.ListItem.UIConfig == nil {
-					r.UIConfig.ListItem.UIConfig = nil
-				} else {
-					r.UIConfig.ListItem.UIConfig = &tfTypes.EntitySchemaItemUIConfig{}
-					if resp.UIConfig.ListItem.UIConfig.ContentDirection != nil {
-						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringValue(string(*resp.UIConfig.ListItem.UIConfig.ContentDirection))
-					} else {
-						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringNull()
-					}
-				}
-			}
-			if resp.UIConfig.Sharing == nil {
-				r.UIConfig.Sharing = nil
-			} else {
-				r.UIConfig.Sharing = &tfTypes.Sharing{}
-				r.UIConfig.Sharing.ShowSharingButton = types.BoolPointerValue(resp.UIConfig.Sharing.ShowSharingButton)
-			}
-			if resp.UIConfig.SingleView != nil {
-				r.UIConfig.SingleView = &tfTypes.EditView{}
-				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
-					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
-					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams))
-						for key3, value3 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key3] = types.StringValue(value3)
-						}
-					}
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))
-					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
-					}
-					if resp.UIConfig.SingleView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
-					} else {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.SingleView.EntityViewDisabled != nil {
-					r.UIConfig.SingleView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
-					if resp.UIConfig.SingleView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
-					} else {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.SingleView.RedirectEntityView != nil {
-					r.UIConfig.SingleView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.SingleView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
-					if resp.UIConfig.SingleView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
-					} else {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringNull()
-					}
-				}
-			}
-			if resp.UIConfig.TableView != nil {
-				r.UIConfig.TableView = &tfTypes.TableView{}
-				if resp.UIConfig.TableView.EntityDefaultTable != nil {
-					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
-					r.UIConfig.TableView.EntityDefaultTable.BulkActions = []tfTypes.BulkActions{}
-
-					for _, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
-						var bulkActions tfTypes.BulkActions
-
-						if bulkActionsItem.Str != nil {
-							bulkActions.Str = types.StringPointerValue(bulkActionsItem.Str)
-						}
-						if bulkActionsItem.EntityAction != nil {
-							bulkActions.EntityAction = &tfTypes.EntityAction{}
-							bulkActions.EntityAction.Action = types.StringValue(bulkActionsItem.EntityAction.Action)
-							bulkActions.EntityAction.Icon = types.StringPointerValue(bulkActionsItem.EntityAction.Icon)
-							bulkActions.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
-							bulkActions.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
-						}
-
-						r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions)
-					}
-					r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
-					r.UIConfig.TableView.EntityDefaultTable.NavbarActions = []tfTypes.NavbarActions{}
-
-					for _, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
-						var navbarActions tfTypes.NavbarActions
-
-						navbarActions.Options = []tfTypes.EntityDefaultTableOptions{}
-
-						for _, optionsVarItem := range navbarActionsItem.Options {
-							var optionsVar tfTypes.EntityDefaultTableOptions
-
-							optionsVar.Label = types.StringValue(optionsVarItem.Label)
-							if optionsVarItem.Params == nil {
-								optionsVar.Params = nil
-							} else {
-								optionsVar.Params = &tfTypes.EntityDefaultTableParams{}
-							}
-
-							navbarActions.Options = append(navbarActions.Options, optionsVar)
-						}
-						navbarActions.Type = types.StringValue(navbarActionsItem.Type)
-
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions)
-					}
-					r.UIConfig.TableView.EntityDefaultTable.RowActions = []tfTypes.BulkActions{}
-
-					for _, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
-						var rowActions tfTypes.BulkActions
-
-						if rowActionsItem.Str != nil {
-							rowActions.Str = types.StringPointerValue(rowActionsItem.Str)
-						}
-						if rowActionsItem.EntityAction != nil {
-							rowActions.EntityAction = &tfTypes.EntityAction{}
-							rowActions.EntityAction.Action = types.StringValue(rowActionsItem.EntityAction.Action)
-							rowActions.EntityAction.Icon = types.StringPointerValue(rowActionsItem.EntityAction.Icon)
-							rowActions.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
-							rowActions.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
-						}
-
-						r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions)
-					}
-					if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
-					} else {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.TableView.EntityViewDisabled != nil {
-					r.UIConfig.TableView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
-					if resp.UIConfig.TableView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
-					} else {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringNull()
-					}
-				}
-				if resp.UIConfig.TableView.RedirectEntityView != nil {
-					r.UIConfig.TableView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.TableView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
-					if resp.UIConfig.TableView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
-					} else {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringNull()
-					}
-				}
-			}
+			uiConfigResult, _ := json.Marshal(resp.UIConfig)
+			r.UIConfig = jsontypes.NewNormalizedValue(string(uiConfigResult))
 		}
 		r.UpdatedAt = types.StringPointerValue(resp.UpdatedAt)
 		r.Version = types.Int64PointerValue(resp.Version)
