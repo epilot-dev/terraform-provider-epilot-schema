@@ -34,7 +34,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDAddressAttribute.Constraints == nil {
 				r.AddressAttribute.Constraints = nil
 			} else {
-				r.AddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.AddressAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields != nil {
 				r.AddressAttribute.DefaultAddressFields = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields))
@@ -138,7 +138,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.Constraints == nil {
 				r.AddressRelationAttribute.Constraints = nil
 			} else {
-				r.AddressRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.AddressRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields != nil {
 				r.AddressRelationAttribute.DefaultAddressFields = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields))
@@ -242,7 +242,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDAutomationAttribute.Constraints == nil {
 				r.AutomationAttribute.Constraints = nil
 			} else {
-				r.AutomationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.AutomationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue == nil {
 				r.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -340,7 +340,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDBooleanAttribute.Constraints == nil {
 				r.BooleanAttribute.Constraints = nil
 			} else {
-				r.BooleanAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.BooleanAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue == nil {
 				r.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -445,7 +445,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDComputedAttribute.Constraints == nil {
 				r.ComputedAttribute.Constraints = nil
 			} else {
-				r.ComputedAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.ComputedAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			r.ComputedAttribute.CurrencyField = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.CurrencyField)
 			if resp.AttributeWithCompositeIDComputedAttribute.DefaultValue == nil {
@@ -544,7 +544,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDConsentAttribute.Constraints == nil {
 				r.ConsentAttribute.Constraints = nil
 			} else {
-				r.ConsentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.ConsentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDConsentAttribute.DefaultValue == nil {
 				r.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -647,7 +647,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDCountryAttribute.Constraints == nil {
 				r.CountryAttribute.Constraints = nil
 			} else {
-				r.CountryAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.CountryAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDCountryAttribute.DefaultValue == nil {
 				r.CountryAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -745,7 +745,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDCurrencyAttribute.Constraints == nil {
 				r.CurrencyAttribute.Constraints = nil
 			} else {
-				r.CurrencyAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.CurrencyAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			r.CurrencyAttribute.Currency = []tfTypes.CurrencyAttributeCurrency{}
 
@@ -859,7 +859,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDDateAttribute.Constraints == nil {
 				r.DateAttribute.Constraints = nil
 			} else {
-				r.DateAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.DateAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDDateAttribute.DefaultValue == nil {
 				r.DateAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -957,7 +957,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDEmailAttribute.Constraints == nil {
 				r.EmailAttribute.Constraints = nil
 			} else {
-				r.EmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.EmailAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDEmailAttribute.DefaultValue == nil {
 				r.EmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1059,7 +1059,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDFileAttribute.Constraints == nil {
 				r.FileAttribute.Constraints = nil
 			} else {
-				r.FileAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.FileAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDFileAttribute.DefaultAccessControl != nil {
 				r.FileAttribute.DefaultAccessControl = types.StringValue(string(*resp.AttributeWithCompositeIDFileAttribute.DefaultAccessControl))
@@ -1165,7 +1165,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDInternalAttribute.Constraints == nil {
 				r.InternalAttribute.Constraints = nil
 			} else {
-				r.InternalAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.InternalAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDInternalAttribute.DefaultValue == nil {
 				r.InternalAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1263,7 +1263,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDInternalUserAttribute.Constraints == nil {
 				r.InternalUserAttribute.Constraints = nil
 			} else {
-				r.InternalUserAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.InternalUserAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue == nil {
 				r.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1361,7 +1361,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.Constraints == nil {
 				r.InvitationEmailAttribute.Constraints = nil
 			} else {
-				r.InvitationEmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.InvitationEmailAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue == nil {
 				r.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1459,7 +1459,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDLinkAttribute.Constraints == nil {
 				r.LinkAttribute.Constraints = nil
 			} else {
-				r.LinkAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.LinkAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDLinkAttribute.DefaultValue == nil {
 				r.LinkAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1558,7 +1558,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Constraints == nil {
 				r.MessageEmailAddressAttribute.Constraints = nil
 			} else {
-				r.MessageEmailAddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.MessageEmailAddressAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue == nil {
 				r.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1660,7 +1660,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.Constraints == nil {
 				r.MultiSelectAttribute.Constraints = nil
 			} else {
-				r.MultiSelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.MultiSelectAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue == nil {
 				r.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1775,7 +1775,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDNumberAttribute.Constraints == nil {
 				r.NumberAttribute.Constraints = nil
 			} else {
-				r.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.NumberAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDNumberAttribute.DataType != nil {
 				r.NumberAttribute.DataType = types.StringValue(string(*resp.AttributeWithCompositeIDNumberAttribute.DataType))
@@ -1880,7 +1880,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDOrderedListAttribute.Constraints == nil {
 				r.OrderedListAttribute.Constraints = nil
 			} else {
-				r.OrderedListAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.OrderedListAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue == nil {
 				r.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -1978,7 +1978,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Constraints == nil {
 				r.PartnerOrganisationAttribute.Constraints = nil
 			} else {
-				r.PartnerOrganisationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PartnerOrganisationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue == nil {
 				r.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2076,7 +2076,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.Constraints == nil {
 				r.PartnerStatusAttribute.Constraints = nil
 			} else {
-				r.PartnerStatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PartnerStatusAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue == nil {
 				r.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2174,7 +2174,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPaymentAttribute.Constraints == nil {
 				r.PaymentAttribute.Constraints = nil
 			} else {
-				r.PaymentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PaymentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue == nil {
 				r.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2272,7 +2272,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Constraints == nil {
 				r.PaymentMethodRelationAttribute.Constraints = nil
 			} else {
-				r.PaymentMethodRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PaymentMethodRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue == nil {
 				r.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2370,7 +2370,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPhoneAttribute.Constraints == nil {
 				r.PhoneAttribute.Constraints = nil
 			} else {
-				r.PhoneAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PhoneAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue == nil {
 				r.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2468,7 +2468,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPortalAccessAttribute.Constraints == nil {
 				r.PortalAccessAttribute.Constraints = nil
 			} else {
-				r.PortalAccessAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PortalAccessAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPortalAccessAttribute.DefaultValue == nil {
 				r.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2566,7 +2566,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPriceComponentAttribute.Constraints == nil {
 				r.PriceComponentAttribute.Constraints = nil
 			} else {
-				r.PriceComponentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PriceComponentAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue == nil {
 				r.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2664,7 +2664,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPurposeAttribute.Constraints == nil {
 				r.PurposeAttribute.Constraints = nil
 			} else {
-				r.PurposeAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.PurposeAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue == nil {
 				r.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2799,7 +2799,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDRelationAttribute.Constraints == nil {
 				r.RelationAttribute.Constraints = nil
 			} else {
-				r.RelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.RelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDRelationAttribute.DefaultValue == nil {
 				r.RelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -2950,7 +2950,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDSelectAttribute.Constraints == nil {
 				r.SelectAttribute.Constraints = nil
 			} else {
-				r.SelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.SelectAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDSelectAttribute.DefaultValue == nil {
 				r.SelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3054,7 +3054,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDSequenceAttribute.Constraints == nil {
 				r.SequenceAttribute.Constraints = nil
 			} else {
-				r.SequenceAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.SequenceAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue == nil {
 				r.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3154,7 +3154,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDStatusAttribute.Constraints == nil {
 				r.StatusAttribute.Constraints = nil
 			} else {
-				r.StatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.StatusAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDStatusAttribute.DefaultValue == nil {
 				r.StatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3285,7 +3285,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDTableAttribute.Constraints == nil {
 				r.TableAttribute.Constraints = nil
 			} else {
-				r.TableAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.TableAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDTableAttribute.DefaultValue == nil {
 				r.TableAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3385,7 +3385,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDTagsAttribute.Constraints == nil {
 				r.TagsAttribute.Constraints = nil
 			} else {
-				r.TagsAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.TagsAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDTagsAttribute.DefaultValue == nil {
 				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3491,7 +3491,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDTextAttribute.Constraints == nil {
 				r.TextAttribute.Constraints = nil
 			} else {
-				r.TextAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.TextAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDTextAttribute.DefaultValue == nil {
 				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -3597,7 +3597,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDUserRelationAttribute.Constraints == nil {
 				r.UserRelationAttribute.Constraints = nil
 			} else {
-				r.UserRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+				r.UserRelationAttribute.Constraints = &tfTypes.AddressAttributeAttributeWithCompositeIDConstraints{}
 			}
 			if resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue == nil {
 				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()

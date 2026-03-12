@@ -13,7 +13,7 @@ type RelationAttribute struct {
 	Actions                  []RelationAttributeActions                           `tfsdk:"actions"`
 	AddButtonLabel           types.String                                         `tfsdk:"add_button_label"`
 	AllowedSchemas           []types.String                                       `tfsdk:"allowed_schemas"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DetailsViewModeEnabled   types.Bool                                           `tfsdk:"details_view_mode_enabled"`

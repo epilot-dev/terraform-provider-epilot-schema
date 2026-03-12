@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 1cc21bac8dc2b021e94893f921e0b9d7
+  docChecksum: bdb7ec881502622ee9a7cec0983cd08e
   docVersion: 2.8.0
   speakeasyVersion: 1.685.3
   generationVersion: 2.795.8
-  releaseVersion: 0.18.2
-  configChecksum: fbcb9050ee019d524c7ad99b799991f7
+  releaseVersion: 0.18.4
+  configChecksum: 11ab1b7bf29e63f7a61a0b2446434981
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
 persistentEdits:
-  generation_id: 083a28ce-17bb-48d9-98a0-2aa75fdfb369
-  pristine_commit_hash: 2d599cfca0ad77e2ea8324b0b075ffd51ca8e389
-  pristine_tree_hash: db2e88bab526a99b266ba9b9f1aded5fd4ef4690
+  generation_id: c0316f07-c1f7-404e-aa12-481ca793d84c
+  pristine_commit_hash: 97912e2eeb09f981e65795d1c812e883186c5eb8
+  pristine_tree_hash: 1526bc93b0e31504f62c5761f0e04350ef4e4b90
 features:
   terraform:
     additionalDependencies: 0.1.0
@@ -59,8 +59,8 @@ trackedFiles:
     pristine_git_object: 294d84a5c5c2a4d9ef4a50f60d4b21cbc53d9378
   examples/provider/provider.tf:
     id: 954e955c0240
-    last_write_checksum: sha1:f5ff9e2c84a429d9df9c6c5fff7821dba6a9d64f
-    pristine_git_object: 859c589c54cb8e729bd2bb0832fc2cfa8db33cff
+    last_write_checksum: sha1:86368a33a6c3d1cd77d4255dccb81af987fbc2da
+    pristine_git_object: 5f1d9209ae427e8e0a626f4546eee9b198ee8dce
   examples/resources/epilot-schema_schema/import-by-string-id.tf:
     id: 3f572ba8e6b4
     last_write_checksum: sha1:960e6bea1c6a2d037db241ae37a11b211cb66300
@@ -71,8 +71,8 @@ trackedFiles:
     pristine_git_object: 28e5ed996cfbe8c029ad099e9425690641675363
   examples/resources/epilot-schema_schema/resource.tf:
     id: 5b35a5799835
-    last_write_checksum: sha1:fd7aa6c8ea089f1c44c3db6a8d9ae22ba5df12f6
-    pristine_git_object: 8a241f1cd5af84df4969fc44912bf96fc9925d87
+    last_write_checksum: sha1:5dc46666b7940145be60f44b06e316839b28782c
+    pristine_git_object: 011708ebc0701e9d8aeb5db56a1802c44d3184ae
   examples/resources/epilot-schema_schema_attribute/import-by-string-id.tf:
     id: 1e9523d74628
     last_write_checksum: sha1:06c66bafc245d9852c26e1b0471a0df221cf28df
@@ -279,52 +279,52 @@ trackedFiles:
     pristine_git_object: c588f768bd7b39be33962188f97d81e1c4c25f4b
   internal/provider/schema_data_source.go:
     id: 64e17f57d210
-    last_write_checksum: sha1:e5e94a81ebb42510f6f6299734db23abe5ec4149
-    pristine_git_object: a04c20ffe23d9d5688bdca0c772a562b9827af93
+    last_write_checksum: sha1:d04effa4dbc99ff8b6b17f47711670c052826b88
+    pristine_git_object: fb726491becec074d8898df41616d6ccca854a6f
   internal/provider/schema_data_source_sdk.go:
     id: eb502cb8fc95
-    last_write_checksum: sha1:a45402160a394f37a309bd85b20292dd4fbb689b
-    pristine_git_object: ce4afcc8162088289b7ea73b43f3f05a956f2af8
+    last_write_checksum: sha1:b7bb4ca6e63be91b50a724e5b95203ac02cf3f1e
+    pristine_git_object: 048ef5ba74f608cead5be8fcda28aa370b3d8aa8
   internal/provider/schema_resource.go:
     id: e0be8cdd29d1
-    last_write_checksum: sha1:268555c0b11641c929d29cc651a16d4c51e37cad
-    pristine_git_object: d74fee0afd9cb8339eeea00461961c87adca269a
+    last_write_checksum: sha1:9d49bc5537f15a850a4e09aed9ee2d532ec9ac54
+    pristine_git_object: 890520cd5bebedd0d0de8ca92663fe035b9c7939
   internal/provider/schema_resource_sdk.go:
     id: 39d245519a88
-    last_write_checksum: sha1:353e3dbbbb132ffb13625e6e99755bab2a1315c7
-    pristine_git_object: 391d5c37942aad6ae3bf7988c9457fe701489b43
+    last_write_checksum: sha1:1c78caab40dc0a83229feff8a51e9659b2d18625
+    pristine_git_object: a3656e32d935bf16d36c03f3bc380dd9171d8291
   internal/provider/schemaattribute_data_source.go:
     id: 68e95b6b397f
     last_write_checksum: sha1:58044f6a6d14bf1a1423a674b6d27ab8562d635d
     pristine_git_object: 5bcde4939f89b7164913fc66bd1f0b7d5e38b46e
   internal/provider/schemaattribute_data_source_sdk.go:
     id: 669b3c489cab
-    last_write_checksum: sha1:d920ad2ab5f62b3833606e508fe9ec35d662966a
-    pristine_git_object: cb28043bd682448ec5da79eabca36a93219baeee
+    last_write_checksum: sha1:7020fa4f4fc98d9e7053f6699596c7cd1aaaf653
+    pristine_git_object: 7481d40e299be6b4e1ca43eae3b82d7c8fb0e1c4
   internal/provider/schemaattribute_resource.go:
     id: d5a34f06efe3
     last_write_checksum: sha1:f248408eb2b94f3ae6ac9ad717c04ea2a5e1b320
     pristine_git_object: ad7be51073cdb6a2ff9ca0ec12d3ff03e826f16f
   internal/provider/schemaattribute_resource_sdk.go:
     id: eed5ae78fcc1
-    last_write_checksum: sha1:f541b20595192fa7b076841c1c0f3ee3e385c4be
-    pristine_git_object: a88935a8d3a0b9882d5cfb2da77f571ed2ae0d3c
+    last_write_checksum: sha1:ef822170dd49be5b09863349ee5e8078bc9e6c57
+    pristine_git_object: 554e35e0e5cf8701c5ad1ad99863deba039fb9da
   internal/provider/schemacapability_data_source.go:
     id: 8f5da16e5639
     last_write_checksum: sha1:cff7534609439b180ac762d6b48b66fe12bc7084
     pristine_git_object: b037a4969c15ea1cd974fd4e79d5363bee4fb39d
   internal/provider/schemacapability_data_source_sdk.go:
     id: 0654801065a2
-    last_write_checksum: sha1:2bf3fde7bb9ffeae9a6111f278052eb2d23150a1
-    pristine_git_object: 7fb80464449db60886011e31714e1d84b4729916
+    last_write_checksum: sha1:19704fe5c3eabb7079443e41bc5fc1f4aa78fa98
+    pristine_git_object: 4ca3e9d4b47b228a408bca2342781c15b98f267b
   internal/provider/schemacapability_resource.go:
     id: f4db1d4a0165
     last_write_checksum: sha1:2c521f4e6f0850ac9b04a2ba0d1af4c77ca37867
     pristine_git_object: a709fc9be54faf152094fae0e0665e974b26bd46
   internal/provider/schemacapability_resource_sdk.go:
     id: cec4fca1470d
-    last_write_checksum: sha1:0c135d35c0ff018d3b30587d96aa850ecd0f3c69
-    pristine_git_object: ef6a689b908e988ad4ba198abda7b1fc63bad0eb
+    last_write_checksum: sha1:5bb2b8da57f46d7e632a984b7b2b58a51fe39ce2
+    pristine_git_object: b3e2d3d50b770878764f4f848a8fb361fe5232bf
   internal/provider/schemagroup_data_source.go:
     id: 469bf2658d44
     last_write_checksum: sha1:6e399726bd540384ccf41484b2b864e1faa2fb1d
@@ -371,8 +371,12 @@ trackedFiles:
     pristine_git_object: 54763e7a7555fae6d8bf51c4590220ff610202aa
   internal/provider/types/address_attribute.go:
     id: 699d040d2aa1
-    last_write_checksum: sha1:35a6a9b7b256e09b625ec5703347e41fdd9afe18
-    pristine_git_object: 95b2f9da8591bea959c37ab4e5c029d827dc9fa4
+    last_write_checksum: sha1:2ca4a5bd5971a1a5d18e2cb09b616e67fc548e53
+    pristine_git_object: 6014fee0f542f1914e5780c21909b18b51d398ed
+  internal/provider/types/address_attribute_attribute_with_composite_id_constraints.go:
+    id: acfb1431a7f7
+    last_write_checksum: sha1:1bffdf0b1d035c99d70104a320278c615ddbd30c
+    pristine_git_object: b18a4ca35a5fc02345d77c3c08dd3450c15d3f6f
   internal/provider/types/address_attribute_attribute_with_composite_id_info_helpers.go:
     id: 1e62fddc8b95
     last_write_checksum: sha1:9acbf227678cb05263a0b1a1b912c4d5c3a1f0a1
@@ -383,120 +387,104 @@ trackedFiles:
     pristine_git_object: 97e40408ebb2190b3bdaca8641506e2ef05c2dc2
   internal/provider/types/attribute_with_composite_id_address_attribute.go:
     id: 05391fb8ee00
-    last_write_checksum: sha1:956baded77c5fab98265a0856daae81b4682d35f
-    pristine_git_object: 1876cc3e9aaa235afd8ce13d2d17cc533d671a6b
+    last_write_checksum: sha1:73993df1bd6124a2487fdec753dc0e08165ca6a5
+    pristine_git_object: 7b69f7d52dd6b5c1d9559fbcfb4b777458e7cbd0
   internal/provider/types/attribute_with_composite_id_automation_attribute.go:
     id: 434d0db07c2d
-    last_write_checksum: sha1:7910667108e0ff600525fbe0e61ce7f26fc7e1bc
-    pristine_git_object: 5206beb58421912f7a73029af9c4657f97e8201d
+    last_write_checksum: sha1:66d8e49db1187d245ec1dff9257dd0288efe37c9
+    pristine_git_object: 3bfd551609f1d86c1a62e58b611f2c198e4a00e9
   internal/provider/types/attribute_with_composite_id_boolean_attribute.go:
     id: a55eb6be774f
-    last_write_checksum: sha1:8d2346e7060c8af5b7fb33ec7207d217b2b09b34
-    pristine_git_object: 79f2848c286de737603764c7fa70a75fc797f444
+    last_write_checksum: sha1:d3c4a6a2d69d5fa6281972f460041ba0ec13c98d
+    pristine_git_object: 4f14de4ce3ff42b56a95a0925163c766c174c197
   internal/provider/types/attribute_with_composite_id_computed_attribute.go:
     id: 982cd1ddd207
-    last_write_checksum: sha1:4fdead52d0d8e893f0fccfd39f1c96799786df32
-    pristine_git_object: 59062a9402969c9108776f27382a19cd03100e3c
+    last_write_checksum: sha1:58dbf37bbd126cce01a9f13210e0c485bbc6a6c4
+    pristine_git_object: 7e556f375f96d7b3e0396c6b5d6821bfdc6376f6
   internal/provider/types/attribute_with_composite_id_consent_attribute.go:
     id: a164908fca81
-    last_write_checksum: sha1:4ec77a3ccacd3f17ec2611ce5178a9d9afae661d
-    pristine_git_object: 85250f519a2ba6723b0b47b4f9159cdfd4f8aaaf
+    last_write_checksum: sha1:3e47958471c928d1133378e240f9ac192f5b1a04
+    pristine_git_object: 190024bc7973b316a94655588f03502ed665a42a
   internal/provider/types/attribute_with_composite_id_currency_attribute.go:
     id: 51402161213d
-    last_write_checksum: sha1:650e68c6a310cd197690a9c5377a84a3ea56fbb5
-    pristine_git_object: 12eb94cf8a649a7e664192400bf123a76007b20d
+    last_write_checksum: sha1:cad659b7456bd8a519d609d5ce75c8cf4c17e7d4
+    pristine_git_object: 2feed47084255f4ede6968b29a0c07c81901825f
   internal/provider/types/attribute_with_composite_id_file_attribute.go:
     id: d9b0695dbe0d
-    last_write_checksum: sha1:8bfb4ff07503ef74649e512d785a96e661e114e4
-    pristine_git_object: 4f6e946c091922f6952d4ed4dc59955174408220
+    last_write_checksum: sha1:5eec67b815033f61a0e68d25e05a5aa5eb8644f4
+    pristine_git_object: 37608264362b90820baa1f31195c6452334acb52
   internal/provider/types/attribute_with_composite_id_message_email_address_attribute.go:
     id: 03e337cc54e0
-    last_write_checksum: sha1:ae0bfac91368d7b55c8cd24c981c9790288ca545
-    pristine_git_object: 476c06b9c376a9bff2a49ab5cac2e12b55fa24c7
+    last_write_checksum: sha1:305bd2bab86811acc00a01934c0c959678914fd8
+    pristine_git_object: 6c3f831bbb982758375214a0f1aa3ce865724ad8
   internal/provider/types/attribute_with_composite_id_multi_select_attribute.go:
     id: 365c09970d89
-    last_write_checksum: sha1:1e045bf5215d94d0ab01da9a9cbaa78f4a808502
-    pristine_git_object: 0301f42231d8ba7d490f735f9dabdfd1b17e5336
+    last_write_checksum: sha1:8420ee3208d6b1ad9d7019666ac42b72465e9d68
+    pristine_git_object: da9aac87252f6182ecabd16abed569e65c2e766f
   internal/provider/types/attribute_with_composite_id_number_attribute.go:
     id: 0dd5311e3d2c
-    last_write_checksum: sha1:ee41aa8d0406de23cd45aef2f5bc205cd9e9ed58
-    pristine_git_object: bec904d5d578d9817e9070b81e00e33c746ecc43
+    last_write_checksum: sha1:760ba35a5cc696cbed661f39114a27d51b6b66cc
+    pristine_git_object: 99acebc3807783bd353d61b8f55e546a75738af5
   internal/provider/types/attribute_with_composite_id_relation_attribute.go:
     id: 98a2e7314ca5
-    last_write_checksum: sha1:8f0bd8cb7fa62bf706f0c7ad4893d59d5cb5e4d0
-    pristine_git_object: 1fc3576c903cbb3d72fbf15b25d9c58e94f7bff3
+    last_write_checksum: sha1:b2179039c243da12d12f1076cd4cff6a15642e4e
+    pristine_git_object: e99baac458119a11f07574bada282f8abf4b3e08
   internal/provider/types/attribute_with_composite_id_select_attribute.go:
     id: 2f171cf23bf3
-    last_write_checksum: sha1:0916744050d537a0878ea3e885765cced07f4bc2
-    pristine_git_object: cd146db483454409cda9821e0ac5a5efa17b0187
+    last_write_checksum: sha1:2825b953d11fda6ca3eb7898812c24a3529c1fdf
+    pristine_git_object: 0f4c7eaf19efbd3153f30f06388d16e56df81af2
   internal/provider/types/attribute_with_composite_id_sequence_attribute.go:
     id: ef2ec6677317
-    last_write_checksum: sha1:e9becefda0cb984aa1ce9d13e5e1388312241f72
-    pristine_git_object: 82ff89c026173860ddcf65ba885a75cd31f2aabd
+    last_write_checksum: sha1:2a49fce2cb3415ea967d60df6e48d46c10772d76
+    pristine_git_object: 1559c02fb2ba6b84a4010f137a688b9b1c3ae662
   internal/provider/types/attribute_with_composite_id_status_attribute.go:
     id: 835f90081161
-    last_write_checksum: sha1:e8ff58ac428348492731b3220579766c48704ac8
-    pristine_git_object: add21df420ec0f2bbf674267723e86aa4dc7d0a0
+    last_write_checksum: sha1:5924c4d4d46063956f05596038af8f78e833beb8
+    pristine_git_object: d56bc6c89a02ec171328743359452fd6992c1ba6
   internal/provider/types/attribute_with_composite_id_table_attribute.go:
     id: 2c9a3d92192d
-    last_write_checksum: sha1:6c8dfb5cb32e908291154b2092206501f257efa8
-    pristine_git_object: 8355177f3e56ca55d5ae57543c152c125350f354
+    last_write_checksum: sha1:d4195ec7aaf391549256bddaef72716e2183e312
+    pristine_git_object: f874d0c2a3ca7abf58de35a8e65743c55d6c65db
   internal/provider/types/attribute_with_composite_id_tags_attribute.go:
     id: "474562479347"
-    last_write_checksum: sha1:59688247e6767f6180a5901c86780ee0d3ef8102
-    pristine_git_object: 4ff4e5ff606e0756eab3cf211123f9622bce8c88
+    last_write_checksum: sha1:8bb22df0255271fa76fadb8694e5c9634efa1173
+    pristine_git_object: 9561eb500c9943121a12fcc4cd13758a20c5fca3
   internal/provider/types/attribute_with_composite_id_text_attribute.go:
     id: 0d0ee7115d40
-    last_write_checksum: sha1:658d23aea8d7d9c4cdee3b346e4f55e393d234bb
-    pristine_git_object: 385404a0ab08306e642cd01552eebd411592b8ae
+    last_write_checksum: sha1:33681579d0779323e9ae379cdb7dcfabd67ea5ec
+    pristine_git_object: d8d6c2c72e0a59479102a38d224d5a0a2df2bfb3
   internal/provider/types/attribute_with_composite_id_user_relation_attribute.go:
     id: 2e8f8561bd53
-    last_write_checksum: sha1:82c251b6fc6f708bf93650d4f6387942742c39d7
-    pristine_git_object: ba08852dcf2be01c5d12f977ffeb17d2e755bc25
+    last_write_checksum: sha1:b4b1eac10bf58ee674f41c549f7f055cb07eb83b
+    pristine_git_object: 31512ee8dd5cd2ea1dcbbcb9a3187b19d0613f77
   internal/provider/types/automation_attribute.go:
     id: f55a158e3f01
-    last_write_checksum: sha1:0fef28e463a650fc2761bcd30231d84c6f160109
-    pristine_git_object: 54552be7572523d69bc8531c9cd01eb0d5d7f643
+    last_write_checksum: sha1:44040b21bd5cc998ca8ce5a91753e97dff364ce4
+    pristine_git_object: cb6b61375ccb416600668fbcefc2fcf9bd6be207
   internal/provider/types/boolean_attribute.go:
     id: 50f62da30490
-    last_write_checksum: sha1:924279de0a6181896a7c0c9b53639d3909de5af5
-    pristine_git_object: 5e794eb36e5082c54c5e176a753396be35a3708b
-  internal/provider/types/bulk_actions.go:
-    id: 185b27ac0ecc
-    last_write_checksum: sha1:f4d1ff9ec36a7d10d1b2229e948b31254a135ee4
-    pristine_git_object: 5b9cee1c26ec7cbcd327a820596a6113745dce44
+    last_write_checksum: sha1:352a6627d3d0bd489db5c1221641b608bfb295a6
+    pristine_git_object: cffe4639c8c01f1f66b571099156019605bcec02
   internal/provider/types/computed_attribute.go:
     id: 96c231cdcefc
-    last_write_checksum: sha1:cae29b7f3d709bd58d4ff34088d0d1363b04ac9b
-    pristine_git_object: e10607c48ce72559ef6a8b55d153209b1e4ca47c
+    last_write_checksum: sha1:5ffcd2d6e290fd842f20dd221f1051c86f0f667f
+    pristine_git_object: 627a3a61c7ee7d5e42475e95852c8b9e5cabf4f6
   internal/provider/types/consent_attribute.go:
     id: a372c7aa12a6
-    last_write_checksum: sha1:36c5ca0a7e251523841eed984f35e223dd3d0cbc
-    pristine_git_object: 6b47fce5c2c56162cb46228d831432e355310f11
-  internal/provider/types/create_view.go:
-    id: d70edab6181b
-    last_write_checksum: sha1:84c114e05b07988c20b184d636c11d39d58a9917
-    pristine_git_object: d177ee78939fc2d2bba36ed7c890cdf341611ddb
+    last_write_checksum: sha1:1b26f9a63dbc8d84c056b5e98c06d4b5f0126cc5
+    pristine_git_object: 12ae7c71ab95526aadf83cd443b81f9a3995540d
   internal/provider/types/currency1.go:
     id: f1253eddf5c1
     last_write_checksum: sha1:45d6f68d5f9c8f1e3dbee8e45c86de4a1c3b21d3
     pristine_git_object: d4de1678e743a43106ceb225258db94eaba5b276
   internal/provider/types/currency_attribute.go:
     id: b2950b46ec99
-    last_write_checksum: sha1:9286daa53ed7528f1bd4eb8377f72e7c1ac90332
-    pristine_git_object: 5fa106593860745ee06e58b9d40cd6b02cffa80d
+    last_write_checksum: sha1:db609877b76dc50695dbda851e97ea9f6c54bd2d
+    pristine_git_object: d6e6e6becaeb25114e7045af3700217f63d6ba4d
   internal/provider/types/currency_attribute_currency.go:
     id: d0fbcbd26b2c
     last_write_checksum: sha1:7aa2b968314d02a269d9bc661f0023332de241b6
     pristine_git_object: 1789fbf276a6b7d0c22fa869ee5d85e4f1f5fb4b
-  internal/provider/types/edit_view.go:
-    id: 921b435476fe
-    last_write_checksum: sha1:049faa03c0643d20964fed000c98ff02824e5aa7
-    pristine_git_object: d136056576f7cfd292d55458e585add2365a3f12
-  internal/provider/types/entity_action.go:
-    id: 0848fbe5c8fc
-    last_write_checksum: sha1:553adb138a91115c8d801a0f6acf41bf70ed3a12
-    pristine_git_object: a0f2eab7838f070c7a69ec7f92d3c2fada05a530
   internal/provider/types/entity_capability_with_composite_id_required_permission.go:
     id: e2744ba11051
     last_write_checksum: sha1:44fd154433cd20e857b46d81ee12a138fc7fb5c3
@@ -509,58 +497,22 @@ trackedFiles:
     id: f6789cb83be6
     last_write_checksum: sha1:c0edea7a2af366a860c02daf802f0fb423f21a6e
     pristine_git_object: 720cde2093dbdf6d4c9db3f59fbaef59e25e0985
-  internal/provider/types/entity_default_create.go:
-    id: 573cfed54d20
-    last_write_checksum: sha1:b6b2fd798dc7164e7ea625b256d0ed8060c43f92
-    pristine_git_object: 17645756a698d31be33854afd766da6904541271
-  internal/provider/types/entity_default_edit.go:
-    id: 9e2bd8c9d7c3
-    last_write_checksum: sha1:e51134f75e49b4c7349a4bc6e65d964ce5059788
-    pristine_git_object: b098a81ecfabcb51c8b83a55372148adf51a9a85
-  internal/provider/types/entity_default_table.go:
-    id: e8e7bd081713
-    last_write_checksum: sha1:cd64c6a4de61095a5ed5b04cc036340d2451d412
-    pristine_git_object: e645aabab4e6f83159decd4088885a757342d59d
-  internal/provider/types/entity_default_table_options.go:
-    id: "909411132809"
-    last_write_checksum: sha1:022d168958eaa181159e3dfc36696ac5cb8ee32e
-    pristine_git_object: 423e8fbeb040148c20da8c70dd07648bc497bc83
-  internal/provider/types/entity_default_table_params.go:
-    id: 34516c5e7489
-    last_write_checksum: sha1:75fe2f483447285cc0512b8bc25a667f3480e829
-    pristine_git_object: 8cdf47ca4759103d3010c80999e92a2a5408da96
-  internal/provider/types/entity_schema_item_ui_config.go:
-    id: d1d3f4e68e0a
-    last_write_checksum: sha1:c00467586f07f90cc9d1e1d08c9d9f45052f9376
-    pristine_git_object: b2e009f8a2f221e41133071645a184f35be38a19
-  internal/provider/types/entity_view_disabled.go:
-    id: c47d4417ff9a
-    last_write_checksum: sha1:76cb065752315cfede5a7afd2d87551e99654b12
-    pristine_git_object: 1f7f8c306183a0bebdd4f23e1942dcbef921d9da
   internal/provider/types/file_attribute.go:
     id: 2b57c4f8c0ef
-    last_write_checksum: sha1:4939f9e4648129953ae730ad6f13b2e03d7a5096
-    pristine_git_object: a9a8d84647671aaed1c6d9d4262a5e1123a6afbb
+    last_write_checksum: sha1:86c6679d8657e8f2b4621fb9814ba8cbe5cffcf0
+    pristine_git_object: 35512e72f839739e04c74542b1686fcca5076837
   internal/provider/types/info_tooltip_title.go:
     id: 1a46e2508ff0
     last_write_checksum: sha1:22da485383c608ee901ea463c217de3eba5a6552
     pristine_git_object: a23f4b00262de35e4772cda39173b287d01fd3f8
-  internal/provider/types/layout_settings.go:
-    id: 3854dbeda0f4
-    last_write_checksum: sha1:6801cb847669633bdc76e1ea74c16c208db82a28
-    pristine_git_object: 5772439edcb8c28c723a24eb32466485e754ae83
-  internal/provider/types/list_item.go:
-    id: 8bc5a6ea750e
-    last_write_checksum: sha1:508b20e2ee15d70af087557fb526115cc567f434
-    pristine_git_object: fc8c4d99bd9d12eca9489c67294d44942fb33e26
   internal/provider/types/message_email_address_attribute.go:
     id: 5a77c1abc0a0
-    last_write_checksum: sha1:c6a2aabeec3fa2ad4a4f6516aef35d567aaf4210
-    pristine_git_object: b25f88a4ea9dfcf6bdc23c8e9c25660ac5edaa9b
+    last_write_checksum: sha1:6290377dd3dcb5659071a7e914c295b0df051e77
+    pristine_git_object: 48403cd8570146b9b0e3cdbaa7cf6c26c1fcd7ed
   internal/provider/types/multi_select_attribute.go:
     id: efb417c0c63f
-    last_write_checksum: sha1:f581332fa4b2f598effaab943ad8a213895c8ba0
-    pristine_git_object: a75c0bdd2377bab830a916cb31d99df0af7aed1d
+    last_write_checksum: sha1:48662da81240d53cb2bffb7b9f75bff3f3fb555d
+    pristine_git_object: 1b46d34f0d52d8e699a702b82de789c66b5719e4
   internal/provider/types/multi_select_attribute_options.go:
     id: 0ad29ef90263
     last_write_checksum: sha1:e5ea21fed698938f5044b9e27792e21bb78ba3fe
@@ -569,22 +521,14 @@ trackedFiles:
     id: 55cef2067842
     last_write_checksum: sha1:b7dc8ac4fd184daac95f392ebef9fef2b5dc7222
     pristine_git_object: 1e7f09a498d024d1ce301e835026a542371a577a
-  internal/provider/types/navbar_actions.go:
-    id: a315c01e5914
-    last_write_checksum: sha1:698e3d5cde1354b47670f9769d9d2946b5b3dd59
-    pristine_git_object: ada6455a99c81ac229f14fa8d68f67239fae8186
   internal/provider/types/number_attribute.go:
     id: 72fdfe90de0a
-    last_write_checksum: sha1:ac860a878bdd2c4794f02162030c5313c2c2acd5
-    pristine_git_object: f0fd434d690d3a2d4ab26cfbe3c98ef52984d8f7
-  internal/provider/types/redirect_entity_view.go:
-    id: ccddf4f5bc6c
-    last_write_checksum: sha1:a939c4df48ae1a3567ad99a74ca3d61b5443fda4
-    pristine_git_object: cd545841bead5c456e008ad4fb898901efe8e80d
+    last_write_checksum: sha1:adea22c4d03343709f946668c38969c0894b92e6
+    pristine_git_object: 48a57f350d940eaf93628eb35b72300ebde37e98
   internal/provider/types/relation_attribute.go:
     id: bb6cb0d22582
-    last_write_checksum: sha1:0d34aa4b5f579240ccd3665768b7d8fa494d44f3
-    pristine_git_object: 8b3b5e17bb213842bb625a2f658878c5256602c6
+    last_write_checksum: sha1:a7201b1a9823c06b573403c8f8c881fa0458633e
+    pristine_git_object: be670fb211692bb7c481c81529fe07cc451bf3bc
   internal/provider/types/relation_attribute_actions.go:
     id: ed3d273da61a
     last_write_checksum: sha1:a1ed036575258545fe17ac2afad7b0ba8a5154b0
@@ -599,64 +543,44 @@ trackedFiles:
     pristine_git_object: a95aedbfdec096e265d5db184fdaf2794ebec7bd
   internal/provider/types/select_attribute.go:
     id: 63970afaa5b5
-    last_write_checksum: sha1:d9fb244a3eda03cacb349b850ae1aa2e3e3901a8
-    pristine_git_object: b2710e88b7ec383d37c3f0f919b353a814286812
+    last_write_checksum: sha1:6501164d9925dc082c2b79a2e378924ea3868d6e
+    pristine_git_object: ccb50df94cb2f25c1ac38cf8b80caa9dcb2255be
   internal/provider/types/sequence_attribute.go:
     id: 18047853dd57
-    last_write_checksum: sha1:7b0b08b7afc70d7559c801c5460f793e4be03c41
-    pristine_git_object: c5d39df8e2b9790ee86901290805e8445d45da64
+    last_write_checksum: sha1:5c1c4d555da4e3b41c559eeb15a7e2cc9c1d8054
+    pristine_git_object: 49ff277046e91a4fef534fac72884cdbee3a90f1
   internal/provider/types/setting_flag.go:
     id: 4e4ab695ea54
     last_write_checksum: sha1:de2d8ea12209c2c8d2e5044b66f50a41f060319e
     pristine_git_object: 4afc8f5e11b1c6e04a2c833a741d620dcbeb0c29
-  internal/provider/types/sharing.go:
-    id: 8fedc7b42e8b
-    last_write_checksum: sha1:681368feb9ff33afca3a78a6b4a6c294f35744ba
-    pristine_git_object: d8daaca25d60de8b3a58e3b4de2d0777b674914e
   internal/provider/types/status_attribute.go:
     id: 698aec514ad4
-    last_write_checksum: sha1:50470ed10ab30517e6b65025c7f55e74f7441823
-    pristine_git_object: a3de8408430394bca9910b8c4d088bb8972b501b
-  internal/provider/types/summary_attribute.go:
-    id: 624a5ed479e8
-    last_write_checksum: sha1:2ff02a9632ef335df81ee419117019afb56c15e4
-    pristine_git_object: d8199a64df7a0915a1608aaede101468bc79457f
-  internal/provider/types/summary_attributes.go:
-    id: ffb7676d32e4
-    last_write_checksum: sha1:9aa1cc30385e1ded92fa4f166d38b6756c558602
-    pristine_git_object: c5b7f80f423e7d932885e515fbe1e61533ab320a
+    last_write_checksum: sha1:ac7e1890389d8f2c5f2a369886a0544d4f26978d
+    pristine_git_object: cefe640e31fd9accf5ae6c4ec30a8588afae4db0
   internal/provider/types/summary_field.go:
     id: 46139af847b4
     last_write_checksum: sha1:6a0ea1b93aa8ffab2a14f9203f1e67eea7ed3354
     pristine_git_object: 4647843b479a9b3a49a3312aab893459c24cb760
   internal/provider/types/table_attribute.go:
     id: ca435ef93d82
-    last_write_checksum: sha1:fa26c5c9cb0fbca2bae61e35735da6dafe8c220c
-    pristine_git_object: ae9a55ac91461fca26a6758416a25702ef8c6426
+    last_write_checksum: sha1:e37c00afc7ac32805524f9185e8f7b835709a7ab
+    pristine_git_object: 158a47f7cb9d8c284ff28339d7f2dc52a3cb35c0
   internal/provider/types/table_attribute_columns.go:
     id: 6353780c216a
     last_write_checksum: sha1:df15199bfd7838bf22e3eec8afeb12cd94ddeeda
     pristine_git_object: b258859278531d7a8ac583c3d01da9203af86ef0
-  internal/provider/types/table_view.go:
-    id: 6cc477850592
-    last_write_checksum: sha1:320c028fe9ad8a366361a25d6f4e37b21ba7b6bc
-    pristine_git_object: 1a27d91be0cb34077e8e12afd478086198f0215f
   internal/provider/types/tags_attribute.go:
     id: 3f8e3db84265
-    last_write_checksum: sha1:7aec3cee5e0c8192fbc91699278979ded32fde47
-    pristine_git_object: 9d88656b77ece1028f11a0af8412d1807c01594a
+    last_write_checksum: sha1:bdd2a8662c58ee98e319654c935b36ca0bfe9cf2
+    pristine_git_object: fd28ae458bf847c8b6f0728df98b4941968030ba
   internal/provider/types/text_attribute.go:
     id: f4914d2b4c5c
-    last_write_checksum: sha1:fe388c9fa9741c45c894ac28910588d0e67ab67d
-    pristine_git_object: d3fd2c8b6ae25531f4a478e434b84fe0d5ad41c3
-  internal/provider/types/ui_config.go:
-    id: ec40e8cda94d
-    last_write_checksum: sha1:c66e31b3103c9484ff5181c8eaf656658fad8a39
-    pristine_git_object: c10a292d1e634bf70f6fc5598aca9ce99e5c340b
+    last_write_checksum: sha1:b819c5266dfecbd97ef43b4fd60afc572506d66b
+    pristine_git_object: 4cbaa6e0ee3467fe9c91579b0ae793367ac65e20
   internal/provider/types/user_relation_attribute.go:
     id: 7db7b46a8bbc
-    last_write_checksum: sha1:0955c401c37085fbe13e3121f6d5aec9c90e9eb5
-    pristine_git_object: af327968d09547885e33edada06ceb16813ac92e
+    last_write_checksum: sha1:2c8d9de7e294b2761a219c167ceaf159d3a15819
+    pristine_git_object: fd666e0d4aa63081f4445e49facfac7a076cdfbc
   internal/provider/utils.go:
     id: 312d50f148af
     last_write_checksum: sha1:d2f09b57bf204f5f09bfa6821c01f238af899ef9
@@ -1157,30 +1081,14 @@ trackedFiles:
     id: 733afe3a1ee7
     last_write_checksum: sha1:2d02ca224bb468e8fc94b4fc644e298b36c6dc33
     pristine_git_object: 481a99fd121f0f87959f40cbf2e0b3875a5a900d
-  internal/sdk/models/shared/entityaction.go:
-    id: 08ee33cee588
-    last_write_checksum: sha1:ab6cf079a6f3db5621be9f4354990e9ed241d1e3
-    pristine_git_object: 5c1ede03487c3d0a525e58d05b6c51c67e1dd411
   internal/sdk/models/shared/entitycapability.go:
     id: 57f1b9ccdcae
-    last_write_checksum: sha1:a94ee14284a8361de1788923a327ef68563dbe40
-    pristine_git_object: 9c1f712fdff047c4d0f217ce30d28948d4171069
+    last_write_checksum: sha1:8f052082377be5483902c3c9130aba74df9754c2
+    pristine_git_object: e214f3b12f144196e6ff6ba0d95d1c13934fdef0
   internal/sdk/models/shared/entitycapabilitywithcompositeid.go:
     id: 420e5527b028
     last_write_checksum: sha1:ada6d1de2a14f3e6152f3b73ef3514f200705bd2
     pristine_git_object: 298df2d03fa31def09f2b0b36956f052031cdbe7
-  internal/sdk/models/shared/entitydefaultcreate.go:
-    id: 82b378a7acbf
-    last_write_checksum: sha1:c5b27f4839da55f1f77cfc77ea8d122b203a8e84
-    pristine_git_object: 0b78c7e4cb06e84573da07baf3c6c77d6d4607af
-  internal/sdk/models/shared/entitydefaultedit.go:
-    id: 56e0f92a30f1
-    last_write_checksum: sha1:5b52e345c6d5e4989523d187cffafa96c1974ccd
-    pristine_git_object: 80dc75bcbb37dd138d44f536cb01aa50247c257e
-  internal/sdk/models/shared/entitydefaulttable.go:
-    id: e453c2aaf041
-    last_write_checksum: sha1:8dd8f55b9e5a07acd7521d615733c83f289c58c2
-    pristine_git_object: b6aeb7953d711701403ce3f2f0fcd9dd902e1800
   internal/sdk/models/shared/entityimportparams.go:
     id: 7388831d308e
     last_write_checksum: sha1:2541aed89c7acfdfb13f4f4efe893728d7125f45
@@ -1211,8 +1119,8 @@ trackedFiles:
     pristine_git_object: f0506be2ba0f54b782bd3a2c15603f9c1ec11d0e
   internal/sdk/models/shared/entityschemaitem.go:
     id: c28accffc199
-    last_write_checksum: sha1:1526ebf06186086f68936dd520cd931d0ffd06fb
-    pristine_git_object: d82203e2af34dbac1b5c0794b67359d356975b07
+    last_write_checksum: sha1:e0aa9148e63c3c69ac8ce5fa104e4fefe9120d0b
+    pristine_git_object: d6120c6425bc145b7326a173bc007f67a533199d
   internal/sdk/models/shared/entitysearchincludedeletedparam.go:
     id: 1ab29bf7922d
     last_write_checksum: sha1:dd248e7ca4da298eebb698e0fd6ba75a555bbd04
@@ -1249,10 +1157,6 @@ trackedFiles:
     id: a817eae6ffce
     last_write_checksum: sha1:2b2c6e929b052d87407ec4577914379448b783aa
     pristine_git_object: eb44a0280c35e2e7c61a32371c7a890169213fa0
-  internal/sdk/models/shared/entityviewdisabled.go:
-    id: 12113f540979
-    last_write_checksum: sha1:96a595afa546ad0a76612a7793bd55e0c4fc9ef0
-    pristine_git_object: 5f01fc1eecb47fa0574af69a85c7de6a672c460e
   internal/sdk/models/shared/fileattribute.go:
     id: d2f92a4d60bd
     last_write_checksum: sha1:9a02563ea9fdc65935dfb1d421f9c3e7cf472716
@@ -1373,10 +1277,6 @@ trackedFiles:
     id: 277b9fa8b9c4
     last_write_checksum: sha1:e963fbd8e7f0e555e270f8acbd782ecc0eabdea1
     pristine_git_object: 91189c8726c0c18de3e3e4f6b243dd256a47f260
-  internal/sdk/models/shared/redirectentityview.go:
-    id: b41d6bdc2b16
-    last_write_checksum: sha1:c7d7580459d31ac835dd2336cb90a7b26526908a
-    pristine_git_object: 3060443b6b136048ac53507fc7821c8900f83f55
   internal/sdk/models/shared/relationattribute.go:
     id: 16dc5fcda3bc
     last_write_checksum: sha1:b381d327256147f14d72b72a7c969fc00456012d
@@ -1425,10 +1325,6 @@ trackedFiles:
     id: c0f44579de75
     last_write_checksum: sha1:cccde97601704af860395de9e18b012278610382
     pristine_git_object: 2e09fe5cf151855b8acd3e011ad54befb51d290c
-  internal/sdk/models/shared/summaryattribute.go:
-    id: 0771e30cacc9
-    last_write_checksum: sha1:0218e4b6b9cc0997d962b0f8a88eb5fd07def761
-    pristine_git_object: 96354a0cce4ccc25ee94373715a7010663b7fd64
   internal/sdk/models/shared/summaryfield.go:
     id: e570522ae1ab
     last_write_checksum: sha1:f3f3619243222c6d3a2ad8024cddb628cbd6f251
@@ -1511,8 +1407,8 @@ trackedFiles:
     pristine_git_object: 97843e9884b67946d30f986c4e387a0c1c377a05
   internal/sdk/sdk.go:
     id: 02d7190ee502
-    last_write_checksum: sha1:86fd804541c7ff90983d6ae78e28fa9cc34b24f4
-    pristine_git_object: 5b43116258953789cdeffff1577f8929d488b74d
+    last_write_checksum: sha1:5c31ae2812db805a13dfc23188f027b21c28f1c7
+    pristine_git_object: e1b8d87d76ad1cc26722141552fb2cebf0665084
   internal/sdk/taxonomy.go:
     id: 6295ebf2e026
     last_write_checksum: sha1:bf3c21c954eeaff99ba902c2500208d96f336242
@@ -1613,7 +1509,7 @@ examples:
           unpublished: false
       responses:
         "200":
-          application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {"route": "/app/pricing-hub/product/:entityId"}, "edit_view": {"route": "/app/pricing-hub/product/:entityId"}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>", "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}]}
+          application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {"route": "/app/pricing-hub/product/:entityId"}, "edit_view": {"route": "/app/pricing-hub/product/:entityId"}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}]}
   getSchema:
     speakeasy-default-get-schema:
       parameters:
@@ -1621,7 +1517,7 @@ examples:
           slug: "contact"
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
         "404":
           application/json: {"status": 404, "error": "Not Found"}
   putSchema:
@@ -1632,10 +1528,10 @@ examples:
         query:
           draft: false
       requestBody:
-        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>"}
+        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
   deleteSchema:
@@ -1677,7 +1573,7 @@ examples:
           fields: ["id", "attributes", "capabilites"]
       responses:
         "200":
-          application/json: {"versions": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>", "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "drafts": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>", "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "versions_more": false}
+          application/json: {"versions": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "drafts": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "versions_more": false}
   listAvailableCapabilities:
     speakeasy-default-list-available-capabilities:
       parameters:
@@ -1690,7 +1586,7 @@ examples:
     speakeasy-default-list-schema-blueprints:
       responses:
         "200":
-          application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {"route": "/app/pricing-hub/product/:entityId"}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "attributes": "<value>", "capabilities": "<value>", "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}]}
+          application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {"route": "/app/pricing-hub/product/:entityId"}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}]}
   listTaxonomyClassificationsForSchema:
     speakeasy-default-list-taxonomy-classifications-for-schema:
       parameters:

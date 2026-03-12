@@ -13,7 +13,7 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	AmountField              types.String                                         `tfsdk:"amount_field"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Computed                 types.Bool                                           `tfsdk:"computed"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	CurrencyField            types.String                                         `tfsdk:"currency_field"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`

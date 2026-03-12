@@ -10,7 +10,7 @@ import (
 type CurrencyAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	Currency                 []CurrencyAttributeCurrency                          `tfsdk:"currency"`
 	CurrencySelectorOnly     types.Bool                                           `tfsdk:"currency_selector_only"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`

@@ -74,6 +74,28 @@ actions:
     update:
       group_headlines: {}
 
+  # jsonencode ui_config in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["ui_config"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      ui_config: {}
+
+  # jsonencode layout_settings in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["layout_settings"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      layout_settings: {}
+
+  # jsonencode dialog_config in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["dialog_config"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      dialog_config: {}
+
+
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]
     update:

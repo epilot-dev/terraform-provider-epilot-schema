@@ -6,27 +6,27 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type EntityCapabilityUIConfig struct {
+type UIConfig struct {
 	// Whether the capability is filterable
 	IsFilterable *bool `default:"false" json:"is_filterable"`
 }
 
-func (e EntityCapabilityUIConfig) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
+func (u UIConfig) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (e *EntityCapabilityUIConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+func (u *UIConfig) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EntityCapabilityUIConfig) GetIsFilterable() *bool {
-	if e == nil {
+func (u *UIConfig) GetIsFilterable() *bool {
+	if u == nil {
 		return nil
 	}
-	return e.IsFilterable
+	return u.IsFilterable
 }
 
 // RequiredPermission - Require a permission to display UI hook
@@ -190,9 +190,9 @@ type EntityCapability struct {
 	// Manifest ID used to create/update the schema capabilility
 	Manifest []string `json:"_manifest,omitempty"`
 	// ID of the app if the capability is provided by an app
-	AppID    *string                   `json:"app_id,omitempty"`
-	UIConfig *EntityCapabilityUIConfig `json:"ui_config,omitempty"`
-	UIHooks  []UIHooks                 `json:"ui_hooks,omitempty"`
+	AppID    *string   `json:"app_id,omitempty"`
+	UIConfig *UIConfig `json:"ui_config,omitempty"`
+	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -248,7 +248,7 @@ func (e *EntityCapability) GetAppID() *string {
 	return e.AppID
 }
 
-func (e *EntityCapability) GetUIConfig() *EntityCapabilityUIConfig {
+func (e *EntityCapability) GetUIConfig() *UIConfig {
 	if e == nil {
 		return nil
 	}

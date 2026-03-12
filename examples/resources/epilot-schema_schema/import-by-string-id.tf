@@ -1,18 +1,4 @@
-# import {
-#   to = epilot-schema_schema.my_epilot-schema_schema_order
-#   id = "order"
-# }
-
-
-terraform {
-  required_providers {
-    epilot-schema = {
-      source  = "epilot/epilot-schema"
-      version = "0.18.1"
-    }
-  }
-}
-
-provider "epilot-schema" {
-  epilot_auth="eyJraWQiOiJTOGJWSSt0dk5CZTFjMVZBVVZIWkVZcmhuS0lzT1NPVFVOZEloKzlXQk9VPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlMzk0YThhMi0yMGUxLTcwNTgtNGMxNS05MDY3YjI0NTNmZDAiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LWNlbnRyYWwtMS5hbWF6b25hd3MuY29tXC9ldS1jZW50cmFsLTFfdGNHcXhScUpBIiwiY3VzdG9tOml2eV9vcmdfaWQiOiIyMDAwMDM4OCIsImNvZ25pdG86dXNlcm5hbWUiOiJibHVlcHJpbnRzQHRlc3R1c2VyLmVwaWxvdC5jbG91ZCIsImFkbWluX2VtYWlsIjoibi5nb2VsQGVwaWxvdC5jbG91ZCIsImN1c3RvbTppdnlfdXNlcl9pZCI6IjE2MjA4MiIsIm9yaWdpbl9qdGkiOiI0ZjQ1MzE4Zi0zZWU3LTRkNWQtODBhMi1kMTE3MGIxYjVmYWYiLCJhdWQiOiI2aDJvbjlxYmNvazA3dDRqMGRoZThpNWc1dSIsImV2ZW50X2lkIjoiZTA4M2Y1ZmMtM2E3OS00MDgyLWFmMWYtZGQzN2Y2YjZkYTg4IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3NzI1NjA0NjksImV4cCI6MTc3MjU2NDA3MSwiaWF0IjoxNzcyNTYwNDcxLCJqdGkiOiJiMWQxOGZlNC02ODdhLTRhNWItYWRjNy05NDlkNWRhZTNlYTgiLCJlbWFpbCI6ImJsdWVwcmludHNAdGVzdHVzZXIuZXBpbG90LmNsb3VkIn0.a0B8aJ8V3rKTAHh0P-diSHggSekYsv7tCgbCHR2k4V97VJZgvph9ATJD1jev0AmZgenaUK-aFr3X5AYfFmm4NHuVcjU_KA0e2tjJ2iTfEZd1M2DjSv0TL4jZez5oXjzqiyj3vxZinYCJ-GXIDzhcbp9Uuz6j-Dg6xIaA3Dbx_Rgc1AJelvvQlbj-kYdA5xPRS5tVgZmaRe45MeJ30X7GKJd8UstaJgrW2Kbyz5_ums3DAUUSjofOJ_8KlYMGW8GF4QVCeOXNKEA2PsxD7hGHOyPJo3ZUH2hHepxRIwWE4rcB3vmIBqdMSGuwfMIxbW_m7SVcfv9KUqjrk4AMof7q0w"
+import {
+  to = epilot-schema_schema.my_epilot-schema_schema
+  id = "contact"
 }

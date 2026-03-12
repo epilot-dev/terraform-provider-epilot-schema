@@ -12,7 +12,7 @@ type AttributeWithCompositeIDFileAttribute struct {
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	AllowedExtensions        []types.String                                       `tfsdk:"allowed_extensions"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultAccessControl     types.String                                         `tfsdk:"default_access_control"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`

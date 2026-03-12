@@ -5,7 +5,6 @@ package provider
 import (
 	"context"
 	"fmt"
-	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -33,32 +32,32 @@ type SchemaDataSource struct {
 
 // SchemaDataSourceModel describes the data model.
 type SchemaDataSourceModel struct {
-	Attributes             jsontypes.Normalized            `tfsdk:"attributes"`
-	Blueprint              types.String                    `tfsdk:"blueprint"`
-	Capabilities           jsontypes.Normalized            `tfsdk:"capabilities"`
-	Category               types.String                    `tfsdk:"category"`
-	CreatedAt              types.String                    `tfsdk:"created_at"`
-	Description            types.String                    `tfsdk:"description"`
-	DialogConfig           map[string]jsontypes.Normalized `tfsdk:"dialog_config"`
-	DocsURL                types.String                    `tfsdk:"docs_url"`
-	Draft                  types.Bool                      `tfsdk:"draft"`
-	EnableSetting          []types.String                  `tfsdk:"enable_setting"`
-	ExplicitSearchMappings jsontypes.Normalized            `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                    `tfsdk:"feature_flag"`
-	GroupHeadlines         jsontypes.Normalized            `tfsdk:"group_headlines"`
-	GroupSettings          jsontypes.Normalized            `tfsdk:"group_settings"`
-	Icon                   types.String                    `tfsdk:"icon"`
-	ID                     types.String                    `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
-	LayoutSettings         *tfTypes.LayoutSettings         `tfsdk:"layout_settings"`
-	Name                   types.String                    `tfsdk:"name"`
-	Plural                 types.String                    `tfsdk:"plural"`
-	Published              types.Bool                      `tfsdk:"published"`
-	Purpose                []types.String                  `tfsdk:"purpose"`
-	Slug                   types.String                    `tfsdk:"slug"`
-	TitleTemplate          types.String                    `tfsdk:"title_template"`
-	UIConfig               *tfTypes.UIConfig               `tfsdk:"ui_config"`
-	UpdatedAt              types.String                    `tfsdk:"updated_at"`
-	Version                types.Int64                     `tfsdk:"version"`
+	Attributes             jsontypes.Normalized `tfsdk:"attributes"`
+	Blueprint              types.String         `tfsdk:"blueprint"`
+	Capabilities           jsontypes.Normalized `tfsdk:"capabilities"`
+	Category               types.String         `tfsdk:"category"`
+	CreatedAt              types.String         `tfsdk:"created_at"`
+	Description            types.String         `tfsdk:"description"`
+	DialogConfig           jsontypes.Normalized `tfsdk:"dialog_config"`
+	DocsURL                types.String         `tfsdk:"docs_url"`
+	Draft                  types.Bool           `tfsdk:"draft"`
+	EnableSetting          jsontypes.Normalized `tfsdk:"enable_setting"`
+	ExplicitSearchMappings jsontypes.Normalized `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String         `tfsdk:"feature_flag"`
+	GroupHeadlines         jsontypes.Normalized `tfsdk:"group_headlines"`
+	GroupSettings          jsontypes.Normalized `tfsdk:"group_settings"`
+	Icon                   types.String         `tfsdk:"icon"`
+	ID                     types.String         `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
+	LayoutSettings         jsontypes.Normalized `tfsdk:"layout_settings"`
+	Name                   types.String         `tfsdk:"name"`
+	Plural                 types.String         `tfsdk:"plural"`
+	Published              types.Bool           `tfsdk:"published"`
+	Purpose                []types.String       `tfsdk:"purpose"`
+	Slug                   types.String         `tfsdk:"slug"`
+	TitleTemplate          types.String         `tfsdk:"title_template"`
+	UIConfig               jsontypes.Normalized `tfsdk:"ui_config"`
+	UpdatedAt              types.String         `tfsdk:"updated_at"`
+	Version                types.Int64          `tfsdk:"version"`
 }
 
 // Metadata returns the data source type name.
@@ -95,9 +94,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			"description": schema.StringAttribute{
 				Computed: true,
 			},
-			"dialog_config": schema.MapAttribute{
+			"dialog_config": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
-				ElementType: jsontypes.NormalizedType{},
+				Description: `Parsed as JSON.`,
 			},
 			"docs_url": schema.StringAttribute{
 				Computed: true,
@@ -105,10 +105,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			"draft": schema.BoolAttribute{
 				Computed: true,
 			},
-			"enable_setting": schema.ListAttribute{
+			"enable_setting": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
-				ElementType: types.StringType,
-				Description: `This schema should only be active when one of the organization settings is enabled`,
+				Description: `Parsed as JSON.`,
 			},
 			"explicit_search_mappings": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
@@ -137,26 +137,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Optional:    true,
 				Description: `Generated uuid for schema`,
 			},
-			"layout_settings": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"additional_properties": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
-						Computed:    true,
-						Description: `Parsed as JSON.`,
-					},
-					"grid_gap": schema.StringAttribute{
-						Computed:    true,
-						Description: `Defines the grid gap for the mounting node of the attribute.`,
-					},
-					"grid_template_columns": schema.StringAttribute{
-						Computed:    true,
-						Description: `Defines the grid column template for the mounting node of the attribute.`,
-					},
-				},
-				MarkdownDescription: `Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:` + "\n" +
-					`- Managed Properties: are interpreted and transformed into layout styles` + "\n" +
-					`- Un-managed Properties: are appended as styles into the attribute mounting node`,
+			"layout_settings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Parsed as JSON.`,
 			},
 			"name": schema.StringAttribute{
 				Computed:    true,
@@ -183,385 +167,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed:    true,
 				Description: `Template for rendering the title field. Uses handlebars`,
 			},
-			"ui_config": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"create_view": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"entity_default_create": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"search_params": schema.MapAttribute{
-										Computed:    true,
-										ElementType: types.StringType,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"route": schema.StringAttribute{
-										Computed: true,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-						},
-					},
-					"edit_view": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"entity_default_edit": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"search_params": schema.MapAttribute{
-										Computed:    true,
-										ElementType: types.StringType,
-									},
-									"summary_attributes": schema.ListAttribute{
-										Computed:    true,
-										ElementType: types.StringType,
-										Description: `List of attribute names that we show in the summary header`,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"route": schema.StringAttribute{
-										Computed: true,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-						},
-					},
-					"list_item": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"quick_actions": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"action": schema.StringAttribute{
-											Computed:    true,
-											Description: `A unique action name`,
-										},
-										"icon": schema.StringAttribute{
-											Computed: true,
-										},
-										"label": schema.StringAttribute{
-											Computed: true,
-										},
-										"permission": schema.StringAttribute{
-											Computed: true,
-											MarkdownDescription: `Permission required to show the action.` + "\n" +
-												`If not provided, the action will be shown to all users.`,
-										},
-									},
-								},
-							},
-							"summary_attributes": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"str": schema.StringAttribute{
-											Computed: true,
-										},
-										"summary_attribute": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.Float64Attribute{
-													Computed: true,
-													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
-														`For instance, When set to 1, the content will be displayed in a single line.`,
-												},
-												"content_wrap": schema.StringAttribute{
-													Computed:    true,
-													Description: `Defines white-space of the content.`,
-												},
-												"display_mode": schema.StringAttribute{
-													Computed: true,
-													MarkdownDescription: `Defines the display mode of the summary attribute.` + "\n" +
-														`When set to ` + "`" + `inline` + "`" + `, the label and value will be displayed in the same line.` + "\n" +
-														`When set to ` + "`" + `block` + "`" + `, the label and value will be displayed in separate lines.`,
-												},
-												"feature_flag": schema.StringAttribute{
-													Computed:    true,
-													Description: `Binds summary field visibility to the feature flag state.`,
-												},
-												"hide_label": schema.BoolAttribute{
-													Computed:    true,
-													Description: `When set to true, will hide the label of the field.`,
-												},
-												"highlight_container": schema.BoolAttribute{
-													Computed:    true,
-													Description: `When set to true, will highlight the container of the field.`,
-												},
-												"label": schema.StringAttribute{
-													Computed:    true,
-													Description: `Label to be shown on the top of the value.`,
-												},
-												"render_condition": schema.StringAttribute{
-													Computed: true,
-													MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-														`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-														`Note: Empty or invalid expression have no effect on the field visibility.`,
-												},
-												"settings_flag": schema.ListNestedAttribute{
-													Computed: true,
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"enabled": schema.BoolAttribute{
-																Computed:    true,
-																Description: `Whether the setting should be enabled or not`,
-															},
-															"name": schema.StringAttribute{
-																Computed:    true,
-																Description: `The name of the organization setting to check`,
-															},
-														},
-													},
-													Description: `This summary attribute should only be visible when all the settings have the correct value`,
-												},
-												"show_as_tag": schema.BoolAttribute{
-													Computed:    true,
-													Description: `Displays the value within a tag chip.`,
-												},
-												"tag_color": schema.StringAttribute{
-													Computed:    true,
-													Description: `CSS hex color or CSS color name for the tag chip.`,
-												},
-												"value": schema.StringAttribute{
-													Computed:    true,
-													Description: `A static value or an handlebar expression.`,
-												},
-											},
-											MarkdownDescription: `Represents an expanded version of an attribute to be displayed in the list item summary.` + "\n" +
-												`This configuration can be used in the following way:` + "\n" +
-												`` + "```" + `js` + "\n" +
-												`{` + "\n" +
-												`  "label": "Price components"` + "\n" +
-												`  "value": "{{item.prices.length}} price components"` + "\n" +
-												`  "show_as_tag": true` + "\n" +
-												`  "render_condition": "is_composite_price = "true""` + "\n" +
-												`}` + "\n" +
-												`` + "```" + `` + "\n" +
-												`The value field supports handlebar expressions from which you can pick any field from the entity state.`,
-										},
-									},
-								},
-							},
-							"ui_config": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"content_direction": schema.StringAttribute{
-										Computed:    true,
-										Description: `Show attributes in a row or column`,
-									},
-								},
-							},
-						},
-					},
-					"sharing": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"show_sharing_button": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Show the sharing button in entity detail view`,
-							},
-						},
-					},
-					"single_view": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"entity_default_edit": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"search_params": schema.MapAttribute{
-										Computed:    true,
-										ElementType: types.StringType,
-									},
-									"summary_attributes": schema.ListAttribute{
-										Computed:    true,
-										ElementType: types.StringType,
-										Description: `List of attribute names that we show in the summary header`,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"route": schema.StringAttribute{
-										Computed: true,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-						},
-					},
-					"table_view": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"entity_default_table": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"bulk_actions": schema.ListNestedAttribute{
-										Computed: true,
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"entity_action": schema.SingleNestedAttribute{
-													Computed: true,
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Computed:    true,
-															Description: `A unique action name`,
-														},
-														"icon": schema.StringAttribute{
-															Computed: true,
-														},
-														"label": schema.StringAttribute{
-															Computed: true,
-														},
-														"permission": schema.StringAttribute{
-															Computed: true,
-															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.`,
-														},
-													},
-													Description: `An entity action configured from the entity schema`,
-												},
-												"str": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-									"enable_thumbnails": schema.BoolAttribute{
-										Computed:    true,
-										Description: `Enable the thumbnail column`,
-									},
-									"navbar_actions": schema.ListNestedAttribute{
-										Computed: true,
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"options": schema.ListNestedAttribute{
-													Computed: true,
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"label": schema.StringAttribute{
-																Computed: true,
-															},
-															"params": schema.SingleNestedAttribute{
-																Computed: true,
-															},
-														},
-													},
-												},
-												"type": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-									"row_actions": schema.ListNestedAttribute{
-										Computed: true,
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"entity_action": schema.SingleNestedAttribute{
-													Computed: true,
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Computed:    true,
-															Description: `A unique action name`,
-														},
-														"icon": schema.StringAttribute{
-															Computed: true,
-														},
-														"label": schema.StringAttribute{
-															Computed: true,
-														},
-														"permission": schema.StringAttribute{
-															Computed: true,
-															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.`,
-														},
-													},
-													Description: `An entity action configured from the entity schema`,
-												},
-												"str": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"route": schema.StringAttribute{
-										Computed: true,
-									},
-									"view_type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-						},
-					},
-				},
+			"ui_config": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Parsed as JSON.`,
 			},
 			"updated_at": schema.StringAttribute{
 				Computed: true,

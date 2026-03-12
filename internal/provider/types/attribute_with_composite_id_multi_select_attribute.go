@@ -13,7 +13,7 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	AllowAny                 types.Bool                                           `tfsdk:"allow_any"`
 	AllowExtraOptions        types.Bool                                           `tfsdk:"allow_extra_options"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
-	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DisableCaseSensitive     types.Bool                                           `tfsdk:"disable_case_sensitive"`
