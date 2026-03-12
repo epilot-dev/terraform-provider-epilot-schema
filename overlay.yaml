@@ -30,51 +30,16 @@ actions:
   - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["source"]
     remove: true
 
-  # Convert fields to untyped (any/jsonencode) to fix empty value serialization bugs.
+  # jsonencode enable_setting to fix empty value serialization bug.
   # The Speakeasy SDK's custom MarshalJSON only checks isNil() for omitempty, not isEmpty().
-  # Typed arrays/maps always create non-nil empty containers ([] / {}) via make().
-  # Untyped (interface{}) fields stay nil when TF value is null, so omitempty works correctly.
-  # This fixes enable_setting: [] causing schemas to disappear from the UI.
-
-  # jsonencode enable_setting
+  # Typed arrays always create non-nil empty containers via make(), serialized as [].
+  # enable_setting: [] causes schemas to disappear from the UI.
+  # Untyped (interface{}) stays nil when TF value is null, so omitempty correctly omits it.
   - target: $["components"]["schemas"]["EntitySchema"]["properties"]["enable_setting"]
     remove: true
   - target: $["components"]["schemas"]["EntitySchema"]["properties"]
     update:
       enable_setting: {}
-
-  # jsonencode _purpose
-  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["_purpose"]
-    remove: true
-  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
-    update:
-      _purpose: {}
-
-  # jsonencode dialog_config
-  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["dialog_config"]
-    remove: true
-  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
-    update:
-      dialog_config: {}
-
-  # jsonencode search_params in create/edit views
-  - target: $["components"]["schemas"]["EntityDefaultCreate"]["properties"]["search_params"]
-    remove: true
-  - target: $["components"]["schemas"]["EntityDefaultCreate"]["properties"]
-    update:
-      search_params: {}
-  - target: $["components"]["schemas"]["EntityDefaultEdit"]["properties"]["search_params"]
-    remove: true
-  - target: $["components"]["schemas"]["EntityDefaultEdit"]["properties"]
-    update:
-      search_params: {}
-
-  # jsonencode navbar_actions in table view
-  - target: $["components"]["schemas"]["EntityDefaultTable"]["properties"]["navbar_actions"]
-    remove: true
-  - target: $["components"]["schemas"]["EntityDefaultTable"]["properties"]
-    update:
-      navbar_actions: {}
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]["$ref"]
     remove: true
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]
