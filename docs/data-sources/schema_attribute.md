@@ -36,6 +36,7 @@ data "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--country_attribute))
 - `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--currency_attribute))
 - `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--date_attribute))
+- `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `email_attribute` (Attributes) Email address (see [below for nested schema](#nestedatt--email_attribute))
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -93,6 +94,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `table_attribute` (Attributes) Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row. (see [below for nested schema](#nestedatt--table_attribute))
 - `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--tags_attribute))
 - `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--text_attribute))
+- `type` (String)
 - `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--user_relation_attribute))
 - `value_formatter` (String)
 

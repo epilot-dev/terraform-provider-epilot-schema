@@ -42,6 +42,7 @@ type SchemaCapabilityDataSourceModel struct {
 	Name         types.String                                     `tfsdk:"name"`
 	Purpose      []types.String                                   `tfsdk:"purpose"`
 	Schema       types.String                                     `tfsdk:"schema"`
+	Schemas      []tfTypes.EntityCapabilityWithCompositeIDSchemas `tfsdk:"schemas"`
 	SettingsFlag []tfTypes.SettingFlag                            `tfsdk:"settings_flag"`
 	Title        types.String                                     `tfsdk:"title"`
 	UIConfig     *tfTypes.EntityCapabilityWithCompositeIDUIConfig `tfsdk:"ui_config"`
@@ -6378,6 +6379,23 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 			"schema": schema.StringAttribute{
 				Computed:    true,
 				Description: `Schema slug the capability belongs to`,
+			},
+			"schemas": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
+							Computed:    true,
+							Description: `Parsed as JSON.`,
+						},
+						"schema": schema.StringAttribute{
+							Computed:    true,
+							Description: `Entity schema slug`,
+						},
+					},
+				},
+				Description: `Schema-specific configuration for the capability`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,

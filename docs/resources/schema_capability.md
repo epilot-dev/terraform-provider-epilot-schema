@@ -17,7 +17,56 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
   app_id = "123e4567-e89b-12d3-a456-426614174000"
   attributes = [
     {
-      # ...
+      partner_status_attribute = {
+        constraints = {
+          # ...
+        }
+        default_value               = "{ \"see\": \"documentation\" }"
+        deprecated                  = false
+        entity_builder_disable_edit = false
+        exclude_from_search         = false
+        explicit_searchable         = true
+        feature_flag                = "FF_MY_FEATURE_FLAG"
+        group                       = "...my_group..."
+        has_primary                 = false
+        hidden                      = true
+        hide_label                  = true
+        icon                        = "...my_icon..."
+        id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+        info_helpers = {
+          hint_custom_component  = "...my_hint_custom_component..."
+          hint_text              = "...my_hint_text..."
+          hint_text_key          = "...my_hint_text_key..."
+          hint_tooltip_placement = "top"
+        }
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
+        name                    = "...my_name..."
+        order                   = 0
+        placeholder             = "...my_placeholder..."
+        preview_value_formatter = "...my_preview_value_formatter..."
+        protected               = true
+        purpose = [
+          "taxonomy-slug:classification-slug"
+        ]
+        readonly         = false
+        render_condition = "...my_render_condition..."
+        repeatable       = false
+        required         = false
+        settings_flag = [
+          {
+            enabled = true
+            name    = "...my_name..."
+          }
+        ]
+        show_in_table   = false
+        sortable        = false
+        type            = "partner_status"
+        value_formatter = "...my_value_formatter..."
+      }
     }
   ]
   feature_flag = "FF_MY_FEATURE_FLAG"
@@ -30,6 +79,12 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
     "taxonomy-slug:classification-slug"
   ]
   schema = "contact"
+  schemas = [
+    {
+      additional_properties = "{ \"see\": \"documentation\" }"
+      schema                = "contact"
+    }
+  ]
   settings_flag = [
     {
       enabled = true
@@ -79,6 +134,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
 - `manifest` (List of String) Manifest ID used to create/update the schema capabilility
 - `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
+- `schemas` (Attributes List) Schema-specific configuration for the capability (see [below for nested schema](#nestedatt--schemas))
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 - `title` (String) Human readable title of the capability
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
@@ -3075,6 +3131,15 @@ Optional:
 - `name` (String) The name of the organization setting to check
 
 
+
+
+<a id="nestedatt--schemas"></a>
+### Nested Schema for `schemas`
+
+Optional:
+
+- `additional_properties` (String) Parsed as JSON.
+- `schema` (String) Entity schema slug. Not Null
 
 
 <a id="nestedatt--settings_flag"></a>
