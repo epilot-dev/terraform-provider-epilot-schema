@@ -35,6 +35,7 @@ data "epilot-schema_schema_capability" "my_schemacapability" {
 - `name` (String) Unique name for the capability
 - `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
+- `schemas` (Attributes List) Schema-specific configuration for the capability (see [below for nested schema](#nestedatt--schemas))
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 - `title` (String) Human readable title of the capability
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
@@ -2956,6 +2957,15 @@ Read-Only:
 - `name` (String) The name of the organization setting to check
 
 
+
+
+<a id="nestedatt--schemas"></a>
+### Nested Schema for `schemas`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `schema` (String) Entity schema slug
 
 
 <a id="nestedatt--settings_flag"></a>

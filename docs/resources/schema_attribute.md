@@ -114,20 +114,19 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 ### Read-Only
 
 - `composite_id` (String) Schema Slug and the Attribute ID
-- `deprecated` (Boolean) Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean)
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
 Use this for fields that should not be matched during entity search operations,
 such as internal hashes or identifiers that might accidentally match search terms.
-Default: false
 - `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
 the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
 that must always be included in search operations.
-Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
@@ -139,15 +138,16 @@ The value must be a valid @epilot/base-elements Icon name
 - `placeholder` (String)
 - `preview_value_formatter` (String)
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `readonly` (Boolean) Default: false
+- `readonly` (Boolean)
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean) The attribute is a repeatable
-- `required` (Boolean) Default: false
+- `required` (Boolean)
 - `schema` (String) Schema slug the attribute belongs to
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
+- `type` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--address_attribute"></a>
