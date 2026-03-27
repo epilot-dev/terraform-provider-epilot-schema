@@ -244,7 +244,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem(ctx context.Context) (*sh
 	}
 	var enableSetting interface{}
 	if !r.EnableSetting.IsUnknown() && !r.EnableSetting.IsNull() {
-		_ = json.Unmarshal([]byte(r.EnableSetting.ValueString()), &enableSetting)
+		jsonStr := r.EnableSetting.ValueString()
+		// Only unmarshal if we have a non-empty, non-null JSON value
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &enableSetting)
+		}
 	}
 	var attributes interface{}
 	_ = json.Unmarshal([]byte(r.Attributes.ValueString()), &attributes)
@@ -252,27 +256,45 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem(ctx context.Context) (*sh
 	_ = json.Unmarshal([]byte(r.Capabilities.ValueString()), &capabilities)
 	var groupSettings interface{}
 	if !r.GroupSettings.IsUnknown() && !r.GroupSettings.IsNull() {
-		_ = json.Unmarshal([]byte(r.GroupSettings.ValueString()), &groupSettings)
+		jsonStr := r.GroupSettings.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &groupSettings)
+		}
 	}
 	var groupHeadlines interface{}
 	if !r.GroupHeadlines.IsUnknown() && !r.GroupHeadlines.IsNull() {
-		_ = json.Unmarshal([]byte(r.GroupHeadlines.ValueString()), &groupHeadlines)
+		jsonStr := r.GroupHeadlines.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &groupHeadlines)
+		}
 	}
 	var uiConfig interface{}
 	if !r.UIConfig.IsUnknown() && !r.UIConfig.IsNull() {
-		_ = json.Unmarshal([]byte(r.UIConfig.ValueString()), &uiConfig)
+		jsonStr := r.UIConfig.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &uiConfig)
+		}
 	}
 	var layoutSettings interface{}
 	if !r.LayoutSettings.IsUnknown() && !r.LayoutSettings.IsNull() {
-		_ = json.Unmarshal([]byte(r.LayoutSettings.ValueString()), &layoutSettings)
+		jsonStr := r.LayoutSettings.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &layoutSettings)
+		}
 	}
 	var dialogConfig interface{}
 	if !r.DialogConfig.IsUnknown() && !r.DialogConfig.IsNull() {
-		_ = json.Unmarshal([]byte(r.DialogConfig.ValueString()), &dialogConfig)
+		jsonStr := r.DialogConfig.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &dialogConfig)
+		}
 	}
 	var explicitSearchMappings interface{}
 	if !r.ExplicitSearchMappings.IsUnknown() && !r.ExplicitSearchMappings.IsNull() {
-		_ = json.Unmarshal([]byte(r.ExplicitSearchMappings.ValueString()), &explicitSearchMappings)
+		jsonStr := r.ExplicitSearchMappings.ValueString()
+		if jsonStr != "" && jsonStr != "null" {
+			_ = json.Unmarshal([]byte(jsonStr), &explicitSearchMappings)
+		}
 	}
 	out := shared.EntitySchemaItem{
 		ID:                     id,

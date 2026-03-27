@@ -72,6 +72,14 @@ func MarshalJSON(v interface{}, tag reflect.StructTag, topLevel bool) ([]byte, e
 					continue
 				}
 
+				// For interface{} types, also check if the value itself is nil after Interface()
+				// This handles edge cases where fieldVal.IsNil() might not catch all nil scenarios
+				if field.Type.Kind() == reflect.Interface && field.IsExported() {
+					if fv := fieldVal.Interface(); fv == nil {
+						continue
+					}
+				}
+
 				if omitZero && fieldVal.IsZero() {
 					continue
 				}
