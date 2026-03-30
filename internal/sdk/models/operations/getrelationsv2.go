@@ -94,6 +94,9 @@ func (g *GetRelationsV2Request) GetFields() []string {
 	return g.Fields
 }
 
+// #region class-body-getrelationsv2request
+// #endregion class-body-getrelationsv2request
+
 type GetRelationsV2Response struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -141,3 +144,6 @@ func (g *GetRelationsV2Response) GetNotFoundError() *shared.NotFoundError {
 	}
 	return g.NotFoundError
 }
+
+// #region class-body-getrelationsv2response
+// #endregion class-body-getrelationsv2response

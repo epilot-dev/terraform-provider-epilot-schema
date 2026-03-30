@@ -20,6 +20,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Cont
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
 		}
+		r.Summary = types.BoolPointerValue(resp.Summary)
 		attributesResult, _ := json.Marshal(resp.Attributes)
 		r.Attributes = jsontypes.NewNormalizedValue(string(attributesResult))
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
@@ -49,6 +50,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Cont
 			r.ExplicitSearchMappings = jsontypes.NewNormalizedValue(string(explicitSearchMappingsResult))
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
+		r.Frozen = types.BoolPointerValue(resp.Frozen)
 		if resp.GroupHeadlines == nil {
 			r.GroupHeadlines = jsontypes.NewNormalizedNull()
 		} else {
@@ -63,6 +65,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Cont
 		}
 		r.Icon = types.StringPointerValue(resp.Icon)
 		r.ID = types.StringPointerValue(resp.ID)
+		r.Latest = types.BoolPointerValue(resp.Latest)
 		if resp.LayoutSettings == nil {
 			r.LayoutSettings = jsontypes.NewNormalizedNull()
 		} else {
@@ -112,9 +115,16 @@ func (r *SchemaResourceModel) ToOperationsGetSchemaRequest(ctx context.Context) 
 	} else {
 		id = nil
 	}
+	latest := new(bool)
+	if !r.Latest.IsUnknown() && !r.Latest.IsNull() {
+		*latest = r.Latest.ValueBool()
+	} else {
+		latest = nil
+	}
 	out := operations.GetSchemaRequest{
-		Slug: slug,
-		ID:   id,
+		Slug:   slug,
+		ID:     id,
+		Latest: latest,
 	}
 
 	return &out, diags
@@ -168,6 +178,24 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem(ctx context.Context) (*sh
 		*updatedAt = r.UpdatedAt.ValueString()
 	} else {
 		updatedAt = nil
+	}
+	frozen := new(bool)
+	if !r.Frozen.IsUnknown() && !r.Frozen.IsNull() {
+		*frozen = r.Frozen.ValueBool()
+	} else {
+		frozen = nil
+	}
+	latest := new(bool)
+	if !r.Latest.IsUnknown() && !r.Latest.IsNull() {
+		*latest = r.Latest.ValueBool()
+	} else {
+		latest = nil
+	}
+	summary := new(bool)
+	if !r.Summary.IsUnknown() && !r.Summary.IsNull() {
+		*summary = r.Summary.ValueBool()
+	} else {
+		summary = nil
 	}
 	var slug string
 	slug = r.Slug.ValueString()
@@ -278,6 +306,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem(ctx context.Context) (*sh
 		ID:                     id,
 		CreatedAt:              createdAt,
 		UpdatedAt:              updatedAt,
+		Frozen:                 frozen,
+		Latest:                 latest,
+		Summary:                summary,
 		Slug:                   slug,
 		Version:                version,
 		Blueprint:              blueprint,

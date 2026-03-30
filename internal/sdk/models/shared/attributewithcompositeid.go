@@ -8865,6 +8865,9 @@ func (c *Currency1) GetFlag() *string {
 	return c.Flag
 }
 
+// #region class-body-currency1
+// #endregion class-body-currency1
+
 type CurrencyAttributeCurrencyType string
 
 const (
@@ -12441,6 +12444,9 @@ func (s *StatusAttributeOptions2) GetTitle() *string {
 	return s.Title
 }
 
+// #region class-body-statusattributeoptions2
+// #endregion class-body-statusattributeoptions2
+
 type StatusAttributeAttributeWithCompositeIDOptionsType string
 
 const (
@@ -12989,6 +12995,9 @@ func (m *MultiSelectAttributeOptions2) GetTitle() *string {
 	}
 	return m.Title
 }
+
+// #region class-body-multiselectattributeoptions2
+// #endregion class-body-multiselectattributeoptions2
 
 type MultiSelectAttributeOptionsType string
 

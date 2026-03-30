@@ -27,6 +27,9 @@ func (v *ValidateEntityV2Request) GetEntity() *shared.EntityInput {
 	return v.Entity
 }
 
+// #region class-body-validateentityv2request
+// #endregion class-body-validateentityv2request
+
 type ValidateEntityV2Response struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -91,3 +94,6 @@ func (v *ValidateEntityV2Response) GetHeaders() map[string][]string {
 	}
 	return v.Headers
 }
+
+// #region class-body-validateentityv2response
+// #endregion class-body-validateentityv2response
