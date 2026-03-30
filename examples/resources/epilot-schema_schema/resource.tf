@@ -11,10 +11,12 @@ resource "epilot-schema_schema" "my_schema" {
   enable_setting           = "{ \"see\": \"documentation\" }"
   explicit_search_mappings = "{ \"see\": \"documentation\" }"
   feature_flag             = "FF_MY_FEATURE_FLAG"
+  frozen                   = false
   group_headlines          = "{ \"see\": \"documentation\" }"
   group_settings           = "{ \"see\": \"documentation\" }"
   icon                     = "person"
   id                       = "89868668-91fd-45da-ba4d-b78cf9b60131"
+  latest                   = true
   layout_settings          = "{ \"see\": \"documentation\" }"
   name                     = "Contact"
   plural                   = "Contacts"
@@ -23,6 +25,7 @@ resource "epilot-schema_schema" "my_schema" {
     "..."
   ]
   slug           = "contact"
+  summary        = true
   title_template = "{{first_name}} {{last_name}}"
   ui_config      = "{ \"see\": \"documentation\" }"
   updated_at     = "...my_updated_at..."

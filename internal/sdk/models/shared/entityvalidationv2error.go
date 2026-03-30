@@ -89,3 +89,6 @@ func (e *EntityValidationV2Error) GetData() map[string]any {
 	}
 	return e.Data
 }
+
+// #region class-body-entityvalidationv2error
+// #endregion class-body-entityvalidationv2error

@@ -20,6 +20,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
 		}
+		r.Summary = types.BoolPointerValue(resp.Summary)
 		attributesResult, _ := json.Marshal(resp.Attributes)
 		r.Attributes = jsontypes.NewNormalizedValue(string(attributesResult))
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
@@ -49,6 +50,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 			r.ExplicitSearchMappings = jsontypes.NewNormalizedValue(string(explicitSearchMappingsResult))
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
+		r.Frozen = types.BoolPointerValue(resp.Frozen)
 		if resp.GroupHeadlines == nil {
 			r.GroupHeadlines = jsontypes.NewNormalizedNull()
 		} else {
@@ -63,6 +65,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Co
 		}
 		r.Icon = types.StringPointerValue(resp.Icon)
 		r.ID = types.StringPointerValue(resp.ID)
+		r.Latest = types.BoolPointerValue(resp.Latest)
 		if resp.LayoutSettings == nil {
 			r.LayoutSettings = jsontypes.NewNormalizedNull()
 		} else {
@@ -99,9 +102,16 @@ func (r *SchemaDataSourceModel) ToOperationsGetSchemaRequest(ctx context.Context
 	} else {
 		id = nil
 	}
+	latest := new(bool)
+	if !r.Latest.IsUnknown() && !r.Latest.IsNull() {
+		*latest = r.Latest.ValueBool()
+	} else {
+		latest = nil
+	}
 	out := operations.GetSchemaRequest{
-		Slug: slug,
-		ID:   id,
+		Slug:   slug,
+		ID:     id,
+		Latest: latest,
 	}
 
 	return &out, diags
