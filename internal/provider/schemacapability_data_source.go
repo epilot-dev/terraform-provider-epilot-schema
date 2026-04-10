@@ -42,6 +42,7 @@ type SchemaCapabilityDataSourceModel struct {
 	Name         types.String                                     `tfsdk:"name"`
 	Purpose      []types.String                                   `tfsdk:"purpose"`
 	Schema       types.String                                     `tfsdk:"schema"`
+	Schemas      []tfTypes.EntityCapabilityWithCompositeIDSchemas `tfsdk:"schemas"`
 	SettingsFlag []tfTypes.SettingFlag                            `tfsdk:"settings_flag"`
 	Title        types.String                                     `tfsdk:"title"`
 	UIConfig     *tfTypes.EntityCapabilityWithCompositeIDUIConfig `tfsdk:"ui_config"`
@@ -1903,6 +1904,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
 									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"file_size_bytes": schema.Int64Attribute{
+									Computed:    true,
+									Description: `The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.`,
 								},
 								"group": schema.StringAttribute{
 									Computed:    true,
@@ -5617,10 +5622,28 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"table_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"column_header": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"start": schema.Int64Attribute{
+											Computed:    true,
+											Description: `Starting index value for the template placeholder`,
+										},
+										"template": schema.StringAttribute{
+											Computed:    true,
+											Description: `Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")`,
+										},
+									},
+									Description: `Configuration for column headers in transposed mode`,
+								},
 								"columns": schema.ListNestedAttribute{
 									Computed: true,
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"bold": schema.BoolAttribute{
+												Computed:    true,
+												Description: `When true, the row is rendered in bold (only applies in transposed mode)`,
+											},
 											"label": schema.StringAttribute{
 												Computed:    true,
 												Description: `Display label for the column header`,
@@ -5742,7 +5765,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"max_rows": schema.Int64Attribute{
 									Computed:    true,
-									Description: `Maximum number of rows allowed`,
+									Description: `Maximum number of rows allowed (or maximum periods when transposed)`,
 								},
 								"min_rows": schema.Int64Attribute{
 									Computed:    true,
@@ -5808,6 +5831,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+								},
+								"transposed": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Enable transposed layout where rows become metrics and columns become periods`,
 								},
 								"type": schema.StringAttribute{
 									Computed: true,
@@ -6378,6 +6405,23 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 			"schema": schema.StringAttribute{
 				Computed:    true,
 				Description: `Schema slug the capability belongs to`,
+			},
+			"schemas": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
+							Computed:    true,
+							Description: `Parsed as JSON.`,
+						},
+						"schema": schema.StringAttribute{
+							Computed:    true,
+							Description: `Entity schema slug`,
+						},
+					},
+				},
+				Description: `Schema-specific configuration for the capability`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,

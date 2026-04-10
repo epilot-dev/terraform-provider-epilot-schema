@@ -35,6 +35,7 @@ data "epilot-schema_schema_capability" "my_schemacapability" {
 - `name` (String) Unique name for the capability
 - `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
+- `schemas` (Attributes List) Schema-specific configuration for the capability (see [below for nested schema](#nestedatt--schemas))
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 - `title` (String) Human readable title of the capability
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
@@ -934,6 +935,7 @@ such as internal hashes or identifiers that might accidentally match search term
 the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
 that must always be included in search operations.
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `file_size_bytes` (Number) The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
@@ -2637,6 +2639,7 @@ Read-Only:
 
 Read-Only:
 
+- `column_header` (Attributes) Configuration for column headers in transposed mode (see [below for nested schema](#nestedatt--attributes--table_attribute--column_header))
 - `columns` (Attributes List) Column definitions for the table (see [below for nested schema](#nestedatt--attributes--table_attribute--columns))
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--table_attribute--constraints))
@@ -2661,7 +2664,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String)
 - `layout` (String)
 - `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `max_rows` (Number) Maximum number of rows allowed
+- `max_rows` (Number) Maximum number of rows allowed (or maximum periods when transposed)
 - `min_rows` (Number) Minimum number of rows required
 - `name` (String)
 - `order` (Number) Attribute sort order (ascending) in group
@@ -2678,14 +2681,25 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--table_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
+- `transposed` (Boolean) Enable transposed layout where rows become metrics and columns become periods
 - `type` (String)
 - `value_formatter` (String)
+
+<a id="nestedatt--attributes--table_attribute--column_header"></a>
+### Nested Schema for `attributes.table_attribute.column_header`
+
+Read-Only:
+
+- `start` (Number) Starting index value for the template placeholder
+- `template` (String) Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
+
 
 <a id="nestedatt--attributes--table_attribute--columns"></a>
 ### Nested Schema for `attributes.table_attribute.columns`
 
 Read-Only:
 
+- `bold` (Boolean) When true, the row is rendered in bold (only applies in transposed mode)
 - `label` (String) Display label for the column header
 - `name` (String) The column identifier (used as object key in row data)
 - `required` (Boolean) Whether this column is required for each row
@@ -2956,6 +2970,15 @@ Read-Only:
 - `name` (String) The name of the organization setting to check
 
 
+
+
+<a id="nestedatt--schemas"></a>
+### Nested Schema for `schemas`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `schema` (String) Entity schema slug
 
 
 <a id="nestedatt--settings_flag"></a>

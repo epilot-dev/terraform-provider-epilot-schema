@@ -177,6 +177,37 @@ func (u *UIHooks) GetAdditionalProperties() any {
 	return u.AdditionalProperties
 }
 
+type Schemas struct {
+	// Entity schema slug
+	Schema               string `json:"schema"`
+	AdditionalProperties any    `additionalProperties:"true" json:"-"`
+}
+
+func (s Schemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Schemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Schemas) GetSchema() string {
+	if s == nil {
+		return ""
+	}
+	return s.Schema
+}
+
+func (s *Schemas) GetAdditionalProperties() any {
+	if s == nil {
+		return nil
+	}
+	return s.AdditionalProperties
+}
+
 // EntityCapability - Capabilities the Entity has. Turn features on/off for entities.
 type EntityCapability struct {
 	// ID for the entity capability
@@ -197,6 +228,8 @@ type EntityCapability struct {
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+	// Schema-specific configuration for the capability
+	Schemas []Schemas `json:"schemas,omitempty"`
 }
 
 func (e *EntityCapability) GetID() *string {
@@ -274,4 +307,11 @@ func (e *EntityCapability) GetSettingsFlag() []SettingFlag {
 		return nil
 	}
 	return e.SettingsFlag
+}
+
+func (e *EntityCapability) GetSchemas() []Schemas {
+	if e == nil {
+		return nil
+	}
+	return e.Schemas
 }

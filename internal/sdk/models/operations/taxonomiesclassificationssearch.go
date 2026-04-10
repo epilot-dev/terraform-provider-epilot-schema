@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
@@ -100,6 +101,154 @@ func (u TaxonomySlug) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type TaxonomySlug: all fields are null")
 }
 
+type Two string
+
+const (
+	TwoRelation Two = "relation"
+	TwoSchema   Two = "schema"
+	TwoSystem   Two = "system"
+)
+
+func (e Two) ToPointer() *Two {
+	return &e
+}
+func (e *Two) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "relation":
+		fallthrough
+	case "schema":
+		fallthrough
+	case "system":
+		*e = Two(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Two: %v", v)
+	}
+}
+
+type One string
+
+const (
+	OneRelation One = "relation"
+	OneSchema   One = "schema"
+	OneSystem   One = "system"
+)
+
+func (e One) ToPointer() *One {
+	return &e
+}
+func (e *One) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "relation":
+		fallthrough
+	case "schema":
+		fallthrough
+	case "system":
+		*e = One(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for One: %v", v)
+	}
+}
+
+type ExcludeTypesType string
+
+const (
+	ExcludeTypesTypeOne      ExcludeTypesType = "1"
+	ExcludeTypesTypeArrayOf2 ExcludeTypesType = "arrayOf2"
+)
+
+// ExcludeTypes - Taxonomy type(s) to exclude from the results. Useful to filter out relation labels, schema labels, and system labels.
+type ExcludeTypes struct {
+	One      *One  `queryParam:"inline" union:"member"`
+	ArrayOf2 []Two `queryParam:"inline" union:"member"`
+
+	Type ExcludeTypesType
+}
+
+func CreateExcludeTypesOne(one One) ExcludeTypes {
+	typ := ExcludeTypesTypeOne
+
+	return ExcludeTypes{
+		One:  &one,
+		Type: typ,
+	}
+}
+
+func CreateExcludeTypesArrayOf2(arrayOf2 []Two) ExcludeTypes {
+	typ := ExcludeTypesTypeArrayOf2
+
+	return ExcludeTypes{
+		ArrayOf2: arrayOf2,
+		Type:     typ,
+	}
+}
+
+func (u *ExcludeTypes) UnmarshalJSON(data []byte) error {
+
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var one One = One("")
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ExcludeTypesTypeOne,
+			Value: &one,
+		})
+	}
+
+	var arrayOf2 []Two = []Two{}
+	if err := utils.UnmarshalJSON(data, &arrayOf2, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ExcludeTypesTypeArrayOf2,
+			Value: arrayOf2,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ExcludeTypes", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for ExcludeTypes", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(ExcludeTypesType)
+	switch best.Type {
+	case ExcludeTypesTypeOne:
+		u.One = best.Value.(*One)
+		return nil
+	case ExcludeTypesTypeArrayOf2:
+		u.ArrayOf2 = best.Value.([]Two)
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ExcludeTypes", string(data))
+}
+
+func (u ExcludeTypes) MarshalJSON() ([]byte, error) {
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
+	}
+
+	if u.ArrayOf2 != nil {
+		return utils.MarshalJSON(u.ArrayOf2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type ExcludeTypes: all fields are null")
+}
+
 type TaxonomiesClassificationsSearchRequestBody struct {
 	ClassificationIds []shared.ClassificationIDOrPattern `json:"classificationIds,omitempty"`
 }
@@ -128,8 +277,11 @@ type TaxonomiesClassificationsSearchRequest struct {
 	//
 	// By default, no archived labels are included in the search results.
 	//
-	IncludeArchived *shared.TaxonomySearchIncludeArchivedParam  `default:"false" queryParam:"style=form,explode=true,name=include_archived"`
-	RequestBody     *TaxonomiesClassificationsSearchRequestBody `request:"mediaType=application/json"`
+	IncludeArchived *shared.TaxonomySearchIncludeArchivedParam `default:"false" queryParam:"style=form,explode=true,name=include_archived"`
+	// Taxonomy type(s) to exclude from the results. Useful to filter out relation labels, schema labels, and system labels.
+	//
+	ExcludeTypes *ExcludeTypes                               `queryParam:"style=form,explode=true,name=exclude_types"`
+	RequestBody  *TaxonomiesClassificationsSearchRequestBody `request:"mediaType=application/json"`
 }
 
 func (t TaxonomiesClassificationsSearchRequest) MarshalJSON() ([]byte, error) {
@@ -169,6 +321,13 @@ func (t *TaxonomiesClassificationsSearchRequest) GetIncludeArchived() *shared.Ta
 		return nil
 	}
 	return t.IncludeArchived
+}
+
+func (t *TaxonomiesClassificationsSearchRequest) GetExcludeTypes() *ExcludeTypes {
+	if t == nil {
+		return nil
+	}
+	return t.ExcludeTypes
 }
 
 func (t *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesClassificationsSearchRequestBody {

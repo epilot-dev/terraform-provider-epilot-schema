@@ -25,7 +25,7 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
   manifest = [
     "123e4567-e89b-12d3-a456-426614174000"
   ]
-  order = 8
+  order = 0
   purpose = [
     "taxonomy-slug:classification-slug"
   ]

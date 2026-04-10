@@ -140,6 +140,9 @@ func (o *Options2) GetTitle() *string {
 	return o.Title
 }
 
+// #region class-body-options2
+// #endregion class-body-options2
+
 type StatusAttributeOptionsType string
 
 const (

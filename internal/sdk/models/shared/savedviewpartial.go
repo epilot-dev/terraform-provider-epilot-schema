@@ -66,6 +66,9 @@ func (s *SavedViewPartialCreatedBy2) GetAdditionalProperties() any {
 	return s.AdditionalProperties
 }
 
+// #region class-body-savedviewpartialcreatedby2
+// #endregion class-body-savedviewpartialcreatedby2
+
 // SavedViewPartialCreatedBy1 - A user that created the view
 type SavedViewPartialCreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
@@ -88,6 +91,9 @@ func (s *SavedViewPartialCreatedBy1) GetUserID() *string {
 	}
 	return s.UserID
 }
+
+// #region class-body-savedviewpartialcreatedby1
+// #endregion class-body-savedviewpartialcreatedby1
 
 type SavedViewPartialCreatedByType string
 
