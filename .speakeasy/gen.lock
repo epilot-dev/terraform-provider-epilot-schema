@@ -3,17 +3,18 @@ id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
   docChecksum: 8e13a5f2e976f2c60388cad994dd78ef
   docVersion: 2.8.0
-  speakeasyVersion: 1.761.0
-  generationVersion: 2.879.1
-  releaseVersion: 0.19.1
-  configChecksum: 3a438c38bb2d2a83d3fe161b24abfcd5
+  speakeasyVersion: 1.761.6
+  generationVersion: 2.879.13
+  releaseVersion: 0.18.4
+  configChecksum: 611567d5199bb3695b8ab315b66303f6
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
+  installationURL: https://github.com/epilot-dev/terraform-provider-epilot-schema
   published: true
 persistentEdits:
-  generation_id: 615548e4-6934-4e93-9bee-0f3234005f3b
-  pristine_commit_hash: 0cafd780c7942775ee559d7818ff9bc7860797b9
-  pristine_tree_hash: 3f8d717a6409ff6d976114973a0021198e16a3ed
+  generation_id: d7d15308-bbe9-4160-97a0-3ef2f1dbcb92
+  pristine_commit_hash: 52d92943779419ed241d16080e82b9f4829699e5
+  pristine_tree_hash: 9964122b6c27c6d874cb2684bbd8487986802f42
 features:
   terraform:
     additionalDependencies: 0.1.0
@@ -59,8 +60,8 @@ trackedFiles:
     pristine_git_object: 294d84a5c5c2a4d9ef4a50f60d4b21cbc53d9378
   examples/provider/provider.tf:
     id: 954e955c0240
-    last_write_checksum: sha1:ef9814c02533c7542532feb0eced4bad1157288c
-    pristine_git_object: 6fd1465d37911030d89f859dfe6bf689037a5bb5
+    last_write_checksum: sha1:86368a33a6c3d1cd77d4255dccb81af987fbc2da
+    pristine_git_object: 5f1d9209ae427e8e0a626f4546eee9b198ee8dce
   examples/resources/epilot-schema_schema/import-by-string-id.tf:
     id: 3f572ba8e6b4
     last_write_checksum: sha1:960e6bea1c6a2d037db241ae37a11b211cb66300
@@ -123,8 +124,8 @@ trackedFiles:
     pristine_git_object: 5b0af58135abf98448b83964f9e4c3887b728c2b
   go.mod:
     id: c47645c391ad
-    last_write_checksum: sha1:0a906ef8a003aa5e424f531d53b474af3be5b705
-    pristine_git_object: c3d5806b020670931226604b2379f82ce782785b
+    last_write_checksum: sha1:f2d6c492ff5e53fbb90929debac7e5f97964c80f
+    pristine_git_object: 825141691a866ad046ceed70b61c1551c36107e2
   internal/planmodifiers/boolplanmodifier/suppress_diff.go:
     id: 3cf85b98963e
     last_write_checksum: sha1:2181d1336417cf0a7945b35b6fea0d397c68c044
@@ -1475,8 +1476,8 @@ trackedFiles:
     pristine_git_object: 360c355ec27d46cd4b6dbc64ace33eb4e7935269
   internal/sdk/sdk.go:
     id: 02d7190ee502
-    last_write_checksum: sha1:8a772497969d1a0bc08b7889b3582fb11087badd
-    pristine_git_object: bd5dd9b7478ef29d33f398577c5b9b4810ee7eca
+    last_write_checksum: sha1:d1e00da3eed178aa7f43961be1d6ea177d9ca218
+    pristine_git_object: f54a70432ea9f63776d0de6e0955b3feb50e4f0e
   internal/sdk/taxonomy.go:
     id: 6295ebf2e026
     last_write_checksum: sha1:ebffffe93cc7af52831411d743732e80ddde5a2e
@@ -2762,6 +2763,7 @@ examples:
           application/json: {"status": 404, "error": "Not Found"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Terraform SDK Changes:\n* `SDK.Entities.reindexEntity()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Saved Views.createSavedView()`: \n  *  `request.created_by` **Changed**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Taxonomy.bulkDeleteClassifications()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.bulkMergeClassifications()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.bulkMoveClassifications()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.getTaxonomyBulkActionJobById()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.getTaxonomyBulkActionJobs()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.[]` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.taxonomiesClassificationsSearch()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.listSchemas()`: \n  *  `request` **Changed**\n  *  `response.results[]` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.deleteTaxonomyClassification()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.putSchema()`: \n  *  `request.EntitySchemaItem` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.deleteSchema()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Taxonomy.updateTaxonomyClassification()`: \n  *  `request.TaxonomyClassification` **Changed** (Breaking ⚠️)\n  *  `response` **Changed**\n* `SDK.Schemas.getSchemaExample()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Schemas.getSchemaVersions()`: \n  *  `request` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.listSchemaBlueprints()`:  `response.results[]` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.updateClassificationsForTaxonomy()`: \n  *  `request.ClassificationsUpdate.create[]` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.createSchemaAttribute()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.getSchemaAttribute()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.putSchemaAttribute()`: \n  *  `request.AttributeWithCompositeID` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.deleteSchemaAttribute()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.createSchemaCapability()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.getSchemaCapability()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.putSchemaCapability()`: \n  *  `request.EntityCapabilityWithCompositeID` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.deleteSchemaCapability()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Schemas.createSchemaGroup()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Schemas.deleteSchemaGroup()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Schemas.createSchemaGroupHeadline()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Schemas.deleteSchemaGroupHeadline()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Entities.searchEntities()`: \n  *  `request` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Entities.listEntities()`: \n  *  `request` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Entities.createEntity()`: \n  *  `request.Entity._purpose_name` **Added**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Entities.validateEntity()`: \n  *  `request.Entity._purpose_name` **Added**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Entities.validateEntityV2()`: \n  *  `request.Entity._purpose_name` **Added**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Entities.upsertEntity()`: \n  *  `request.RequestBody.entity._purpose_name` **Added**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Taxonomy.deleteTaxonomy()`: \n  *  `request.permanent` **Changed**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Taxonomy.createTaxonomy()`: \n  *  `request.type` **Added**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Saved Views.deleteSavedView()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Schemas.getSchema()`: \n  *  `request.latest` **Added**\n  *  `response` **Changed** (Breaking ⚠️)\n* `SDK.Entities.restoreEntity()`:  `response` **Changed** (Breaking ⚠️)\n* `SDK.Import-Export.importEntities()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Entities.deleteEntity()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Activity.createActivity()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Activity.getActivity()`:  `response.operations[]` **Changed** (Breaking ⚠️)\n* `SDK.Activity.attachActivity()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Activity.getEntityActivityFeed()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.results[].operations[]` **Changed** (Breaking ⚠️)\n* `SDK.Import-Export.exportEntities()`: \n  *  `request.EntitySearchParams` **Changed**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Relations.deleteRelation()`:  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Relations.removeRelations()`: \n  *  `request.RequestBody[]._schema` **Added**\n  *  `response.status[429]` **Added** (Breaking ⚠️)\n* `SDK.Entities.wipeAllEntities()`: **Added**\n* `SDK.Entities.updateEntity()`: \n  *  `request.Entity._purpose_name` **Added**\n  *  `response._purpose_name` **Added**\n* `SDK.Relations.updateRelation()`:  `response._schema` **Added**\n* `SDK.Relations.addRelations()`: \n  *  `request.RequestBody[]._schema` **Added**\n  *  `response._schema` **Added**\n* `SDK.Relations.getRelations()`:  `response.[].union(RelationEntity)` **Changed**\n* `SDK.Entities.patchEntity()`: \n  *  `request.Entity._purpose_name` **Added**\n  *  `response._purpose_name` **Added**\n* `SDK.Relations.getRelationsV2()`:  `response.relations[]` **Changed**\n* `SDK.Schemas.listSchemasV2()`: **Added**\n* `SDK.Taxonomy.listTaxonomies()`: \n  *  `request.type` **Added**\n  *  `response.results[].type` **Added**\n* `SDK.Schemas.freezeSchema()`: **Added**\n* `SDK.Relations.getRelationsV3()`: \n  *  `request.include_deleted` **Added**\n  *  `response.relations[]` **Changed**\n* `SDK.Taxonomy.getTaxonomy()`:  `response.type` **Added**\n* `SDK.Entities.getEntity()`:  `response.entity._purpose_name` **Added**\n* `SDK.Taxonomy.updateTaxonomy()`: \n  *  `request.Taxonomy.type` **Added**\n  *  `response.type` **Added**\n* `SDK.Taxonomy.getTaxonomyClassification()`:  `response` **Changed**\n* `SDK.Schemas.getJsonSchema()`: \n  *  `request.dereference` **Added**\n* `SDK.Schemas.listTaxonomyClassificationsForSchema()`:  `response.results[]` **Changed**\n* `SDK.Taxonomy.taxonomyAutocomplete()`:  `response.results[]` **Changed**\n* `SDK.Taxonomy.cancelBulkAction()`: **Added**\n* `SDK.Taxonomy.createTaxonomyClassification()`: **Added**\n* `SDK.Entities.getEntityV2()`:  `response._purpose_name` **Added**\n* `SDK.Entities.queryEntityGraph()`: **Added**\n* `SDK.Schemas.listAvailableCapabilities()`: **Added**\n* `SDK.Schemas.unfreezeSchema()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
