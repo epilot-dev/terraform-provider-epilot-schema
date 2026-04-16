@@ -8,12 +8,6 @@ type EntitySchemaItem struct {
 	ID        *string `json:"id,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	// Indicates this schema is currently frozen. Present when the returned version is the frozen version.
-	Frozen *bool `json:"frozen,omitempty"`
-	// Indicates this is the latest version of the schema. Both frozen and latest can be true if no changes were made since freezing.
-	Latest *bool `json:"latest,omitempty"`
-	// Indicates this is a truncated summary schema (attributes trimmed to summary_attributes only, no capabilities or group_settings)
-	Summary *bool `json:"_summary,omitempty"`
 	// URL-friendly identifier for the entity schema
 	Slug    string `json:"slug"`
 	Version *int64 `json:"version,omitempty"`
@@ -28,14 +22,11 @@ type EntitySchemaItem struct {
 	DocsURL     *string `json:"docs_url,omitempty"`
 	Category    *string `json:"category,omitempty"`
 	Published   *bool   `json:"published,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Draft *bool   `json:"draft,omitempty"`
-	Icon  *string `json:"icon,omitempty"`
+	Draft       *bool   `json:"draft,omitempty"`
+	Icon        *string `json:"icon,omitempty"`
 	// Template for rendering the title field. Uses handlebars
-	TitleTemplate *string  `json:"title_template,omitempty"`
-	Purpose       []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create the schema
-	Manifest               []string `json:"_manifest,omitempty"`
+	TitleTemplate          *string  `json:"title_template,omitempty"`
+	Purpose                []string `json:"_purpose,omitempty"`
 	EnableSetting          any      `json:"enable_setting,omitempty"`
 	Attributes             any      `json:"attributes"`
 	Capabilities           any      `json:"capabilities"`
@@ -66,27 +57,6 @@ func (e *EntitySchemaItem) GetUpdatedAt() *string {
 		return nil
 	}
 	return e.UpdatedAt
-}
-
-func (e *EntitySchemaItem) GetFrozen() *bool {
-	if e == nil {
-		return nil
-	}
-	return e.Frozen
-}
-
-func (e *EntitySchemaItem) GetLatest() *bool {
-	if e == nil {
-		return nil
-	}
-	return e.Latest
-}
-
-func (e *EntitySchemaItem) GetSummary() *bool {
-	if e == nil {
-		return nil
-	}
-	return e.Summary
 }
 
 func (e *EntitySchemaItem) GetSlug() string {
@@ -185,13 +155,6 @@ func (e *EntitySchemaItem) GetPurpose() []string {
 		return nil
 	}
 	return e.Purpose
-}
-
-func (e *EntitySchemaItem) GetManifest() []string {
-	if e == nil {
-		return nil
-	}
-	return e.Manifest
 }
 
 func (e *EntitySchemaItem) GetEnableSetting() any {

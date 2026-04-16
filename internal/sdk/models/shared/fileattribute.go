@@ -212,8 +212,6 @@ type FileAttribute struct {
 	//
 	EnableDescription    *bool                 `json:"enable_description,omitempty"`
 	DefaultAccessControl *DefaultAccessControl `json:"default_access_control,omitempty"`
-	// The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
-	FileSizeBytes *int64 `json:"file_size_bytes,omitempty"`
 }
 
 func (f FileAttribute) MarshalJSON() ([]byte, error) {
@@ -484,11 +482,4 @@ func (f *FileAttribute) GetDefaultAccessControl() *DefaultAccessControl {
 		return nil
 	}
 	return f.DefaultAccessControl
-}
-
-func (f *FileAttribute) GetFileSizeBytes() *int64 {
-	if f == nil {
-		return nil
-	}
-	return f.FileSizeBytes
 }

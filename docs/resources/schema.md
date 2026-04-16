@@ -26,24 +26,18 @@ resource "epilot-schema_schema" "my_schema" {
   enable_setting           = "{ \"see\": \"documentation\" }"
   explicit_search_mappings = "{ \"see\": \"documentation\" }"
   feature_flag             = "FF_MY_FEATURE_FLAG"
-  frozen                   = false
   group_headlines          = "{ \"see\": \"documentation\" }"
   group_settings           = "{ \"see\": \"documentation\" }"
   icon                     = "person"
   id                       = "89868668-91fd-45da-ba4d-b78cf9b60131"
-  latest                   = true
   layout_settings          = "{ \"see\": \"documentation\" }"
-  manifest = [
-    "123e4567-e89b-12d3-a456-426614174000"
-  ]
-  name      = "Contact"
-  plural    = "Contacts"
-  published = false
+  name                     = "Contact"
+  plural                   = "Contacts"
+  published                = false
   purpose = [
     "..."
   ]
   slug           = "contact"
-  summary        = true
   title_template = "{{first_name}} {{last_name}}"
   ui_config      = "{ \"see\": \"documentation\" }"
   updated_at     = "...my_updated_at..."
@@ -70,21 +64,17 @@ resource "epilot-schema_schema" "my_schema" {
 - `description` (String)
 - `dialog_config` (String) Parsed as JSON.
 - `docs_url` (String)
-- `draft` (Boolean, Deprecated) Default: false
+- `draft` (Boolean) Default: false
 - `enable_setting` (String) Parsed as JSON.
 - `explicit_search_mappings` (String) Parsed as JSON.
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled
-- `frozen` (Boolean) Indicates this schema is currently frozen. Present when the returned version is the frozen version.
 - `group_headlines` (String) Parsed as JSON.
 - `group_settings` (String) Parsed as JSON.
 - `icon` (String)
 - `id` (String) Generated uuid for schema
-- `latest` (Boolean) Indicates this is the latest version of the schema. Both frozen and latest can be true if no changes were made since freezing.
 - `layout_settings` (String) Parsed as JSON.
-- `manifest` (List of String) Manifest ID used to create the schema
 - `published` (Boolean)
 - `purpose` (List of String)
-- `summary` (Boolean) Indicates this is a truncated summary schema (attributes trimmed to summary_attributes only, no capabilities or group_settings)
 - `title_template` (String) Template for rendering the title field. Uses handlebars
 - `ui_config` (String) Parsed as JSON.
 - `updated_at` (String)

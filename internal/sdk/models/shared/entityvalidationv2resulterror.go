@@ -49,6 +49,3 @@ func (e *EntityValidationV2ResultError) GetErrors() []EntityValidationV2Error {
 	}
 	return e.Errors
 }
-
-// #region class-body-entityvalidationv2resulterror
-// #endregion class-body-entityvalidationv2resulterror

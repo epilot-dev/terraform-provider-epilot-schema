@@ -14,7 +14,6 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
-    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -22,7 +21,6 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
-  versioningStrategy: automatic
   persistentEdits: {}
   tests:
     generateTests: true
@@ -30,11 +28,9 @@ generation:
     skipResponseBodyAssertions: false
 terraform:
   version: 0.18.4
-  additionalActions: []
   additionalDataSources: []
   additionalDependencies: {}
   additionalEphemeralResources: []
-  additionalFunctions: []
   additionalListResources: []
   additionalProviderAttributes:
     httpHeaders: ""
@@ -51,11 +47,8 @@ terraform:
   enableTypeDeduplication: true
   environmentVariables: []
   excludeEmptyObjectSchemas: false
-  forwardCompatibleEnumsByDefault: false
   includeEmptyObjects: false
   inferUnionDiscriminators: false
   packageName: epilot-schema
-  preApplyUnionDiscriminators: false
   respectRequiredFields: false
-  respectTitlesForPrimitiveUnionMembers: false
   unionStrategy: populated-fields

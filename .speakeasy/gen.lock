@@ -1,33 +1,33 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 8e13a5f2e976f2c60388cad994dd78ef
+  docChecksum: bdb7ec881502622ee9a7cec0983cd08e
   docVersion: 2.8.0
-  speakeasyVersion: 1.761.0
-  generationVersion: 2.879.1
-  releaseVersion: 0.19.1
-  configChecksum: 3a438c38bb2d2a83d3fe161b24abfcd5
+  speakeasyVersion: 1.685.3
+  generationVersion: 2.795.8
+  releaseVersion: 0.18.4
+  configChecksum: 11ab1b7bf29e63f7a61a0b2446434981
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
 persistentEdits:
-  generation_id: 615548e4-6934-4e93-9bee-0f3234005f3b
-  pristine_commit_hash: 0cafd780c7942775ee559d7818ff9bc7860797b9
-  pristine_tree_hash: 3f8d717a6409ff6d976114973a0021198e16a3ed
+  generation_id: c0316f07-c1f7-404e-aa12-481ca793d84c
+  pristine_commit_hash: 97912e2eeb09f981e65795d1c812e883186c5eb8
+  pristine_tree_hash: 1526bc93b0e31504f62c5761f0e04350ef4e4b90
 features:
   terraform:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.4
-    constsAndDefaults: 0.3.2
-    core: 3.47.2
+    constsAndDefaults: 0.3.0
+    core: 3.46.28
     deprecations: 2.82.0
-    globalSecurity: 2.82.3
-    globalServerURLs: 2.83.2
+    globalSecurity: 2.82.1
+    globalServerURLs: 2.83.0
     inputOutputModels: 2.83.0
     nullables: 0.0.0
     retries: 2.81.4
     typeOverrides: 2.81.1
-    unions: 2.82.15
+    unions: 2.82.6
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -39,8 +39,8 @@ trackedFiles:
     pristine_git_object: 8e707bb129af1da185ba30b4c289b0160819c437
   examples/data-sources/epilot-schema_schema/data-source.tf:
     id: 1d2064e7855c
-    last_write_checksum: sha1:b9b054db2244022130ca293b0e18d9af58f37b93
-    pristine_git_object: 0b03d773469361baf3e0b39a3909e6bedc75e74a
+    last_write_checksum: sha1:d0b6d06a0b71e95c2cc6491a128acfeb496b3a87
+    pristine_git_object: a896c159c767cebc8d41853fdcdd5ae643a7600f
   examples/data-sources/epilot-schema_schema_attribute/data-source.tf:
     id: b718c009d9f2
     last_write_checksum: sha1:22d22f2ff27bcdd30417b86b1d3b6fc766d0444e
@@ -59,8 +59,8 @@ trackedFiles:
     pristine_git_object: 294d84a5c5c2a4d9ef4a50f60d4b21cbc53d9378
   examples/provider/provider.tf:
     id: 954e955c0240
-    last_write_checksum: sha1:ef9814c02533c7542532feb0eced4bad1157288c
-    pristine_git_object: 6fd1465d37911030d89f859dfe6bf689037a5bb5
+    last_write_checksum: sha1:86368a33a6c3d1cd77d4255dccb81af987fbc2da
+    pristine_git_object: 5f1d9209ae427e8e0a626f4546eee9b198ee8dce
   examples/resources/epilot-schema_schema/import-by-string-id.tf:
     id: 3f572ba8e6b4
     last_write_checksum: sha1:960e6bea1c6a2d037db241ae37a11b211cb66300
@@ -71,8 +71,8 @@ trackedFiles:
     pristine_git_object: 28e5ed996cfbe8c029ad099e9425690641675363
   examples/resources/epilot-schema_schema/resource.tf:
     id: 5b35a5799835
-    last_write_checksum: sha1:3f0c3649dbbaa17b95c8b8652f272b320ba750aa
-    pristine_git_object: 1c139e23342661654e55ab7b0e60bdb1a39445c3
+    last_write_checksum: sha1:5dc46666b7940145be60f44b06e316839b28782c
+    pristine_git_object: 011708ebc0701e9d8aeb5db56a1802c44d3184ae
   examples/resources/epilot-schema_schema_attribute/import-by-string-id.tf:
     id: 1e9523d74628
     last_write_checksum: sha1:06c66bafc245d9852c26e1b0471a0df221cf28df
@@ -83,8 +83,8 @@ trackedFiles:
     pristine_git_object: 0b1eba0e606354cf5e1cfdde3cc66ac7714f640a
   examples/resources/epilot-schema_schema_attribute/resource.tf:
     id: 61ad2696a4bd
-    last_write_checksum: sha1:2b339f7ad8d30a425371135063c4edca443914ef
-    pristine_git_object: 6cc5593fb9808ba7c5cada89873481b727720022
+    last_write_checksum: sha1:4513f193b7aaa3d8b63bb4932b1cf8da1011ebe7
+    pristine_git_object: 36c9fee3b2f7b72c8d99f1986758a66f3e95290c
   examples/resources/epilot-schema_schema_capability/import-by-string-id.tf:
     id: 4642361adec2
     last_write_checksum: sha1:539fe04a2bc68d6402072085d33f43d1850ce54e
@@ -95,8 +95,8 @@ trackedFiles:
     pristine_git_object: 7e5af159d3d5a4120690f0c001e6d6aaf46ab7ba
   examples/resources/epilot-schema_schema_capability/resource.tf:
     id: c6bb2a83f775
-    last_write_checksum: sha1:06285370546db92d774d5f56cff34c1404dd077c
-    pristine_git_object: da74659ed23658e1c4cc0829912386a07426fbe3
+    last_write_checksum: sha1:bcaa91c98222ff4b38774bb9623e826e0d35d3e9
+    pristine_git_object: e6b40732244cd11a83e02a228cce679799af58fd
   examples/resources/epilot-schema_schema_group/import-by-string-id.tf:
     id: ef3c25c7cf08
     last_write_checksum: sha1:2b3be28f8333ca1459ade59424e05c30595e0add
@@ -107,8 +107,8 @@ trackedFiles:
     pristine_git_object: 8ae1e7a9d244f57cc55236b17b85ae99b8d740cd
   examples/resources/epilot-schema_schema_group/resource.tf:
     id: 83041f287dd3
-    last_write_checksum: sha1:d3a5bd811ff3e6430ca4b9f468f396648842cd22
-    pristine_git_object: fbb1088b9fd997d2a9b1403be1d6ed04147ba8af
+    last_write_checksum: sha1:41c98ebeee00c862deb131e3ed05f31ca62f8b8e
+    pristine_git_object: ec2757bd7d1580caa9d6b9cd127c68c35dbabfe3
   examples/resources/epilot-schema_schema_group_headline/import-by-string-id.tf:
     id: 8045ba98dd36
     last_write_checksum: sha1:61eb90c3022b68ae0a12e20bd373386e7ae36158
@@ -119,12 +119,12 @@ trackedFiles:
     pristine_git_object: 2bebd390e5faae9d357423ab55dd37d196f401b7
   examples/resources/epilot-schema_schema_group_headline/resource.tf:
     id: 9d63bb9da561
-    last_write_checksum: sha1:0b1e7f856c8f562bdc47d32adebf8b57cab48199
-    pristine_git_object: 5b0af58135abf98448b83964f9e4c3887b728c2b
+    last_write_checksum: sha1:f36a8f74efbf2bfda367abe0662999fdf3826891
+    pristine_git_object: 93071614553db9180a155c6e84c127eb12b192d4
   go.mod:
     id: c47645c391ad
-    last_write_checksum: sha1:0a906ef8a003aa5e424f531d53b474af3be5b705
-    pristine_git_object: c3d5806b020670931226604b2379f82ce782785b
+    last_write_checksum: sha1:a7d52330e6bbc8131d93b0ea520329689fc8b950
+    pristine_git_object: 846bafefd2f7bfda1535f8603a215aace05e7055
   internal/planmodifiers/boolplanmodifier/suppress_diff.go:
     id: 3cf85b98963e
     last_write_checksum: sha1:2181d1336417cf0a7945b35b6fea0d397c68c044
@@ -133,10 +133,6 @@ trackedFiles:
     id: c0a10558e419
     last_write_checksum: sha1:506e2cac3ec4075a8837403860ef0b07e19bc337
     pristine_git_object: 210846ca24831a6bda811d3e8a42326716d7bf97
-  internal/planmodifiers/boolplanmodifier/use_hoisted_value.go:
-    id: e44067341c99
-    last_write_checksum: sha1:7bc4c71e283981c12114430ff3a2f87c5a76121d
-    pristine_git_object: e62bd1472cc2ea835a88a086421427828a8be1ce
   internal/planmodifiers/float32planmodifier/suppress_diff.go:
     id: b7f3f671e479
     last_write_checksum: sha1:c6da8645e81b9756e2a1425fd274654cf11c1c75
@@ -145,10 +141,6 @@ trackedFiles:
     id: e75edfe23c08
     last_write_checksum: sha1:2683d9de3605886cb01438a9015c8e8b02b4e069
     pristine_git_object: 0aafffa779b10b01d1e9c831c3a4bda3e6d97789
-  internal/planmodifiers/float32planmodifier/use_hoisted_value.go:
-    id: 4a18d1d4a105
-    last_write_checksum: sha1:4cfa274e252c06f04d241bba8a7d4dce22f4bd3a
-    pristine_git_object: 2b8afbe61a7ab6a5202074c51b587a381946151d
   internal/planmodifiers/float64planmodifier/suppress_diff.go:
     id: 7ae872c2243d
     last_write_checksum: sha1:5449d0ea3c11492faec534be33d24ca4eb27fc98
@@ -157,10 +149,6 @@ trackedFiles:
     id: 8fd8670f7434
     last_write_checksum: sha1:cc1f1cadfd17a0b9b1e729029dccc03f17d734a5
     pristine_git_object: ecd655b8d658d84aa5cbcc3e1808b69674071325
-  internal/planmodifiers/float64planmodifier/use_hoisted_value.go:
-    id: 5762e9e310fc
-    last_write_checksum: sha1:60906ba836ff15e9b74ee853fb8c7453e25af9fc
-    pristine_git_object: 6a036a4e330b7ed8b7362fbea7068ea50a917d2a
   internal/planmodifiers/int32planmodifier/suppress_diff.go:
     id: 3ee3ede7dc9d
     last_write_checksum: sha1:fefca683de052421c3b4fb7197915a1ddc28e6ff
@@ -169,10 +157,6 @@ trackedFiles:
     id: 40be4e07e289
     last_write_checksum: sha1:019ba1949b00493bf1a866821f9331d50c8a1f09
     pristine_git_object: ebc98aae308008b2cda39d5f4cfa781982afa44f
-  internal/planmodifiers/int32planmodifier/use_hoisted_value.go:
-    id: 887f32d55316
-    last_write_checksum: sha1:2ce6a81b79f11d588f747cf5cbb5ead878e6a00d
-    pristine_git_object: fd15b28758f544a351f1c660535a6deb53711916
   internal/planmodifiers/int64planmodifier/suppress_diff.go:
     id: fade0cc85582
     last_write_checksum: sha1:6774a5f5cb765368a2ff821d891f4ed04c224ae2
@@ -181,10 +165,6 @@ trackedFiles:
     id: e38d6f43d093
     last_write_checksum: sha1:b5a63f0c356cd72698e25e1b4f4fc3e29b35d482
     pristine_git_object: 2ec2d53d3ac13f58f64feb32b7fb07ca37b8fe99
-  internal/planmodifiers/int64planmodifier/use_hoisted_value.go:
-    id: ae01f54b02fa
-    last_write_checksum: sha1:69fa406736191b50c66cd7dce729db5766742817
-    pristine_git_object: 30492c0d96cfaaee77e1ffb5c1b2209c7f36a1f6
   internal/planmodifiers/listplanmodifier/suppress_diff.go:
     id: 7b93ed9460b9
     last_write_checksum: sha1:37d3d3c6dc87aef6979a1d5b515998283ae654ea
@@ -193,10 +173,6 @@ trackedFiles:
     id: c9b31b246860
     last_write_checksum: sha1:c56e2d23520ac7023f800328bb7599e7eba2f202
     pristine_git_object: 7e851c7613c71921fd4ccf7ca1f95b8b22ce9745
-  internal/planmodifiers/listplanmodifier/use_hoisted_value.go:
-    id: 6232d2937a04
-    last_write_checksum: sha1:9b5622cd84c2433881fa8b804284761f4e26d84b
-    pristine_git_object: 7fac496f9abdf92b4b854edae52b1f2988a61d07
   internal/planmodifiers/mapplanmodifier/suppress_diff.go:
     id: 37bee37da583
     last_write_checksum: sha1:805a0935bcd738b45c29d6903d040924e4a922a8
@@ -205,10 +181,6 @@ trackedFiles:
     id: 8fef370eccaa
     last_write_checksum: sha1:7c2163c8fa4be8e8f7e7499cdb08cc5ed1924b39
     pristine_git_object: 0f2a717f45ca60218f4b8d9e81a6a5cd01494905
-  internal/planmodifiers/mapplanmodifier/use_hoisted_value.go:
-    id: b22b13c6b864
-    last_write_checksum: sha1:0dbcd378cbb947ce2b7e4433ee249d67547b14a7
-    pristine_git_object: 87edb8f10388d72d86483bca4a5ed96352997aaf
   internal/planmodifiers/numberplanmodifier/suppress_diff.go:
     id: 0debe6a63221
     last_write_checksum: sha1:b7a84927135e038911a5c32965ec852fbf9fc2ea
@@ -217,10 +189,6 @@ trackedFiles:
     id: e6b779d30d26
     last_write_checksum: sha1:9b92d53a4a5f57e211e6f41ebb6c36cb12357ae6
     pristine_git_object: e93c117a0665121b4c43c4a0fd5faec999ad016e
-  internal/planmodifiers/numberplanmodifier/use_hoisted_value.go:
-    id: b52fbd8c6aed
-    last_write_checksum: sha1:d5caf8ee419993af372bc1678a31bda495ade4ea
-    pristine_git_object: 7aecddec42f24bbc20665118f73508f15354fce0
   internal/planmodifiers/objectplanmodifier/suppress_diff.go:
     id: c5bc1c3980dd
     last_write_checksum: sha1:450459757ea4f1e71800617c5dd64e6260ee9f12
@@ -229,10 +197,6 @@ trackedFiles:
     id: 7f103d324869
     last_write_checksum: sha1:1f2b6727605c0b56ff2212ab2e2528046f05b157
     pristine_git_object: eaf24076aeaf233c342886079be38561b94d3856
-  internal/planmodifiers/objectplanmodifier/use_hoisted_value.go:
-    id: 9d64f475cc1d
-    last_write_checksum: sha1:7e15c3b98a9b7eff710c100a94d6225e4faa190f
-    pristine_git_object: ce1eece327caddeba05f76aa38e7dfca3e76b512
   internal/planmodifiers/setplanmodifier/suppress_diff.go:
     id: 2db9381ea39f
     last_write_checksum: sha1:60e554030afdcf46d91b32b0443a24c9a5b059b2
@@ -241,10 +205,6 @@ trackedFiles:
     id: 62a591230001
     last_write_checksum: sha1:fe02165f8fd260bbce09f34adfa378376363422f
     pristine_git_object: a95de11e54a028586b41352c084de59fdc7af66c
-  internal/planmodifiers/setplanmodifier/use_hoisted_value.go:
-    id: f0486343f81b
-    last_write_checksum: sha1:c70b44ef05c8cd3cd5f49caf06f797c95e499741
-    pristine_git_object: 71b2f020a3dfba2fcba136f967b9c4e0969696d3
   internal/planmodifiers/stringplanmodifier/suppress_diff.go:
     id: 05379039a176
     last_write_checksum: sha1:a3abce7b392136d944282224f4f56c1c4d85427a
@@ -253,22 +213,14 @@ trackedFiles:
     id: a783ed056524
     last_write_checksum: sha1:250673402508661f9d12cfa026dc029d5e7855d9
     pristine_git_object: 8b4457aeb6b22b7f2b581434762e71f3f782897b
-  internal/planmodifiers/stringplanmodifier/use_hoisted_value.go:
-    id: f9220e0f9187
-    last_write_checksum: sha1:7664072e69a72d02ad2e5b28186a5196dc2676e3
-    pristine_git_object: 02e52271b475ff2d8c1fdd2e591f505cb1d68860
-  internal/planmodifiers/utils/hoisted_value.go:
-    id: 7c3741509670
-    last_write_checksum: sha1:04ccb3d58a019eb0e94efe207280974e85e5fccc
-    pristine_git_object: 628b67bbdb34036dc48d3791628383e6f26dd891
   internal/planmodifiers/utils/state_check.go:
     id: ead742412d0f
     last_write_checksum: sha1:acc38ad698bf4fa8c51aa662076cf57b79024bd5
     pristine_git_object: 0ea64fbeb1fd7709d7241a8e06d34bfe9d0323d3
   internal/provider/provider.go:
     id: 1e7e86841cf3
-    last_write_checksum: sha1:82b21b5846310b592d1335ff8d401fb2f6149879
-    pristine_git_object: 6a12f678e20320ed6a7d7d99c8a8a6068b3f3577
+    last_write_checksum: sha1:a932566a91f86f48afd89c7d76cb6e4eb49397be
+    pristine_git_object: ddca3befdd3f52aa3f5366ff012d7a367dffab0a
   internal/provider/reflect/diags.go:
     id: 35b6b44972e2
     last_write_checksum: sha1:ace8bc53054bb1d8ee8689acf3e4323de75a6297
@@ -327,84 +279,84 @@ trackedFiles:
     pristine_git_object: c588f768bd7b39be33962188f97d81e1c4c25f4b
   internal/provider/schema_data_source.go:
     id: 64e17f57d210
-    last_write_checksum: sha1:b81e4b3e4581680e95b0b0fe0c32958506ee626b
-    pristine_git_object: b6344d3892a816c9f4171d8bc9f5a213394d5141
+    last_write_checksum: sha1:d04effa4dbc99ff8b6b17f47711670c052826b88
+    pristine_git_object: fb726491becec074d8898df41616d6ccca854a6f
   internal/provider/schema_data_source_sdk.go:
     id: eb502cb8fc95
-    last_write_checksum: sha1:a54abeaeeecde8d24ea9b47527afb59802c12cb0
-    pristine_git_object: 0f6d568f5379c7db2f8346ed7968b3a26272bb8e
+    last_write_checksum: sha1:b7bb4ca6e63be91b50a724e5b95203ac02cf3f1e
+    pristine_git_object: 048ef5ba74f608cead5be8fcda28aa370b3d8aa8
   internal/provider/schema_resource.go:
     id: e0be8cdd29d1
-    last_write_checksum: sha1:48999be31eb9a63ae46185ffcb89f510d322c6a5
-    pristine_git_object: ff37b12db292b73ebb5ad3a4e69f3ae8ddb61036
+    last_write_checksum: sha1:9d49bc5537f15a850a4e09aed9ee2d532ec9ac54
+    pristine_git_object: 890520cd5bebedd0d0de8ca92663fe035b9c7939
   internal/provider/schema_resource_sdk.go:
     id: 39d245519a88
-    last_write_checksum: sha1:cfd8489bb93a71af0b245daf211d2a96c84e1483
-    pristine_git_object: 2b683e0fde0d181870e38c3f93b160b4020aaf11
+    last_write_checksum: sha1:1c78caab40dc0a83229feff8a51e9659b2d18625
+    pristine_git_object: a3656e32d935bf16d36c03f3bc380dd9171d8291
   internal/provider/schemaattribute_data_source.go:
     id: 68e95b6b397f
-    last_write_checksum: sha1:fe2d3e2fcc7cb7ad22f900fbe940d9f5d0e31082
-    pristine_git_object: bfe8ab0934f32b5512f74db894ebed8fb393c4c2
+    last_write_checksum: sha1:58044f6a6d14bf1a1423a674b6d27ab8562d635d
+    pristine_git_object: 5bcde4939f89b7164913fc66bd1f0b7d5e38b46e
   internal/provider/schemaattribute_data_source_sdk.go:
     id: 669b3c489cab
-    last_write_checksum: sha1:fbcd050e509914d896adf189318d911ee152c602
-    pristine_git_object: bc2d0af55ed76fca72040d98d0fda2b59e5be269
+    last_write_checksum: sha1:7020fa4f4fc98d9e7053f6699596c7cd1aaaf653
+    pristine_git_object: 7481d40e299be6b4e1ca43eae3b82d7c8fb0e1c4
   internal/provider/schemaattribute_resource.go:
     id: d5a34f06efe3
-    last_write_checksum: sha1:3db28ef2183c2d9f5c018eeec85aa02246d22e84
-    pristine_git_object: ebe51b1bfb0f9b85fb23b39aedad8a336ef6d4a4
+    last_write_checksum: sha1:f248408eb2b94f3ae6ac9ad717c04ea2a5e1b320
+    pristine_git_object: ad7be51073cdb6a2ff9ca0ec12d3ff03e826f16f
   internal/provider/schemaattribute_resource_sdk.go:
     id: eed5ae78fcc1
-    last_write_checksum: sha1:768a9a368f016f8ab0aa9b877f44ffc9647ccc97
-    pristine_git_object: 3eb70f4b4182de78fae9eb8ab9ec58ae0f6a8f46
+    last_write_checksum: sha1:ef822170dd49be5b09863349ee5e8078bc9e6c57
+    pristine_git_object: 554e35e0e5cf8701c5ad1ad99863deba039fb9da
   internal/provider/schemacapability_data_source.go:
     id: 8f5da16e5639
-    last_write_checksum: sha1:d87c5349ee2659b824919125cc5e586596e92838
-    pristine_git_object: aead7d435774ef377c6e101e1a0b2abdc7d238e3
+    last_write_checksum: sha1:cff7534609439b180ac762d6b48b66fe12bc7084
+    pristine_git_object: b037a4969c15ea1cd974fd4e79d5363bee4fb39d
   internal/provider/schemacapability_data_source_sdk.go:
     id: 0654801065a2
-    last_write_checksum: sha1:eca695b9c6bbab76a6b31e79f57d41258594d10b
-    pristine_git_object: a3899a0073366f64aa97f5854300584c802a8e51
+    last_write_checksum: sha1:19704fe5c3eabb7079443e41bc5fc1f4aa78fa98
+    pristine_git_object: 4ca3e9d4b47b228a408bca2342781c15b98f267b
   internal/provider/schemacapability_resource.go:
     id: f4db1d4a0165
-    last_write_checksum: sha1:2ff6a4873c2b69f79cabe21b54f202471d10f518
-    pristine_git_object: d39189b0333f377be9f744e4bd776c8bc0edc2b3
+    last_write_checksum: sha1:2c521f4e6f0850ac9b04a2ba0d1af4c77ca37867
+    pristine_git_object: a709fc9be54faf152094fae0e0665e974b26bd46
   internal/provider/schemacapability_resource_sdk.go:
     id: cec4fca1470d
-    last_write_checksum: sha1:6ca96e3efb2d60af4445401e0445b3c2c214258a
-    pristine_git_object: e6ff8fa06e1d1e63fcb6e604a6993d795797109b
+    last_write_checksum: sha1:5bb2b8da57f46d7e632a984b7b2b58a51fe39ce2
+    pristine_git_object: b3e2d3d50b770878764f4f848a8fb361fe5232bf
   internal/provider/schemagroup_data_source.go:
     id: 469bf2658d44
     last_write_checksum: sha1:6e399726bd540384ccf41484b2b864e1faa2fb1d
     pristine_git_object: 265ed15853fd4816526caac9dc1b073772a85c1d
   internal/provider/schemagroup_data_source_sdk.go:
     id: ee7040a0168e
-    last_write_checksum: sha1:8e0d5090d72e2e9fb1c4e3ca98470d933c5fc396
-    pristine_git_object: e26cb47eadfa2799c6693768daf84f2a00fc62f2
+    last_write_checksum: sha1:8f723be5d48558bba9ee49a0b24b1a46b5c5fd4a
+    pristine_git_object: 15a3b29f2e8eb57aca5d0ccd9934fba2d3145e96
   internal/provider/schemagroup_resource.go:
     id: 51419578107f
     last_write_checksum: sha1:4c39fe17b1df6e53ca190a40894e8a14425b0ec8
     pristine_git_object: 454c54660d7e305df7429a3ea63d05fc21ec5e04
   internal/provider/schemagroup_resource_sdk.go:
     id: 1eb4d07396b3
-    last_write_checksum: sha1:08a206192963bc040deaad6df5a96f9ed77a1f3e
-    pristine_git_object: c84ede6968ea7eb20b7a78449e5dc98c02e4c0ac
+    last_write_checksum: sha1:acb0b77bfb2a55cc150368b35dd1d17227b7f2da
+    pristine_git_object: 3bbf11d7e371ba44b94eb5eabf716cd778b7652a
   internal/provider/schemagroupheadline_data_source.go:
     id: 1d47a7d00029
     last_write_checksum: sha1:4ec7be60a231932362c6aafbf14d12ffe6d73367
     pristine_git_object: 190abffeb124e2fed8c582cfd2d8e45dcb335286
   internal/provider/schemagroupheadline_data_source_sdk.go:
     id: 937c9980bee3
-    last_write_checksum: sha1:ef0b63071310eaf6c5c7a04125e8faa288c393b2
-    pristine_git_object: 778eebf100d7994ffd7870220f56202a0162563f
+    last_write_checksum: sha1:4b8f7193e0e9a40f3fc2d2e10cdaf1aadeac28d3
+    pristine_git_object: 2631ce5febd18790e3a44f5379ce6a805bc03523
   internal/provider/schemagroupheadline_resource.go:
     id: 1e865c973fa5
     last_write_checksum: sha1:ca041776eb511ba167262afd19ec7c86fd73fb99
     pristine_git_object: f28019a128de881afa2239c1eb95ed45f60bb36a
   internal/provider/schemagroupheadline_resource_sdk.go:
     id: f7ce0b257a7f
-    last_write_checksum: sha1:14996b911f7b323408ca1c6edd4d8993c9172c3b
-    pristine_git_object: 8f01cefd24690a29315cd6a70c422583778a1cec
+    last_write_checksum: sha1:ea12e11b09ea683c6571aba104db49ad568e2cda
+    pristine_git_object: e7de7b830924d92806fe86c1b95fc6e5cc142be4
   internal/provider/typeconvert/date.go:
     id: dfe2bc95ad1b
     last_write_checksum: sha1:9a5f9c3f287745504b06634493d72ebd0c15aad2
@@ -459,8 +411,8 @@ trackedFiles:
     pristine_git_object: 2feed47084255f4ede6968b29a0c07c81901825f
   internal/provider/types/attribute_with_composite_id_file_attribute.go:
     id: d9b0695dbe0d
-    last_write_checksum: sha1:ca44257c75eab6c9c8a2fc0766697b9126fac29d
-    pristine_git_object: 75a7e0de9b98cfdb7aebe1302af323e3d7d20ced
+    last_write_checksum: sha1:5eec67b815033f61a0e68d25e05a5aa5eb8644f4
+    pristine_git_object: 37608264362b90820baa1f31195c6452334acb52
   internal/provider/types/attribute_with_composite_id_message_email_address_attribute.go:
     id: 03e337cc54e0
     last_write_checksum: sha1:305bd2bab86811acc00a01934c0c959678914fd8
@@ -491,8 +443,8 @@ trackedFiles:
     pristine_git_object: d56bc6c89a02ec171328743359452fd6992c1ba6
   internal/provider/types/attribute_with_composite_id_table_attribute.go:
     id: 2c9a3d92192d
-    last_write_checksum: sha1:08fd057cb96941022036fff85bff48f3a2cb32d0
-    pristine_git_object: a7eeab36ab24d78a6d1e56864b92fc9c84fb2228
+    last_write_checksum: sha1:d4195ec7aaf391549256bddaef72716e2183e312
+    pristine_git_object: f874d0c2a3ca7abf58de35a8e65743c55d6c65db
   internal/provider/types/attribute_with_composite_id_tags_attribute.go:
     id: "474562479347"
     last_write_checksum: sha1:8bb22df0255271fa76fadb8694e5c9634efa1173
@@ -537,10 +489,6 @@ trackedFiles:
     id: e2744ba11051
     last_write_checksum: sha1:44fd154433cd20e857b46d81ee12a138fc7fb5c3
     pristine_git_object: 02ddc4bb06245d77e021f0330964e3ce90f5bd47
-  internal/provider/types/entity_capability_with_composite_id_schemas.go:
-    id: 1d41e03721c3
-    last_write_checksum: sha1:bd174c21fd35cff60997c70c700ab0aaf97c6df8
-    pristine_git_object: 91c2e766b2420af4b75d2d98843b608cdb6ea099
   internal/provider/types/entity_capability_with_composite_idui_config.go:
     id: 85711fbdf19d
     last_write_checksum: sha1:a69b4614d327eeaacecccdc601e78402db4c7e78
@@ -551,8 +499,8 @@ trackedFiles:
     pristine_git_object: 720cde2093dbdf6d4c9db3f59fbaef59e25e0985
   internal/provider/types/file_attribute.go:
     id: 2b57c4f8c0ef
-    last_write_checksum: sha1:0373b67895a6cf812cb42af4c13c7bff8cbbb9ba
-    pristine_git_object: 66ef583f00d7f7cabc4a8cd51f5a6b394ef2280c
+    last_write_checksum: sha1:86c6679d8657e8f2b4621fb9814ba8cbe5cffcf0
+    pristine_git_object: 35512e72f839739e04c74542b1686fcca5076837
   internal/provider/types/info_tooltip_title.go:
     id: 1a46e2508ff0
     last_write_checksum: sha1:22da485383c608ee901ea463c217de3eba5a6552
@@ -615,16 +563,12 @@ trackedFiles:
     pristine_git_object: 4647843b479a9b3a49a3312aab893459c24cb760
   internal/provider/types/table_attribute.go:
     id: ca435ef93d82
-    last_write_checksum: sha1:268ab4a0a89702207d58a76529974868a4cd5167
-    pristine_git_object: 06c49ea3b7d99461029311100a2ab558488aa910
-  internal/provider/types/table_attribute_column_header.go:
-    id: 4f956c2958b0
-    last_write_checksum: sha1:1780baef66b327edb8017ef0d7f64a783b2aa61d
-    pristine_git_object: d28f4c13d045ef502b828defaabc7300c7c4c55a
+    last_write_checksum: sha1:e37c00afc7ac32805524f9185e8f7b835709a7ab
+    pristine_git_object: 158a47f7cb9d8c284ff28339d7f2dc52a3cb35c0
   internal/provider/types/table_attribute_columns.go:
     id: 6353780c216a
-    last_write_checksum: sha1:428f4f1128c3ba9871d6d28f81ad1007b3892fc7
-    pristine_git_object: 8faf3ebf80d9600892c91aebc1247590930ad59d
+    last_write_checksum: sha1:df15199bfd7838bf22e3eec8afeb12cd94ddeeda
+    pristine_git_object: b258859278531d7a8ac583c3d01da9203af86ef0
   internal/provider/types/tags_attribute.go:
     id: 3f8e3db84265
     last_write_checksum: sha1:bdd2a8662c58ee98e319654c935b36ca0bfe9cf2
@@ -647,20 +591,20 @@ trackedFiles:
     pristine_git_object: e6a994416d0f527912d2d272e2583458f4fc9bcb
   internal/sdk/activity.go:
     id: 5b666f16581d
-    last_write_checksum: sha1:62c496ee17b58dc5041641b09dbbf3a44249372d
-    pristine_git_object: f2a259e2c5d190bb5da92b3c4bd076dabf78432f
+    last_write_checksum: sha1:80140bbfe6b76d65e19459ac781726e6d0bf7316
+    pristine_git_object: dae982915523184e264227b5baccac5c2c8e9cb5
   internal/sdk/docs/models/operations/option.md:
     id: a35737eb2e35
-    last_write_checksum: sha1:f45321582662c187a12e797364a9b5c9f187311d
-    pristine_git_object: 3261dbe5d014a86e2db7a224f16a0f8d97389448
+    last_write_checksum: sha1:08cfee5d266c9d82987e448f6c98a143aa42c5f8
+    pristine_git_object: 35d8a1e2ad48a64702c6a654ac8880dabec053b0
   internal/sdk/entities.go:
     id: 1184223af8b4
-    last_write_checksum: sha1:978274e68892661e3cc5cc2603931797d48be735
-    pristine_git_object: dbcb9e10b63222d666f2d5741d8bcb9f8a30c0d6
+    last_write_checksum: sha1:307c20399cea0af716df6af9aa6054b039af0b48
+    pristine_git_object: 5c0b211cfa1825f329a4b67d63eb209dc9f9eb8d
   internal/sdk/importexport.go:
     id: debb068be5cb
-    last_write_checksum: sha1:7b5c159ec26647ec29fea63a429fd1b7d51fe57e
-    pristine_git_object: 0f356c653d5a4166a5c0e6791e5f2b42a20cc48e
+    last_write_checksum: sha1:e4bd7172bb37dd0468fb0267add70c63d436badd
+    pristine_git_object: 3aefd964e8f4c7141c5682fb4f4b40ea298fb9c5
   internal/sdk/internal/config/sdkconfiguration.go:
     id: 6af0bc8635d9
     last_write_checksum: sha1:d0989bd4bf5178ce2250081ae13d5063aba2fdef
@@ -683,12 +627,12 @@ trackedFiles:
     pristine_git_object: 1422258cc65415d5a43ddbdca43d868ec50e1d80
   internal/sdk/internal/utils/headers.go:
     id: f035883ac0ff
-    last_write_checksum: sha1:08c01ed03ab8d8a28ce36511819c7807403420a9
-    pristine_git_object: 66387d6270d564a78633d823d97d960fe4ea3708
+    last_write_checksum: sha1:c6a3b797cf25c5c16e9a4edec59fbcac690e3fec
+    pristine_git_object: 4bc438e43fcad19c09c3e7cee87d21cec6e1dd06
   internal/sdk/internal/utils/json.go:
     id: 2231afac3add
-    last_write_checksum: sha1:ea56aa54f42fc08ba8d786c757e940216b6d28a0
-    pristine_git_object: bf8f9aa8d7b27e722069b8adcd6b712f91cd2b71
+    last_write_checksum: sha1:06f710efff2b01d9bdc8b82cf48fb7b7e696ac0e
+    pristine_git_object: 0c4b15b4f3a1039e77520e914496ccff1db938e9
   internal/sdk/internal/utils/pathparams.go:
     id: e7fec2afe4a6
     last_write_checksum: sha1:a15297f905fa81fe5554f2d1a1575c9a277d4686
@@ -699,16 +643,16 @@ trackedFiles:
     pristine_git_object: a160942072cf5181344bea6aa8c8f238e962abef
   internal/sdk/internal/utils/requestbody.go:
     id: c971a8b3bbf5
-    last_write_checksum: sha1:165bf5ded331edd2582c4f3e22d314228f062f5f
-    pristine_git_object: 744ad718c8977a4d007201c04e3177c9a6847227
+    last_write_checksum: sha1:2b2c63ccbca6cf9ac780dff2366dac3d7f1e4b30
+    pristine_git_object: d439071c529610656771b89041bce57032165b3f
   internal/sdk/internal/utils/retries.go:
     id: 6832c2142453
-    last_write_checksum: sha1:941e4087c1ca1b1d6ea40943f358b36b94aec35f
-    pristine_git_object: 0ef66f638f622da9c0c8b4bfd22bc6bdbf9e655b
+    last_write_checksum: sha1:171b8ea13ece09557eab7d166e3139779363235c
+    pristine_git_object: 671e1c76ff4111ee5ba348eb60b7ba5b364bc5c5
   internal/sdk/internal/utils/security.go:
     id: 6ebe9eaeb99b
-    last_write_checksum: sha1:49fee4e9252239953611e6de36f4682851499ab5
-    pristine_git_object: a2332ee8de013a2121880e4b7be332d3385c6f41
+    last_write_checksum: sha1:bb9cc1870101f6d2a990766f3eb0ea37292f7507
+    pristine_git_object: 19dfa6f4607dea64b1dd61c211e072212e7a3cb2
   internal/sdk/internal/utils/union.go:
     id: 183142835cfe
     last_write_checksum: sha1:839ac7781e8f46ad8433e65cc048418a6ebe1480
@@ -719,8 +663,8 @@ trackedFiles:
     pristine_git_object: f66814c73ace94d8e71d785fd6161fb405745754
   internal/sdk/internal/utils/utils.go:
     id: feefcdf75dbd
-    last_write_checksum: sha1:c03378176a107205b8938606faef3fd8fb8f91a0
-    pristine_git_object: a614e37673d3ea81eabc6139236edfb22a15dc55
+    last_write_checksum: sha1:d88d96cc244301d137581432095043f27a3e17b0
+    pristine_git_object: 0415b536598baa76c5d1a8fc32816ed1b83f9137
   internal/sdk/models/errors/sdkerror.go:
     id: 19b5a8d3586b
     last_write_checksum: sha1:5d65fce5049df7c5113e11c9ccb1e4c46b91901c
@@ -833,10 +777,6 @@ trackedFiles:
     id: d8dc7d432931
     last_write_checksum: sha1:9a5726a790fae225394768210835bcdb72e3f5a1
     pristine_git_object: a5bf2333ce6aa69085d92f03f167eb3a6ecc3ee8
-  internal/sdk/models/operations/freezeschema.go:
-    id: 9234dfceb65f
-    last_write_checksum: sha1:551bbac87e2a5eb2ca10a135efa4b7e74eb140df
-    pristine_git_object: 66720c38eb4da46f288382e5c79c659ca8b2be4f
   internal/sdk/models/operations/getactivity.go:
     id: 626e756d3a06
     last_write_checksum: sha1:d4aaafb4100c4d2df8f0dcd19e92efd533cd2c42
@@ -851,8 +791,8 @@ trackedFiles:
     pristine_git_object: fb9255dcceb7336f802ae3204c50b40702056807
   internal/sdk/models/operations/getentityv2.go:
     id: 5991feaa81b9
-    last_write_checksum: sha1:185380205aeafa0857774ba205a69674b33defa7
-    pristine_git_object: 972229904310be457daaebecf02f43f1c82e1d2e
+    last_write_checksum: sha1:5cd1dc3fe3c0111da4bfabde7bf974ec3e4ce50c
+    pristine_git_object: 3ad4b1cd26ffc2bbbcdb49f79f3044fcd81ba805
   internal/sdk/models/operations/getjsonschema.go:
     id: 0f447fc8ccd0
     last_write_checksum: sha1:4d22a041d4833979ab1034741f683c7b3d634878
@@ -867,20 +807,20 @@ trackedFiles:
     pristine_git_object: 53f673708dfbc6ed884a31c278ebd28a87cc04fe
   internal/sdk/models/operations/getrelationsv2.go:
     id: 9e88d9be3ca4
-    last_write_checksum: sha1:c7e08bec7b7bba3b6442e5e5a62b472d933a8382
-    pristine_git_object: cc6cf7a8eeceb9b7e70870d4994ba67f485586f5
+    last_write_checksum: sha1:2eb09711e906527efce6b7577a39a6eda724d8d5
+    pristine_git_object: 92199e3d3db7c1a5447cfdd88ce7dc094cabf43e
   internal/sdk/models/operations/getrelationsv3.go:
     id: bbdb05d7013c
-    last_write_checksum: sha1:49a71488e9a66360c323eac89782c82d115c2b97
-    pristine_git_object: efb9d8d09586f6a41003bd44b663e1466dde44cd
+    last_write_checksum: sha1:3e263973fbabf41faabab904a61da42e82e181da
+    pristine_git_object: 1d62e4d0b84ed68d0da536ff5c1fad3c055327fa
   internal/sdk/models/operations/getsavedview.go:
     id: fc28ac1d7ffb
     last_write_checksum: sha1:fe382aaada56fde6b66e31db9e25bce19d9689d6
     pristine_git_object: 54c448196755cff248c37f206d34e0c57a7ab74d
   internal/sdk/models/operations/getschema.go:
     id: 4fc1c251a8eb
-    last_write_checksum: sha1:7fd89f1575068070df8aa6e6bb7e9bc50e9f11f8
-    pristine_git_object: bf8c6cb5c31bf4d4b82b6b7a0857a7e46834129b
+    last_write_checksum: sha1:dc74021c348c2fd5ff8664bd2db7ccf9c657af43
+    pristine_git_object: 288e71e8bd2d512e13300ee87b7872e1593e54db
   internal/sdk/models/operations/getschemaattribute.go:
     id: 80d365b58d4b
     last_write_checksum: sha1:c2d26f02dbb754210f60375054b797b2f9e9627c
@@ -903,8 +843,8 @@ trackedFiles:
     pristine_git_object: 11c0f88105d3252ba44ac0495b5fa2acf030bf05
   internal/sdk/models/operations/getschemaversions.go:
     id: 9a1a72be6adb
-    last_write_checksum: sha1:4ada469700e357a4b6b72b633bca2ee9e3534eed
-    pristine_git_object: fdea9d745350b1a007989d011a447f56e0850f4c
+    last_write_checksum: sha1:39db919f45a7caca376a49595499d824d8ae9cbb
+    pristine_git_object: 1fdc7270b40bd10b2a15d3f572e9ccd90ea2b090
   internal/sdk/models/operations/gettaxonomy.go:
     id: 8fca5d685516
     last_write_checksum: sha1:707bdd7a893b1e5902f7fea8cfd42dd1057773be
@@ -947,12 +887,8 @@ trackedFiles:
     pristine_git_object: 92119e0c996194d0aa8aa82f805bad8ef3deef42
   internal/sdk/models/operations/listschemas.go:
     id: "339037289235"
-    last_write_checksum: sha1:f772d7df80d3f2342c374a049ab3a3e72f491452
-    pristine_git_object: 83fd068a7c133a2142d43398d26505c3bd9c0788
-  internal/sdk/models/operations/listschemasv2.go:
-    id: 2b5468096623
-    last_write_checksum: sha1:3ff8d676aa957fde9074f55f1deb0d104c01c6cb
-    pristine_git_object: 077df1df983c15cee7014738b0fa034bd5a6e514
+    last_write_checksum: sha1:fe50dee939a0094d93c845decc6f72a2e537e371
+    pristine_git_object: 85589c77b6e9019d835f03082e76680231f2bc99
   internal/sdk/models/operations/listtaxonomies.go:
     id: 9cab4bda3629
     last_write_checksum: sha1:8f985e6ed5ada896290c91c0e5d4d9b90a2d4e14
@@ -975,8 +911,8 @@ trackedFiles:
     pristine_git_object: 83bf537806ed74f0d0f52bf529244e2df415cb80
   internal/sdk/models/operations/putschema.go:
     id: e910bec96c0a
-    last_write_checksum: sha1:ac38b4ce3d5f5770cf537d2ba43804381e698e90
-    pristine_git_object: 45bec21d18450db544e0effd4f9e9a7cff2c31f7
+    last_write_checksum: sha1:1658291b0c7e951ce9d78d5280e5c50837c06388
+    pristine_git_object: 81ed5a4c9055d226a11ba483230e4785145d7889
   internal/sdk/models/operations/putschemaattribute.go:
     id: 6da0a1888f51
     last_write_checksum: sha1:e566e19ae6c50b4e3096338f148fff77fa5de279
@@ -1015,16 +951,12 @@ trackedFiles:
     pristine_git_object: c5f376008dade7f4170413cce55eafdb1bba3434
   internal/sdk/models/operations/taxonomiesclassificationssearch.go:
     id: a8d76375d2bb
-    last_write_checksum: sha1:1ea561166265ab1d8d80245bf1da6b93269a2df1
-    pristine_git_object: 9edecfab4a6126d884637c7456f502358bfd4078
+    last_write_checksum: sha1:236ef8d7a485c814cefab3da606413aec3749daa
+    pristine_git_object: d320de9fa5e4957a508b530cd4043e4bff5faf71
   internal/sdk/models/operations/taxonomyautocomplete.go:
     id: 2cb5e2b72126
     last_write_checksum: sha1:267fcd0901656d260ff4f323887d4284259c2492
     pristine_git_object: 30484e8ae83ecaf398088a82afd5915a42c8fdef
-  internal/sdk/models/operations/unfreezeschema.go:
-    id: 3a263a749fcd
-    last_write_checksum: sha1:4ee38e5213a9e0d47794b1a5bc32930d9bd985be
-    pristine_git_object: 5e3054e78e082fff4bc7be7aec6346182ebb07c9
   internal/sdk/models/operations/updateclassificationsfortaxonomy.go:
     id: fc616a17dc90
     last_write_checksum: sha1:27032f81884a0b193b1b608b29d1116711c9e700
@@ -1059,8 +991,8 @@ trackedFiles:
     pristine_git_object: ced478b5745bdf3881dec0feab42776d7ed05e5a
   internal/sdk/models/operations/validateentityv2.go:
     id: fd7f99753599
-    last_write_checksum: sha1:1d4e8776ce6aea06c88e2e197e8a2312a41c2c77
-    pristine_git_object: e454fce5bc8a293989028f43225b549b824225eb
+    last_write_checksum: sha1:f71aeddcd6ae7861f7619bd6e29a59c4f738e6c4
+    pristine_git_object: ee12e206c27a3f66a0168870afd6502f50f87252
   internal/sdk/models/operations/wipeallentities.go:
     id: fbb010baeeea
     last_write_checksum: sha1:faad64336a33732a762b2def7c01b8bbbc125e86
@@ -1095,8 +1027,8 @@ trackedFiles:
     pristine_git_object: a364f9d1b6f732ec2064b0aa050a2d03962e9e7a
   internal/sdk/models/shared/attributewithcompositeid.go:
     id: 2e331b7b9795
-    last_write_checksum: sha1:749e2d75df9b4532b24bf774f8877e850930f10d
-    pristine_git_object: a4b7c74f5e84209f99d99099e7cc0a3324d960c8
+    last_write_checksum: sha1:18b42cc268fd0fb2159ef7b8e5ad96824329a2f9
+    pristine_git_object: 159ad9e9ed1f895279a96d5df0e8e0ce6f4d64c5
   internal/sdk/models/shared/automationattribute.go:
     id: fd7b26f59852
     last_write_checksum: sha1:5fcff4de5a1f9ceea3b357ff77c72828aaf391e4
@@ -1115,8 +1047,8 @@ trackedFiles:
     pristine_git_object: 9269f2a74313882a37b49de382773ae93ba05948
   internal/sdk/models/shared/classificationidorpattern.go:
     id: 1ac01b6dffa2
-    last_write_checksum: sha1:21863ded0c7e349be3eb22a4117e06da01ecceb4
-    pristine_git_object: fe3cd955d1530f9d2e58088fa19d2abe8db1e532
+    last_write_checksum: sha1:0e34fa37130ff9badcc1998b70ded137643367eb
+    pristine_git_object: 0e6ccf180c7efeb11c713ca30346724640a4c9cc
   internal/sdk/models/shared/classificationsupdate.go:
     id: 8c7493345ed8
     last_write_checksum: sha1:d3b33d584bdd897f905123249b7c173f93ce6c4b
@@ -1151,16 +1083,16 @@ trackedFiles:
     pristine_git_object: 481a99fd121f0f87959f40cbf2e0b3875a5a900d
   internal/sdk/models/shared/entitycapability.go:
     id: 57f1b9ccdcae
-    last_write_checksum: sha1:d72be8f2e7658c5d354203d1f6d646814904a122
-    pristine_git_object: 89dc97004180fde4a6afe57556917b44ca5ab39e
+    last_write_checksum: sha1:8f052082377be5483902c3c9130aba74df9754c2
+    pristine_git_object: e214f3b12f144196e6ff6ba0d95d1c13934fdef0
   internal/sdk/models/shared/entitycapabilitywithcompositeid.go:
     id: 420e5527b028
-    last_write_checksum: sha1:f9706a47fbfdf7035b0e7fa17ca299702830a657
-    pristine_git_object: a915e2d7a322bfbb97e40a1f8de03d0cbb3a4f11
+    last_write_checksum: sha1:ada6d1de2a14f3e6152f3b73ef3514f200705bd2
+    pristine_git_object: 298df2d03fa31def09f2b0b36956f052031cdbe7
   internal/sdk/models/shared/entityimportparams.go:
     id: 7388831d308e
-    last_write_checksum: sha1:0d2a787d80cf4b85c42cbce57bd674a65c6fa333
-    pristine_git_object: 9436b0d9943e90f7820bba4f28af7cd8d8b72976
+    last_write_checksum: sha1:2541aed89c7acfdfb13f4f4efe893728d7125f45
+    pristine_git_object: 4e9973cdf523e682eab2f7c9b0ebd60bdf40a49b
   internal/sdk/models/shared/entityitem.go:
     id: 4b864c30e1f3
     last_write_checksum: sha1:de387c845afd95a3e8e0366bb1d30d9bffaf37d7
@@ -1187,8 +1119,8 @@ trackedFiles:
     pristine_git_object: f0506be2ba0f54b782bd3a2c15603f9c1ec11d0e
   internal/sdk/models/shared/entityschemaitem.go:
     id: c28accffc199
-    last_write_checksum: sha1:7f3ffd418932e8d331d89cb6346a7cbef5adb7cb
-    pristine_git_object: 4bff70caa02d0e5f8cb1f860f7893ddc9e9abe29
+    last_write_checksum: sha1:e0aa9148e63c3c69ac8ce5fa104e4fefe9120d0b
+    pristine_git_object: d6120c6425bc145b7326a173bc007f67a533199d
   internal/sdk/models/shared/entitysearchincludedeletedparam.go:
     id: 1ab29bf7922d
     last_write_checksum: sha1:dd248e7ca4da298eebb698e0fd6ba75a555bbd04
@@ -1215,20 +1147,20 @@ trackedFiles:
     pristine_git_object: eebf68b87df355b9eedfce0259a38da620717ddc
   internal/sdk/models/shared/entityvalidationv2error.go:
     id: a8419759edf1
-    last_write_checksum: sha1:34fcfec7365167158d7cbe7b60b21fbf4f00f78b
-    pristine_git_object: 198c32822ace5914a3527f605cea01ed15e060b2
+    last_write_checksum: sha1:2c1d4a85197c2477bcef5959ff2bf7a0789f68b2
+    pristine_git_object: d088184551ebd7e565ff7bd714dae9d29b305feb
   internal/sdk/models/shared/entityvalidationv2resulterror.go:
     id: 2a2de4c35e52
-    last_write_checksum: sha1:1d1ca97553a91ba28d57982ce58e2ec67f3eb732
-    pristine_git_object: 543edab8db12005f9cefe468f3f0a89de04d25ad
+    last_write_checksum: sha1:5374669da7090e7440fc9f06700538d79343762f
+    pristine_git_object: f0dc45e1a43a7cc14eabeab109a597b0671d9f9e
   internal/sdk/models/shared/entityvalidationv2resultsuccess.go:
     id: a817eae6ffce
-    last_write_checksum: sha1:5c87cb5e2bc93636486bd5417d14d217287db8e2
-    pristine_git_object: 998e04d57c91e9dd0c0c23ef6cf04cdf7f32bf1f
+    last_write_checksum: sha1:2b2c6e929b052d87407ec4577914379448b783aa
+    pristine_git_object: eb44a0280c35e2e7c61a32371c7a890169213fa0
   internal/sdk/models/shared/fileattribute.go:
     id: d2f92a4d60bd
-    last_write_checksum: sha1:5959ec25a523ddcacdc93958ad7ad3c3c97ba362
-    pristine_git_object: 1de78e163c8355536e87f82fa502988f89668cc3
+    last_write_checksum: sha1:9a02563ea9fdc65935dfb1d421f9c3e7cf472716
+    pristine_git_object: 68f470405e04c8a6b626476224cb916837595388
   internal/sdk/models/shared/getrelatedentitiescount.go:
     id: 4e933ef6e0fc
     last_write_checksum: sha1:bb5e147a6cccb04052ef09cf5c9c64bbf9b0edc9
@@ -1359,12 +1291,12 @@ trackedFiles:
     pristine_git_object: ce907f25505fb798c31ca3057e8d357cf69b0e42
   internal/sdk/models/shared/savedview.go:
     id: bbf4874bbd56
-    last_write_checksum: sha1:c39de6c34dbe55241c2c9c72972e1e46b26e20a0
-    pristine_git_object: 159726a6fe7002403520737d516fd2f825faabe2
+    last_write_checksum: sha1:76664a50b0f412c451a2cd70def367f762086ea6
+    pristine_git_object: 887eade453b82b208063e6be0fe8362f2b12100b
   internal/sdk/models/shared/savedviewpartial.go:
     id: a304ece8f0c8
-    last_write_checksum: sha1:b2d1731de514712dd1031ed8eb35ba390c48814a
-    pristine_git_object: 5291156057f621bb167ae75f1c86d41045efb073
+    last_write_checksum: sha1:2b1adcc19e1bc148f75acfc08eded2a188bd7ff0
+    pristine_git_object: 443ffafc582052898a3dd0d008a3f58fe9071a9e
   internal/sdk/models/shared/searchfilter.go:
     id: 43db74f60b6b
     last_write_checksum: sha1:6e8d98bcc1bb5ba6e4504b1d88e56e98ec7070c1
@@ -1391,16 +1323,16 @@ trackedFiles:
     pristine_git_object: bebb0f8f2f782cc1571cf1e3192f131e7ba27b91
   internal/sdk/models/shared/statusattribute.go:
     id: c0f44579de75
-    last_write_checksum: sha1:3eff7128fc2079cb4d634c8bc40f753fbb94cfe6
-    pristine_git_object: 25e30052731aa44f613d49576623fc68c90e00c2
+    last_write_checksum: sha1:cccde97601704af860395de9e18b012278610382
+    pristine_git_object: 2e09fe5cf151855b8acd3e011ad54befb51d290c
   internal/sdk/models/shared/summaryfield.go:
     id: e570522ae1ab
     last_write_checksum: sha1:f3f3619243222c6d3a2ad8024cddb628cbd6f251
     pristine_git_object: e7fe5302fd2f177fecc87f29535fe6c6bcae2c7d
   internal/sdk/models/shared/tableattribute.go:
     id: 2be5ee4c516e
-    last_write_checksum: sha1:c2a1c703d026822eb6d2ac231f59be924761b752
-    pristine_git_object: de06e4fb5c3cd873a20076ac1f273ae22faa2fc7
+    last_write_checksum: sha1:dbb5987080faddb0836970c6872093f00e82dbd1
+    pristine_git_object: d05de2b481dfe4c3966951541017f5718dc390ab
   internal/sdk/models/shared/tagsattribute.go:
     id: b8458dde6834
     last_write_checksum: sha1:908d28cd48857c58dde9f119cf250e31f7af2eb8
@@ -1459,28 +1391,28 @@ trackedFiles:
     pristine_git_object: e6e5a01c6e721e879e24a38a1f97e3e27d4686d4
   internal/sdk/relations.go:
     id: f502f1546e3e
-    last_write_checksum: sha1:4010a6c024c496b9b15dbc1042e950596e1d86ea
-    pristine_git_object: 5a582aad518cfcc56f36dbd6ccbc220c61338dfa
+    last_write_checksum: sha1:f3114aa6aa87618cd5da045f3ad0675fcc27a369
+    pristine_git_object: d54429b7c8668456710fe5916e4169453c3870f0
   internal/sdk/retry/config.go:
     id: 7ea5fa9128b6
-    last_write_checksum: sha1:7f7d96b59a18e95bac847ae09c63bbd911ee8432
-    pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
+    last_write_checksum: sha1:f565273be789ffe0e3c160de1ac72a63cfe67fbe
+    pristine_git_object: aa809fccb3445b1e2530a979dad620512f50e70f
   internal/sdk/savedviews.go:
     id: 6bfb634fadfe
-    last_write_checksum: sha1:82f6757b81e5b314e13c2fe8d27df26c557079ed
-    pristine_git_object: 69ec84ac983f7d50c95e85d22d98c0fa3eb02f68
+    last_write_checksum: sha1:98ee7d96427e2c47519f2241d6f920eb056426a1
+    pristine_git_object: e667150e16ae02249d27fad577aa8ca0540d9c51
   internal/sdk/schemas.go:
     id: 8ad5b3b70222
-    last_write_checksum: sha1:eb5314b3cd5185569e0f5d3987df4463d5220e4d
-    pristine_git_object: 360c355ec27d46cd4b6dbc64ace33eb4e7935269
+    last_write_checksum: sha1:d76b26d69bd0c291ab7e27f7769c73de4eb6af3f
+    pristine_git_object: 97843e9884b67946d30f986c4e387a0c1c377a05
   internal/sdk/sdk.go:
     id: 02d7190ee502
-    last_write_checksum: sha1:8a772497969d1a0bc08b7889b3582fb11087badd
-    pristine_git_object: bd5dd9b7478ef29d33f398577c5b9b4810ee7eca
+    last_write_checksum: sha1:5c31ae2812db805a13dfc23188f027b21c28f1c7
+    pristine_git_object: e1b8d87d76ad1cc26722141552fb2cebf0665084
   internal/sdk/taxonomy.go:
     id: 6295ebf2e026
-    last_write_checksum: sha1:ebffffe93cc7af52831411d743732e80ddde5a2e
-    pristine_git_object: 51ea5ad3b237ef9ea48cdad2e578d7514aa576fd
+    last_write_checksum: sha1:bf3c21c954eeaff99ba902c2500208d96f336242
+    pristine_git_object: 153ed07acb494670e3ff6bb8b9bd3d5653079073
   internal/sdk/types/bigint.go:
     id: fc530b70337e
     last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
@@ -1575,7 +1507,6 @@ examples:
       parameters:
         query:
           unpublished: false
-          latest: false
       responses:
         "200":
           application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {"route": "/app/pricing-hub/product/:entityId"}, "edit_view": {"route": "/app/pricing-hub/product/:entityId"}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}]}
@@ -1584,11 +1515,9 @@ examples:
       parameters:
         path:
           slug: "contact"
-        query:
-          latest: false
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
         "404":
           application/json: {"status": 404, "error": "Not Found"}
   putSchema:
@@ -1599,10 +1528,10 @@ examples:
         query:
           draft: false
       requestBody:
-        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "attributes": "<value>", "capabilities": "<value>"}
+        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "attributes": "<value>", "capabilities": "<value>"}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
   deleteSchema:
@@ -1644,7 +1573,7 @@ examples:
           fields: ["id", "attributes", "capabilites"]
       responses:
         "200":
-          application/json: {"versions": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "versions_more": false}
+          application/json: {"versions": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "drafts": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "enable_setting": ["360_features"], "attributes": "<value>", "capabilities": "<value>", "ui_config": {"table_view": {"route": "/app/pricing-hub/product/:entityId"}, "create_view": {}, "edit_view": {}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}}], "versions_more": false}
   listAvailableCapabilities:
     speakeasy-default-list-available-capabilities:
       parameters:
@@ -1709,10 +1638,10 @@ examples:
   createSchemaCapability:
     speakeasy-default-create-schema-capability:
       requestBody:
-        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "message_email_address"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "schema": "contact"}
+        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "message_email_address"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schema": "contact"}
       responses:
         "201":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "sequence", "prefix": "OR-"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "sequence", "prefix": "OR-"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
   getSchemaCapability:
@@ -1722,7 +1651,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "internal"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": null, "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "internal"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": null, "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
         "404":
           application/json: {"status": 404, "error": "Not Found"}
   putSchemaCapability:
@@ -1731,10 +1660,10 @@ examples:
         path:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       requestBody:
-        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": null, "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "select"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "schema": "contact"}
+        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": null, "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "select"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schema": "contact"}
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "boolean", "display_type": "switch"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "boolean", "display_type": "switch"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
   deleteSchemaCapability:
     speakeasy-default-delete-schema-capability:
       parameters:
@@ -1742,7 +1671,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "email"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schemas": [{"schema": "contact"}], "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "hidden": false, "sortable": true, "required": false, "readonly": false, "deprecated": false, "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "constraints": {}, "feature_flag": "FF_MY_FEATURE_FLAG", "entity_builder_disable_edit": false, "info_helpers": {"hint_tooltip_placement": "top"}, "explicit_searchable": false, "exclude_from_search": false, "type": "email"}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "app_id": "123e4567-e89b-12d3-a456-426614174000", "ui_config": {"is_filterable": true}, "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
   createSchemaGroup:
@@ -2042,24 +1971,6 @@ examples:
           application/json: {"status": "error", "errors": []}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
-    speakeasy-default-create-entity:
-      parameters:
-        path:
-          slug: "contact"
-        query:
-          activity_id: "01F130Q52Q6MWSNS8N2AVXV4JN"
-          fill_activity: false
-          async: false
-          validate: false
-      requestBody:
-        application/json: {"_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_schema": "contact", "_tags": ["example", "mock"], "_acl": {"view": ["org:456", "org:789"], "edit": ["org:456"], "delete": ["org:456"]}, "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "_org": "123", "_owners": [{"org_id": "123", "user_id": "123"}], "_created_at": "2021-02-09T12:41:43.662Z", "_updated_at": "2021-02-09T12:41:43.662Z"}
-      responses:
-        "201":
-          application/json: {"_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org": "123", "_owners": [{"org_id": "123", "user_id": "123"}], "_schema": "contact", "_title": "<value>", "_tags": ["example", "mock"], "_created_at": "2021-02-09T12:41:43.662Z", "_updated_at": "2021-02-09T12:41:43.662Z", "_acl": {"view": ["org:456", "org:789"], "edit": ["org:456"], "delete": ["org:456"]}, "_manifest": ["123e4567-e89b-12d3-a456-426614174000"]}
-        "422":
-          application/json: {"status": "error", "errors": []}
-        "429":
-          application/json: {"status": 429, "error": "Too many requests. Try again later."}
   validateEntity:
     Valid Price:
       parameters:
@@ -2087,19 +1998,6 @@ examples:
           application/json: {"status": "error", "errors": [{"code": "custom", "params": {"type": "missing_field"}, "path": ["first_name"], "message": "Invalid input"}]}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
-    speakeasy-default-validate-entity:
-      parameters:
-        path:
-          slug: "price"
-      requestBody:
-        application/json: {"_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_schema": "contact", "_tags": ["example", "mock"], "_acl": {"view": ["org:456", "org:789"], "edit": ["org:456"], "delete": ["org:456"]}, "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "_org": "123", "_owners": [{"org_id": "123", "user_id": "123"}], "_created_at": "2021-02-09T12:41:43.662Z", "_updated_at": "2021-02-09T12:41:43.662Z"}
-      responses:
-        "200":
-          application/json: {"status": "success", "errors": []}
-        "422":
-          application/json: {"status": "error", "errors": [{"code": "custom", "params": {"type": "missing_field"}, "path": ["first_name"], "message": "Invalid input"}]}
-        "429":
-          application/json: {"status": 429, "error": "Too many requests. Try again later."}
   validateEntityV2:
     Valid Price:
       parameters:
@@ -2120,19 +2018,6 @@ examples:
           slug: "price"
       requestBody:
         application/json: {}
-      responses:
-        "200":
-          application/json: {"status": "success", "errors": [{"keyword": "<value>", "instance_path": "<value>", "schema_path": "<value>", "params": {"key": "<value>", "key1": "<value>"}}]}
-        "422":
-          application/json: {"status": "error", "errors": [{"keyword": "<value>", "instance_path": "<value>", "schema_path": "<value>", "params": {"key": "<value>", "key1": "<value>"}}]}
-        "429":
-          application/json: {"status": 429, "error": "Too many requests. Try again later."}
-    speakeasy-default-validate-entity-v2:
-      parameters:
-        path:
-          slug: "price"
-      requestBody:
-        application/json: {"_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_schema": "contact", "_tags": ["example", "mock"], "_acl": {"view": ["org:456", "org:789"], "edit": ["org:456"], "delete": ["org:456"]}, "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "_org": "123", "_owners": [{"org_id": "123", "user_id": "123"}], "_created_at": "2021-02-09T12:41:43.662Z", "_updated_at": "2021-02-09T12:41:43.662Z"}
       responses:
         "200":
           application/json: {"status": "success", "errors": [{"keyword": "<value>", "instance_path": "<value>", "schema_path": "<value>", "params": {"key": "<value>", "key1": "<value>"}}]}
@@ -2728,36 +2613,6 @@ examples:
           application/json: {"nodes": {"portal_user": ["550e8400-e29b-41d4-a716-446655440001"], "contact": ["550e8400-e29b-41d4-a716-446655440002"], "billing_accounts": ["550e8400-e29b-41d4-a716-446655440003", "550e8400-e29b-41d4-a716-446655440004"]}, "entityNodes": {"portal_user": {"_id": "550e8400-e29b-41d4-a716-446655440001", "_schema": "portal_user"}, "contact": {"_id": "550e8400-e29b-41d4-a716-446655440002", "_schema": "contact"}, "billing_accounts": [{"_id": "550e8400-e29b-41d4-a716-446655440003", "_schema": "billing_account"}, {"_id": "550e8400-e29b-41d4-a716-446655440004", "_schema": "billing_account"}]}, "edges": [{"from": "portal_user", "to": "contact"}, {"from": "contact", "to": "billing_accounts"}]}
         "400":
           application/json: {"status": 400, "error": "Bad Request"}
-        "404":
-          application/json: {"status": 404, "error": "Not Found"}
-  listSchemasV2:
-    speakeasy-default-list-schemas-v2:
-      parameters:
-        query:
-          full: false
-          unpublished: false
-          latest: false
-      responses:
-        "200":
-          application/json: {"results": [{"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "attributes": "<value>", "capabilities": "<value>"}]}
-  freezeSchema:
-    speakeasy-default-freeze-schema:
-      parameters:
-        path:
-          slug: "contact"
-      responses:
-        "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "attributes": "<value>", "capabilities": "<value>"}
-        "404":
-          application/json: {"status": 404, "error": "Not Found"}
-  unfreezeSchema:
-    speakeasy-default-unfreeze-schema:
-      parameters:
-        path:
-          slug: "contact"
-      responses:
-        "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "_manifest": null, "attributes": "<value>", "capabilities": "<value>"}
         "404":
           application/json: {"status": 404, "error": "Not Found"}
 examplesVersion: 1.0.2

@@ -6,10 +6,10 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
-    display_type                = "switch"
+    display_type                = "checkbox"
     entity_builder_disable_edit = false
     exclude_from_search         = false
-    explicit_searchable         = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -39,7 +39,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     readonly         = false
     render_condition = "...my_render_condition..."
     repeatable       = true
-    required         = false
+    required         = true
     schema           = "contact"
     settings_flag = [
       {

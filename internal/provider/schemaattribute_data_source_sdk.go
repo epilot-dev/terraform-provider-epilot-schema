@@ -24,8 +24,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Manifest {
 					r.AddressAttribute.Manifest = append(r.AddressAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AddressAttribute.Manifest = nil
 			}
 			r.AddressAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Purpose {
@@ -43,8 +41,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields {
 					r.AddressAttribute.DefaultAddressFields = append(r.AddressAttribute.DefaultAddressFields, types.StringValue(v))
 				}
-			} else {
-				r.AddressAttribute.DefaultAddressFields = nil
 			}
 			if resp.AttributeWithCompositeIDAddressAttribute.DefaultValue == nil {
 				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -122,7 +118,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Sortable)
 			r.Sortable = r.AddressAttribute.Sortable
 			r.AddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAddressAttribute.Type))
-			r.Type = r.AddressAttribute.Type
 			r.AddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ValueFormatter)
 			r.ValueFormatter = r.AddressAttribute.ValueFormatter
 		}
@@ -133,8 +128,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
 					r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AddressRelationAttribute.Manifest = nil
 			}
 			r.AddressRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose {
@@ -152,8 +145,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields {
 					r.AddressRelationAttribute.DefaultAddressFields = append(r.AddressRelationAttribute.DefaultAddressFields, types.StringValue(v))
 				}
-			} else {
-				r.AddressRelationAttribute.DefaultAddressFields = nil
 			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue == nil {
 				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -231,7 +222,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AddressRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Sortable)
 			r.Sortable = r.AddressRelationAttribute.Sortable
 			r.AddressRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAddressRelationAttribute.Type))
-			r.Type = r.AddressRelationAttribute.Type
 			r.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.AddressRelationAttribute.ValueFormatter
 		}
@@ -242,8 +232,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
 					r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AutomationAttribute.Manifest = nil
 			}
 			r.AutomationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAutomationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Purpose {
@@ -332,7 +320,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AutomationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Sortable)
 			r.Sortable = r.AutomationAttribute.Sortable
 			r.AutomationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAutomationAttribute.Type))
-			r.Type = r.AutomationAttribute.Type
 			r.AutomationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ValueFormatter)
 			r.ValueFormatter = r.AutomationAttribute.ValueFormatter
 		}
@@ -343,8 +330,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
 					r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.BooleanAttribute.Manifest = nil
 			}
 			r.BooleanAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDBooleanAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Purpose {
@@ -438,7 +423,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.BooleanAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Sortable)
 			r.Sortable = r.BooleanAttribute.Sortable
 			r.BooleanAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDBooleanAttribute.Type))
-			r.Type = r.BooleanAttribute.Type
 			r.BooleanAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ValueFormatter)
 			r.ValueFormatter = r.BooleanAttribute.ValueFormatter
 		}
@@ -449,8 +433,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
 					r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.ComputedAttribute.Manifest = nil
 			}
 			r.ComputedAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDComputedAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Purpose {
@@ -542,7 +524,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ComputedAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Sortable)
 			r.Sortable = r.ComputedAttribute.Sortable
 			r.ComputedAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDComputedAttribute.Type))
-			r.Type = r.ComputedAttribute.Type
 			r.ComputedAttribute.ValueFormatter = types.StringValue(resp.AttributeWithCompositeIDComputedAttribute.ValueFormatter)
 			r.ValueFormatter = r.ComputedAttribute.ValueFormatter
 		}
@@ -553,8 +534,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Manifest {
 					r.ConsentAttribute.Manifest = append(r.ConsentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.ConsentAttribute.Manifest = nil
 			}
 			r.ConsentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDConsentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Purpose {
@@ -648,7 +627,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Sortable = r.ConsentAttribute.Sortable
 			r.ConsentAttribute.Topic = types.StringValue(resp.AttributeWithCompositeIDConsentAttribute.Topic)
 			r.ConsentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDConsentAttribute.Type))
-			r.Type = r.ConsentAttribute.Type
 			r.ConsentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ValueFormatter)
 			r.ValueFormatter = r.ConsentAttribute.ValueFormatter
 		}
@@ -659,8 +637,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
 					r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.CountryAttribute.Manifest = nil
 			}
 			r.CountryAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDCountryAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Purpose {
@@ -749,7 +725,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.CountryAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Sortable)
 			r.Sortable = r.CountryAttribute.Sortable
 			r.CountryAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDCountryAttribute.Type))
-			r.Type = r.CountryAttribute.Type
 			r.CountryAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ValueFormatter)
 			r.ValueFormatter = r.CountryAttribute.ValueFormatter
 		}
@@ -760,8 +735,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Manifest {
 					r.CurrencyAttribute.Manifest = append(r.CurrencyAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.CurrencyAttribute.Manifest = nil
 			}
 			r.CurrencyAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDCurrencyAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Purpose {
@@ -866,7 +839,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.CurrencyAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Sortable)
 			r.Sortable = r.CurrencyAttribute.Sortable
 			r.CurrencyAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDCurrencyAttribute.Type))
-			r.Type = r.CurrencyAttribute.Type
 			r.CurrencyAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ValueFormatter)
 			r.ValueFormatter = r.CurrencyAttribute.ValueFormatter
 		}
@@ -877,8 +849,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
 					r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.DateAttribute.Manifest = nil
 			}
 			r.DateAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDDateAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Purpose {
@@ -967,7 +937,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.DateAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Sortable)
 			r.Sortable = r.DateAttribute.Sortable
 			r.DateAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDDateAttribute.Type))
-			r.Type = r.DateAttribute.Type
 			r.DateAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.ValueFormatter)
 			r.ValueFormatter = r.DateAttribute.ValueFormatter
 		}
@@ -978,8 +947,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Manifest {
 					r.EmailAttribute.Manifest = append(r.EmailAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.EmailAttribute.Manifest = nil
 			}
 			r.EmailAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDEmailAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Purpose {
@@ -1068,7 +1035,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.EmailAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Sortable)
 			r.Sortable = r.EmailAttribute.Sortable
 			r.EmailAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDEmailAttribute.Type))
-			r.Type = r.EmailAttribute.Type
 			r.EmailAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ValueFormatter)
 			r.ValueFormatter = r.EmailAttribute.ValueFormatter
 		}
@@ -1079,8 +1045,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDFileAttribute.Manifest {
 					r.FileAttribute.Manifest = append(r.FileAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.FileAttribute.Manifest = nil
 			}
 			r.FileAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDFileAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Purpose {
@@ -1120,7 +1084,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ExplicitSearchable = r.FileAttribute.ExplicitSearchable
 			r.FileAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.FeatureFlag)
 			r.FeatureFlag = r.FileAttribute.FeatureFlag
-			r.FileAttribute.FileSizeBytes = types.Int64PointerValue(resp.AttributeWithCompositeIDFileAttribute.FileSizeBytes)
 			r.FileAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Group)
 			r.Group = r.FileAttribute.Group
 			r.FileAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.HasPrimary)
@@ -1182,7 +1145,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.FileAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Sortable)
 			r.Sortable = r.FileAttribute.Sortable
 			r.FileAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDFileAttribute.Type))
-			r.Type = r.FileAttribute.Type
 			r.FileAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.ValueFormatter)
 			r.ValueFormatter = r.FileAttribute.ValueFormatter
 		}
@@ -1193,8 +1155,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
 					r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InternalAttribute.Manifest = nil
 			}
 			r.InternalAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInternalAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Purpose {
@@ -1283,7 +1243,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InternalAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Sortable)
 			r.Sortable = r.InternalAttribute.Sortable
 			r.InternalAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInternalAttribute.Type))
-			r.Type = r.InternalAttribute.Type
 			r.InternalAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ValueFormatter)
 			r.ValueFormatter = r.InternalAttribute.ValueFormatter
 		}
@@ -1294,8 +1253,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
 					r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InternalUserAttribute.Manifest = nil
 			}
 			r.InternalUserAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInternalUserAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Purpose {
@@ -1384,7 +1341,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InternalUserAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Sortable)
 			r.Sortable = r.InternalUserAttribute.Sortable
 			r.InternalUserAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInternalUserAttribute.Type))
-			r.Type = r.InternalUserAttribute.Type
 			r.InternalUserAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ValueFormatter)
 			r.ValueFormatter = r.InternalUserAttribute.ValueFormatter
 		}
@@ -1395,8 +1351,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
 					r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InvitationEmailAttribute.Manifest = nil
 			}
 			r.InvitationEmailAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose {
@@ -1485,7 +1439,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InvitationEmailAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Sortable)
 			r.Sortable = r.InvitationEmailAttribute.Sortable
 			r.InvitationEmailAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInvitationEmailAttribute.Type))
-			r.Type = r.InvitationEmailAttribute.Type
 			r.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ValueFormatter)
 			r.ValueFormatter = r.InvitationEmailAttribute.ValueFormatter
 		}
@@ -1496,8 +1449,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
 					r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.LinkAttribute.Manifest = nil
 			}
 			r.LinkAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDLinkAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Purpose {
@@ -1586,7 +1537,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.LinkAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Sortable)
 			r.Sortable = r.LinkAttribute.Sortable
 			r.LinkAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDLinkAttribute.Type))
-			r.Type = r.LinkAttribute.Type
 			r.LinkAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ValueFormatter)
 			r.ValueFormatter = r.LinkAttribute.ValueFormatter
 		}
@@ -1597,8 +1547,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Manifest {
 					r.MessageEmailAddressAttribute.Manifest = append(r.MessageEmailAddressAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.MessageEmailAddressAttribute.Manifest = nil
 			}
 			r.MessageEmailAddressAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose {
@@ -1690,7 +1638,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MessageEmailAddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Sortable)
 			r.Sortable = r.MessageEmailAddressAttribute.Sortable
 			r.MessageEmailAddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Type))
-			r.Type = r.MessageEmailAddressAttribute.Type
 			r.MessageEmailAddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ValueFormatter)
 			r.ValueFormatter = r.MessageEmailAddressAttribute.ValueFormatter
 		}
@@ -1701,8 +1648,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Manifest {
 					r.MultiSelectAttribute.Manifest = append(r.MultiSelectAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.MultiSelectAttribute.Manifest = nil
 			}
 			r.MultiSelectAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose {
@@ -1810,7 +1755,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MultiSelectAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Sortable)
 			r.Sortable = r.MultiSelectAttribute.Sortable
 			r.MultiSelectAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMultiSelectAttribute.Type))
-			r.Type = r.MultiSelectAttribute.Type
 			r.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ValueFormatter)
 			r.ValueFormatter = r.MultiSelectAttribute.ValueFormatter
 		}
@@ -1821,8 +1765,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Manifest {
 					r.NumberAttribute.Manifest = append(r.NumberAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.NumberAttribute.Manifest = nil
 			}
 			r.NumberAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDNumberAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Purpose {
@@ -1918,7 +1860,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.NumberAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Sortable)
 			r.Sortable = r.NumberAttribute.Sortable
 			r.NumberAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDNumberAttribute.Type))
-			r.Type = r.NumberAttribute.Type
 			r.NumberAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ValueFormatter)
 			r.ValueFormatter = r.NumberAttribute.ValueFormatter
 		}
@@ -1929,8 +1870,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
 					r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.OrderedListAttribute.Manifest = nil
 			}
 			r.OrderedListAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDOrderedListAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Purpose {
@@ -2019,7 +1958,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.OrderedListAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Sortable)
 			r.Sortable = r.OrderedListAttribute.Sortable
 			r.OrderedListAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDOrderedListAttribute.Type))
-			r.Type = r.OrderedListAttribute.Type
 			r.OrderedListAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ValueFormatter)
 			r.ValueFormatter = r.OrderedListAttribute.ValueFormatter
 		}
@@ -2030,8 +1968,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
 					r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PartnerOrganisationAttribute.Manifest = nil
 			}
 			r.PartnerOrganisationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose {
@@ -2120,7 +2056,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Sortable)
 			r.Sortable = r.PartnerOrganisationAttribute.Sortable
 			r.PartnerOrganisationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Type))
-			r.Type = r.PartnerOrganisationAttribute.Type
 			r.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ValueFormatter)
 			r.ValueFormatter = r.PartnerOrganisationAttribute.ValueFormatter
 		}
@@ -2131,8 +2066,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
 					r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PartnerStatusAttribute.Manifest = nil
 			}
 			r.PartnerStatusAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose {
@@ -2221,7 +2154,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PartnerStatusAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Sortable)
 			r.Sortable = r.PartnerStatusAttribute.Sortable
 			r.PartnerStatusAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPartnerStatusAttribute.Type))
-			r.Type = r.PartnerStatusAttribute.Type
 			r.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ValueFormatter)
 			r.ValueFormatter = r.PartnerStatusAttribute.ValueFormatter
 		}
@@ -2232,8 +2164,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Manifest {
 					r.PaymentAttribute.Manifest = append(r.PaymentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PaymentAttribute.Manifest = nil
 			}
 			r.PaymentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPaymentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Purpose {
@@ -2322,7 +2252,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PaymentAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Sortable)
 			r.Sortable = r.PaymentAttribute.Sortable
 			r.PaymentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPaymentAttribute.Type))
-			r.Type = r.PaymentAttribute.Type
 			r.PaymentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ValueFormatter)
 			r.ValueFormatter = r.PaymentAttribute.ValueFormatter
 		}
@@ -2333,8 +2262,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
 					r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PaymentMethodRelationAttribute.Manifest = nil
 			}
 			r.PaymentMethodRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose {
@@ -2423,7 +2350,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Sortable)
 			r.Sortable = r.PaymentMethodRelationAttribute.Sortable
 			r.PaymentMethodRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Type))
-			r.Type = r.PaymentMethodRelationAttribute.Type
 			r.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.PaymentMethodRelationAttribute.ValueFormatter
 		}
@@ -2434,8 +2360,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Manifest {
 					r.PhoneAttribute.Manifest = append(r.PhoneAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PhoneAttribute.Manifest = nil
 			}
 			r.PhoneAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPhoneAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Purpose {
@@ -2524,7 +2448,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PhoneAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Sortable)
 			r.Sortable = r.PhoneAttribute.Sortable
 			r.PhoneAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPhoneAttribute.Type))
-			r.Type = r.PhoneAttribute.Type
 			r.PhoneAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ValueFormatter)
 			r.ValueFormatter = r.PhoneAttribute.ValueFormatter
 		}
@@ -2535,8 +2458,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Manifest {
 					r.PortalAccessAttribute.Manifest = append(r.PortalAccessAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PortalAccessAttribute.Manifest = nil
 			}
 			r.PortalAccessAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose {
@@ -2625,7 +2546,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PortalAccessAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Sortable)
 			r.Sortable = r.PortalAccessAttribute.Sortable
 			r.PortalAccessAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPortalAccessAttribute.Type))
-			r.Type = r.PortalAccessAttribute.Type
 			r.PortalAccessAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ValueFormatter)
 			r.ValueFormatter = r.PortalAccessAttribute.ValueFormatter
 		}
@@ -2636,8 +2556,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Manifest {
 					r.PriceComponentAttribute.Manifest = append(r.PriceComponentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PriceComponentAttribute.Manifest = nil
 			}
 			r.PriceComponentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPriceComponentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Purpose {
@@ -2726,7 +2644,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PriceComponentAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Sortable)
 			r.Sortable = r.PriceComponentAttribute.Sortable
 			r.PriceComponentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPriceComponentAttribute.Type))
-			r.Type = r.PriceComponentAttribute.Type
 			r.PriceComponentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ValueFormatter)
 			r.ValueFormatter = r.PriceComponentAttribute.ValueFormatter
 		}
@@ -2737,8 +2654,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Manifest {
 					r.PurposeAttribute.Manifest = append(r.PurposeAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PurposeAttribute.Manifest = nil
 			}
 			r.PurposeAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPurposeAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
@@ -2827,7 +2742,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PurposeAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Sortable)
 			r.Sortable = r.PurposeAttribute.Sortable
 			r.PurposeAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPurposeAttribute.Type))
-			r.Type = r.PurposeAttribute.Type
 			r.PurposeAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ValueFormatter)
 			r.ValueFormatter = r.PurposeAttribute.ValueFormatter
 		}
@@ -2838,8 +2752,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Manifest {
 					r.RelationAttribute.Manifest = append(r.RelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.RelationAttribute.Manifest = nil
 			}
 			r.RelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Purpose {
@@ -3017,7 +2929,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields)
 			}
 			r.RelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDRelationAttribute.Type))
-			r.Type = r.RelationAttribute.Type
 			r.RelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.RelationAttribute.ValueFormatter
 		}
@@ -3028,8 +2939,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Manifest {
 					r.SelectAttribute.Manifest = append(r.SelectAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.SelectAttribute.Manifest = nil
 			}
 			r.SelectAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDSelectAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Purpose {
@@ -3125,7 +3034,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.SelectAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Sortable)
 			r.Sortable = r.SelectAttribute.Sortable
 			r.SelectAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDSelectAttribute.Type))
-			r.Type = r.SelectAttribute.Type
 			r.SelectAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ValueFormatter)
 			r.ValueFormatter = r.SelectAttribute.ValueFormatter
 		}
@@ -3136,8 +3044,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Manifest {
 					r.SequenceAttribute.Manifest = append(r.SequenceAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.SequenceAttribute.Manifest = nil
 			}
 			r.SequenceAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDSequenceAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Purpose {
@@ -3228,7 +3134,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Sortable = r.SequenceAttribute.Sortable
 			r.SequenceAttribute.StartNumber = types.Int64PointerValue(resp.AttributeWithCompositeIDSequenceAttribute.StartNumber)
 			r.SequenceAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDSequenceAttribute.Type))
-			r.Type = r.SequenceAttribute.Type
 			r.SequenceAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ValueFormatter)
 			r.ValueFormatter = r.SequenceAttribute.ValueFormatter
 		}
@@ -3239,8 +3144,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Manifest {
 					r.StatusAttribute.Manifest = append(r.StatusAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.StatusAttribute.Manifest = nil
 			}
 			r.StatusAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDStatusAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Purpose {
@@ -3345,7 +3248,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.StatusAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Sortable)
 			r.Sortable = r.StatusAttribute.Sortable
 			r.StatusAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDStatusAttribute.Type))
-			r.Type = r.StatusAttribute.Type
 			r.StatusAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ValueFormatter)
 			r.ValueFormatter = r.StatusAttribute.ValueFormatter
 		}
@@ -3356,26 +3258,16 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDTableAttribute.Manifest {
 					r.TableAttribute.Manifest = append(r.TableAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TableAttribute.Manifest = nil
 			}
 			r.TableAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTableAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTableAttribute.Purpose {
 				r.TableAttribute.Purpose = append(r.TableAttribute.Purpose, types.StringValue(v))
-			}
-			if resp.AttributeWithCompositeIDTableAttribute.ColumnHeader == nil {
-				r.TableAttribute.ColumnHeader = nil
-			} else {
-				r.TableAttribute.ColumnHeader = &tfTypes.TableAttributeColumnHeader{}
-				r.TableAttribute.ColumnHeader.Start = types.Int64PointerValue(resp.AttributeWithCompositeIDTableAttribute.ColumnHeader.Start)
-				r.TableAttribute.ColumnHeader.Template = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.ColumnHeader.Template)
 			}
 			r.TableAttribute.Columns = []tfTypes.TableAttributeColumns{}
 
 			for _, columnsItem := range resp.AttributeWithCompositeIDTableAttribute.Columns {
 				var columns tfTypes.TableAttributeColumns
 
-				columns.Bold = types.BoolPointerValue(columnsItem.Bold)
 				columns.Label = types.StringValue(columnsItem.Label)
 				columns.Name = types.StringValue(columnsItem.Name)
 				columns.Required = types.BoolPointerValue(columnsItem.Required)
@@ -3472,9 +3364,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ShowInTable = r.TableAttribute.ShowInTable
 			r.TableAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Sortable)
 			r.Sortable = r.TableAttribute.Sortable
-			r.TableAttribute.Transposed = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Transposed)
 			r.TableAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTableAttribute.Type))
-			r.Type = r.TableAttribute.Type
 			r.TableAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.ValueFormatter)
 			r.ValueFormatter = r.TableAttribute.ValueFormatter
 		}
@@ -3485,8 +3375,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Manifest {
 					r.TagsAttribute.Manifest = append(r.TagsAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TagsAttribute.Manifest = nil
 			}
 			r.TagsAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTagsAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Purpose {
@@ -3583,7 +3471,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.TagsAttribute.Suggestions = append(r.TagsAttribute.Suggestions, types.StringValue(v))
 			}
 			r.TagsAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTagsAttribute.Type))
-			r.Type = r.TagsAttribute.Type
 			r.TagsAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ValueFormatter)
 			r.ValueFormatter = r.TagsAttribute.ValueFormatter
 		}
@@ -3594,8 +3481,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDTextAttribute.Manifest {
 					r.TextAttribute.Manifest = append(r.TextAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TextAttribute.Manifest = nil
 			}
 			r.TextAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTextAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Purpose {
@@ -3692,7 +3577,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.TextAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Sortable)
 			r.Sortable = r.TextAttribute.Sortable
 			r.TextAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTextAttribute.Type))
-			r.Type = r.TextAttribute.Type
 			r.TextAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.ValueFormatter)
 			r.ValueFormatter = r.TextAttribute.ValueFormatter
 		}
@@ -3703,8 +3587,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Manifest {
 					r.UserRelationAttribute.Manifest = append(r.UserRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.UserRelationAttribute.Manifest = nil
 			}
 			r.UserRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDUserRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Purpose {
@@ -3794,7 +3676,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.UserRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Sortable)
 			r.Sortable = r.UserRelationAttribute.Sortable
 			r.UserRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDUserRelationAttribute.Type))
-			r.Type = r.UserRelationAttribute.Type
 			r.UserRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.UserRelationAttribute.ValueFormatter
 		}

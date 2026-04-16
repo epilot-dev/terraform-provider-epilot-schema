@@ -10,8 +10,7 @@ import (
 
 type PutSchemaRequest struct {
 	// Entity Type
-	Slug string `pathParam:"style=simple,explode=false,name=slug"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Slug             string                   `pathParam:"style=simple,explode=false,name=slug"`
 	Draft            *bool                    `default:"false" queryParam:"style=form,explode=true,name=draft"`
 	EntitySchemaItem *shared.EntitySchemaItem `request:"mediaType=application/json"`
 }
