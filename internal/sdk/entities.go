@@ -1831,6 +1831,7 @@ func (s *Entities) UpsertEntity(ctx context.Context, request operations.UpsertEn
 	case httpRes.StatusCode == 405:
 		fallthrough
 	case httpRes.StatusCode == 409:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -2318,6 +2319,7 @@ func (s *Entities) RestoreEntity(ctx context.Context, request operations.Restore
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -2548,6 +2550,7 @@ func (s *Entities) ReindexEntity(ctx context.Context, request operations.Reindex
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -2572,6 +2575,7 @@ func (s *Entities) ReindexEntity(ctx context.Context, request operations.Reindex
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
+		utils.DrainBody(httpRes)
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -3358,6 +3362,7 @@ func (s *Entities) PatchEntity(ctx context.Context, request operations.PatchEnti
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -3570,6 +3575,7 @@ func (s *Entities) DeleteEntity(ctx context.Context, request operations.DeleteEn
 
 	switch {
 	case httpRes.StatusCode == 200:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -3982,6 +3988,7 @@ func (s *Entities) WipeAllEntities(ctx context.Context, request *operations.Wipe
 
 	switch {
 	case httpRes.StatusCode == 201:
+		utils.DrainBody(httpRes)
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {

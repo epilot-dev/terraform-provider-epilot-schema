@@ -7,6 +7,7 @@ import (
 )
 
 type TableAttributeColumns struct {
+	Bold     types.Bool   `tfsdk:"bold"`
 	Label    types.String `tfsdk:"label"`
 	Name     types.String `tfsdk:"name"`
 	Required types.Bool   `tfsdk:"required"`

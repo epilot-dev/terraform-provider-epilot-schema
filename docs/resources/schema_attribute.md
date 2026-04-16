@@ -21,10 +21,10 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
-    display_type                = "checkbox"
+    display_type                = "switch"
     entity_builder_disable_edit = false
     exclude_from_search         = false
-    explicit_searchable         = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -54,7 +54,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     readonly         = false
     render_condition = "...my_render_condition..."
     repeatable       = true
-    required         = true
+    required         = false
     schema           = "contact"
     settings_flag = [
       {
@@ -114,20 +114,19 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 ### Read-Only
 
 - `composite_id` (String) Schema Slug and the Attribute ID
-- `deprecated` (Boolean) Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean)
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
 Use this for fields that should not be matched during entity search operations,
 such as internal hashes or identifiers that might accidentally match search terms.
-Default: false
 - `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
 the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
 that must always be included in search operations.
-Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
@@ -139,15 +138,16 @@ The value must be a valid @epilot/base-elements Icon name
 - `placeholder` (String)
 - `preview_value_formatter` (String)
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `readonly` (Boolean) Default: false
+- `readonly` (Boolean)
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean) The attribute is a repeatable
-- `required` (Boolean) Default: false
+- `required` (Boolean)
 - `schema` (String) Schema slug the attribute belongs to
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
+- `type` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--address_attribute"></a>
@@ -1046,6 +1046,7 @@ the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
 that must always be included in search operations.
 Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `file_size_bytes` (Number) The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
@@ -2831,6 +2832,7 @@ Optional:
 
 Optional:
 
+- `column_header` (Attributes) Configuration for column headers in transposed mode (see [below for nested schema](#nestedatt--table_attribute--column_header))
 - `columns` (Attributes List) Column definitions for the table (see [below for nested schema](#nestedatt--table_attribute--columns))
 - `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
@@ -2858,7 +2860,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String) Not Null
 - `layout` (String)
 - `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `max_rows` (Number) Maximum number of rows allowed
+- `max_rows` (Number) Maximum number of rows allowed (or maximum periods when transposed)
 - `min_rows` (Number) Minimum number of rows required. Default: 0
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
@@ -2876,14 +2878,25 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--table_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `transposed` (Boolean) Enable transposed layout where rows become metrics and columns become periods. Default: false
 - `type` (String) Not Null; must be "table"
 - `value_formatter` (String)
+
+<a id="nestedatt--table_attribute--column_header"></a>
+### Nested Schema for `table_attribute.column_header`
+
+Optional:
+
+- `start` (Number) Starting index value for the template placeholder. Default: 0
+- `template` (String) Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
+
 
 <a id="nestedatt--table_attribute--columns"></a>
 ### Nested Schema for `table_attribute.columns`
 
 Optional:
 
+- `bold` (Boolean) When true, the row is rendered in bold (only applies in transposed mode). Default: false
 - `label` (String) Display label for the column header. Not Null
 - `name` (String) The column identifier (used as object key in row data). Not Null
 - `required` (Boolean) Whether this column is required for each row. Default: false

@@ -10,6 +10,7 @@ import (
 type TableAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
+	ColumnHeader             *TableAttributeColumnHeader                          `tfsdk:"column_header"`
 	Columns                  []TableAttributeColumns                              `tfsdk:"columns"`
 	Constraints              *AddressAttributeAttributeWithCompositeIDConstraints `tfsdk:"constraints"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
@@ -41,6 +42,7 @@ type TableAttribute struct {
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`
 	Sortable                 types.Bool                                           `tfsdk:"sortable"`
+	Transposed               types.Bool                                           `tfsdk:"transposed"`
 	Type                     types.String                                         `tfsdk:"type"`
 	ValueFormatter           types.String                                         `tfsdk:"value_formatter"`
 }

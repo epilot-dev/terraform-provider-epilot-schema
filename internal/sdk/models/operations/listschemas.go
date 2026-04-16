@@ -10,9 +10,15 @@ import (
 
 type ListSchemasRequest struct {
 	// Return unpublished draft schemas
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Unpublished *bool `default:"false" queryParam:"style=form,explode=true,name=unpublished"`
+	// When true, return the latest version instead of the frozen version for frozen schemas.
+	Latest *bool `default:"false" queryParam:"style=form,explode=true,name=latest"`
 	// List of schema slugs to exclude from the results. Accepts a comma-separated list of slugs to exclude from the results.
 	Exclude []string `queryParam:"style=form,explode=false,name=exclude"`
+	// List of schema slugs to include in the results. When provided, only these schemas are returned. Accepts a comma-separated list of slugs.
+	Include []string `queryParam:"style=form,explode=false,name=include"`
 }
 
 func (l ListSchemasRequest) MarshalJSON() ([]byte, error) {
@@ -33,11 +39,25 @@ func (l *ListSchemasRequest) GetUnpublished() *bool {
 	return l.Unpublished
 }
 
+func (l *ListSchemasRequest) GetLatest() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.Latest
+}
+
 func (l *ListSchemasRequest) GetExclude() []string {
 	if l == nil {
 		return nil
 	}
 	return l.Exclude
+}
+
+func (l *ListSchemasRequest) GetInclude() []string {
+	if l == nil {
+		return nil
+	}
+	return l.Include
 }
 
 // ListSchemasResponseBody - Success

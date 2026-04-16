@@ -430,6 +430,7 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -1062,6 +1063,7 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 
 	switch {
 	case httpRes.StatusCode == 204:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -1542,6 +1544,7 @@ func (s *Taxonomy) CreateTaxonomyClassification(ctx context.Context, request *sh
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -1994,6 +1997,7 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
+		utils.DrainBody(httpRes)
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -2194,6 +2198,7 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -3264,6 +3269,7 @@ func (s *Taxonomy) CancelBulkAction(ctx context.Context, request operations.Canc
 	case httpRes.StatusCode == 403:
 		fallthrough
 	case httpRes.StatusCode == 404:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -3288,6 +3294,7 @@ func (s *Taxonomy) CancelBulkAction(ctx context.Context, request operations.Canc
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 500:
+		utils.DrainBody(httpRes)
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -3496,6 +3503,7 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -3727,6 +3735,7 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -3959,6 +3968,7 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 

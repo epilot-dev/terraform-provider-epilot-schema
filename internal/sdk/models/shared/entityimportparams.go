@@ -24,6 +24,9 @@ func (s *S3Reference) GetKey() string {
 	return s.Key
 }
 
+// #region class-body-s3reference
+// #endregion class-body-s3reference
+
 // EntityImportParams - The parameters for importing entities.
 type EntityImportParams struct {
 	// The S3 bucket and key where the JSON file for import is located.

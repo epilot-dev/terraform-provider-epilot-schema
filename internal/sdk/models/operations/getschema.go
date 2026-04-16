@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
@@ -11,6 +12,19 @@ type GetSchemaRequest struct {
 	// Entity Type
 	Slug string  `pathParam:"style=simple,explode=false,name=slug"`
 	ID   *string `queryParam:"style=form,explode=true,name=id"`
+	// When true, return the latest version instead of the frozen version for frozen schemas.
+	Latest *bool `default:"false" queryParam:"style=form,explode=true,name=latest"`
+}
+
+func (g GetSchemaRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSchemaRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetSchemaRequest) GetSlug() string {
@@ -25,6 +39,13 @@ func (g *GetSchemaRequest) GetID() *string {
 		return nil
 	}
 	return g.ID
+}
+
+func (g *GetSchemaRequest) GetLatest() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.Latest
 }
 
 type GetSchemaResponse struct {
