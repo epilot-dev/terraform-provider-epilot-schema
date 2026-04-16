@@ -20,6 +20,8 @@ func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithComposi
 			for _, v := range resp.Manifest {
 				r.Manifest = append(r.Manifest, types.StringValue(v))
 			}
+		} else {
+			r.Manifest = nil
 		}
 		r.Purpose = make([]types.String, 0, len(resp.Purpose))
 		for _, v := range resp.Purpose {

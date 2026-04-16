@@ -5269,7 +5269,9 @@ type AttributeWithCompositeIDFileAttribute struct {
 	//
 	EnableDescription    *bool                              `json:"enable_description,omitempty"`
 	DefaultAccessControl *FileAttributeDefaultAccessControl `json:"default_access_control,omitempty"`
-	CompositeID          *string                            `json:"composite_id,omitempty"`
+	// The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
+	FileSizeBytes *int64  `json:"file_size_bytes,omitempty"`
+	CompositeID   *string `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -5542,6 +5544,13 @@ func (a *AttributeWithCompositeIDFileAttribute) GetDefaultAccessControl() *FileA
 		return nil
 	}
 	return a.DefaultAccessControl
+}
+
+func (a *AttributeWithCompositeIDFileAttribute) GetFileSizeBytes() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.FileSizeBytes
 }
 
 func (a *AttributeWithCompositeIDFileAttribute) GetCompositeID() *string {
@@ -6974,6 +6983,8 @@ type TableAttributeColumns struct {
 	Width *string `json:"width,omitempty"`
 	// Whether this column is required for each row
 	Required *bool `default:"false" json:"required"`
+	// When true, the row is rendered in bold (only applies in transposed mode)
+	Bold *bool `default:"false" json:"bold"`
 }
 
 func (t TableAttributeColumns) MarshalJSON() ([]byte, error) {
@@ -7020,6 +7031,46 @@ func (t *TableAttributeColumns) GetRequired() *bool {
 		return nil
 	}
 	return t.Required
+}
+
+func (t *TableAttributeColumns) GetBold() *bool {
+	if t == nil {
+		return nil
+	}
+	return t.Bold
+}
+
+// TableAttributeColumnHeader - Configuration for column headers in transposed mode
+type TableAttributeColumnHeader struct {
+	// Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
+	Template *string `json:"template,omitempty"`
+	// Starting index value for the template placeholder
+	Start *int64 `default:"0" json:"start"`
+}
+
+func (t TableAttributeColumnHeader) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TableAttributeColumnHeader) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (t *TableAttributeColumnHeader) GetTemplate() *string {
+	if t == nil {
+		return nil
+	}
+	return t.Template
+}
+
+func (t *TableAttributeColumnHeader) GetStart() *int64 {
+	if t == nil {
+		return nil
+	}
+	return t.Start
 }
 
 // AttributeWithCompositeIDTableAttribute - Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row.
@@ -7092,9 +7143,13 @@ type AttributeWithCompositeIDTableAttribute struct {
 	Columns []TableAttributeColumns `json:"columns,omitempty"`
 	// Minimum number of rows required
 	MinRows *int64 `default:"0" json:"min_rows"`
-	// Maximum number of rows allowed
-	MaxRows     *int64  `json:"max_rows,omitempty"`
-	CompositeID *string `json:"composite_id,omitempty"`
+	// Maximum number of rows allowed (or maximum periods when transposed)
+	MaxRows *int64 `json:"max_rows,omitempty"`
+	// Enable transposed layout where rows become metrics and columns become periods
+	Transposed *bool `default:"false" json:"transposed"`
+	// Configuration for column headers in transposed mode
+	ColumnHeader *TableAttributeColumnHeader `json:"column_header,omitempty"`
+	CompositeID  *string                     `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -7353,6 +7408,20 @@ func (a *AttributeWithCompositeIDTableAttribute) GetMaxRows() *int64 {
 		return nil
 	}
 	return a.MaxRows
+}
+
+func (a *AttributeWithCompositeIDTableAttribute) GetTransposed() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Transposed
+}
+
+func (a *AttributeWithCompositeIDTableAttribute) GetColumnHeader() *TableAttributeColumnHeader {
+	if a == nil {
+		return nil
+	}
+	return a.ColumnHeader
 }
 
 func (a *AttributeWithCompositeIDTableAttribute) GetCompositeID() *string {
@@ -8864,6 +8933,9 @@ func (c *Currency1) GetFlag() *string {
 	}
 	return c.Flag
 }
+
+// #region class-body-currency1
+// #endregion class-body-currency1
 
 type CurrencyAttributeCurrencyType string
 
@@ -12441,6 +12513,9 @@ func (s *StatusAttributeOptions2) GetTitle() *string {
 	return s.Title
 }
 
+// #region class-body-statusattributeoptions2
+// #endregion class-body-statusattributeoptions2
+
 type StatusAttributeAttributeWithCompositeIDOptionsType string
 
 const (
@@ -12989,6 +13064,9 @@ func (m *MultiSelectAttributeOptions2) GetTitle() *string {
 	}
 	return m.Title
 }
+
+// #region class-body-multiselectattributeoptions2
+// #endregion class-body-multiselectattributeoptions2
 
 type MultiSelectAttributeOptionsType string
 
