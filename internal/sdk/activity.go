@@ -37,6 +37,7 @@ func newActivity(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.H
 //
 // - All activites are published as events on the event bus
 // - Entity mutations are always part of an activity
+// - When more than 10 entities are passed, the first 10 are attached synchronously and the rest are processed asynchronously to avoid DynamoDB throttling
 func (s *Activity) CreateActivity(ctx context.Context, request operations.CreateActivityRequest, opts ...operations.Option) (*operations.CreateActivityResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
