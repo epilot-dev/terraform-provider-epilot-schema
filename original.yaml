@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Entity API
-  version: 2.9.0
+  version: 2.8.0
   description: |
     Flexible data layer for epilot Entities.
 
@@ -42,88 +42,12 @@ paths:
       - in: query
         name: unpublished
         description: Return unpublished draft schemas
-        deprecated: true
-        schema:
-          type: boolean
-          default: false
-      - in: query
-        name: latest
-        description: When true, return the latest version instead of the frozen version for frozen schemas.
         schema:
           type: boolean
           default: false
       - in: query
         name: exclude
         description: List of schema slugs to exclude from the results. Accepts a comma-separated list of slugs to exclude from the results.
-        schema:
-          type: array
-          items:
-            type: string
-        style: form
-        explode: false
-      - in: query
-        name: include
-        description: List of schema slugs to include in the results. When provided, only these schemas are returned. Accepts a comma-separated list of slugs.
-        schema:
-          type: array
-          items:
-            type: string
-        style: form
-        explode: false
-      tags:
-      - Schemas
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/EntitySchemaItem'
-  /v2/entity/schemas:
-    get:
-      operationId: listSchemasV2
-      summary: listSchemasV2
-      description: |
-        Get the latest versions of all schemas.
-        Returns summary schemas by default (only summary attributes, no capabilities).
-        Use ?full=true for complete schemas.
-      parameters:
-      - in: query
-        name: full
-        description: Return full schemas including all attributes and capabilities
-        schema:
-          type: boolean
-          default: false
-      - in: query
-        name: unpublished
-        description: Return unpublished draft schemas
-        deprecated: true
-        schema:
-          type: boolean
-          default: false
-      - in: query
-        name: latest
-        description: When true, return the latest version instead of the frozen version for frozen schemas.
-        schema:
-          type: boolean
-          default: false
-      - in: query
-        name: exclude
-        description: List of schema slugs to exclude from the results. Accepts a comma-separated list of slugs to exclude from the results.
-        schema:
-          type: array
-          items:
-            type: string
-        style: form
-        explode: false
-      - in: query
-        name: include
-        description: List of schema slugs to include in the results. When provided, only these schemas are returned. Accepts a comma-separated list of slugs.
         schema:
           type: array
           items:
@@ -148,10 +72,7 @@ paths:
     get:
       operationId: getSchema
       summary: getSchema
-      description: |
-        By default gets the current version of the Schema (frozen version if frozen, otherwise latest).
-        Pass ?latest=true to get the latest version when the schema is frozen.
-        Pass ?id= to get a specific version by ID.
+      description: By default gets the latest version of the Schema and to get the specific version of schema pass the id.
       tags:
       - Schemas
       parameters:
@@ -160,12 +81,6 @@ paths:
         name: id
         schema:
           $ref: '#/components/schemas/SchemaId'
-      - in: query
-        name: latest
-        description: When true, return the latest version instead of the frozen version for frozen schemas.
-        schema:
-          type: boolean
-          default: false
       responses:
         '200':
           description: Success
@@ -178,16 +93,13 @@ paths:
     put:
       operationId: putSchema
       summary: putSchema
-      description: |
-        Create or update a schema with a new version.
-        When the schema is frozen, writes update the latest version without affecting the frozen version.
+      description: Create or update a schema with a new version
       tags:
       - Schemas
       parameters:
       - $ref: '#/components/parameters/EntitySlugPathParam'
       - in: query
         name: draft
-        deprecated: true
         schema:
           default: false
           type: boolean
@@ -543,7 +455,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/EntitySchemaItem'
                   drafts:
-                    deprecated: true
                     type: array
                     items:
                       $ref: '#/components/schemas/EntitySchemaItem'
@@ -551,66 +462,11 @@ paths:
                     description: 'Pagination: Whether more versions are available'
                     type: boolean
                   drafts_more:
-                    deprecated: true
                     description: 'Pagination: Whether more drafts are available'
                     type: boolean
-                  frozen_version:
-                    description: The version ID that is currently frozen, if any
-                    allOf:
-                    - $ref: '#/components/schemas/SchemaId'
                 required:
                 - versions
                 - versions_more
-  /v1/entity/schemas/{slug}/freeze:
-    post:
-      operationId: freezeSchema
-      summary: freezeSchema
-      description: |
-        Freeze a schema at its current version, or at a specific version.
-        When frozen, getSchema returns the frozen version by default.
-        New edits via putSchema update the latest version without affecting the frozen version.
-      tags:
-      - Schemas
-      parameters:
-      - $ref: '#/components/parameters/EntitySlugPathParam'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                version_id:
-                  description: Freeze to a specific version ID. Defaults to the current version.
-                  allOf:
-                  - $ref: '#/components/schemas/SchemaId'
-      responses:
-        '200':
-          description: Schema frozen successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntitySchemaItem'
-        '404':
-          $ref: '#/components/responses/NotFoundError'
-  /v1/entity/schemas/{slug}/unfreeze:
-    post:
-      operationId: unfreezeSchema
-      summary: unfreezeSchema
-      description: |
-        Unfreeze a schema. Promotes the latest version to the current version for all users.
-      tags:
-      - Schemas
-      parameters:
-      - $ref: '#/components/parameters/EntitySlugPathParam'
-      responses:
-        '200':
-          description: Schema unfrozen successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntitySchemaItem'
-        '404':
-          $ref: '#/components/responses/NotFoundError'
   /v1/entity/schemas/{slug}/capabilities/available:
     get:
       operationId: listAvailableCapabilities
@@ -1048,7 +904,6 @@ paths:
         explode: false
         schema:
           $ref: '#/components/schemas/FieldsParam'
-      - $ref: '#/components/parameters/ApplyChangesetsQueryParam'
       responses:
         '200':
           description: Success
@@ -1251,7 +1106,6 @@ paths:
       - $ref: '#/components/parameters/FillActivityQueryParam'
       - $ref: '#/components/parameters/AsyncOperationQueryParam'
       - $ref: '#/components/parameters/ValidateEntityQueryParam'
-      - $ref: '#/components/parameters/DirectQueryParam'
       requestBody:
         content:
           application/json:
@@ -1312,7 +1166,6 @@ paths:
       - $ref: '#/components/parameters/DryRunQueryParam'
       - $ref: '#/components/parameters/AsyncOperationQueryParam'
       - $ref: '#/components/parameters/ValidateEntityQueryParam'
-      - $ref: '#/components/parameters/DirectQueryParam'
       requestBody:
         content:
           application/json:
@@ -1450,7 +1303,6 @@ paths:
 
         - All activites are published as events on the event bus
         - Entity mutations are always part of an activity
-        - When more than 10 entities are passed, the first 10 are attached synchronously and the rest are processed asynchronously to avoid DynamoDB throttling
       tags:
       - Activity
       parameters:
@@ -1541,87 +1393,6 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '429':
           $ref: '#/components/responses/TooManyRequestsError'
-  /v1/entity/{slug}/{id}/changesets/{attribute}:apply:
-    post:
-      operationId: applyChangeset
-      summary: applyChangeset
-      description: |
-        Applies the proposed value from a pending changeset to the entity attribute
-        and removes the changeset. Used for human approval of pending changes.
-      tags:
-      - Entities
-      parameters:
-      - $ref: '#/components/parameters/EntitySlugPathParam'
-      - $ref: '#/components/parameters/EntityIdPathParam'
-      - in: path
-        name: attribute
-        required: true
-        description: Attribute name of the changeset to apply
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Changeset applied successfully — returns updated entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityItem'
-        '404':
-          $ref: '#/components/responses/NotFoundError'
-  /v1/entity/{slug}/{id}/changesets/{attribute}:dismiss:
-    post:
-      operationId: dismissChangeset
-      summary: dismissChangeset
-      description: |
-        Removes a pending changeset without applying it. The attribute value remains unchanged.
-      tags:
-      - Entities
-      parameters:
-      - $ref: '#/components/parameters/EntitySlugPathParam'
-      - $ref: '#/components/parameters/EntityIdPathParam'
-      - in: path
-        name: attribute
-        required: true
-        description: Attribute name of the changeset to dismiss
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                reason:
-                  type: string
-                  description: Optional reason for dismissing the changeset
-      responses:
-        '200':
-          description: Changeset dismissed successfully — returns updated entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EntityItem'
-        '404':
-          $ref: '#/components/responses/NotFoundError'
-  /v1/entity/{slug}/{id}/changesets:
-    get:
-      operationId: listChangesets
-      summary: listChangesets
-      description: Returns all pending changesets for an entity.
-      tags:
-      - Entities
-      parameters:
-      - $ref: '#/components/parameters/EntitySlugPathParam'
-      - $ref: '#/components/parameters/EntityIdPathParam'
-      responses:
-        '200':
-          description: Pending changesets for the entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ChangesetMap'
-        '404':
-          $ref: '#/components/responses/NotFoundError'
   /v1/entity/{slug}/{id}/activity:
     get:
       operationId: getEntityActivityFeed
@@ -2580,24 +2351,6 @@ paths:
         name: include_archived
         schema:
           $ref: '#/components/schemas/TaxonomySearchIncludeArchivedParam'
-      - in: query
-        name: exclude_types
-        description: |
-          Taxonomy type(s) to exclude from the results. Useful to filter out relation labels, schema labels, and system labels.
-        schema:
-          anyOf:
-          - type: string
-            enum:
-            - relation
-            - schema
-            - system
-          - type: array
-            items:
-              type: string
-              enum:
-              - relation
-              - schema
-              - system
       requestBody:
         content:
           application/json:
@@ -3349,7 +3102,6 @@ components:
           type: boolean
           example: false
         draft:
-          deprecated: true
           type: boolean
           example: false
         icon:
@@ -3487,14 +3239,6 @@ components:
           type: array
           items:
             type: string
-        _manifest:
-          type: array
-          description: Manifest ID used to create the schema
-          items:
-            type: string
-            format: uuid
-            example: 123e4567-e89b-12d3-a456-426614174000
-          nullable: true
         explicit_search_mappings:
           $ref: '#/components/schemas/SearchMappings'
         group_headlines:
@@ -3526,15 +3270,6 @@ components:
                 type: string
               type:
                 type: string
-          frozen:
-            description: Indicates this schema is currently frozen. Present when the returned version is the frozen version.
-            type: boolean
-          latest:
-            description: Indicates this is the latest version of the schema. Both frozen and latest can be true if no changes were made since freezing.
-            type: boolean
-          _summary:
-            description: Indicates this is a truncated summary schema (attributes trimmed to summary_attributes only, no capabilities or group_settings)
-            type: boolean
       - $ref: '#/components/schemas/EntitySchema'
     GenerateEntityTableAIFiltersRequest:
       type: object
@@ -3870,22 +3605,6 @@ components:
           type: boolean
         has_primary:
           type: boolean
-        edit_mode:
-          type: string
-          description: |
-            Controls how updates to this attribute are handled.
-            - `direct` (default): update is applied immediately. No changeset created.
-            - `external`: update creates a changeset, auto-cleared on matching external update (e.g. ERP inbound sync via ?direct=true).
-            - `approval`: update creates a changeset, requires explicit human approval.
-          enum:
-          - direct
-          - external
-          - approval
-          default: direct
-        edit_mode_config:
-          description: Configuration for non-direct edit modes. Required when edit_mode is external or approval with fuzzy match strategy.
-          allOf:
-          - $ref: '#/components/schemas/EditModeConfig'
       required:
       - name
       - label
@@ -4106,10 +3825,6 @@ components:
             enum:
             - public-read
             - private
-          file_size_bytes:
-            type: integer
-            description: The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
-            example: 5000000
         required:
         - type
     CurrencyAttribute:
@@ -4570,10 +4285,6 @@ components:
                   type: boolean
                   description: Whether this column is required for each row
                   default: false
-                bold:
-                  type: boolean
-                  description: When true, the row is rendered in bold (only applies in transposed mode)
-                  default: false
               required:
               - name
               - label
@@ -4584,25 +4295,8 @@ components:
             default: 0
           max_rows:
             type: integer
-            description: Maximum number of rows allowed (or maximum periods when transposed)
+            description: Maximum number of rows allowed
             minimum: 1
-          transposed:
-            type: boolean
-            description: Enable transposed layout where rows become metrics and columns become periods
-            default: false
-          column_header:
-            type: object
-            description: Configuration for column headers in transposed mode
-            properties:
-              template:
-                type: string
-                description: Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
-                example: Year {{i}}
-              start:
-                type: integer
-                description: Starting index value for the template placeholder
-                default: 0
-                minimum: 0
     ConsentAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
@@ -4962,19 +4656,6 @@ components:
           description: This capability should only be active when all the settings have the correct value
           items:
             $ref: '#/components/schemas/SettingFlag'
-        schemas:
-          type: array
-          description: Schema-specific configuration for the capability
-          items:
-            type: object
-            additionalProperties: true
-            required:
-            - schema
-            properties:
-              schema:
-                type: string
-                description: Entity schema slug
-                example: contact
       required:
       - name
     EntityCapabilityWithCompositeID:
@@ -5161,16 +4842,6 @@ components:
             format: uuid
             example: 123e4567-e89b-12d3-a456-426614174000
           nullable: true
-        _changesets:
-          readOnly: true
-          type: object
-          nullable: true
-          description: |
-            Pending attribute changesets for attributes configured with external or approval edit mode.
-            Read-only via normal entity PATCH/PUT operations — cannot be set directly.
-            Use the changeset management endpoints to apply or dismiss changesets.
-          additionalProperties:
-            $ref: '#/components/schemas/Changeset'
       example:
         _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         _org: '123'
@@ -5829,10 +5500,6 @@ components:
           type: boolean
           description: If true, return full entity objects in entityNodes instead of just entity IDs in nodes
           default: false
-        apply_changesets:
-          type: boolean
-          description: When true and hydrate is also true, entity objects in entityNodes have pending changeset proposed values applied in-place. The _changesets field is still included in the response.
-          default: false
     GraphSeed:
       type: object
       required:
@@ -6042,12 +5709,8 @@ components:
             - date
             - flattened
             - nested
-            - object
           fields:
             additionalProperties: true
-          dynamic:
-            type: boolean
-            description: When false, prevents ES from inferring types for nested fields. Used for _changesets where values can be any type.
     ActivityId:
       type: string
       format: ulid
@@ -6110,10 +5773,6 @@ components:
         - RelationsSoftDeleted
         - RelationsRestored
         - RelationsDeleted
-        - ChangesetCreated
-        - ChangesetAutoCleared
-        - ChangesetApplied
-        - ChangesetDismissed
     Activity:
       type: object
       additionalProperties: false
@@ -6667,111 +6326,6 @@ components:
           type: string
           description: The error message
           example: Bad Request
-    ChangesetCreator:
-      type: object
-      description: Identifies the actor that created the changeset.
-      properties:
-        type:
-          type: string
-          description: Type of actor that created the changeset
-          enum:
-          - user
-          - portal_user
-          - api_client
-          - automation
-        id:
-          type: string
-          description: ID of the actor (user ID, portal user ID, API client ID, etc.)
-    Changeset:
-      type: object
-      description: A pending proposed change for a single entity attribute, awaiting external confirmation or human approval.
-      required:
-      - proposed_value
-      - created_at
-      - edit_mode
-      properties:
-        proposed_value:
-          description: The proposed new value for the attribute. Type matches the attribute type.
-        previous_value:
-          description: The attribute value at the time the changeset was created. Stored for reference.
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the changeset was created
-        created_by:
-          $ref: '#/components/schemas/ChangesetCreator'
-        edit_mode:
-          type: string
-          description: The edit mode that triggered this changeset
-          enum:
-          - external
-          - approval
-        match_strategy:
-          $ref: '#/components/schemas/MatchStrategy'
-        source:
-          type: string
-          description: Optional label indicating where the change originated (e.g. end_customer_portal, installer_portal, journey, automation)
-    ChangesetMap:
-      type: object
-      description: Map of attribute name to pending changeset. At most one changeset per attribute.
-      additionalProperties:
-        $ref: '#/components/schemas/Changeset'
-    EditModeConfig:
-      type: object
-      description: Configuration for non-direct edit modes on an entity attribute.
-      properties:
-        match_strategy:
-          $ref: '#/components/schemas/MatchStrategy'
-        fuzzy_config:
-          $ref: '#/components/schemas/FuzzyConfig'
-    FuzzyConfig:
-      type: object
-      description: Configuration for fuzzy match strategies on changeset auto-clearing.
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: Which fuzzy algorithm to apply.
-          enum:
-          - suffix
-          - digits_only
-          - normalize_phone
-          - ignore_fields
-          - contains_entry
-          - regex
-        suffix_length:
-          type: integer
-          description: 'For type=suffix: number of characters to compare from end of string.'
-        fields_to_ignore:
-          type: array
-          items:
-            type: string
-          description: 'For type=ignore_fields: field names to exclude when comparing array entries.'
-        regex_flags:
-          type: string
-          description: 'For type=regex: flags to apply to the regex (e.g. ''i'' for case-insensitive).'
-        country_code:
-          type: string
-          description: 'For type=normalize_phone: country dialing code digits to strip (e.g. ''49'' for Germany). No ''+'' prefix.'
-        match_on:
-          type: string
-          description: 'For type=normalize_phone and type=contains_entry: attribute key(s) within array entries to compare on.'
-        pattern:
-          type: string
-          description: 'For type=regex: regular expression pattern to test the incoming value against.'
-    MatchStrategy:
-      type: string
-      description: |
-        Strategy for auto-clearing the changeset when an external update is received.
-        - `exact`: The inbound value must exactly match the proposed value (deep equality).
-        - `fuzzy`: The inbound value is compared using the configured fuzzy algorithm.
-        - `any`: Any update to the attribute clears the changeset, regardless of value.
-      enum:
-      - exact
-      - fuzzy
-      - any
-      default: exact
   parameters:
     EntityIdPathParam:
       name: id
@@ -6961,28 +6515,6 @@ components:
       schema:
         default: false
         type: boolean
-    DirectQueryParam:
-      name: direct
-      description: |
-        When true, bypasses changeset interception and applies attribute updates directly.
-        Used by trusted integrations (e.g. ERP inbound sync) to confirm changes and auto-clear matching pending changesets.
-        Defaults to false — no breaking change for existing callers.
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
-    ApplyChangesetsQueryParam:
-      name: apply_changesets
-      description: |
-        When true, applies pending changeset proposed values in-place on the response entity.
-        The response includes both the hydrated values and the raw _changesets field.
-        Does not mutate stored data — pure read-time transform.
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
   examples:
     EmptyGenericEntity:
       description: Example of an empty, generic entity

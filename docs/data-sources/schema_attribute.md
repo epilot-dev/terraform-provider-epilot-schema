@@ -36,7 +36,6 @@ data "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--country_attribute))
 - `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--currency_attribute))
 - `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--date_attribute))
-- `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `email_attribute` (Attributes) Email address (see [below for nested schema](#nestedatt--email_attribute))
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -94,7 +93,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `table_attribute` (Attributes) Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row. (see [below for nested schema](#nestedatt--table_attribute))
 - `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--tags_attribute))
 - `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--text_attribute))
-- `type` (String)
 - `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--user_relation_attribute))
 - `value_formatter` (String)
 
@@ -972,7 +970,6 @@ such as internal hashes or identifiers that might accidentally match search term
 the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
 that must always be included in search operations.
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `file_size_bytes` (Number) The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
@@ -2717,7 +2714,6 @@ Read-Only:
 
 Read-Only:
 
-- `column_header` (Attributes) Configuration for column headers in transposed mode (see [below for nested schema](#nestedatt--table_attribute--column_header))
 - `columns` (Attributes List) Column definitions for the table (see [below for nested schema](#nestedatt--table_attribute--columns))
 - `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
@@ -2743,7 +2739,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String)
 - `layout` (String)
 - `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `max_rows` (Number) Maximum number of rows allowed (or maximum periods when transposed)
+- `max_rows` (Number) Maximum number of rows allowed
 - `min_rows` (Number) Minimum number of rows required
 - `name` (String)
 - `order` (Number) Attribute sort order (ascending) in group
@@ -2761,25 +2757,14 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--table_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `transposed` (Boolean) Enable transposed layout where rows become metrics and columns become periods
 - `type` (String)
 - `value_formatter` (String)
-
-<a id="nestedatt--table_attribute--column_header"></a>
-### Nested Schema for `table_attribute.column_header`
-
-Read-Only:
-
-- `start` (Number) Starting index value for the template placeholder
-- `template` (String) Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
-
 
 <a id="nestedatt--table_attribute--columns"></a>
 ### Nested Schema for `table_attribute.columns`
 
 Read-Only:
 
-- `bold` (Boolean) When true, the row is rendered in bold (only applies in transposed mode)
 - `label` (String) Display label for the column header
 - `name` (String) The column identifier (used as object key in row data)
 - `required` (Boolean) Whether this column is required for each row

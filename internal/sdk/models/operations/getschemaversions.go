@@ -74,16 +74,11 @@ func (g *GetSchemaVersionsRequest) GetFields() []string {
 // GetSchemaVersionsResponseBody - Success
 type GetSchemaVersionsResponseBody struct {
 	Versions []shared.EntitySchemaItem `json:"versions"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Drafts []shared.EntitySchemaItem `json:"drafts,omitempty"`
+	Drafts   []shared.EntitySchemaItem `json:"drafts,omitempty"`
 	// Pagination: Whether more versions are available
 	VersionsMore bool `json:"versions_more"`
 	// Pagination: Whether more drafts are available
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	DraftsMore *bool `json:"drafts_more,omitempty"`
-	// The version ID that is currently frozen, if any
-	FrozenVersion *string `json:"frozen_version,omitempty"`
 }
 
 func (g *GetSchemaVersionsResponseBody) GetVersions() []shared.EntitySchemaItem {
@@ -112,13 +107,6 @@ func (g *GetSchemaVersionsResponseBody) GetDraftsMore() *bool {
 		return nil
 	}
 	return g.DraftsMore
-}
-
-func (g *GetSchemaVersionsResponseBody) GetFrozenVersion() *string {
-	if g == nil {
-		return nil
-	}
-	return g.FrozenVersion
 }
 
 type GetSchemaVersionsResponse struct {

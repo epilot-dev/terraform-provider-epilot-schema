@@ -151,8 +151,6 @@ type Columns struct {
 	Width *string `json:"width,omitempty"`
 	// Whether this column is required for each row
 	Required *bool `default:"false" json:"required"`
-	// When true, the row is rendered in bold (only applies in transposed mode)
-	Bold *bool `default:"false" json:"bold"`
 }
 
 func (c Columns) MarshalJSON() ([]byte, error) {
@@ -199,46 +197,6 @@ func (c *Columns) GetRequired() *bool {
 		return nil
 	}
 	return c.Required
-}
-
-func (c *Columns) GetBold() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.Bold
-}
-
-// ColumnHeader - Configuration for column headers in transposed mode
-type ColumnHeader struct {
-	// Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")
-	Template *string `json:"template,omitempty"`
-	// Starting index value for the template placeholder
-	Start *int64 `default:"0" json:"start"`
-}
-
-func (c ColumnHeader) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ColumnHeader) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (c *ColumnHeader) GetTemplate() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Template
-}
-
-func (c *ColumnHeader) GetStart() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.Start
 }
 
 // TableAttribute - Dynamic data table with configurable columns. Data is stored as an array of objects where each object represents a row.
@@ -311,12 +269,8 @@ type TableAttribute struct {
 	Columns []Columns `json:"columns,omitempty"`
 	// Minimum number of rows required
 	MinRows *int64 `default:"0" json:"min_rows"`
-	// Maximum number of rows allowed (or maximum periods when transposed)
+	// Maximum number of rows allowed
 	MaxRows *int64 `json:"max_rows,omitempty"`
-	// Enable transposed layout where rows become metrics and columns become periods
-	Transposed *bool `default:"false" json:"transposed"`
-	// Configuration for column headers in transposed mode
-	ColumnHeader *ColumnHeader `json:"column_header,omitempty"`
 }
 
 func (t TableAttribute) MarshalJSON() ([]byte, error) {
@@ -573,18 +527,4 @@ func (t *TableAttribute) GetMaxRows() *int64 {
 		return nil
 	}
 	return t.MaxRows
-}
-
-func (t *TableAttribute) GetTransposed() *bool {
-	if t == nil {
-		return nil
-	}
-	return t.Transposed
-}
-
-func (t *TableAttribute) GetColumnHeader() *ColumnHeader {
-	if t == nil {
-		return nil
-	}
-	return t.ColumnHeader
 }

@@ -22,7 +22,6 @@ type AttributeWithCompositeIDFileAttribute struct {
 	ExcludeFromSearch        types.Bool                                           `tfsdk:"exclude_from_search"`
 	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
-	FileSizeBytes            types.Int64                                          `tfsdk:"file_size_bytes"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
 	Hidden                   types.Bool                                           `tfsdk:"hidden"`

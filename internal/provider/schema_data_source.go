@@ -44,20 +44,16 @@ type SchemaDataSourceModel struct {
 	EnableSetting          jsontypes.Normalized `tfsdk:"enable_setting"`
 	ExplicitSearchMappings jsontypes.Normalized `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String         `tfsdk:"feature_flag"`
-	Frozen                 types.Bool           `tfsdk:"frozen"`
 	GroupHeadlines         jsontypes.Normalized `tfsdk:"group_headlines"`
 	GroupSettings          jsontypes.Normalized `tfsdk:"group_settings"`
 	Icon                   types.String         `tfsdk:"icon"`
 	ID                     types.String         `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
-	Latest                 types.Bool           `queryParam:"style=form,explode=true,name=latest" tfsdk:"latest"`
 	LayoutSettings         jsontypes.Normalized `tfsdk:"layout_settings"`
-	Manifest               []types.String       `tfsdk:"manifest"`
 	Name                   types.String         `tfsdk:"name"`
 	Plural                 types.String         `tfsdk:"plural"`
 	Published              types.Bool           `tfsdk:"published"`
 	Purpose                []types.String       `tfsdk:"purpose"`
 	Slug                   types.String         `tfsdk:"slug"`
-	Summary                types.Bool           `tfsdk:"summary"`
 	TitleTemplate          types.String         `tfsdk:"title_template"`
 	UIConfig               jsontypes.Normalized `tfsdk:"ui_config"`
 	UpdatedAt              types.String         `tfsdk:"updated_at"`
@@ -107,8 +103,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed: true,
 			},
 			"draft": schema.BoolAttribute{
-				Computed:           true,
-				DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
+				Computed: true,
 			},
 			"enable_setting": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
@@ -123,10 +118,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
 				Description: `This schema should only be active when the feature flag is enabled`,
-			},
-			"frozen": schema.BoolAttribute{
-				Computed:    true,
-				Description: `Indicates this schema is currently frozen. Present when the returned version is the frozen version.`,
 			},
 			"group_headlines": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
@@ -146,20 +137,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Optional:    true,
 				Description: `Generated uuid for schema`,
 			},
-			"latest": schema.BoolAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `Indicates this is the latest version of the schema. Both frozen and latest can be true if no changes were made since freezing.`,
-			},
 			"layout_settings": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
-			},
-			"manifest": schema.ListAttribute{
-				Computed:    true,
-				ElementType: types.StringType,
-				Description: `Manifest ID used to create the schema`,
 			},
 			"name": schema.StringAttribute{
 				Computed:    true,
@@ -181,10 +162,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), "must match pattern "+regexp.MustCompile(`^[a-zA-Z0-9_-]+$`).String()),
 				},
-			},
-			"summary": schema.BoolAttribute{
-				Computed:    true,
-				Description: `Indicates this is a truncated summary schema (attributes trimmed to summary_attributes only, no capabilities or group_settings)`,
 			},
 			"title_template": schema.StringAttribute{
 				Computed:    true,

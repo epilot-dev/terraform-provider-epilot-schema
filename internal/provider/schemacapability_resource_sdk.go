@@ -22,8 +22,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			for _, v := range resp.Manifest {
 				r.Manifest = append(r.Manifest, types.StringValue(v))
 			}
-		} else {
-			r.Manifest = nil
 		}
 		r.Purpose = make([]types.String, 0, len(resp.Purpose))
 		for _, v := range resp.Purpose {
@@ -42,8 +40,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.AddressAttribute.Manifest {
 						attributes.AddressAttribute.Manifest = append(attributes.AddressAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.AddressAttribute.Manifest = nil
 				}
 				attributes.AddressAttribute.Purpose = make([]types.String, 0, len(attributesItem.AddressAttribute.Purpose))
 				for _, v := range attributesItem.AddressAttribute.Purpose {
@@ -59,8 +55,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.AddressAttribute.DefaultAddressFields {
 						attributes.AddressAttribute.DefaultAddressFields = append(attributes.AddressAttribute.DefaultAddressFields, types.StringValue(v))
 					}
-				} else {
-					attributes.AddressAttribute.DefaultAddressFields = nil
 				}
 				if attributesItem.AddressAttribute.DefaultValue == nil {
 					attributes.AddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -121,8 +115,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.AddressRelationAttribute.Manifest {
 						attributes.AddressRelationAttribute.Manifest = append(attributes.AddressRelationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.AddressRelationAttribute.Manifest = nil
 				}
 				attributes.AddressRelationAttribute.Purpose = make([]types.String, 0, len(attributesItem.AddressRelationAttribute.Purpose))
 				for _, v := range attributesItem.AddressRelationAttribute.Purpose {
@@ -138,8 +130,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.AddressRelationAttribute.DefaultAddressFields {
 						attributes.AddressRelationAttribute.DefaultAddressFields = append(attributes.AddressRelationAttribute.DefaultAddressFields, types.StringValue(v))
 					}
-				} else {
-					attributes.AddressRelationAttribute.DefaultAddressFields = nil
 				}
 				if attributesItem.AddressRelationAttribute.DefaultValue == nil {
 					attributes.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -200,8 +190,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.AutomationAttribute.Manifest {
 						attributes.AutomationAttribute.Manifest = append(attributes.AutomationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.AutomationAttribute.Manifest = nil
 				}
 				attributes.AutomationAttribute.Purpose = make([]types.String, 0, len(attributesItem.AutomationAttribute.Purpose))
 				for _, v := range attributesItem.AutomationAttribute.Purpose {
@@ -271,8 +259,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.BooleanAttribute.Manifest {
 						attributes.BooleanAttribute.Manifest = append(attributes.BooleanAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.BooleanAttribute.Manifest = nil
 				}
 				attributes.BooleanAttribute.Purpose = make([]types.String, 0, len(attributesItem.BooleanAttribute.Purpose))
 				for _, v := range attributesItem.BooleanAttribute.Purpose {
@@ -347,8 +333,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.ComputedAttribute.Manifest {
 						attributes.ComputedAttribute.Manifest = append(attributes.ComputedAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.ComputedAttribute.Manifest = nil
 				}
 				attributes.ComputedAttribute.Purpose = make([]types.String, 0, len(attributesItem.ComputedAttribute.Purpose))
 				for _, v := range attributesItem.ComputedAttribute.Purpose {
@@ -421,8 +405,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.ConsentAttribute.Manifest {
 						attributes.ConsentAttribute.Manifest = append(attributes.ConsentAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.ConsentAttribute.Manifest = nil
 				}
 				attributes.ConsentAttribute.Purpose = make([]types.String, 0, len(attributesItem.ConsentAttribute.Purpose))
 				for _, v := range attributesItem.ConsentAttribute.Purpose {
@@ -497,8 +479,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.CountryAttribute.Manifest {
 						attributes.CountryAttribute.Manifest = append(attributes.CountryAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.CountryAttribute.Manifest = nil
 				}
 				attributes.CountryAttribute.Purpose = make([]types.String, 0, len(attributesItem.CountryAttribute.Purpose))
 				for _, v := range attributesItem.CountryAttribute.Purpose {
@@ -568,8 +548,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.CurrencyAttribute.Manifest {
 						attributes.CurrencyAttribute.Manifest = append(attributes.CurrencyAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.CurrencyAttribute.Manifest = nil
 				}
 				attributes.CurrencyAttribute.Purpose = make([]types.String, 0, len(attributesItem.CurrencyAttribute.Purpose))
 				for _, v := range attributesItem.CurrencyAttribute.Purpose {
@@ -655,8 +633,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.DateAttribute.Manifest {
 						attributes.DateAttribute.Manifest = append(attributes.DateAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.DateAttribute.Manifest = nil
 				}
 				attributes.DateAttribute.Purpose = make([]types.String, 0, len(attributesItem.DateAttribute.Purpose))
 				for _, v := range attributesItem.DateAttribute.Purpose {
@@ -726,8 +702,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.EmailAttribute.Manifest {
 						attributes.EmailAttribute.Manifest = append(attributes.EmailAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.EmailAttribute.Manifest = nil
 				}
 				attributes.EmailAttribute.Purpose = make([]types.String, 0, len(attributesItem.EmailAttribute.Purpose))
 				for _, v := range attributesItem.EmailAttribute.Purpose {
@@ -797,8 +771,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.FileAttribute.Manifest {
 						attributes.FileAttribute.Manifest = append(attributes.FileAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.FileAttribute.Manifest = nil
 				}
 				attributes.FileAttribute.Purpose = make([]types.String, 0, len(attributesItem.FileAttribute.Purpose))
 				for _, v := range attributesItem.FileAttribute.Purpose {
@@ -831,7 +803,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes.FileAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.FileAttribute.ExcludeFromSearch)
 				attributes.FileAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.FileAttribute.ExplicitSearchable)
 				attributes.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem.FileAttribute.FeatureFlag)
-				attributes.FileAttribute.FileSizeBytes = types.Int64PointerValue(attributesItem.FileAttribute.FileSizeBytes)
 				attributes.FileAttribute.Group = types.StringPointerValue(attributesItem.FileAttribute.Group)
 				attributes.FileAttribute.HasPrimary = types.BoolPointerValue(attributesItem.FileAttribute.HasPrimary)
 				attributes.FileAttribute.Hidden = types.BoolPointerValue(attributesItem.FileAttribute.Hidden)
@@ -881,8 +852,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.InternalAttribute.Manifest {
 						attributes.InternalAttribute.Manifest = append(attributes.InternalAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.InternalAttribute.Manifest = nil
 				}
 				attributes.InternalAttribute.Purpose = make([]types.String, 0, len(attributesItem.InternalAttribute.Purpose))
 				for _, v := range attributesItem.InternalAttribute.Purpose {
@@ -952,8 +921,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.InternalUserAttribute.Manifest {
 						attributes.InternalUserAttribute.Manifest = append(attributes.InternalUserAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.InternalUserAttribute.Manifest = nil
 				}
 				attributes.InternalUserAttribute.Purpose = make([]types.String, 0, len(attributesItem.InternalUserAttribute.Purpose))
 				for _, v := range attributesItem.InternalUserAttribute.Purpose {
@@ -1023,8 +990,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.InvitationEmailAttribute.Manifest {
 						attributes.InvitationEmailAttribute.Manifest = append(attributes.InvitationEmailAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.InvitationEmailAttribute.Manifest = nil
 				}
 				attributes.InvitationEmailAttribute.Purpose = make([]types.String, 0, len(attributesItem.InvitationEmailAttribute.Purpose))
 				for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
@@ -1094,8 +1059,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.LinkAttribute.Manifest {
 						attributes.LinkAttribute.Manifest = append(attributes.LinkAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.LinkAttribute.Manifest = nil
 				}
 				attributes.LinkAttribute.Purpose = make([]types.String, 0, len(attributesItem.LinkAttribute.Purpose))
 				for _, v := range attributesItem.LinkAttribute.Purpose {
@@ -1165,8 +1128,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.MessageEmailAddressAttribute.Manifest {
 						attributes.MessageEmailAddressAttribute.Manifest = append(attributes.MessageEmailAddressAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.MessageEmailAddressAttribute.Manifest = nil
 				}
 				attributes.MessageEmailAddressAttribute.Purpose = make([]types.String, 0, len(attributesItem.MessageEmailAddressAttribute.Purpose))
 				for _, v := range attributesItem.MessageEmailAddressAttribute.Purpose {
@@ -1239,8 +1200,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.MultiSelectAttribute.Manifest {
 						attributes.MultiSelectAttribute.Manifest = append(attributes.MultiSelectAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.MultiSelectAttribute.Manifest = nil
 				}
 				attributes.MultiSelectAttribute.Purpose = make([]types.String, 0, len(attributesItem.MultiSelectAttribute.Purpose))
 				for _, v := range attributesItem.MultiSelectAttribute.Purpose {
@@ -1329,8 +1288,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.NumberAttribute.Manifest {
 						attributes.NumberAttribute.Manifest = append(attributes.NumberAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.NumberAttribute.Manifest = nil
 				}
 				attributes.NumberAttribute.Purpose = make([]types.String, 0, len(attributesItem.NumberAttribute.Purpose))
 				for _, v := range attributesItem.NumberAttribute.Purpose {
@@ -1407,8 +1364,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.OrderedListAttribute.Manifest {
 						attributes.OrderedListAttribute.Manifest = append(attributes.OrderedListAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.OrderedListAttribute.Manifest = nil
 				}
 				attributes.OrderedListAttribute.Purpose = make([]types.String, 0, len(attributesItem.OrderedListAttribute.Purpose))
 				for _, v := range attributesItem.OrderedListAttribute.Purpose {
@@ -1478,8 +1433,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PartnerOrganisationAttribute.Manifest {
 						attributes.PartnerOrganisationAttribute.Manifest = append(attributes.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PartnerOrganisationAttribute.Manifest = nil
 				}
 				attributes.PartnerOrganisationAttribute.Purpose = make([]types.String, 0, len(attributesItem.PartnerOrganisationAttribute.Purpose))
 				for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
@@ -1549,8 +1502,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PartnerStatusAttribute.Manifest {
 						attributes.PartnerStatusAttribute.Manifest = append(attributes.PartnerStatusAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PartnerStatusAttribute.Manifest = nil
 				}
 				attributes.PartnerStatusAttribute.Purpose = make([]types.String, 0, len(attributesItem.PartnerStatusAttribute.Purpose))
 				for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
@@ -1620,8 +1571,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PaymentAttribute.Manifest {
 						attributes.PaymentAttribute.Manifest = append(attributes.PaymentAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PaymentAttribute.Manifest = nil
 				}
 				attributes.PaymentAttribute.Purpose = make([]types.String, 0, len(attributesItem.PaymentAttribute.Purpose))
 				for _, v := range attributesItem.PaymentAttribute.Purpose {
@@ -1691,8 +1640,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PaymentMethodRelationAttribute.Manifest {
 						attributes.PaymentMethodRelationAttribute.Manifest = append(attributes.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PaymentMethodRelationAttribute.Manifest = nil
 				}
 				attributes.PaymentMethodRelationAttribute.Purpose = make([]types.String, 0, len(attributesItem.PaymentMethodRelationAttribute.Purpose))
 				for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
@@ -1762,8 +1709,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PhoneAttribute.Manifest {
 						attributes.PhoneAttribute.Manifest = append(attributes.PhoneAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PhoneAttribute.Manifest = nil
 				}
 				attributes.PhoneAttribute.Purpose = make([]types.String, 0, len(attributesItem.PhoneAttribute.Purpose))
 				for _, v := range attributesItem.PhoneAttribute.Purpose {
@@ -1833,8 +1778,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PortalAccessAttribute.Manifest {
 						attributes.PortalAccessAttribute.Manifest = append(attributes.PortalAccessAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PortalAccessAttribute.Manifest = nil
 				}
 				attributes.PortalAccessAttribute.Purpose = make([]types.String, 0, len(attributesItem.PortalAccessAttribute.Purpose))
 				for _, v := range attributesItem.PortalAccessAttribute.Purpose {
@@ -1904,8 +1847,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PriceComponentAttribute.Manifest {
 						attributes.PriceComponentAttribute.Manifest = append(attributes.PriceComponentAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PriceComponentAttribute.Manifest = nil
 				}
 				attributes.PriceComponentAttribute.Purpose = make([]types.String, 0, len(attributesItem.PriceComponentAttribute.Purpose))
 				for _, v := range attributesItem.PriceComponentAttribute.Purpose {
@@ -1975,8 +1916,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.PurposeAttribute.Manifest {
 						attributes.PurposeAttribute.Manifest = append(attributes.PurposeAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.PurposeAttribute.Manifest = nil
 				}
 				attributes.PurposeAttribute.Purpose = make([]types.String, 0, len(attributesItem.PurposeAttribute.Purpose))
 				for _, v := range attributesItem.PurposeAttribute.Purpose {
@@ -2046,8 +1985,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.RelationAttribute.Manifest {
 						attributes.RelationAttribute.Manifest = append(attributes.RelationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.RelationAttribute.Manifest = nil
 				}
 				attributes.RelationAttribute.Purpose = make([]types.String, 0, len(attributesItem.RelationAttribute.Purpose))
 				for _, v := range attributesItem.RelationAttribute.Purpose {
@@ -2206,8 +2143,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.SelectAttribute.Manifest {
 						attributes.SelectAttribute.Manifest = append(attributes.SelectAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.SelectAttribute.Manifest = nil
 				}
 				attributes.SelectAttribute.Purpose = make([]types.String, 0, len(attributesItem.SelectAttribute.Purpose))
 				for _, v := range attributesItem.SelectAttribute.Purpose {
@@ -2284,8 +2219,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.SequenceAttribute.Manifest {
 						attributes.SequenceAttribute.Manifest = append(attributes.SequenceAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.SequenceAttribute.Manifest = nil
 				}
 				attributes.SequenceAttribute.Purpose = make([]types.String, 0, len(attributesItem.SequenceAttribute.Purpose))
 				for _, v := range attributesItem.SequenceAttribute.Purpose {
@@ -2357,8 +2290,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.StatusAttribute.Manifest {
 						attributes.StatusAttribute.Manifest = append(attributes.StatusAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.StatusAttribute.Manifest = nil
 				}
 				attributes.StatusAttribute.Purpose = make([]types.String, 0, len(attributesItem.StatusAttribute.Purpose))
 				for _, v := range attributesItem.StatusAttribute.Purpose {
@@ -2444,26 +2375,16 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.TableAttribute.Manifest {
 						attributes.TableAttribute.Manifest = append(attributes.TableAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.TableAttribute.Manifest = nil
 				}
 				attributes.TableAttribute.Purpose = make([]types.String, 0, len(attributesItem.TableAttribute.Purpose))
 				for _, v := range attributesItem.TableAttribute.Purpose {
 					attributes.TableAttribute.Purpose = append(attributes.TableAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem.TableAttribute.ColumnHeader == nil {
-					attributes.TableAttribute.ColumnHeader = nil
-				} else {
-					attributes.TableAttribute.ColumnHeader = &tfTypes.TableAttributeColumnHeader{}
-					attributes.TableAttribute.ColumnHeader.Start = types.Int64PointerValue(attributesItem.TableAttribute.ColumnHeader.Start)
-					attributes.TableAttribute.ColumnHeader.Template = types.StringPointerValue(attributesItem.TableAttribute.ColumnHeader.Template)
 				}
 				attributes.TableAttribute.Columns = []tfTypes.TableAttributeColumns{}
 
 				for _, columnsItem := range attributesItem.TableAttribute.Columns {
 					var columns tfTypes.TableAttributeColumns
 
-					columns.Bold = types.BoolPointerValue(columnsItem.Bold)
 					columns.Label = types.StringValue(columnsItem.Label)
 					columns.Name = types.StringValue(columnsItem.Name)
 					columns.Required = types.BoolPointerValue(columnsItem.Required)
@@ -2532,7 +2453,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				}
 				attributes.TableAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TableAttribute.ShowInTable)
 				attributes.TableAttribute.Sortable = types.BoolPointerValue(attributesItem.TableAttribute.Sortable)
-				attributes.TableAttribute.Transposed = types.BoolPointerValue(attributesItem.TableAttribute.Transposed)
 				attributes.TableAttribute.Type = types.StringValue(string(attributesItem.TableAttribute.Type))
 				attributes.TableAttribute.ValueFormatter = types.StringPointerValue(attributesItem.TableAttribute.ValueFormatter)
 			}
@@ -2543,8 +2463,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.TagsAttribute.Manifest {
 						attributes.TagsAttribute.Manifest = append(attributes.TagsAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.TagsAttribute.Manifest = nil
 				}
 				attributes.TagsAttribute.Purpose = make([]types.String, 0, len(attributesItem.TagsAttribute.Purpose))
 				for _, v := range attributesItem.TagsAttribute.Purpose {
@@ -2622,8 +2540,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.TextAttribute.Manifest {
 						attributes.TextAttribute.Manifest = append(attributes.TextAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.TextAttribute.Manifest = nil
 				}
 				attributes.TextAttribute.Purpose = make([]types.String, 0, len(attributesItem.TextAttribute.Purpose))
 				for _, v := range attributesItem.TextAttribute.Purpose {
@@ -2701,8 +2617,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					for _, v := range attributesItem.UserRelationAttribute.Manifest {
 						attributes.UserRelationAttribute.Manifest = append(attributes.UserRelationAttribute.Manifest, types.StringValue(v))
 					}
-				} else {
-					attributes.UserRelationAttribute.Manifest = nil
 				}
 				attributes.UserRelationAttribute.Purpose = make([]types.String, 0, len(attributesItem.UserRelationAttribute.Purpose))
 				for _, v := range attributesItem.UserRelationAttribute.Purpose {
@@ -2774,21 +2688,6 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 		r.ID = types.StringPointerValue(resp.ID)
 		r.Name = types.StringValue(resp.Name)
 		r.Schema = types.StringPointerValue(resp.Schema)
-		r.Schemas = []tfTypes.EntityCapabilityWithCompositeIDSchemas{}
-
-		for _, schemasItem := range resp.Schemas {
-			var schemas tfTypes.EntityCapabilityWithCompositeIDSchemas
-
-			if schemasItem.AdditionalProperties == nil {
-				schemas.AdditionalProperties = jsontypes.NewNormalizedNull()
-			} else {
-				additionalPropertiesResult, _ := json.Marshal(schemasItem.AdditionalProperties)
-				schemas.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
-			}
-			schemas.Schema = types.StringValue(schemasItem.Schema)
-
-			r.Schemas = append(r.Schemas, schemas)
-		}
 		r.SettingsFlag = []tfTypes.SettingFlag{}
 
 		for _, settingsFlagItem36 := range resp.SettingsFlag {
@@ -2814,8 +2713,8 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			if uiHooksItem.AdditionalProperties == nil {
 				uiHooks.AdditionalProperties = jsontypes.NewNormalizedNull()
 			} else {
-				additionalPropertiesResult1, _ := json.Marshal(uiHooksItem.AdditionalProperties)
-				uiHooks.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
+				additionalPropertiesResult, _ := json.Marshal(uiHooksItem.AdditionalProperties)
+				uiHooks.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
 			}
 			uiHooks.Component = types.StringPointerValue(uiHooksItem.Component)
 			uiHooks.Disabled = types.BoolPointerValue(uiHooksItem.Disabled)
@@ -8169,19 +8068,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				} else {
 					required19 = nil
 				}
-				bold := new(bool)
-				if !r.Attributes[attributesItem].TableAttribute.Columns[columnsIndex].Bold.IsUnknown() && !r.Attributes[attributesItem].TableAttribute.Columns[columnsIndex].Bold.IsNull() {
-					*bold = r.Attributes[attributesItem].TableAttribute.Columns[columnsIndex].Bold.ValueBool()
-				} else {
-					bold = nil
-				}
 				columns = append(columns, shared.Columns{
 					Name:     name40,
 					Label:    label20,
 					Type:     type1,
 					Width:    width,
 					Required: required19,
-					Bold:     bold,
 				})
 			}
 			minRows := new(int64)
@@ -8195,31 +8087,6 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				*maxRows = r.Attributes[attributesItem].TableAttribute.MaxRows.ValueInt64()
 			} else {
 				maxRows = nil
-			}
-			transposed := new(bool)
-			if !r.Attributes[attributesItem].TableAttribute.Transposed.IsUnknown() && !r.Attributes[attributesItem].TableAttribute.Transposed.IsNull() {
-				*transposed = r.Attributes[attributesItem].TableAttribute.Transposed.ValueBool()
-			} else {
-				transposed = nil
-			}
-			var columnHeader *shared.ColumnHeader
-			if r.Attributes[attributesItem].TableAttribute.ColumnHeader != nil {
-				template := new(string)
-				if !r.Attributes[attributesItem].TableAttribute.ColumnHeader.Template.IsUnknown() && !r.Attributes[attributesItem].TableAttribute.ColumnHeader.Template.IsNull() {
-					*template = r.Attributes[attributesItem].TableAttribute.ColumnHeader.Template.ValueString()
-				} else {
-					template = nil
-				}
-				start := new(int64)
-				if !r.Attributes[attributesItem].TableAttribute.ColumnHeader.Start.IsUnknown() && !r.Attributes[attributesItem].TableAttribute.ColumnHeader.Start.IsNull() {
-					*start = r.Attributes[attributesItem].TableAttribute.ColumnHeader.Start.ValueInt64()
-				} else {
-					start = nil
-				}
-				columnHeader = &shared.ColumnHeader{
-					Template: template,
-					Start:    start,
-				}
 			}
 			tableAttribute := shared.TableAttribute{
 				ID:                       id19,
@@ -8257,8 +8124,6 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Columns:                  columns,
 				MinRows:                  minRows,
 				MaxRows:                  maxRows,
-				Transposed:               transposed,
-				ColumnHeader:             columnHeader,
 			}
 			attributes = append(attributes, shared.Attribute{
 				TableAttribute: &tableAttribute,
@@ -9283,12 +9148,6 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			} else {
 				defaultAccessControl = nil
 			}
-			fileSizeBytes := new(int64)
-			if !r.Attributes[attributesItem].FileAttribute.FileSizeBytes.IsUnknown() && !r.Attributes[attributesItem].FileAttribute.FileSizeBytes.IsNull() {
-				*fileSizeBytes = r.Attributes[attributesItem].FileAttribute.FileSizeBytes.ValueInt64()
-			} else {
-				fileSizeBytes = nil
-			}
 			fileAttribute := shared.FileAttribute{
 				ID:                       id23,
 				Name:                     name47,
@@ -9327,7 +9186,6 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				DisplayImagesLandscaped:  displayImagesLandscaped,
 				EnableDescription:        enableDescription,
 				DefaultAccessControl:     defaultAccessControl,
-				FileSizeBytes:            fileSizeBytes,
 			}
 			attributes = append(attributes, shared.Attribute{
 				FileAttribute: &fileAttribute,
@@ -12567,25 +12425,11 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			Enabled: enabled36,
 		})
 	}
-	schemas := make([]shared.EntityCapabilityWithCompositeIDSchemas, 0, len(r.Schemas))
-	for schemasIndex := range r.Schemas {
-		var schema string
-		schema = r.Schemas[schemasIndex].Schema.ValueString()
-
-		var additionalProperties1 map[string]any
-		if !r.Schemas[schemasIndex].AdditionalProperties.IsUnknown() && !r.Schemas[schemasIndex].AdditionalProperties.IsNull() {
-			_ = json.Unmarshal([]byte(r.Schemas[schemasIndex].AdditionalProperties.ValueString()), &additionalProperties1)
-		}
-		schemas = append(schemas, shared.EntityCapabilityWithCompositeIDSchemas{
-			Schema:               schema,
-			AdditionalProperties: additionalProperties1,
-		})
-	}
-	schema1 := new(string)
+	schema := new(string)
 	if !r.Schema.IsUnknown() && !r.Schema.IsNull() {
-		*schema1 = r.Schema.ValueString()
+		*schema = r.Schema.ValueString()
 	} else {
-		schema1 = nil
+		schema = nil
 	}
 	out := shared.EntityCapabilityWithCompositeIDInput{
 		ID:           id,
@@ -12599,8 +12443,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 		UIHooks:      uiHooks,
 		FeatureFlag:  featureFlag36,
 		SettingsFlag: settingsFlag36,
-		Schemas:      schemas,
-		Schema:       schema1,
+		Schema:       schema,
 	}
 
 	return &out, diags

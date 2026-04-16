@@ -43,7 +43,6 @@ type SchemaAttributeDataSourceModel struct {
 	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute"`
 	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute"`
 	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute"`
-	DefaultValue                   jsontypes.Normalized                                          `tfsdk:"default_value"`
 	Deprecated                     types.Bool                                                    `tfsdk:"deprecated"`
 	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute"`
 	EntityBuilderDisableEdit       types.Bool                                                    `tfsdk:"entity_builder_disable_edit"`
@@ -94,7 +93,6 @@ type SchemaAttributeDataSourceModel struct {
 	TableAttribute                 *tfTypes.AttributeWithCompositeIDTableAttribute               `queryParam:"inline" tfsdk:"table_attribute"`
 	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute"`
 	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `queryParam:"inline" tfsdk:"text_attribute"`
-	Type                           types.String                                                  `tfsdk:"type"`
 	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute"`
 	ValueFormatter                 types.String                                                  `tfsdk:"value_formatter"`
 }
@@ -1796,11 +1794,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 				},
 				Description: `Date or Datetime picker`,
 			},
-			"default_value": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
-				Computed:    true,
-				Description: `Parsed as JSON.`,
-			},
 			"deprecated": schema.BoolAttribute{
 				Computed: true,
 			},
@@ -2054,10 +2047,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
 						Description: `This attribute should only be active when the feature flag is enabled`,
-					},
-					"file_size_bytes": schema.Int64Attribute{
-						Computed:    true,
-						Description: `The maximum file size in bytes. Used to derive file_size and file_size_unit in the UI.`,
 					},
 					"group": schema.StringAttribute{
 						Computed:    true,
@@ -5991,28 +5980,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 			"table_attribute": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"column_header": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"start": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Starting index value for the template placeholder`,
-							},
-							"template": schema.StringAttribute{
-								Computed:    true,
-								Description: `Header label pattern with {{i}} as index placeholder (e.g., "Year {{i}}")`,
-							},
-						},
-						Description: `Configuration for column headers in transposed mode`,
-					},
 					"columns": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"bold": schema.BoolAttribute{
-									Computed:    true,
-									Description: `When true, the row is rendered in bold (only applies in transposed mode)`,
-								},
 								"label": schema.StringAttribute{
 									Computed:    true,
 									Description: `Display label for the column header`,
@@ -6137,7 +6108,7 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"max_rows": schema.Int64Attribute{
 						Computed:    true,
-						Description: `Maximum number of rows allowed (or maximum periods when transposed)`,
+						Description: `Maximum number of rows allowed`,
 					},
 					"min_rows": schema.Int64Attribute{
 						Computed:    true,
@@ -6207,10 +6178,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"sortable": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-					},
-					"transposed": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Enable transposed layout where rows become metrics and columns become periods`,
 					},
 					"type": schema.StringAttribute{
 						Computed: true,
@@ -6589,9 +6556,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 				},
 				Description: `Textarea or text input`,
-			},
-			"type": schema.StringAttribute{
-				Computed: true,
 			},
 			"user_relation_attribute": schema.SingleNestedAttribute{
 				Computed: true,
