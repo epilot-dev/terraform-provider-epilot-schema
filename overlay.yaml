@@ -96,6 +96,16 @@ actions:
       dialog_config: {}
 
 
+  # Add SuppressDiff plan modifier to default_value to fix "unknown value after apply" bug.
+  # The nested default_value inside each attribute type (text_attribute, select_attribute, etc.)
+  # is generated as Computed+Optional but without plan modifiers. When the API returns null/omits
+  # default_value, the provider leaves it as "unknown" after apply, causing install failures.
+  # SuppressDiff propagates the state value into the plan when unknown, resolving the error.
+  - target: $["components"]["schemas"]["BaseAttribute"]["properties"]["default_value"]
+    update:
+      x-speakeasy-plan-modifiers:
+        - suppressDiff
+
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]
     update:
