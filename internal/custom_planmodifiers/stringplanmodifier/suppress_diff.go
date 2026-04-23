@@ -7,8 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )
 
-// SuppressDiff returns a plan modifier that propagates a state value into the planned value, when it is Known, and the Plan Value is Unknown
-func SuppressDiff() planmodifier.String {
+func SuppressDiff(strategy int) planmodifier.String {
 	return suppressDiff{}
 }
 
