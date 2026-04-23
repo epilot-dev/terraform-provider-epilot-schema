@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )
 
-func SuppressDiff(strategy int) planmodifier.String {
+func SuppressDiff() planmodifier.String {
 	return suppressDiff{}
 }
 
