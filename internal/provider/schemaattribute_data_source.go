@@ -43,7 +43,6 @@ type SchemaAttributeDataSourceModel struct {
 	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute"`
 	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute"`
 	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute"`
-	DefaultValue                   jsontypes.Normalized                                          `tfsdk:"default_value"`
 	Deprecated                     types.Bool                                                    `tfsdk:"deprecated"`
 	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute"`
 	EntityBuilderDisableEdit       types.Bool                                                    `tfsdk:"entity_builder_disable_edit"`
@@ -94,7 +93,6 @@ type SchemaAttributeDataSourceModel struct {
 	TableAttribute                 *tfTypes.AttributeWithCompositeIDTableAttribute               `queryParam:"inline" tfsdk:"table_attribute"`
 	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute"`
 	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `queryParam:"inline" tfsdk:"text_attribute"`
-	Type                           types.String                                                  `tfsdk:"type"`
 	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute"`
 	ValueFormatter                 types.String                                                  `tfsdk:"value_formatter"`
 }
@@ -1795,11 +1793,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 				},
 				Description: `Date or Datetime picker`,
-			},
-			"default_value": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
-				Computed:    true,
-				Description: `Parsed as JSON.`,
 			},
 			"deprecated": schema.BoolAttribute{
 				Computed: true,
@@ -6589,9 +6582,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 				},
 				Description: `Textarea or text input`,
-			},
-			"type": schema.StringAttribute{
-				Computed: true,
 			},
 			"user_relation_attribute": schema.SingleNestedAttribute{
 				Computed: true,

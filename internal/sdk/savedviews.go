@@ -1263,7 +1263,6 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 
 	switch {
 	case httpRes.StatusCode == 200:
-		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 

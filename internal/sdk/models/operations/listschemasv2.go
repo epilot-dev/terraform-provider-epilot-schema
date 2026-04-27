@@ -69,9 +69,6 @@ func (l *ListSchemasV2Request) GetInclude() []string {
 	return l.Include
 }
 
-// #region class-body-listschemasv2request
-// #endregion class-body-listschemasv2request
-
 // ListSchemasV2ResponseBody - Success
 type ListSchemasV2ResponseBody struct {
 	Results []shared.EntitySchemaItem `json:"results,omitempty"`
@@ -83,9 +80,6 @@ func (l *ListSchemasV2ResponseBody) GetResults() []shared.EntitySchemaItem {
 	}
 	return l.Results
 }
-
-// #region class-body-listschemasv2responsebody
-// #endregion class-body-listschemasv2responsebody
 
 type ListSchemasV2Response struct {
 	// HTTP response content type for this operation
@@ -125,6 +119,3 @@ func (l *ListSchemasV2Response) GetObject() *ListSchemasV2ResponseBody {
 	}
 	return l.Object
 }
-
-// #region class-body-listschemasv2response
-// #endregion class-body-listschemasv2response

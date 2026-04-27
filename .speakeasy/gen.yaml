@@ -22,12 +22,12 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
-  versioningStrategy: automatic
   persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
+  versioningStrategy: automatic
 terraform:
   version: 0.18.4
   additionalActions: []

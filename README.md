@@ -80,7 +80,7 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "epilot/epilot-schema"
-      version = "0.19.0"
+      version = "0.18.4"
     }
   }
 }
@@ -149,14 +149,13 @@ Available configuration:
 <!-- Start Available Resources and Data Sources [operations] -->
 ## Available Resources and Data Sources
 
-### Managed Resources
+### Resources
 
 * [epilot-schema_schema](docs/resources/schema.md)
 * [epilot-schema_schema_attribute](docs/resources/schema_attribute.md)
 * [epilot-schema_schema_capability](docs/resources/schema_capability.md)
 * [epilot-schema_schema_group](docs/resources/schema_group.md)
 * [epilot-schema_schema_group_headline](docs/resources/schema_group_headline.md)
-
 ### Data Sources
 
 * [epilot-schema_schema](docs/data-sources/schema.md)

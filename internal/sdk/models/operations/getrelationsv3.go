@@ -135,9 +135,6 @@ func (g *GetRelationsV3Request) GetIncludeDeleted() *shared.EntitySearchIncludeD
 	return g.IncludeDeleted
 }
 
-// #region class-body-getrelationsv3request
-// #endregion class-body-getrelationsv3request
-
 type GetRelationsV3Response struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -185,6 +182,3 @@ func (g *GetRelationsV3Response) GetNotFoundError() *shared.NotFoundError {
 	}
 	return g.NotFoundError
 }
-
-// #region class-body-getrelationsv3response
-// #endregion class-body-getrelationsv3response

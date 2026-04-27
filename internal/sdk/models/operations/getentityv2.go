@@ -58,9 +58,6 @@ func (g *GetEntityV2Request) GetFields() []string {
 	return g.Fields
 }
 
-// #region class-body-getentityv2request
-// #endregion class-body-getentityv2request
-
 type GetEntityV2Response struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -108,6 +105,3 @@ func (g *GetEntityV2Response) GetNotFoundError() *shared.NotFoundError {
 	}
 	return g.NotFoundError
 }
-
-// #region class-body-getentityv2response
-// #endregion class-body-getentityv2response
