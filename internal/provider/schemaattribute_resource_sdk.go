@@ -52,6 +52,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult, _ := json.Marshal(resp.AttributeWithCompositeIDAddressAttribute.DefaultValue)
 				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult))
 			}
+			r.DefaultValue = r.AddressAttribute.DefaultValue
 			r.AddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Deprecated)
 			r.Deprecated = r.AddressAttribute.Deprecated
 			r.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.EntityBuilderDisableEdit)
@@ -161,6 +162,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult1, _ := json.Marshal(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue)
 				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult1))
 			}
+			r.DefaultValue = r.AddressRelationAttribute.DefaultValue
 			r.AddressRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Deprecated)
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
 			r.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EntityBuilderDisableEdit)
@@ -262,6 +264,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult2, _ := json.Marshal(resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue)
 				r.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult2))
 			}
+			r.DefaultValue = r.AutomationAttribute.DefaultValue
 			r.AutomationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Deprecated)
 			r.Deprecated = r.AutomationAttribute.Deprecated
 			r.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EntityBuilderDisableEdit)
@@ -363,6 +366,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult3, _ := json.Marshal(resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue)
 				r.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult3))
 			}
+			r.DefaultValue = r.BooleanAttribute.DefaultValue
 			r.BooleanAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Deprecated)
 			r.Deprecated = r.BooleanAttribute.Deprecated
 			if resp.AttributeWithCompositeIDBooleanAttribute.DisplayType != nil {
@@ -472,6 +476,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult4, _ := json.Marshal(resp.AttributeWithCompositeIDComputedAttribute.DefaultValue)
 				r.ComputedAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult4))
 			}
+			r.DefaultValue = r.ComputedAttribute.DefaultValue
 			r.ComputedAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Deprecated)
 			r.Deprecated = r.ComputedAttribute.Deprecated
 			r.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EntityBuilderDisableEdit)
@@ -573,6 +578,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult5, _ := json.Marshal(resp.AttributeWithCompositeIDConsentAttribute.DefaultValue)
 				r.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult5))
 			}
+			r.DefaultValue = r.ConsentAttribute.DefaultValue
 			r.ConsentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Deprecated)
 			r.Deprecated = r.ConsentAttribute.Deprecated
 			r.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EntityBuilderDisableEdit)
@@ -679,6 +685,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult6, _ := json.Marshal(resp.AttributeWithCompositeIDCountryAttribute.DefaultValue)
 				r.CountryAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult6))
 			}
+			r.DefaultValue = r.CountryAttribute.DefaultValue
 			r.CountryAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Deprecated)
 			r.Deprecated = r.CountryAttribute.Deprecated
 			r.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EntityBuilderDisableEdit)
@@ -796,6 +803,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult7, _ := json.Marshal(resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue)
 				r.CurrencyAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult7))
 			}
+			r.DefaultValue = r.CurrencyAttribute.DefaultValue
 			r.CurrencyAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Deprecated)
 			r.Deprecated = r.CurrencyAttribute.Deprecated
 			r.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EntityBuilderDisableEdit)
@@ -897,6 +905,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult8, _ := json.Marshal(resp.AttributeWithCompositeIDDateAttribute.DefaultValue)
 				r.DateAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult8))
 			}
+			r.DefaultValue = r.DateAttribute.DefaultValue
 			r.DateAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Deprecated)
 			r.Deprecated = r.DateAttribute.Deprecated
 			r.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EntityBuilderDisableEdit)
@@ -998,6 +1007,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult9, _ := json.Marshal(resp.AttributeWithCompositeIDEmailAttribute.DefaultValue)
 				r.EmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult9))
 			}
+			r.DefaultValue = r.EmailAttribute.DefaultValue
 			r.EmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Deprecated)
 			r.Deprecated = r.EmailAttribute.Deprecated
 			r.EmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.EntityBuilderDisableEdit)
@@ -1108,6 +1118,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult10, _ := json.Marshal(resp.AttributeWithCompositeIDFileAttribute.DefaultValue)
 				r.FileAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult10))
 			}
+			r.DefaultValue = r.FileAttribute.DefaultValue
 			r.FileAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Deprecated)
 			r.Deprecated = r.FileAttribute.Deprecated
 			r.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.DisplayImagesLandscaped)
@@ -1213,6 +1224,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult11, _ := json.Marshal(resp.AttributeWithCompositeIDInternalAttribute.DefaultValue)
 				r.InternalAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult11))
 			}
+			r.DefaultValue = r.InternalAttribute.DefaultValue
 			r.InternalAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Deprecated)
 			r.Deprecated = r.InternalAttribute.Deprecated
 			r.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EntityBuilderDisableEdit)
@@ -1314,6 +1326,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult12, _ := json.Marshal(resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue)
 				r.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult12))
 			}
+			r.DefaultValue = r.InternalUserAttribute.DefaultValue
 			r.InternalUserAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Deprecated)
 			r.Deprecated = r.InternalUserAttribute.Deprecated
 			r.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EntityBuilderDisableEdit)
@@ -1415,6 +1428,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult13, _ := json.Marshal(resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue)
 				r.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult13))
 			}
+			r.DefaultValue = r.InvitationEmailAttribute.DefaultValue
 			r.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Deprecated)
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
 			r.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EntityBuilderDisableEdit)
@@ -1516,6 +1530,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult14, _ := json.Marshal(resp.AttributeWithCompositeIDLinkAttribute.DefaultValue)
 				r.LinkAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult14))
 			}
+			r.DefaultValue = r.LinkAttribute.DefaultValue
 			r.LinkAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Deprecated)
 			r.Deprecated = r.LinkAttribute.Deprecated
 			r.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EntityBuilderDisableEdit)
@@ -1618,6 +1633,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue)
 				r.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult15))
 			}
+			r.DefaultValue = r.MessageEmailAddressAttribute.DefaultValue
 			r.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Deprecated)
 			r.Deprecated = r.MessageEmailAddressAttribute.Deprecated
 			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
@@ -1723,6 +1739,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
 				r.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult16))
 			}
+			r.DefaultValue = r.MultiSelectAttribute.DefaultValue
 			r.MultiSelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Deprecated)
 			r.Deprecated = r.MultiSelectAttribute.Deprecated
 			r.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.DisableCaseSensitive)
@@ -1846,6 +1863,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
 				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult17))
 			}
+			r.DefaultValue = r.NumberAttribute.DefaultValue
 			r.NumberAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Deprecated)
 			r.Deprecated = r.NumberAttribute.Deprecated
 			r.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EntityBuilderDisableEdit)
@@ -1949,6 +1967,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
 				r.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult18))
 			}
+			r.DefaultValue = r.OrderedListAttribute.DefaultValue
 			r.OrderedListAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Deprecated)
 			r.Deprecated = r.OrderedListAttribute.Deprecated
 			r.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EntityBuilderDisableEdit)
@@ -2050,6 +2069,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
 				r.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult19))
 			}
+			r.DefaultValue = r.PartnerOrganisationAttribute.DefaultValue
 			r.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Deprecated)
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
 			r.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EntityBuilderDisableEdit)
@@ -2151,6 +2171,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
 				r.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult20))
 			}
+			r.DefaultValue = r.PartnerStatusAttribute.DefaultValue
 			r.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Deprecated)
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
 			r.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EntityBuilderDisableEdit)
@@ -2252,6 +2273,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue)
 				r.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult21))
 			}
+			r.DefaultValue = r.PaymentAttribute.DefaultValue
 			r.PaymentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Deprecated)
 			r.Deprecated = r.PaymentAttribute.Deprecated
 			r.PaymentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.EntityBuilderDisableEdit)
@@ -2353,6 +2375,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
 				r.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult22))
 			}
+			r.DefaultValue = r.PaymentMethodRelationAttribute.DefaultValue
 			r.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Deprecated)
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
 			r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EntityBuilderDisableEdit)
@@ -2454,6 +2477,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue)
 				r.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult23))
 			}
+			r.DefaultValue = r.PhoneAttribute.DefaultValue
 			r.PhoneAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Deprecated)
 			r.Deprecated = r.PhoneAttribute.Deprecated
 			r.PhoneAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.EntityBuilderDisableEdit)
@@ -2555,6 +2579,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPortalAccessAttribute.DefaultValue)
 				r.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult24))
 			}
+			r.DefaultValue = r.PortalAccessAttribute.DefaultValue
 			r.PortalAccessAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Deprecated)
 			r.Deprecated = r.PortalAccessAttribute.Deprecated
 			r.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.EntityBuilderDisableEdit)
@@ -2656,6 +2681,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
 				r.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult25))
 			}
+			r.DefaultValue = r.PriceComponentAttribute.DefaultValue
 			r.PriceComponentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Deprecated)
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
 			r.PriceComponentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.EntityBuilderDisableEdit)
@@ -2757,6 +2783,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
 				r.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult26))
 			}
+			r.DefaultValue = r.PurposeAttribute.DefaultValue
 			r.PurposeAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Deprecated)
 			r.Deprecated = r.PurposeAttribute.Deprecated
 			r.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EntityBuilderDisableEdit)
@@ -2895,6 +2922,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
 				r.RelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult27))
 			}
+			r.DefaultValue = r.RelationAttribute.DefaultValue
 			r.RelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Deprecated)
 			r.Deprecated = r.RelationAttribute.Deprecated
 			r.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.DetailsViewModeEnabled)
@@ -3049,6 +3077,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
 				r.SelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult28))
 			}
+			r.DefaultValue = r.SelectAttribute.DefaultValue
 			r.SelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Deprecated)
 			r.Deprecated = r.SelectAttribute.Deprecated
 			r.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EntityBuilderDisableEdit)
@@ -3156,6 +3185,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
 				r.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult29))
 			}
+			r.DefaultValue = r.SequenceAttribute.DefaultValue
 			r.SequenceAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Deprecated)
 			r.Deprecated = r.SequenceAttribute.Deprecated
 			r.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EntityBuilderDisableEdit)
@@ -3259,6 +3289,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
 				r.StatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult30))
 			}
+			r.DefaultValue = r.StatusAttribute.DefaultValue
 			r.StatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Deprecated)
 			r.Deprecated = r.StatusAttribute.Deprecated
 			r.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EntityBuilderDisableEdit)
@@ -3401,6 +3432,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTableAttribute.DefaultValue)
 				r.TableAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult31))
 			}
+			r.DefaultValue = r.TableAttribute.DefaultValue
 			r.TableAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Deprecated)
 			r.Deprecated = r.TableAttribute.Deprecated
 			r.TableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.EntityBuilderDisableEdit)
@@ -3505,6 +3537,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
 				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult32))
 			}
+			r.DefaultValue = r.TagsAttribute.DefaultValue
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
 			r.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EntityBuilderDisableEdit)
@@ -3614,6 +3647,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult33, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
 				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult33))
 			}
+			r.DefaultValue = r.TextAttribute.DefaultValue
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
 			r.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EntityBuilderDisableEdit)
@@ -3723,6 +3757,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult34, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
 				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult34))
 			}
+			r.DefaultValue = r.UserRelationAttribute.DefaultValue
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
 			r.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EntityBuilderDisableEdit)
