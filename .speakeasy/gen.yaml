@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 terraform:
-  version: 0.19.1
+  version: 0.19.2
   additionalActions: []
   additionalDataSources: []
   additionalDependencies: {}
@@ -56,6 +56,7 @@ terraform:
   inferUnionDiscriminators: false
   packageName: epilot-schema
   preApplyUnionDiscriminators: false
+  providerTypeNameOverride: ""
   respectRequiredFields: false
   respectTitlesForPrimitiveUnionMembers: false
   unionStrategy: populated-fields
