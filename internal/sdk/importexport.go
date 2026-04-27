@@ -213,7 +213,6 @@ func (s *ImportExport) ExportEntities(ctx context.Context, request operations.Ex
 
 	switch {
 	case httpRes.StatusCode == 201:
-		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 
@@ -429,7 +428,6 @@ func (s *ImportExport) ImportEntities(ctx context.Context, request operations.Im
 
 	switch {
 	case httpRes.StatusCode == 201:
-		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 429:
 		res.Headers = httpRes.Header
 

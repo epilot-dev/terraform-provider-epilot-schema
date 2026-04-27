@@ -5,6 +5,8 @@ package provider
 import (
 	"context"
 	"fmt"
+	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
+	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
@@ -19,6 +21,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -80,6 +83,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 					Attributes: map[string]schema.Attribute{
 						"address_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -380,6 +386,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"address_relation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -682,6 +691,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"automation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -957,6 +969,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"boolean_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1242,6 +1257,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"computed_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"amount_field": schema.StringAttribute{
 									Computed:    true,
@@ -1536,6 +1554,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"consent_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1822,6 +1843,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"country_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2095,6 +2119,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"currency_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2112,6 +2139,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										Attributes: map[string]schema.Attribute{
 											"one": schema.SingleNestedAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.Object{
+													speakeasy_objectplanmodifier.UseConfigValue(),
+												},
 												Attributes: map[string]schema.Attribute{
 													"code": schema.StringAttribute{
 														Computed:    true,
@@ -2423,6 +2453,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"date_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2699,6 +2732,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"email_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2972,6 +3008,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"file_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"allowed_extensions": schema.ListAttribute{
 									Computed:    true,
@@ -3285,6 +3324,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"internal_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3558,6 +3600,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"internal_user_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3833,6 +3878,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"invitation_email_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4108,6 +4156,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"link_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4381,6 +4432,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"message_email_address_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"address": schema.StringAttribute{
 									Computed: true,
@@ -4668,6 +4722,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"multi_select_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"allow_any": schema.BoolAttribute{
 									Computed:    true,
@@ -4830,6 +4887,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										Attributes: map[string]schema.Attribute{
 											"str": schema.StringAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.String{
+													speakeasy_stringplanmodifier.UseConfigValue(),
+												},
 												Validators: []validator.String{
 													stringvalidator.ConflictsWith(path.Expressions{
 														path.MatchRelative().AtParent().AtName("two"),
@@ -4838,6 +4898,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 											"two": schema.SingleNestedAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.Object{
+													speakeasy_objectplanmodifier.UseConfigValue(),
+												},
 												Attributes: map[string]schema.Attribute{
 													"title": schema.StringAttribute{
 														Computed: true,
@@ -5000,6 +5063,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"number_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5295,6 +5361,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"ordered_list_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5570,6 +5639,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"partner_organisation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5845,6 +5917,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"partner_status_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6120,6 +6195,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"payment_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6393,6 +6471,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"payment_method_relation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6668,6 +6749,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"phone_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6941,6 +7025,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"portal_access_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7216,6 +7303,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"price_component_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7491,6 +7581,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"purpose_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7764,6 +7857,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"relation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"actions": schema.ListNestedAttribute{
 									Computed: true,
@@ -8157,6 +8253,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										Attributes: map[string]schema.Attribute{
 											"str": schema.StringAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.String{
+													speakeasy_stringplanmodifier.UseConfigValue(),
+												},
 												Validators: []validator.String{
 													stringvalidator.ConflictsWith(path.Expressions{
 														path.MatchRelative().AtParent().AtName("summary_field"),
@@ -8165,6 +8264,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 											"summary_field": schema.SingleNestedAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.Object{
+													speakeasy_objectplanmodifier.UseConfigValue(),
+												},
 												Attributes: map[string]schema.Attribute{
 													"display_as": schema.StringAttribute{
 														Computed:    true,
@@ -8243,6 +8345,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"select_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"allow_any": schema.BoolAttribute{
 									Computed:    true,
@@ -8530,6 +8635,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"sequence_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -8755,9 +8863,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"start_number": schema.Int64Attribute{
 									Computed: true,
 									Optional: true,
-									Validators: []validator.Int64{
-										int64validator.AtLeast(0),
-									},
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -8815,6 +8920,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"status_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -8962,6 +9070,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										Attributes: map[string]schema.Attribute{
 											"str": schema.StringAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.String{
+													speakeasy_stringplanmodifier.UseConfigValue(),
+												},
 												Validators: []validator.String{
 													stringvalidator.ConflictsWith(path.Expressions{
 														path.MatchRelative().AtParent().AtName("two"),
@@ -8970,6 +9081,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 											"two": schema.SingleNestedAttribute{
 												Optional: true,
+												PlanModifiers: []planmodifier.Object{
+													speakeasy_objectplanmodifier.UseConfigValue(),
+												},
 												Attributes: map[string]schema.Attribute{
 													"title": schema.StringAttribute{
 														Computed:    true,
@@ -9130,6 +9244,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"table_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"column_header": schema.SingleNestedAttribute{
 									Computed: true,
@@ -9140,9 +9257,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											Optional:    true,
 											Default:     int64default.StaticInt64(0),
 											Description: `Starting index value for the template placeholder. Default: 0`,
-											Validators: []validator.Int64{
-												int64validator.AtLeast(0),
-											},
 										},
 										"template": schema.StringAttribute{
 											Computed:    true,
@@ -9352,9 +9466,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional:    true,
 									Default:     int64default.StaticInt64(0),
 									Description: `Minimum number of rows required. Default: 0`,
-									Validators: []validator.Int64{
-										int64validator.AtLeast(0),
-									},
 								},
 								"name": schema.StringAttribute{
 									Computed:    true,
@@ -9506,6 +9617,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"tags_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -9789,6 +9903,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"text_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
@@ -10076,6 +10193,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 						},
 						"user_relation_attribute": schema.SingleNestedAttribute{
 							Optional: true,
+							PlanModifiers: []planmodifier.Object{
+								speakeasy_objectplanmodifier.UseConfigValue(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,

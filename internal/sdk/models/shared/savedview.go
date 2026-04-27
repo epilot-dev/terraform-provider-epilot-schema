@@ -66,9 +66,6 @@ func (c *CreatedBy2) GetAdditionalProperties() any {
 	return c.AdditionalProperties
 }
 
-// #region class-body-createdby2
-// #endregion class-body-createdby2
-
 // CreatedBy1 - A user that created the view
 type CreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
@@ -91,9 +88,6 @@ func (c *CreatedBy1) GetUserID() *string {
 	}
 	return c.UserID
 }
-
-// #region class-body-createdby1
-// #endregion class-body-createdby1
 
 type CreatedByType string
 

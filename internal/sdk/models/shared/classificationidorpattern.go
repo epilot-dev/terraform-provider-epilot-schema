@@ -31,9 +31,6 @@ func (c *ClassificationIDOrPattern2) GetPattern() string {
 	return c.Pattern
 }
 
-// #region class-body-classificationidorpattern2
-// #endregion class-body-classificationidorpattern2
-
 type ClassificationIDOrPatternType string
 
 const (

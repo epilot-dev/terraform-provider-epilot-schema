@@ -24,8 +24,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Manifest {
 					r.AddressAttribute.Manifest = append(r.AddressAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AddressAttribute.Manifest = nil
 			}
 			r.AddressAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Purpose {
@@ -43,8 +41,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields {
 					r.AddressAttribute.DefaultAddressFields = append(r.AddressAttribute.DefaultAddressFields, types.StringValue(v))
 				}
-			} else {
-				r.AddressAttribute.DefaultAddressFields = nil
 			}
 			if resp.AttributeWithCompositeIDAddressAttribute.DefaultValue == nil {
 				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -52,7 +48,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult, _ := json.Marshal(resp.AttributeWithCompositeIDAddressAttribute.DefaultValue)
 				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult))
 			}
-			r.DefaultValue = r.AddressAttribute.DefaultValue
 			r.AddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Deprecated)
 			r.Deprecated = r.AddressAttribute.Deprecated
 			r.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.EntityBuilderDisableEdit)
@@ -123,7 +118,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.AddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Sortable)
 			r.Sortable = r.AddressAttribute.Sortable
 			r.AddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAddressAttribute.Type))
-			r.Type = r.AddressAttribute.Type
 			r.AddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ValueFormatter)
 			r.ValueFormatter = r.AddressAttribute.ValueFormatter
 		}
@@ -134,8 +128,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
 					r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AddressRelationAttribute.Manifest = nil
 			}
 			r.AddressRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose {
@@ -153,8 +145,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields {
 					r.AddressRelationAttribute.DefaultAddressFields = append(r.AddressRelationAttribute.DefaultAddressFields, types.StringValue(v))
 				}
-			} else {
-				r.AddressRelationAttribute.DefaultAddressFields = nil
 			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue == nil {
 				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
@@ -162,7 +152,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult1, _ := json.Marshal(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue)
 				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult1))
 			}
-			r.DefaultValue = r.AddressRelationAttribute.DefaultValue
 			r.AddressRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Deprecated)
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
 			r.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EntityBuilderDisableEdit)
@@ -233,7 +222,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.AddressRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Sortable)
 			r.Sortable = r.AddressRelationAttribute.Sortable
 			r.AddressRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAddressRelationAttribute.Type))
-			r.Type = r.AddressRelationAttribute.Type
 			r.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.AddressRelationAttribute.ValueFormatter
 		}
@@ -244,8 +232,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
 					r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.AutomationAttribute.Manifest = nil
 			}
 			r.AutomationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDAutomationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Purpose {
@@ -264,7 +250,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult2, _ := json.Marshal(resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue)
 				r.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult2))
 			}
-			r.DefaultValue = r.AutomationAttribute.DefaultValue
 			r.AutomationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Deprecated)
 			r.Deprecated = r.AutomationAttribute.Deprecated
 			r.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EntityBuilderDisableEdit)
@@ -335,7 +320,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.AutomationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Sortable)
 			r.Sortable = r.AutomationAttribute.Sortable
 			r.AutomationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDAutomationAttribute.Type))
-			r.Type = r.AutomationAttribute.Type
 			r.AutomationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ValueFormatter)
 			r.ValueFormatter = r.AutomationAttribute.ValueFormatter
 		}
@@ -346,8 +330,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
 					r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.BooleanAttribute.Manifest = nil
 			}
 			r.BooleanAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDBooleanAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Purpose {
@@ -366,7 +348,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult3, _ := json.Marshal(resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue)
 				r.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult3))
 			}
-			r.DefaultValue = r.BooleanAttribute.DefaultValue
 			r.BooleanAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Deprecated)
 			r.Deprecated = r.BooleanAttribute.Deprecated
 			if resp.AttributeWithCompositeIDBooleanAttribute.DisplayType != nil {
@@ -442,7 +423,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.BooleanAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Sortable)
 			r.Sortable = r.BooleanAttribute.Sortable
 			r.BooleanAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDBooleanAttribute.Type))
-			r.Type = r.BooleanAttribute.Type
 			r.BooleanAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ValueFormatter)
 			r.ValueFormatter = r.BooleanAttribute.ValueFormatter
 		}
@@ -453,8 +433,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
 					r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.ComputedAttribute.Manifest = nil
 			}
 			r.ComputedAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDComputedAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Purpose {
@@ -476,7 +454,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult4, _ := json.Marshal(resp.AttributeWithCompositeIDComputedAttribute.DefaultValue)
 				r.ComputedAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult4))
 			}
-			r.DefaultValue = r.ComputedAttribute.DefaultValue
 			r.ComputedAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Deprecated)
 			r.Deprecated = r.ComputedAttribute.Deprecated
 			r.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EntityBuilderDisableEdit)
@@ -547,7 +524,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ComputedAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Sortable)
 			r.Sortable = r.ComputedAttribute.Sortable
 			r.ComputedAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDComputedAttribute.Type))
-			r.Type = r.ComputedAttribute.Type
 			r.ComputedAttribute.ValueFormatter = types.StringValue(resp.AttributeWithCompositeIDComputedAttribute.ValueFormatter)
 			r.ValueFormatter = r.ComputedAttribute.ValueFormatter
 		}
@@ -558,8 +534,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Manifest {
 					r.ConsentAttribute.Manifest = append(r.ConsentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.ConsentAttribute.Manifest = nil
 			}
 			r.ConsentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDConsentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Purpose {
@@ -578,7 +552,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult5, _ := json.Marshal(resp.AttributeWithCompositeIDConsentAttribute.DefaultValue)
 				r.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult5))
 			}
-			r.DefaultValue = r.ConsentAttribute.DefaultValue
 			r.ConsentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Deprecated)
 			r.Deprecated = r.ConsentAttribute.Deprecated
 			r.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EntityBuilderDisableEdit)
@@ -654,7 +627,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Sortable = r.ConsentAttribute.Sortable
 			r.ConsentAttribute.Topic = types.StringValue(resp.AttributeWithCompositeIDConsentAttribute.Topic)
 			r.ConsentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDConsentAttribute.Type))
-			r.Type = r.ConsentAttribute.Type
 			r.ConsentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ValueFormatter)
 			r.ValueFormatter = r.ConsentAttribute.ValueFormatter
 		}
@@ -665,8 +637,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
 					r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.CountryAttribute.Manifest = nil
 			}
 			r.CountryAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDCountryAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Purpose {
@@ -685,7 +655,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult6, _ := json.Marshal(resp.AttributeWithCompositeIDCountryAttribute.DefaultValue)
 				r.CountryAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult6))
 			}
-			r.DefaultValue = r.CountryAttribute.DefaultValue
 			r.CountryAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Deprecated)
 			r.Deprecated = r.CountryAttribute.Deprecated
 			r.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EntityBuilderDisableEdit)
@@ -756,7 +725,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.CountryAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Sortable)
 			r.Sortable = r.CountryAttribute.Sortable
 			r.CountryAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDCountryAttribute.Type))
-			r.Type = r.CountryAttribute.Type
 			r.CountryAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ValueFormatter)
 			r.ValueFormatter = r.CountryAttribute.ValueFormatter
 		}
@@ -767,8 +735,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Manifest {
 					r.CurrencyAttribute.Manifest = append(r.CurrencyAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.CurrencyAttribute.Manifest = nil
 			}
 			r.CurrencyAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDCurrencyAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Purpose {
@@ -803,7 +769,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult7, _ := json.Marshal(resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue)
 				r.CurrencyAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult7))
 			}
-			r.DefaultValue = r.CurrencyAttribute.DefaultValue
 			r.CurrencyAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Deprecated)
 			r.Deprecated = r.CurrencyAttribute.Deprecated
 			r.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EntityBuilderDisableEdit)
@@ -874,7 +839,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.CurrencyAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Sortable)
 			r.Sortable = r.CurrencyAttribute.Sortable
 			r.CurrencyAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDCurrencyAttribute.Type))
-			r.Type = r.CurrencyAttribute.Type
 			r.CurrencyAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ValueFormatter)
 			r.ValueFormatter = r.CurrencyAttribute.ValueFormatter
 		}
@@ -885,8 +849,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
 					r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.DateAttribute.Manifest = nil
 			}
 			r.DateAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDDateAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Purpose {
@@ -905,7 +867,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult8, _ := json.Marshal(resp.AttributeWithCompositeIDDateAttribute.DefaultValue)
 				r.DateAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult8))
 			}
-			r.DefaultValue = r.DateAttribute.DefaultValue
 			r.DateAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Deprecated)
 			r.Deprecated = r.DateAttribute.Deprecated
 			r.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EntityBuilderDisableEdit)
@@ -976,7 +937,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.DateAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Sortable)
 			r.Sortable = r.DateAttribute.Sortable
 			r.DateAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDDateAttribute.Type))
-			r.Type = r.DateAttribute.Type
 			r.DateAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.ValueFormatter)
 			r.ValueFormatter = r.DateAttribute.ValueFormatter
 		}
@@ -987,8 +947,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Manifest {
 					r.EmailAttribute.Manifest = append(r.EmailAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.EmailAttribute.Manifest = nil
 			}
 			r.EmailAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDEmailAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Purpose {
@@ -1007,7 +965,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult9, _ := json.Marshal(resp.AttributeWithCompositeIDEmailAttribute.DefaultValue)
 				r.EmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult9))
 			}
-			r.DefaultValue = r.EmailAttribute.DefaultValue
 			r.EmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Deprecated)
 			r.Deprecated = r.EmailAttribute.Deprecated
 			r.EmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.EntityBuilderDisableEdit)
@@ -1078,7 +1035,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.EmailAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Sortable)
 			r.Sortable = r.EmailAttribute.Sortable
 			r.EmailAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDEmailAttribute.Type))
-			r.Type = r.EmailAttribute.Type
 			r.EmailAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ValueFormatter)
 			r.ValueFormatter = r.EmailAttribute.ValueFormatter
 		}
@@ -1089,8 +1045,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDFileAttribute.Manifest {
 					r.FileAttribute.Manifest = append(r.FileAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.FileAttribute.Manifest = nil
 			}
 			r.FileAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDFileAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Purpose {
@@ -1118,7 +1072,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult10, _ := json.Marshal(resp.AttributeWithCompositeIDFileAttribute.DefaultValue)
 				r.FileAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult10))
 			}
-			r.DefaultValue = r.FileAttribute.DefaultValue
 			r.FileAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Deprecated)
 			r.Deprecated = r.FileAttribute.Deprecated
 			r.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.DisplayImagesLandscaped)
@@ -1193,7 +1146,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.FileAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Sortable)
 			r.Sortable = r.FileAttribute.Sortable
 			r.FileAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDFileAttribute.Type))
-			r.Type = r.FileAttribute.Type
 			r.FileAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.ValueFormatter)
 			r.ValueFormatter = r.FileAttribute.ValueFormatter
 		}
@@ -1204,8 +1156,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
 					r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InternalAttribute.Manifest = nil
 			}
 			r.InternalAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInternalAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Purpose {
@@ -1224,7 +1174,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult11, _ := json.Marshal(resp.AttributeWithCompositeIDInternalAttribute.DefaultValue)
 				r.InternalAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult11))
 			}
-			r.DefaultValue = r.InternalAttribute.DefaultValue
 			r.InternalAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Deprecated)
 			r.Deprecated = r.InternalAttribute.Deprecated
 			r.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EntityBuilderDisableEdit)
@@ -1295,7 +1244,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.InternalAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Sortable)
 			r.Sortable = r.InternalAttribute.Sortable
 			r.InternalAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInternalAttribute.Type))
-			r.Type = r.InternalAttribute.Type
 			r.InternalAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ValueFormatter)
 			r.ValueFormatter = r.InternalAttribute.ValueFormatter
 		}
@@ -1306,8 +1254,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
 					r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InternalUserAttribute.Manifest = nil
 			}
 			r.InternalUserAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInternalUserAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Purpose {
@@ -1326,7 +1272,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult12, _ := json.Marshal(resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue)
 				r.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult12))
 			}
-			r.DefaultValue = r.InternalUserAttribute.DefaultValue
 			r.InternalUserAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Deprecated)
 			r.Deprecated = r.InternalUserAttribute.Deprecated
 			r.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EntityBuilderDisableEdit)
@@ -1397,7 +1342,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.InternalUserAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Sortable)
 			r.Sortable = r.InternalUserAttribute.Sortable
 			r.InternalUserAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInternalUserAttribute.Type))
-			r.Type = r.InternalUserAttribute.Type
 			r.InternalUserAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ValueFormatter)
 			r.ValueFormatter = r.InternalUserAttribute.ValueFormatter
 		}
@@ -1408,8 +1352,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
 					r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.InvitationEmailAttribute.Manifest = nil
 			}
 			r.InvitationEmailAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose {
@@ -1428,7 +1370,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult13, _ := json.Marshal(resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue)
 				r.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult13))
 			}
-			r.DefaultValue = r.InvitationEmailAttribute.DefaultValue
 			r.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Deprecated)
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
 			r.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EntityBuilderDisableEdit)
@@ -1499,7 +1440,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.InvitationEmailAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Sortable)
 			r.Sortable = r.InvitationEmailAttribute.Sortable
 			r.InvitationEmailAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDInvitationEmailAttribute.Type))
-			r.Type = r.InvitationEmailAttribute.Type
 			r.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ValueFormatter)
 			r.ValueFormatter = r.InvitationEmailAttribute.ValueFormatter
 		}
@@ -1510,8 +1450,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
 					r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.LinkAttribute.Manifest = nil
 			}
 			r.LinkAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDLinkAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Purpose {
@@ -1530,7 +1468,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult14, _ := json.Marshal(resp.AttributeWithCompositeIDLinkAttribute.DefaultValue)
 				r.LinkAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult14))
 			}
-			r.DefaultValue = r.LinkAttribute.DefaultValue
 			r.LinkAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Deprecated)
 			r.Deprecated = r.LinkAttribute.Deprecated
 			r.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EntityBuilderDisableEdit)
@@ -1601,7 +1538,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.LinkAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Sortable)
 			r.Sortable = r.LinkAttribute.Sortable
 			r.LinkAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDLinkAttribute.Type))
-			r.Type = r.LinkAttribute.Type
 			r.LinkAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ValueFormatter)
 			r.ValueFormatter = r.LinkAttribute.ValueFormatter
 		}
@@ -1612,8 +1548,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Manifest {
 					r.MessageEmailAddressAttribute.Manifest = append(r.MessageEmailAddressAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.MessageEmailAddressAttribute.Manifest = nil
 			}
 			r.MessageEmailAddressAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose {
@@ -1633,7 +1567,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue)
 				r.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult15))
 			}
-			r.DefaultValue = r.MessageEmailAddressAttribute.DefaultValue
 			r.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Deprecated)
 			r.Deprecated = r.MessageEmailAddressAttribute.Deprecated
 			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
@@ -1706,7 +1639,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.MessageEmailAddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Sortable)
 			r.Sortable = r.MessageEmailAddressAttribute.Sortable
 			r.MessageEmailAddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Type))
-			r.Type = r.MessageEmailAddressAttribute.Type
 			r.MessageEmailAddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ValueFormatter)
 			r.ValueFormatter = r.MessageEmailAddressAttribute.ValueFormatter
 		}
@@ -1717,8 +1649,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Manifest {
 					r.MultiSelectAttribute.Manifest = append(r.MultiSelectAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.MultiSelectAttribute.Manifest = nil
 			}
 			r.MultiSelectAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose {
@@ -1739,7 +1669,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
 				r.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult16))
 			}
-			r.DefaultValue = r.MultiSelectAttribute.DefaultValue
 			r.MultiSelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Deprecated)
 			r.Deprecated = r.MultiSelectAttribute.Deprecated
 			r.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.DisableCaseSensitive)
@@ -1827,7 +1756,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.MultiSelectAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Sortable)
 			r.Sortable = r.MultiSelectAttribute.Sortable
 			r.MultiSelectAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMultiSelectAttribute.Type))
-			r.Type = r.MultiSelectAttribute.Type
 			r.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ValueFormatter)
 			r.ValueFormatter = r.MultiSelectAttribute.ValueFormatter
 		}
@@ -1838,8 +1766,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Manifest {
 					r.NumberAttribute.Manifest = append(r.NumberAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.NumberAttribute.Manifest = nil
 			}
 			r.NumberAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDNumberAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Purpose {
@@ -1863,7 +1789,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
 				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult17))
 			}
-			r.DefaultValue = r.NumberAttribute.DefaultValue
 			r.NumberAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Deprecated)
 			r.Deprecated = r.NumberAttribute.Deprecated
 			r.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EntityBuilderDisableEdit)
@@ -1936,7 +1861,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.NumberAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Sortable)
 			r.Sortable = r.NumberAttribute.Sortable
 			r.NumberAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDNumberAttribute.Type))
-			r.Type = r.NumberAttribute.Type
 			r.NumberAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ValueFormatter)
 			r.ValueFormatter = r.NumberAttribute.ValueFormatter
 		}
@@ -1947,8 +1871,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
 					r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.OrderedListAttribute.Manifest = nil
 			}
 			r.OrderedListAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDOrderedListAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Purpose {
@@ -1967,7 +1889,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
 				r.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult18))
 			}
-			r.DefaultValue = r.OrderedListAttribute.DefaultValue
 			r.OrderedListAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Deprecated)
 			r.Deprecated = r.OrderedListAttribute.Deprecated
 			r.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EntityBuilderDisableEdit)
@@ -2038,7 +1959,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.OrderedListAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Sortable)
 			r.Sortable = r.OrderedListAttribute.Sortable
 			r.OrderedListAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDOrderedListAttribute.Type))
-			r.Type = r.OrderedListAttribute.Type
 			r.OrderedListAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ValueFormatter)
 			r.ValueFormatter = r.OrderedListAttribute.ValueFormatter
 		}
@@ -2049,8 +1969,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
 					r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PartnerOrganisationAttribute.Manifest = nil
 			}
 			r.PartnerOrganisationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose {
@@ -2069,7 +1987,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
 				r.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult19))
 			}
-			r.DefaultValue = r.PartnerOrganisationAttribute.DefaultValue
 			r.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Deprecated)
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
 			r.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EntityBuilderDisableEdit)
@@ -2140,7 +2057,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Sortable)
 			r.Sortable = r.PartnerOrganisationAttribute.Sortable
 			r.PartnerOrganisationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Type))
-			r.Type = r.PartnerOrganisationAttribute.Type
 			r.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ValueFormatter)
 			r.ValueFormatter = r.PartnerOrganisationAttribute.ValueFormatter
 		}
@@ -2151,8 +2067,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
 					r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PartnerStatusAttribute.Manifest = nil
 			}
 			r.PartnerStatusAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose {
@@ -2171,7 +2085,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
 				r.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult20))
 			}
-			r.DefaultValue = r.PartnerStatusAttribute.DefaultValue
 			r.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Deprecated)
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
 			r.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EntityBuilderDisableEdit)
@@ -2242,7 +2155,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PartnerStatusAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Sortable)
 			r.Sortable = r.PartnerStatusAttribute.Sortable
 			r.PartnerStatusAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPartnerStatusAttribute.Type))
-			r.Type = r.PartnerStatusAttribute.Type
 			r.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ValueFormatter)
 			r.ValueFormatter = r.PartnerStatusAttribute.ValueFormatter
 		}
@@ -2253,8 +2165,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Manifest {
 					r.PaymentAttribute.Manifest = append(r.PaymentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PaymentAttribute.Manifest = nil
 			}
 			r.PaymentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPaymentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Purpose {
@@ -2273,7 +2183,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue)
 				r.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult21))
 			}
-			r.DefaultValue = r.PaymentAttribute.DefaultValue
 			r.PaymentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Deprecated)
 			r.Deprecated = r.PaymentAttribute.Deprecated
 			r.PaymentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.EntityBuilderDisableEdit)
@@ -2344,7 +2253,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PaymentAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Sortable)
 			r.Sortable = r.PaymentAttribute.Sortable
 			r.PaymentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPaymentAttribute.Type))
-			r.Type = r.PaymentAttribute.Type
 			r.PaymentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ValueFormatter)
 			r.ValueFormatter = r.PaymentAttribute.ValueFormatter
 		}
@@ -2355,8 +2263,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
 					r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PaymentMethodRelationAttribute.Manifest = nil
 			}
 			r.PaymentMethodRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose {
@@ -2375,7 +2281,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
 				r.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult22))
 			}
-			r.DefaultValue = r.PaymentMethodRelationAttribute.DefaultValue
 			r.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Deprecated)
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
 			r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EntityBuilderDisableEdit)
@@ -2446,7 +2351,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Sortable)
 			r.Sortable = r.PaymentMethodRelationAttribute.Sortable
 			r.PaymentMethodRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Type))
-			r.Type = r.PaymentMethodRelationAttribute.Type
 			r.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.PaymentMethodRelationAttribute.ValueFormatter
 		}
@@ -2457,8 +2361,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Manifest {
 					r.PhoneAttribute.Manifest = append(r.PhoneAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PhoneAttribute.Manifest = nil
 			}
 			r.PhoneAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPhoneAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Purpose {
@@ -2477,7 +2379,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue)
 				r.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult23))
 			}
-			r.DefaultValue = r.PhoneAttribute.DefaultValue
 			r.PhoneAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Deprecated)
 			r.Deprecated = r.PhoneAttribute.Deprecated
 			r.PhoneAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.EntityBuilderDisableEdit)
@@ -2548,7 +2449,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PhoneAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Sortable)
 			r.Sortable = r.PhoneAttribute.Sortable
 			r.PhoneAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPhoneAttribute.Type))
-			r.Type = r.PhoneAttribute.Type
 			r.PhoneAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ValueFormatter)
 			r.ValueFormatter = r.PhoneAttribute.ValueFormatter
 		}
@@ -2559,8 +2459,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Manifest {
 					r.PortalAccessAttribute.Manifest = append(r.PortalAccessAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PortalAccessAttribute.Manifest = nil
 			}
 			r.PortalAccessAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose {
@@ -2579,7 +2477,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPortalAccessAttribute.DefaultValue)
 				r.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult24))
 			}
-			r.DefaultValue = r.PortalAccessAttribute.DefaultValue
 			r.PortalAccessAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Deprecated)
 			r.Deprecated = r.PortalAccessAttribute.Deprecated
 			r.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.EntityBuilderDisableEdit)
@@ -2650,7 +2547,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PortalAccessAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Sortable)
 			r.Sortable = r.PortalAccessAttribute.Sortable
 			r.PortalAccessAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPortalAccessAttribute.Type))
-			r.Type = r.PortalAccessAttribute.Type
 			r.PortalAccessAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ValueFormatter)
 			r.ValueFormatter = r.PortalAccessAttribute.ValueFormatter
 		}
@@ -2661,8 +2557,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Manifest {
 					r.PriceComponentAttribute.Manifest = append(r.PriceComponentAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PriceComponentAttribute.Manifest = nil
 			}
 			r.PriceComponentAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPriceComponentAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Purpose {
@@ -2681,7 +2575,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
 				r.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult25))
 			}
-			r.DefaultValue = r.PriceComponentAttribute.DefaultValue
 			r.PriceComponentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Deprecated)
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
 			r.PriceComponentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.EntityBuilderDisableEdit)
@@ -2752,7 +2645,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PriceComponentAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Sortable)
 			r.Sortable = r.PriceComponentAttribute.Sortable
 			r.PriceComponentAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPriceComponentAttribute.Type))
-			r.Type = r.PriceComponentAttribute.Type
 			r.PriceComponentAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ValueFormatter)
 			r.ValueFormatter = r.PriceComponentAttribute.ValueFormatter
 		}
@@ -2763,8 +2655,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Manifest {
 					r.PurposeAttribute.Manifest = append(r.PurposeAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.PurposeAttribute.Manifest = nil
 			}
 			r.PurposeAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPurposeAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
@@ -2783,7 +2673,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
 				r.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult26))
 			}
-			r.DefaultValue = r.PurposeAttribute.DefaultValue
 			r.PurposeAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Deprecated)
 			r.Deprecated = r.PurposeAttribute.Deprecated
 			r.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EntityBuilderDisableEdit)
@@ -2854,7 +2743,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PurposeAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Sortable)
 			r.Sortable = r.PurposeAttribute.Sortable
 			r.PurposeAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPurposeAttribute.Type))
-			r.Type = r.PurposeAttribute.Type
 			r.PurposeAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ValueFormatter)
 			r.ValueFormatter = r.PurposeAttribute.ValueFormatter
 		}
@@ -2865,8 +2753,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Manifest {
 					r.RelationAttribute.Manifest = append(r.RelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.RelationAttribute.Manifest = nil
 			}
 			r.RelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Purpose {
@@ -2922,7 +2808,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
 				r.RelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult27))
 			}
-			r.DefaultValue = r.RelationAttribute.DefaultValue
 			r.RelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Deprecated)
 			r.Deprecated = r.RelationAttribute.Deprecated
 			r.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.DetailsViewModeEnabled)
@@ -3045,7 +2930,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields)
 			}
 			r.RelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDRelationAttribute.Type))
-			r.Type = r.RelationAttribute.Type
 			r.RelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.RelationAttribute.ValueFormatter
 		}
@@ -3056,8 +2940,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Manifest {
 					r.SelectAttribute.Manifest = append(r.SelectAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.SelectAttribute.Manifest = nil
 			}
 			r.SelectAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDSelectAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Purpose {
@@ -3077,7 +2959,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
 				r.SelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult28))
 			}
-			r.DefaultValue = r.SelectAttribute.DefaultValue
 			r.SelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Deprecated)
 			r.Deprecated = r.SelectAttribute.Deprecated
 			r.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EntityBuilderDisableEdit)
@@ -3154,7 +3035,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.SelectAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Sortable)
 			r.Sortable = r.SelectAttribute.Sortable
 			r.SelectAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDSelectAttribute.Type))
-			r.Type = r.SelectAttribute.Type
 			r.SelectAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ValueFormatter)
 			r.ValueFormatter = r.SelectAttribute.ValueFormatter
 		}
@@ -3165,8 +3045,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Manifest {
 					r.SequenceAttribute.Manifest = append(r.SequenceAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.SequenceAttribute.Manifest = nil
 			}
 			r.SequenceAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDSequenceAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Purpose {
@@ -3185,7 +3063,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
 				r.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult29))
 			}
-			r.DefaultValue = r.SequenceAttribute.DefaultValue
 			r.SequenceAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Deprecated)
 			r.Deprecated = r.SequenceAttribute.Deprecated
 			r.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EntityBuilderDisableEdit)
@@ -3258,7 +3135,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Sortable = r.SequenceAttribute.Sortable
 			r.SequenceAttribute.StartNumber = types.Int64PointerValue(resp.AttributeWithCompositeIDSequenceAttribute.StartNumber)
 			r.SequenceAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDSequenceAttribute.Type))
-			r.Type = r.SequenceAttribute.Type
 			r.SequenceAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ValueFormatter)
 			r.ValueFormatter = r.SequenceAttribute.ValueFormatter
 		}
@@ -3269,8 +3145,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Manifest {
 					r.StatusAttribute.Manifest = append(r.StatusAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.StatusAttribute.Manifest = nil
 			}
 			r.StatusAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDStatusAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Purpose {
@@ -3289,7 +3163,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
 				r.StatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult30))
 			}
-			r.DefaultValue = r.StatusAttribute.DefaultValue
 			r.StatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Deprecated)
 			r.Deprecated = r.StatusAttribute.Deprecated
 			r.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EntityBuilderDisableEdit)
@@ -3376,7 +3249,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.StatusAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Sortable)
 			r.Sortable = r.StatusAttribute.Sortable
 			r.StatusAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDStatusAttribute.Type))
-			r.Type = r.StatusAttribute.Type
 			r.StatusAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ValueFormatter)
 			r.ValueFormatter = r.StatusAttribute.ValueFormatter
 		}
@@ -3387,8 +3259,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDTableAttribute.Manifest {
 					r.TableAttribute.Manifest = append(r.TableAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TableAttribute.Manifest = nil
 			}
 			r.TableAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTableAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTableAttribute.Purpose {
@@ -3432,7 +3302,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTableAttribute.DefaultValue)
 				r.TableAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult31))
 			}
-			r.DefaultValue = r.TableAttribute.DefaultValue
 			r.TableAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Deprecated)
 			r.Deprecated = r.TableAttribute.Deprecated
 			r.TableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.EntityBuilderDisableEdit)
@@ -3506,7 +3375,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Sortable = r.TableAttribute.Sortable
 			r.TableAttribute.Transposed = types.BoolPointerValue(resp.AttributeWithCompositeIDTableAttribute.Transposed)
 			r.TableAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTableAttribute.Type))
-			r.Type = r.TableAttribute.Type
 			r.TableAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTableAttribute.ValueFormatter)
 			r.ValueFormatter = r.TableAttribute.ValueFormatter
 		}
@@ -3517,8 +3385,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Manifest {
 					r.TagsAttribute.Manifest = append(r.TagsAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TagsAttribute.Manifest = nil
 			}
 			r.TagsAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTagsAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Purpose {
@@ -3537,7 +3403,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
 				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult32))
 			}
-			r.DefaultValue = r.TagsAttribute.DefaultValue
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
 			r.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EntityBuilderDisableEdit)
@@ -3616,7 +3481,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.TagsAttribute.Suggestions = append(r.TagsAttribute.Suggestions, types.StringValue(v))
 			}
 			r.TagsAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTagsAttribute.Type))
-			r.Type = r.TagsAttribute.Type
 			r.TagsAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ValueFormatter)
 			r.ValueFormatter = r.TagsAttribute.ValueFormatter
 		}
@@ -3627,8 +3491,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDTextAttribute.Manifest {
 					r.TextAttribute.Manifest = append(r.TextAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.TextAttribute.Manifest = nil
 			}
 			r.TextAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDTextAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Purpose {
@@ -3647,7 +3509,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult33, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
 				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult33))
 			}
-			r.DefaultValue = r.TextAttribute.DefaultValue
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
 			r.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EntityBuilderDisableEdit)
@@ -3726,7 +3587,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.TextAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Sortable)
 			r.Sortable = r.TextAttribute.Sortable
 			r.TextAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDTextAttribute.Type))
-			r.Type = r.TextAttribute.Type
 			r.TextAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.ValueFormatter)
 			r.ValueFormatter = r.TextAttribute.ValueFormatter
 		}
@@ -3737,8 +3597,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Manifest {
 					r.UserRelationAttribute.Manifest = append(r.UserRelationAttribute.Manifest, types.StringValue(v))
 				}
-			} else {
-				r.UserRelationAttribute.Manifest = nil
 			}
 			r.UserRelationAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDUserRelationAttribute.Purpose))
 			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Purpose {
@@ -3757,7 +3615,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				defaultValueResult34, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
 				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult34))
 			}
-			r.DefaultValue = r.UserRelationAttribute.DefaultValue
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
 			r.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EntityBuilderDisableEdit)
@@ -3829,7 +3686,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.UserRelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Sortable)
 			r.Sortable = r.UserRelationAttribute.Sortable
 			r.UserRelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDUserRelationAttribute.Type))
-			r.Type = r.UserRelationAttribute.Type
 			r.UserRelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.UserRelationAttribute.ValueFormatter
 		}
